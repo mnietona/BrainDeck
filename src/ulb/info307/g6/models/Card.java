@@ -6,12 +6,15 @@ import org.dizitart.no2.objects.Id;
 import java.io.Serializable;
 
 public class Card implements Serializable {
+
     @Id
-    private NitriteId card_id;
+    private NitriteId id;
     private String question;
     private String answer;
 
-
+    public NitriteId getId() {
+        return id;
+    }
     public String getQuestion() {
         return question;
     }

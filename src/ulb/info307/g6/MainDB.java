@@ -28,7 +28,7 @@ public class MainDB {
         ObjectRepository<Deck> collection = db.getRepository(Deck.class);
 
        for (Deck p : collection.find()) {
-           System.out.println(p.getDeck_name());
+           System.out.println(p.getName());
        }
     }
 }
