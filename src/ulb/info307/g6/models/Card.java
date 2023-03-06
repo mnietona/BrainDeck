@@ -1,4 +1,4 @@
-package ulb.info307.g6.model;
+package ulb.info307.g6.models;
 
 import org.dizitart.no2.NitriteId;
 import org.dizitart.no2.objects.Id;
