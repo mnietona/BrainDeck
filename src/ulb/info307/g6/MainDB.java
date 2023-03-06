@@ -19,7 +19,7 @@ public class MainDB {
     }
 
     public static void main(String[] args) {
-        //gen_deck();
+        gen_deck();
         Nitrite db = Nitrite.builder()
                 .compressed()
                 .filePath("db.db")

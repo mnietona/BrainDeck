@@ -4,17 +4,21 @@ import org.dizitart.no2.NitriteId;
 import org.dizitart.no2.objects.Id;
 
 import java.io.Serializable;
+import java.util.Random;
 
 public class Card implements Serializable {
 
     @Id
-    private NitriteId id;
+    private long id;
     private String question;
     private String answer;
 
-    public NitriteId getId() {
+    public long getId() {
         return id;
     }
+
+    public void setId(long id) {this.id = id; }
+
     public String getQuestion() {
         return question;
     }
@@ -34,6 +38,7 @@ public class Card implements Serializable {
 
     }
     public Card(String question, String answer) {
+        this.id = new Random().nextLong();
         this.question = question;
         this.answer = answer;
     }
