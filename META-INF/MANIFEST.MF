@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: ulb.info307.g6.Launcher
+
