@@ -7,6 +7,7 @@ import java.util.List;
 public interface CardDaoInterface {
     public boolean addCard(Card card);
     public boolean deleteCard(Card card);
+    public boolean updateCard(Card card);
     public List<Card> getAllCards();
     public Card getCardById(long id);
 }
