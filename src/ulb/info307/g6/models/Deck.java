@@ -11,16 +11,8 @@ public class Deck implements Serializable {
     @Id
     private long id;
     private String name;
-
-    public List<Card> getCardList() {
-        return cardList;
-    }
-
-    public void setCardList(List<Card> cardList) {
-        this.cardList = cardList;
-    }
-
     private List<Card> cardList;
+
     public Deck() {
 
     }
@@ -33,6 +25,14 @@ public class Deck implements Serializable {
     public Deck(String name, List<Card> cardList) {
         this.id = new Random().nextLong();
         this.name = name;
+        this.cardList = cardList;
+    }
+
+    public List<Card> getCardList() {
+        return cardList;
+    }
+
+    public void setCardList(List<Card> cardList) {
         this.cardList = cardList;
     }
 
