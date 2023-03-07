@@ -8,4 +8,5 @@
      requires org.kordamp.bootstrapfx.core;
      requires nitrite;
      opens ulb.info307.g6 to javafx.fxml;
+     opens ulb.info307.g6.models to nitrite;
 }
