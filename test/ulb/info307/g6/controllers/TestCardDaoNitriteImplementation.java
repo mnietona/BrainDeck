@@ -52,6 +52,7 @@ class TestCardDaoNitriteImplementation {
     @Test
     void getCardById() {
         assertTrue(cdni.addCard(test_card));
+        assertEquals(cdni.getCardById(test_card.getId()).getId(), test_card.getId());
         assertTrue(cdni.deleteCard(test_card));
         assertNull(cdni.getCardById(test_card.getId()));
     }
