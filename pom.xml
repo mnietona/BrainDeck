@@ -59,6 +59,7 @@
         <sourceDirectory>src</sourceDirectory>
         <testSourceDirectory>test</testSourceDirectory>
         <outputDirectory>dist</outputDirectory>
+        <resources><resource><directory>resource</directory></resource></resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
