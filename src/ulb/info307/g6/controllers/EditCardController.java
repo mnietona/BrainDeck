@@ -6,9 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import ulb.info307.g6.views.MainMenu;
+
 import java.io.IOException;
-import java.net.URL;
 
 public class EditCardController extends Application {
 
