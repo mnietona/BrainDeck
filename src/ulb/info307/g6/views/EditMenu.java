@@ -5,23 +5,26 @@ import javafx.scene.control.Button;
 
 public class EditMenu {
     @FXML
-    Button buttonEdit;
+    private Button buttonEdit;
 
-     public void clickEdit() {
+    @FXML
+    protected void clickEdit() {
          System.out.println("Edit");
      }
 
     @FXML
-    Button buttonAdd;
+    private Button buttonAdd;
 
-    public void clickAdd() {
+    @FXML
+    protected void clickAdd() {
         System.out.println("Add");
     }
 
     @FXML
-    Button buttonRemove;
+    private Button buttonRemove;
 
-    public void clickRemove() {
+    @FXML
+    protected void clickRemove() {
         System.out.println("Remove");
     }
 }
