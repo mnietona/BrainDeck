@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import ulb.info307.g6.views.EditCardMenu;
 
 import java.io.IOException;
 
@@ -15,7 +16,7 @@ public class EditCardController extends Application {
     public void start(Stage primaryStage) throws Exception {
         try
         {
-            FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/ulb/info307/g6/views/EditCardMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(EditCardController.class.getResource("/ulb/info307/g6/views/EditCardMenu.fxml"));
             VBox root = loader.load();
             Scene scene = new Scene(root, 600, 400);
             primaryStage.setScene(scene);
