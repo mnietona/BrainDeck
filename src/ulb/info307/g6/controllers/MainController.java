@@ -21,7 +21,7 @@ public class MainController extends Application {
             //System.out.println(MainController.class.getResource());
             FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/ulb/info307/g6/views/MainMenu.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root, 800, 600);
+            Scene scene = new Scene(root, 800, 500);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Menu");
             primaryStage.show();

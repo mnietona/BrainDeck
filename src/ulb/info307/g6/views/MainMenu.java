@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 
 public class MainMenu {
 
+
     @FXML
     public Button playButton;
 
@@ -26,8 +27,9 @@ public class MainMenu {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/EditMenu.fxml"));
             Parent root = loader.load();
             EditMenu editMenu = loader.getController();
-            Scene scene = new Scene(root, 800, 600);
+            Scene scene = new Scene(root, 800, 500);
             Stage stage = new Stage();
+            stage.setTitle("Edit your Packs");
             stage.setScene(scene);
             stage.show();
             closeWindow();
