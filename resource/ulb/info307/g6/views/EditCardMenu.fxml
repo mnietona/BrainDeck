@@ -55,23 +55,23 @@
                         <Insets />
                      </HBox.margin>
                      <children>
-                              <Button fx:id="backButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" text="Back">
+                              <Button fx:id="backButton" mnemonicParsing="false" onAction="#backClick" prefHeight="26.0" prefWidth="80.0" text="Back">
                            <HBox.margin>
                               <Insets left="15.0" top="10.0" />
                            </HBox.margin>
                               </Button>
                      </children>
                   </HBox>
-                  <Button fx:id="editButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" text="Edit">
+                  <Button fx:id="editButton" mnemonicParsing="false" onAction="#editClick" prefHeight="26.0" prefWidth="80.0" text="Edit">
                      <HBox.margin>
                         <Insets top="10.0" />
                      </HBox.margin>
                   </Button>
-                        <Button fx:id="addNewButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" text="Add new">
+                        <Button fx:id="addNewButton" mnemonicParsing="false" onAction="#addNewClick" prefHeight="26.0" prefWidth="80.0" text="Add new">
                      <HBox.margin>
                         <Insets top="10.0" />
                      </HBox.margin></Button>
-                        <Button fx:id="removeButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" text="Remove">
+                        <Button fx:id="removeButton" mnemonicParsing="false" onAction="#removeClick" prefHeight="26.0" prefWidth="80.0" text="Remove">
                      <HBox.margin>
                         <Insets top="10.0" />
                      </HBox.margin></Button>

@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 
 public class EditCardMenu {
 
-
     @FXML
     private Button addNewButton;
 
@@ -18,5 +17,26 @@ public class EditCardMenu {
 
     @FXML
     private Button removeButton;
+
+    @FXML
+    void addNewClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void backClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void editClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void removeClick(ActionEvent event) {
+
+    }
+
 
 }
