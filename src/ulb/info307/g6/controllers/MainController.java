@@ -19,9 +19,9 @@ public class MainController extends Application {
         try {
             //URL tt = MainController.class.getResource("../views/MainMenu.fxml");
             //System.out.println(MainController.class.getResource());
-            FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/ulb/info307/g6/views/EditMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/ulb/info307/g6/views/MainMenu.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root, 300, 200);
+            Scene scene = new Scene(root, 800, 600);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Menu");
             primaryStage.show();
