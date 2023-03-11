@@ -19,6 +19,18 @@ public class MainMenu {
 
     public void playButtonAction() {
         // Actions à effectuer lors du clic sur le bouton "Play"
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/ChooseDeckPlay.fxml"));
+            Parent root = loader.load();
+            ChooseDeckPlay chooseDeckPlay = loader.getController();
+            Scene scene = new Scene(root, 800, 600);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            closeWindow();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void editButtonAction() {
