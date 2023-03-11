@@ -29,7 +29,6 @@ public class MainController extends Application {
         } catch (IOException e){
             showErrorAlert();
         }
-
     }
 
     private void showErrorAlert() {

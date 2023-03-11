@@ -11,10 +11,17 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.VBox;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class EditMenu {
+    public ArrayList<String> packNames = new ArrayList<String>();
+    public EditMenu() {
+        packNames.add("Math");
+        packNames.add("Algo");
+        packNames.add("Python");
+    }
     @FXML
-    private Button buttonBack;
+    private Button buttonHome;
     @FXML
     private Button buttonEdit;
 
@@ -36,8 +43,10 @@ public class EditMenu {
     private Button buttonAdd;
 
     @FXML
-    protected void clickAdd() {
+    protected void clickCreate() {
         System.out.println("Add");
+        accessNewWindow("/ulb/info307/g6/views/CreatePackMenu.fxml");
+
     }
 
     @FXML
@@ -48,26 +57,20 @@ public class EditMenu {
 
     @FXML
     protected void clickRemove() {
-        System.out.println("Remove");
+        String selectedItem = cardPack.getSelectionModel().getSelectedItem();
+        packNames.remove(selectedItem);
+        setCardPackLists();
+        cardPack.setValue("");
+        updateRectangleColor();
     }
 
-    public void backButtonAction() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/MainMenu.fxml"));
-            Parent root = loader.load();
-            MainMenu mainMenu = loader.getController();
-            Scene scene = new Scene(root, 800, 500);
-            Stage stage = (Stage) buttonBack.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void homeButtonAction() {
+        accessNewWindow("/ulb/info307/g6/views/MainMenu.fxml");
     }
 
     public void setCardPackLists() {
         cardPack.getItems().clear();
-        cardPack.getItems().addAll("Math", "Algo", "Python");
+        cardPack.getItems().addAll(packNames);
         cardPack.setOnAction(event -> { // click on an item
             String selectedItem = cardPack.getSelectionModel().getSelectedItem();
             updateRectangleColor();
@@ -90,11 +93,25 @@ public class EditMenu {
                     cardRectangle.setFill(Color.BLUE);
                     break;
                 default:
-                    cardRectangle.setFill(Color.WHITE);
+                    cardRectangle.setFill(Color.GRAY);
                     break;
             }
         }
 
+    }
+
+    public void accessNewWindow(String name) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(name));
+            Parent root = loader.load();
+            //MainMenu newWindowMenu = loader.getController();
+            Scene scene = new Scene(root, 800, 500);
+            Stage stage = (Stage) buttonHome.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
