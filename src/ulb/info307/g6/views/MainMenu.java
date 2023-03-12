@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 
 public class MainMenu {
 
-
     @FXML
     public Button playButton;
 

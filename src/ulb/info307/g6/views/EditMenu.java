@@ -10,15 +10,26 @@ import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.VBox;
+import ulb.info307.g6.controllers.DeckDaoNitriteImplementation;
+import ulb.info307.g6.models.Deck;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class EditMenu {
-    public ArrayList<String> packNames = new ArrayList<String>();
+    public ArrayList<String> deckNames = new ArrayList<String>();
     public EditMenu() {
-        packNames.add("Math");
-        packNames.add("Algo");
-        packNames.add("Python");
+        // TODO: if possible create ddni in the main/globally...
+        DeckDaoNitriteImplementation ddni = new DeckDaoNitriteImplementation();
+        for (Deck d : ddni.getAllDecks()) {
+            deckNames.add(d.getName());
+        }
+        /*
+        deckNames.add("Math");
+        deckNames.add("Algo");
+        deckNames.add("Python");
+        deckNames.add("Java");
+         */
     }
     @FXML
     private Button buttonHome;
@@ -47,6 +58,7 @@ public class EditMenu {
         System.out.println("Add");
         accessNewWindow("/ulb/info307/g6/views/CreatePackMenu.fxml");
 
+
     }
 
     @FXML
@@ -57,8 +69,9 @@ public class EditMenu {
 
     @FXML
     protected void clickRemove() {
+        DeckDaoNitriteImplementation ddni = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
         String selectedItem = cardPack.getSelectionModel().getSelectedItem();
-        packNames.remove(selectedItem);
+        deckNames.remove(selectedItem);
         setCardPackLists();
         cardPack.setValue("");
         updateRectangleColor();
@@ -70,7 +83,7 @@ public class EditMenu {
 
     public void setCardPackLists() {
         cardPack.getItems().clear();
-        cardPack.getItems().addAll(packNames);
+        cardPack.getItems().addAll(deckNames);
         cardPack.setOnAction(event -> { // click on an item
             String selectedItem = cardPack.getSelectionModel().getSelectedItem();
             updateRectangleColor();
@@ -85,6 +98,7 @@ public class EditMenu {
             switch (selectedItem) {
                 case "Math":
                     cardRectangle.setFill(Color.RED);
+
                     break;
                 case "Algo":
                     cardRectangle.setFill(Color.GREEN);
