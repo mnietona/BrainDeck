@@ -19,27 +19,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class EditMenu {
-    static DeckDaoNitriteImplementation ddni = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
-    public List<String> deckNames = new ArrayList<String>();
-    public EditMenu() {
-        // TODO: if possible create ddni in the main/globally...
-        for (Deck d : ddni.getAllDecks()) {
-            deckNames.add(d.getName());
-        }
-        /*
-        deckNames.add("Math");
-        deckNames.add("Algo");
-        deckNames.add("Python");
-        deckNames.add("Java");
-         */
-    }
+    static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
+    public List<Deck> decks;
+    public EditMenu() {}
     @FXML
     private Button buttonHome;
     @FXML
     private Button buttonEdit;
 
     @FXML
-    private ComboBox<String> cardPack;
+    private ComboBox<Deck> cardPack;
 
     @FXML
     private VBox root;
@@ -71,11 +60,10 @@ public class EditMenu {
 
     @FXML
     protected void clickRemove() {
-        String selectedItem = cardPack.getSelectionModel().getSelectedItem();
-        deckNames.remove(selectedItem);
-        //ddni.deleteDeck(selectedItem); // TODO: delete the deck from the database (with id or name)
+        Deck selectedItem = cardPack.getSelectionModel().getSelectedItem();
+        database.deleteDeck(selectedItem);
+        database.updateDeck(selectedItem);
         setCardPackLists();
-        cardPack.setValue("");
         updateRectangleColor();
     }
 
@@ -84,20 +72,22 @@ public class EditMenu {
     }
 
     public void setCardPackLists() {
+        decks = database.getAllDecks();
         cardPack.getItems().clear();
-        cardPack.getItems().addAll(deckNames);
+        for (Deck deck : decks) {
+            cardPack.getItems().add(deck);
+        }
         cardPack.setOnAction(event -> { // click on an item
-            String selectedItem = cardPack.getSelectionModel().getSelectedItem();
             updateRectangleColor();
-
         });
 
     }
 
     public void updateRectangleColor() {
-        String selectedItem = cardPack.getSelectionModel().getSelectedItem();
+        Deck selectedItem = cardPack.getSelectionModel().getSelectedItem();
+
         if (selectedItem != null) {
-            switch (selectedItem) {
+            switch (selectedItem.getName()) {
                 case "Math":
                     cardRectangle.setFill(Color.RED);
 
@@ -113,6 +103,7 @@ public class EditMenu {
                     break;
             }
         }
+         
 
     }
 

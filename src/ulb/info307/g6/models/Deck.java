@@ -54,4 +54,6 @@ public class Deck implements Serializable {
 
     public long getId() {return id;}
 
+    public String toString() {return getName();}
+
 }

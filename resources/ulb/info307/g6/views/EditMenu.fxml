@@ -6,12 +6,12 @@
 
 <VBox spacing="10" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.EditMenu">
    <HBox alignment="TOP_LEFT" spacing="10">
-   <ComboBox fx:id="cardPack" onMouseClicked="#clickChoice" prefWidth="150.0" promptText="Pick a Card Pack  " />
+   <ComboBox fx:id="cardPack" onMouseClicked="#clickChoice" prefWidth="150.0" promptText="Pick a deck" />
    </HBox>
    <HBox alignment="TOP_CENTER" spacing="10">
-      <Button fx:id="buttonEdit" mnemonicParsing="false" onAction="#clickEdit" text="Edit Pack" />
-      <Button fx:id="buttonCreate" mnemonicParsing="false" onAction="#clickCreate" text="Create Pack" />
-      <Button fx:id="buttonRemove" mnemonicParsing="false" onAction="#clickRemove" text="Remove Pack" />
+      <Button fx:id="buttonEdit" mnemonicParsing="false" onAction="#clickEdit" text="Edit deck" />
+      <Button fx:id="buttonCreate" mnemonicParsing="false" onAction="#clickCreate" text="Create deck" />
+      <Button fx:id="buttonRemove" mnemonicParsing="false" onAction="#clickRemove" text="Remove deck" />
    </HBox>
    <VBox alignment="CENTER" prefHeight="247.0" prefWidth="666.0">
       <children>
