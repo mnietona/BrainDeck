@@ -13,14 +13,16 @@ import javafx.scene.layout.VBox;
 import ulb.info307.g6.controllers.DeckDaoNitriteImplementation;
 import ulb.info307.g6.models.Deck;
 
+import java.util.List;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class EditMenu {
-    public ArrayList<String> deckNames = new ArrayList<String>();
+    static DeckDaoNitriteImplementation ddni = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
+    public List<String> deckNames = new ArrayList<String>();
     public EditMenu() {
         // TODO: if possible create ddni in the main/globally...
-        DeckDaoNitriteImplementation ddni = new DeckDaoNitriteImplementation();
         for (Deck d : ddni.getAllDecks()) {
             deckNames.add(d.getName());
         }
@@ -69,9 +71,9 @@ public class EditMenu {
 
     @FXML
     protected void clickRemove() {
-        DeckDaoNitriteImplementation ddni = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
         String selectedItem = cardPack.getSelectionModel().getSelectedItem();
         deckNames.remove(selectedItem);
+        //ddni.deleteDeck(selectedItem); // TODO: delete the deck from the database (with id or name)
         setCardPackLists();
         cardPack.setValue("");
         updateRectangleColor();
