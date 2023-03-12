@@ -1,0 +1,47 @@
+plugins {
+    id 'application'
+    id 'java'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+}
+
+group 'ulb.info307.g6'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+application{
+    mainClass.set('ulb.info307.g6.Launcher')
+}
+
+sourceSets {
+    main.java.srcDirs = ['src']
+    main.resources.srcDirs = ['resources']
+    test.java.srcDirs = ['test']
+}
+
+javafx {
+    version = '19'
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+dependencies {
+    implementation 'org.dizitart:nitrite:3.4.4'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+jar {
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+    manifest {
+        attributes 'Main-Class': 'ulb.info307.g6.Launcher'
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
