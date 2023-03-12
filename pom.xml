@@ -79,7 +79,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>ulb.info307.g6/ulb.info307.g6.Main</mainClass>
+                            <mainClass>ulb.info307.g6/ulb.info307.g6.MainDB</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
