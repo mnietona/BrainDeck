@@ -5,20 +5,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import ulb.info307.g6.views.MainMenu;
 import java.io.IOException;
-import java.net.URL;
+
 
 public class MainController extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         try {
-            //URL tt = MainController.class.getResource("../views/MainMenu.fxml");
-            //System.out.println(MainController.class.getResource());
             FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/ulb/info307/g6/views/MainMenu.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root, 600, 408);
@@ -26,13 +21,14 @@ public class MainController extends Application {
             primaryStage.setTitle("Menu");
             primaryStage.show();
 
-        } catch (IOException e){
+        } catch (IOException e) {
             showErrorAlert();
         }
     }
 
     private void showErrorAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
     }
 
     public static void main(String[] args) {

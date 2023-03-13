@@ -86,7 +86,6 @@ public class EditMenu {
         cardPack.setOnAction(event -> { // click on an item
             updateDeckTitle();
         });
-
     }
 
     public void updateDeckTitle() {

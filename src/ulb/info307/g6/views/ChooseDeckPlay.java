@@ -2,15 +2,13 @@ package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
+
 import javafx.stage.Stage;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.paint.Color;
-import javafx.scene.layout.VBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -32,6 +30,9 @@ public class ChooseDeckPlay {
     static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
     static CardDaoNitriteImplementation databaseCard = new CardDaoNitriteImplementation(); // Initialize the DAO for the database
     public List<Deck> decks;
+
+    private int cardIndex = 0;
+    private Deck currentDeck = null;
     public ChooseDeckPlay() {}
 
     @FXML
@@ -69,17 +70,15 @@ public class ChooseDeckPlay {
 
     @FXML
     protected void clickKnowledgeLevel() {
-        Deck selectedItem = cardPack.getSelectionModel().getSelectedItem(); // Checks if a deck is currently selected
-        if (selectedItem != null) {
+        if (currentDeck != null) { // Checks if a deck is currently selected
             setChoice();
         }
     }
 
     public void updateKnowledgeLevel() {
-        Deck selectedItem = cardPack.getSelectionModel().getSelectedItem();
-        Card card = selectedItem.getCardList().get(i);
-        System.out.println("Knowledge level: " + card.getKnowledgeLevel());
-        if (card != null) {
+        if (currentDeck.getCardList().size() > 0) {
+            Card card = currentDeck.getCardList().get(cardIndex);
+            System.out.println("Knowledge level: " + card.getKnowledgeLevel());
             if (knowledgeLevel.getValue() == "Very bad") {
                 card.setKnowledgeLevel(0);
             } else if (knowledgeLevel.getValue() == "Bad") {
@@ -91,16 +90,15 @@ public class ChooseDeckPlay {
             } else if (knowledgeLevel.getValue() == "Very good") {
                 card.setKnowledgeLevel(4);
             }
+            databaseCard.updateCard(card);
+            database.updateDeck(currentDeck);
+            System.out.println("Knowledge level after update: " + card.getKnowledgeLevel());
         }
-        databaseCard.updateCard(card);
-        database.updateDeck(selectedItem);
-        System.out.println("Knowledge level after update: " + card.getKnowledgeLevel());
     }
 
     @FXML
     protected void clickFlipCard() {
-        Deck selectedItem = cardPack.getSelectionModel().getSelectedItem();
-        if (selectedItem != null) {
+        if (currentDeck != null) {
             if (displayTitle.getText() == "Question") {
                 updateDisplayArea("  Answer");
             } else if (displayTitle.getText() == "  Answer") {
@@ -111,8 +109,8 @@ public class ChooseDeckPlay {
     }
     @FXML
     protected void clickNextCard() {
-        if (i <= decks.size()) {
-            i++;
+        if (cardIndex + 1 < currentDeck.getCardList().size()) { // Checks if next card is not out of bounds
+            cardIndex++;
             updateDisplayArea("Question");
         }
         System.out.println("Next");
@@ -120,8 +118,8 @@ public class ChooseDeckPlay {
     }
     @FXML
     protected void clickBackCard() {
-        if (i > 0) {
-            i--;
+        if (cardIndex > 0) {
+            cardIndex--;
             updateDisplayArea("Question");
         }
         System.out.println("Back");
@@ -143,24 +141,27 @@ public class ChooseDeckPlay {
             cardPack.getItems().add(deck);
         }
         cardPack.setOnAction(event -> { // click on an item
+            cardIndex = 0;
+            currentDeck = cardPack.getSelectionModel().getSelectedItem();
             updateDisplayArea("Question");
         });
 
     }
-
-    private int i = 0;
     public void updateDisplayArea(String name) {
-        Deck selectedItem = cardPack.getSelectionModel().getSelectedItem();
-        if (selectedItem != null) {
+        if (currentDeck != null && currentDeck.getCardList().size() > 0) { // Deck is not empty
+            Card card = currentDeck.getCardList().get(cardIndex);
             if (name == "Question") {
                 displayTitle.setText("Question");
-                displayTextQA.setText(selectedItem.getCardList().get(i).getQuestion());
+                displayTextQA.setText(card.getQuestion());
             } else if (name == "  Answer") {
                 displayTitle.setText("  Answer");
-                displayTextQA.setText(selectedItem.getCardList().get(i).getAnswer());
+                displayTextQA.setText(card.getAnswer());
             }
+        } else {
+            displayTextQA.setText("No question");
         }
     }
+
 
     public void accessNewWindow(String name) {
         try {
