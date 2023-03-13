@@ -35,10 +35,20 @@ public class EditMenu {
     @FXML
     private Rectangle cardRectangle;
 
-
+    // creer une varibale qui va contenir le deck selectionné
+    public static Deck selectedDeck;
     @FXML
     protected void clickEdit() {
         System.out.println("Edit");
+        // faire passer le deck dans la scene edit
+        if (decks != null) {
+            Deck selectedItem = cardPack.getSelectionModel().getSelectedItem();
+            if (selectedItem != null) {
+                selectedDeck = selectedItem;
+                accessNewWindow("/ulb/info307/g6/views/EditCardMenu.fxml");
+            }
+        }
+        //accessNewWindow("/ulb/info307/g6/views/EditCardMenu.fxml");
     }
 
     @FXML
