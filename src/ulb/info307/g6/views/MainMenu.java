@@ -22,9 +22,10 @@ public class MainMenu {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/ChooseDeckPlay.fxml"));
             Parent root = loader.load();
             ChooseDeckPlay chooseDeckPlay = loader.getController();
-            Scene scene = new Scene(root, 800, 600);
+            Scene scene = new Scene(root, 600, 408);
             Stage stage = new Stage();
             stage.setScene(scene);
+            stage.setTitle("Play");
             stage.show();
             closeWindow();
         } catch (IOException e) {
@@ -38,9 +39,9 @@ public class MainMenu {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/EditMenu.fxml"));
             Parent root = loader.load();
             EditMenu editMenu = loader.getController();
-            Scene scene = new Scene(root, 800, 500);
+            Scene scene = new Scene(root, 600, 408);
             Stage stage = new Stage();
-            stage.setTitle("Edit your Packs");
+            stage.setTitle("Edit your decks");
             stage.setScene(scene);
             stage.show();
             closeWindow();
