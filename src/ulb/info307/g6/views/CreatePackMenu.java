@@ -42,7 +42,7 @@ public class CreatePackMenu {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(name));
             Parent root = loader.load();
             //MainMenu newWindowMenu = loader.getController();
-            Scene scene = new Scene(root, 800, 500);
+            Scene scene = new Scene(root, 600, 408);
             Stage stage = (Stage) buttonBack.getScene().getWindow();
             stage.setScene(scene);
             stage.show();

@@ -78,6 +78,7 @@ public class ChooseDeckPlay {
     public void updateKnowledgeLevel() {
         Deck selectedItem = cardPack.getSelectionModel().getSelectedItem();
         Card card = selectedItem.getCardList().get(i);
+        System.out.println("Knowledge level: " + card.getKnowledgeLevel());
         if (card != null) {
             if (knowledgeLevel.getValue() == "Very bad") {
                 card.setKnowledgeLevel(0);
@@ -93,6 +94,7 @@ public class ChooseDeckPlay {
         }
         databaseCard.updateCard(card);
         database.updateDeck(selectedItem);
+        System.out.println("Knowledge level after update: " + card.getKnowledgeLevel());
     }
 
     @FXML
@@ -165,7 +167,7 @@ public class ChooseDeckPlay {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(name));
             Parent root = loader.load();
             //MainMenu newWindowMenu = loader.getController();
-            Scene scene = new Scene(root, 800, 500);
+            Scene scene = new Scene(root, 600, 408);
             Stage stage = (Stage) buttonHome.getScene().getWindow();
             stage.setScene(scene);
             stage.show();

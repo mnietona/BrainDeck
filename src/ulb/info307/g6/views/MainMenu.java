@@ -16,8 +16,8 @@ public class MainMenu {
     @FXML
     public Button editButton;
 
-    public void playButtonAction() {
-        // Actions à effectuer lors du clic sur le bouton "Play"
+    public void studyButtonAction() {
+        // Actions à effectuer lors du clic sur le bouton "Study"
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/ChooseDeckPlay.fxml"));
             Parent root = loader.load();
@@ -25,7 +25,7 @@ public class MainMenu {
             Scene scene = new Scene(root, 600, 408);
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.setTitle("Play");
+            stage.setTitle("Study your decks");
             stage.show();
             closeWindow();
         } catch (IOException e) {

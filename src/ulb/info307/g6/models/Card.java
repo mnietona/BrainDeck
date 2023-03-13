@@ -12,7 +12,7 @@ public class Card implements Serializable {
     private long id;
     private String question;
     private String answer;
-    private int knowledgeLevel; // 5 levels: 0, 1, 2, 3, 4
+    private int knowledgeLevel; // 5 levels: 0, 1, 2, 3, 4 from bad to good
 
     public long getId() {
         return id;
