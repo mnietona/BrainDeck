@@ -51,4 +51,10 @@ public class Card implements Serializable {
         this.answer = answer;
         this.knowledgeLevel = 0; // 0 is the lowest level (doesn't know the card)
     }
+
+    public String toString() {
+        String s = question;
+        s = s.substring(0, Math.min(s.length(), 20)) + "...";
+        return s;
+    }
 }

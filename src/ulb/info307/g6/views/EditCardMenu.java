@@ -56,7 +56,7 @@ public class EditCardMenu {
     protected void clickEditCard() {
 
         Card selectedItem = deck.getCardList().get(pickCard.getSelectionModel().getSelectedIndex());
-        if (selectedItem != null) {
+        if (selectedItem != null && questionInput.getText() != "" && answerInput.getText() != "") {
             selectedItem.setQuestion(questionInput.getText());
             selectedItem.setAnswer(answerInput.getText());
             databaseCard.updateCard(selectedItem);
@@ -74,13 +74,14 @@ public class EditCardMenu {
 
     @FXML
     protected void clickCreateCard() {
-        Card card = new Card(questionInput.getText(), answerInput.getText());
-        deck.addCard(card);
-        databaseCard.updateCard(card);
-        database.updateDeck(deck);
-        updateQuestionAnswer();
-        System.out.println("Add : " + card.getId());
-
+        if (questionInput.getText() != "" && answerInput.getText() != ""){
+            Card card = new Card(questionInput.getText(), answerInput.getText());
+            deck.addCard(card);
+            databaseCard.updateCard(card);
+            database.updateDeck(deck);
+            updateQuestionAnswer();
+            System.out.println("Add : " + card.getId());
+        }
     }
 
     @FXML

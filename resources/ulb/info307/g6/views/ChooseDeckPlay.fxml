@@ -10,7 +10,7 @@
             <children>
                 <ComboBox fx:id="cardPack" layoutY="1.0" onMouseClicked="#clickChoice" prefWidth="150.0" promptText="Pick a deck" />
                 <Button fx:id="buttonFlipCard" layoutX="265.0" layoutY="332.0" mnemonicParsing="false" onAction="#clickFlipCard" prefHeight="26.0" prefWidth="71.0" text="Flip" />
-                <Button fx:id="buttonBackCard" layoutX="129.0" layoutY="332.0" mnemonicParsing="false" onAction="#clickBackCard" text="Return" />
+                <Button fx:id="buttonBackCard" layoutX="129.0" layoutY="332.0" mnemonicParsing="false" onAction="#clickBackCard" text="Restart" />
                 <Button fx:id="buttonNextCard" layoutX="427.0" layoutY="332.0" mnemonicParsing="false" onAction="#clickNextCard" prefHeight="26.0" prefWidth="54.0" text="Next" />
                 <Button fx:id="buttonHome" layoutX="14.0" layoutY="358.0" mnemonicParsing="false" onAction="#clickHome" text="Home" />
             <Text fx:id="displayTextQA" layoutX="108.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="384.13671875">

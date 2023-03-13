@@ -113,6 +113,7 @@ public class ChooseDeckPlay {
             cardIndex++;
             updateDisplayArea("Question");
         }
+        else if (cardIndex + 1 == currentDeck.getCardList().size()) updateDisplayArea("Deck finished");
         System.out.println("Next");
 
     }
@@ -148,7 +149,13 @@ public class ChooseDeckPlay {
 
     }
     public void updateDisplayArea(String name) {
-        if (currentDeck != null && currentDeck.getCardList().size() > 0) { // Deck is not empty
+        if (currentDeck == null) {
+            displayTitle.setText("");
+            displayTextQA.setText("No deck selected");
+        } else if (currentDeck.getCardList().size() == 0) {
+            displayTitle.setText("");
+            displayTextQA.setText("The deck " + currentDeck.getName() + " is empty");
+        } else { // Deck is not empty
             Card card = currentDeck.getCardList().get(cardIndex);
             if (name == "Question") {
                 displayTitle.setText("Question");
@@ -156,9 +163,10 @@ public class ChooseDeckPlay {
             } else if (name == "  Answer") {
                 displayTitle.setText("  Answer");
                 displayTextQA.setText(card.getAnswer());
+            } else if (name == "Deck finished") {
+                displayTitle.setText("");
+                displayTextQA.setText("You have been through all the questions of this deck");
             }
-        } else {
-            displayTextQA.setText("No question");
         }
     }
 
