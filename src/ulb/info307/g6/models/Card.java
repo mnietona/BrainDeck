@@ -54,7 +54,9 @@ public class Card implements Serializable {
 
     public String toString() {
         String s = question;
-        s = s.substring(0, Math.min(s.length(), 20)) + "...";
+        int length = s.length();
+        s = s.substring(0, Math.min(length, 20));
+        if (s.length() < length) s += "...";
         return s;
     }
 }
