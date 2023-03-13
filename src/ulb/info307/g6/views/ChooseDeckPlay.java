@@ -2,28 +2,39 @@ package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+
 import javafx.stage.Stage;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.paint.Color;
-import javafx.scene.layout.VBox;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+
 import ulb.info307.g6.controllers.DeckDaoNitriteImplementation;
+import ulb.info307.g6.controllers.CardDaoNitriteImplementation;
 import ulb.info307.g6.models.Deck;
+import ulb.info307.g6.models.Card;
 
 import java.util.List;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import javafx.scene.text.Text;
+
+
+// TODO: Removes spaces before "Answer" to allign it in the middle
 
 public class ChooseDeckPlay {
     static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
+    static CardDaoNitriteImplementation databaseCard = new CardDaoNitriteImplementation(); // Initialize the DAO for the database
     public List<Deck> decks;
+
+    private int cardIndex = 0;
+    private Deck currentDeck = null;
     public ChooseDeckPlay() {}
 
-    // definir
     @FXML
     private Button buttonHome;
     @FXML
@@ -39,19 +50,78 @@ public class ChooseDeckPlay {
     private ComboBox<Deck> cardPack;
 
     @FXML
-    private Rectangle cardRectangle;
+    private Text displayTitle;
+
+    @FXML
+    private Text displayTextQA;
+    @FXML
+    private ComboBox<String> knowledgeLevel;
+
+    public void setChoice() {
+        knowledgeLevel.getItems().clear();
+        ObservableList<String> options = FXCollections.observableArrayList("Very bad", "Bad", "Average", "Good", "Very good");
+        for (String option : options) {
+            knowledgeLevel.getItems().add(option);
+        }
+        knowledgeLevel.setOnAction(event -> { // click on an item
+            updateKnowledgeLevel();
+        });
+    }
+
+    @FXML
+    protected void clickKnowledgeLevel() {
+        if (currentDeck != null) { // Checks if a deck is currently selected
+            setChoice();
+        }
+    }
+
+    public void updateKnowledgeLevel() {
+        if (currentDeck.getCardList().size() > 0) {
+            Card card = currentDeck.getCardList().get(cardIndex);
+            System.out.println("Knowledge level: " + card.getKnowledgeLevel());
+            if (knowledgeLevel.getValue() == "Very bad") {
+                card.setKnowledgeLevel(0);
+            } else if (knowledgeLevel.getValue() == "Bad") {
+                card.setKnowledgeLevel(1);
+            } else if (knowledgeLevel.getValue() == "Average") {
+                card.setKnowledgeLevel(2);
+            } else if (knowledgeLevel.getValue() == "Good") {
+                card.setKnowledgeLevel(3);
+            } else if (knowledgeLevel.getValue() == "Very good") {
+                card.setKnowledgeLevel(4);
+            }
+            databaseCard.updateCard(card);
+            database.updateDeck(currentDeck);
+            System.out.println("Knowledge level after update: " + card.getKnowledgeLevel());
+        }
+    }
 
     @FXML
     protected void clickFlipCard() {
+        if (currentDeck != null) {
+            if (displayTitle.getText() == "Question") {
+                updateDisplayArea("  Answer");
+            } else if (displayTitle.getText() == "  Answer") {
+                updateDisplayArea("Question");
+            }
+        }
         System.out.println("Flip");
     }
     @FXML
     protected void clickNextCard() {
+        if (cardIndex + 1 < currentDeck.getCardList().size()) { // Checks if next card is not out of bounds
+            cardIndex++;
+            updateDisplayArea("Question");
+        }
         System.out.println("Next");
 
     }
     @FXML
     protected void clickBackCard() {
+        if (cardIndex > 0) {
+            cardIndex--;
+            updateDisplayArea("Question");
+        }
         System.out.println("Back");
 
     }
@@ -59,7 +129,6 @@ public class ChooseDeckPlay {
     protected void clickChoice() {
         setCardPackLists();
     }
-
 
     public void clickHome() {
         accessNewWindow("/ulb/info307/g6/views/MainMenu.fxml");
@@ -72,41 +141,34 @@ public class ChooseDeckPlay {
             cardPack.getItems().add(deck);
         }
         cardPack.setOnAction(event -> { // click on an item
-            updateRectangleColor();
+            cardIndex = 0;
+            currentDeck = cardPack.getSelectionModel().getSelectedItem();
+            updateDisplayArea("Question");
         });
 
     }
-
-    public void updateRectangleColor() {
-        Deck selectedItem = cardPack.getSelectionModel().getSelectedItem();
-
-        if (selectedItem != null) {
-            switch (selectedItem.getName()) {
-                case "Math":
-                    cardRectangle.setFill(Color.RED);
-
-                    break;
-                case "Algo":
-                    cardRectangle.setFill(Color.GREEN);
-                    break;
-                case "Python":
-                    cardRectangle.setFill(Color.BLUE);
-                    break;
-                default:
-                    cardRectangle.setFill(Color.GRAY);
-                    break;
+    public void updateDisplayArea(String name) {
+        if (currentDeck != null && currentDeck.getCardList().size() > 0) { // Deck is not empty
+            Card card = currentDeck.getCardList().get(cardIndex);
+            if (name == "Question") {
+                displayTitle.setText("Question");
+                displayTextQA.setText(card.getQuestion());
+            } else if (name == "  Answer") {
+                displayTitle.setText("  Answer");
+                displayTextQA.setText(card.getAnswer());
             }
+        } else {
+            displayTextQA.setText("No question");
         }
-
-
     }
+
 
     public void accessNewWindow(String name) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(name));
             Parent root = loader.load();
             //MainMenu newWindowMenu = loader.getController();
-            Scene scene = new Scene(root, 800, 500);
+            Scene scene = new Scene(root, 600, 408);
             Stage stage = (Stage) buttonHome.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
@@ -114,6 +176,5 @@ public class ChooseDeckPlay {
             e.printStackTrace();
         }
     }
-
 }
 
