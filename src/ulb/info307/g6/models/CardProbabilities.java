@@ -43,12 +43,25 @@ public class CardProbabilities
         }
     }
 
+    public void normalizeProbabilities()
+    {
+        double total_sum = 0;
+        for (double i : this.cardProbabilities)
+        {
+            total_sum += i;
+        }
+
+        for (int i = 0; i < this.cardProbabilities.length; i++)
+        {
+            this.cardProbabilities[i] = this.cardProbabilities[i]/total_sum;
+        }
+    }
     public double getNewProbabilityValue(int knowledge) {
         double newWeight = 0;
         double totalCards = this.cardProbabilities.length;
         switch (knowledge) {
             case 0:
-                newWeight = 1.9; // Very bad ,ex: 5cartes donc 1.9/5 = 0.38 (la probabilité augmentée...)
+                newWeight = 1.9; // Very bad
             case 1:
                 newWeight = 1.6;
             case 2:
@@ -56,16 +69,16 @@ public class CardProbabilities
             case 3:
                 newWeight = 1.2;
             case 4:
-                newWeight = 1; // Very good ,ex: 5cartes donc 1/5 = 0.2 (la probabilité de base...)
+                newWeight = 1; // Very good
         }
-        return newWeight/totalCards;
+        return newWeight;
     }
 
     public void updateCardProbability(int cardID,int knowledge)
     {
         double newCardProbability = getNewProbabilityValue(knowledge);
         this.cardProbabilities[cardID] = this.cardProbabilities[cardID]*newCardProbability;
-        normalizeProbabilities(cardID, newCardProbability);
+        normalizeProbabilities();
     }
 
     public void setCardProbabilities(double[] probabilities)
@@ -83,14 +96,10 @@ public class CardProbabilities
         }
         newProbabilities[cardsCount+1] = initialCardProbability;
         this.cardProbabilities = newProbabilities;
-        normalizeProbabilities(this.cardProbabilities.length, initialCardProbability);
+        normalizeProbabilities();
     }
 
 
-    public void normalizeProbabilities(int cardID, double newCardProbability)
-    {
-
-    }
 
     public int getRandomCardId()
     {
