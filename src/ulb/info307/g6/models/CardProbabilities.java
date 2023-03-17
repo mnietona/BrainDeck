@@ -64,7 +64,7 @@ public class CardProbabilities
     public void updateCardProbability(int cardID,int knowledge)
     {
         double newCardProbability = getNewProbabilityValue(knowledge);
-        this.cardProbabilities[cardID] = newCardProbability;
+        this.cardProbabilities[cardID] = this.cardProbabilities[cardID]*newCardProbability;
         normalizeProbabilities(cardID, newCardProbability);
     }
 
