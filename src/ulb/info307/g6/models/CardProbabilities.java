@@ -30,5 +30,15 @@ public class CardProbabilities
         }
         return cardProbability;
     }
-
+    public void resetProbabilities()
+    {
+        if (this.cardProbabilities.length > 0)
+        {
+            double initial = (double) 1/cardProbabilities.length;
+            for (int i = 0; i < cardProbabilities.length; i++)
+            {
+                this.cardProbabilities[i] = initial;
+            }
+        }
+    }
 }
