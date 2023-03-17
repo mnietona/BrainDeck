@@ -41,4 +41,29 @@ public class CardProbabilities
             }
         }
     }
+
+    public double getNewProbabilityValue(int knowledge) {
+        double newWeight = 0;
+        double totalCards = this.cardProbabilities.length;
+        switch (knowledge) {
+            case 0:
+                newWeight = 1.9; // Very bad ,ex: 5cartes donc 1.9/5 = 0.38 (la probabilité augmentée...)
+            case 1:
+                newWeight = 1.6;
+            case 2:
+                newWeight = 1.4;
+            case 3:
+                newWeight = 1.2;
+            case 4:
+                newWeight = 1; // Very good ,ex: 5cartes donc 1/5 = 0.2 (la probabilité de base...)
+        }
+        return newWeight/totalCards;
+    }
+
+    public void updateCardProbabilities(int cardID,int knowledge)
+    {
+        double newCardProbability = getNewProbabilityValue(knowledge);
+        this.cardProbabilities[cardID] = newCardProbability;
+    }
+
 }
