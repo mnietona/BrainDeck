@@ -60,10 +60,27 @@ public class CardProbabilities
         return newWeight/totalCards;
     }
 
-    public void updateCardProbabilities(int cardID,int knowledge)
+    public void updateCardProbability(int cardID,int knowledge)
     {
         double newCardProbability = getNewProbabilityValue(knowledge);
         this.cardProbabilities[cardID] = newCardProbability;
+        normalizeProbabilities(cardID, newCardProbability);
     }
 
+    public void normalizeProbabilities(int cardID, double newCardProbability)
+    {
+
+    }
+    public void setCardProbabilities(double[] probabilities)
+    {
+        this.cardProbabilities = probabilities;
+    }
+
+    public void showAllProba()
+    { // utiliser dans l'event du bouton pour voir si les valeurs changent.
+        for (int i = 0; i < this.cardProbabilities.length; i++)
+        {
+            System.out.println(this.cardProbabilities[i]);
+        }
+    }
 }
