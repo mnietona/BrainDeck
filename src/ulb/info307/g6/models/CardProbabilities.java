@@ -1,10 +1,10 @@
 package ulb.info307.g6.models;
 import java.util.Random;
 
-public class CardProbabilities
-{
+public class CardProbabilities implements Probabilities {
     public double[] cardProbabilities;
 
+    @Override
     public void initCardProbabilities(int numberOfCards)
     {
         double probability = (double) 1/numberOfCards;
@@ -17,11 +17,13 @@ public class CardProbabilities
         this.cardProbabilities = initialProbabilities;
     }
 
+    @Override
     public double[] getCardsProbabilities()
     {
         return this.cardProbabilities;
     }
 
+    @Override
     public double getCardProbability(int cardID)
     {
         double cardProbability = 0.0;
@@ -31,6 +33,7 @@ public class CardProbabilities
         }
         return cardProbability;
     }
+    @Override
     public void resetProbabilities()
     {
         if (this.cardProbabilities.length > 0)
@@ -43,6 +46,7 @@ public class CardProbabilities
         }
     }
 
+    @Override
     public void normalizeProbabilities()
     {
         double total_sum = 0;
@@ -56,6 +60,7 @@ public class CardProbabilities
             this.cardProbabilities[i] = this.cardProbabilities[i]/total_sum;
         }
     }
+    @Override
     public double getNewProbabilityValue(int knowledge) {
         double newWeight = 0;
         double totalCards = this.cardProbabilities.length;
@@ -74,17 +79,20 @@ public class CardProbabilities
         return newWeight;
     }
 
-    public void updateCardProbability(int cardID,int knowledge)
+    @Override
+    public void updateCardProbability(int cardID, int knowledge)
     {
         double newCardProbability = getNewProbabilityValue(knowledge);
         this.cardProbabilities[cardID] = this.cardProbabilities[cardID]*newCardProbability;
         normalizeProbabilities();
     }
 
+    @Override
     public void setCardProbabilities(double[] probabilities)
     {
         this.cardProbabilities = probabilities;
     }
+    @Override
     public void addNewCard()
     {
         int cardsCount = this.cardProbabilities.length;
@@ -101,11 +109,13 @@ public class CardProbabilities
 
 
 
+    @Override
     public int getRandomCardId()
     {
         return 0;
     }
 
+    @Override
     public void showAllProba()
     { // utiliser dans l'event du bouton pour voir si les valeurs changent.
         for (double x : this.cardProbabilities)
