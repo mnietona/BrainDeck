@@ -1,4 +1,5 @@
 package ulb.info307.g6.models;
+import java.util.Random;
 
 public class CardProbabilities
 {
@@ -67,20 +68,43 @@ public class CardProbabilities
         normalizeProbabilities(cardID, newCardProbability);
     }
 
-    public void normalizeProbabilities(int cardID, double newCardProbability)
-    {
-
-    }
     public void setCardProbabilities(double[] probabilities)
     {
         this.cardProbabilities = probabilities;
     }
+    public void addNewCard()
+    {
+        int cardsCount = this.cardProbabilities.length;
+        double initialCardProbability = (double) 1/(cardsCount+1);
+        double[] newProbabilities = new double[cardsCount+1];
+        for (int i = 0; i < cardsCount; i++)
+        {
+            newProbabilities[i] = this.cardProbabilities[i];
+        }
+        newProbabilities[cardsCount+1] = initialCardProbability;
+        this.cardProbabilities = newProbabilities;
+        normalizeProbabilities(this.cardProbabilities.length, initialCardProbability);
+    }
+
+
+    public void normalizeProbabilities(int cardID, double newCardProbability)
+    {
+
+    }
+
+    public int getRandomCardId()
+    {
+        return 0;
+    }
 
     public void showAllProba()
     { // utiliser dans l'event du bouton pour voir si les valeurs changent.
-        for (int i = 0; i < this.cardProbabilities.length; i++)
+        for (double x : this.cardProbabilities)
         {
-            System.out.println(this.cardProbabilities[i]);
+            System.out.println(x);
         }
     }
+
+
+
 }
