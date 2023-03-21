@@ -23,6 +23,8 @@ import java.util.List;
 import java.io.IOException;
 import javafx.scene.text.Text;
 
+import java.util.Random;
+
 
 // TODO: Removes spaces before "Answer" to allign it in the middle
 
@@ -31,6 +33,7 @@ public class ChooseDeckPlay {
     static CardDaoNitriteImplementation databaseCard = new CardDaoNitriteImplementation(); // Initialize the DAO for the database
     public List<Deck> decks;
 
+    private int[] lastIndex = new int[2];
     private int cardIndex = 0;
     private Deck currentDeck = null;
     public ChooseDeckPlay() {}
@@ -107,15 +110,23 @@ public class ChooseDeckPlay {
         }
         System.out.println("Flip");
     }
+
+    @FXML
+    protected void getNextRandomCard() {
+        Random rand = new Random();
+        int random = rand.nextInt(currentDeck.getCardList().size());
+        while (random == lastIndex[0] || random == lastIndex[1]) {
+            random = rand.nextInt(currentDeck.getCardList().size());
+        }
+        cardIndex = random;
+        lastIndex[1] = lastIndex[0];
+        lastIndex[0] = random;
+    }
     @FXML
     protected void clickNextCard() {
-        if (cardIndex + 1 < currentDeck.getCardList().size()) { // Checks if next card is not out of bounds
-            cardIndex++;
-            updateDisplayArea("Question");
-        }
-        else if (cardIndex + 1 == currentDeck.getCardList().size()) updateDisplayArea("Deck finished");
+        getNextRandomCard();
+        updateDisplayArea("Question");
         System.out.println("Next");
-
     }
     @FXML
     protected void clickBackCard() {
@@ -144,6 +155,7 @@ public class ChooseDeckPlay {
         cardPack.setOnAction(event -> { // click on an item
             cardIndex = 0;
             currentDeck = cardPack.getSelectionModel().getSelectedItem();
+            getNextRandomCard();
             updateDisplayArea("Question");
         });
 
