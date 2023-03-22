@@ -14,7 +14,17 @@
                 <Button fx:id="buttonNextCard" layoutX="532.0" layoutY="348.0" mnemonicParsing="false" onAction="#clickNextCard" prefHeight="26.0" prefWidth="54.0" text="Next" />
                 <Button fx:id="buttonHome" layoutX="14.0" layoutY="362.0" mnemonicParsing="false" onAction="#clickHome" text="Home" />
             <ComboBox fx:id="knowledgeLevel" layoutX="442.0" layoutY="1.0" onMouseClicked="#clickKnowledgeLevel" prefHeight="25.0" prefWidth="158.0" promptText="Knowledge Level" />
-            <VBox fx:id="cardPack" layoutX="6.0" layoutY="1.0" prefHeight="360.0" prefWidth="169.0">
+            <Text fx:id="displayTextQA" layoutX="203.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="297.13671875">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </Text>
+            <Text fx:id="displayTitle" layoutX="258.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="242.0">
+                <font>
+                    <Font size="25.0" />
+                </font>
+            </Text>
+                <VBox fx:id="cardPack" layoutX="6.0" layoutY="1.0" prefHeight="360.0" prefWidth="169.0">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Pick a Deck" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
                      <font>
