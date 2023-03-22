@@ -22,12 +22,13 @@ public class MainMenu {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/ChooseDeckPlay.fxml"));
             Parent root = loader.load();
-            // ChooseDeckPlay chooseDeckPlay = loader.getController(); // to get the controller of the new window
+            ChooseDeckPlay chooseDeckPlay = loader.getController(); // to get the controller of the new window
             Scene scene = new Scene(root, 600, 408);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle("Study your decks");
             stage.show();
+            chooseDeckPlay.showChoice();
             closeWindow();
         } catch (IOException e) {
             e.printStackTrace();

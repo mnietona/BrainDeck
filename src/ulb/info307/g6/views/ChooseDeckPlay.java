@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 
 import javafx.stage.Stage;
 import javafx.collections.FXCollections;
@@ -22,6 +24,7 @@ import java.util.List;
 
 import java.io.IOException;
 import javafx.scene.text.Text;
+import javafx.beans.value.*;
 
 import java.util.Random;
 
@@ -50,7 +53,10 @@ public class ChooseDeckPlay {
     private Button buttonNextCard;
 
     @FXML
-    private ComboBox<Deck> cardPack;
+    private ListView<String> listDecks = new ListView();
+
+    @FXML
+    private Button selectDeck;
 
     @FXML
     private Text displayTitle;
@@ -60,6 +66,8 @@ public class ChooseDeckPlay {
     @FXML
     private ComboBox<String> knowledgeLevel;
 
+
+    // Pour click knowledge
     public void setChoice() {
         knowledgeLevel.getItems().clear();
         ObservableList<String> options = FXCollections.observableArrayList("Very bad", "Bad", "Average", "Good", "Very good");
@@ -111,6 +119,7 @@ public class ChooseDeckPlay {
         System.out.println("Flip");
     }
 
+    // TODO : Prendre en compte le cas des Decks vides.
     @FXML
     protected void getNextRandomCard() {
         Random rand = new Random();
@@ -138,7 +147,7 @@ public class ChooseDeckPlay {
 
     }
     @FXML
-    protected void clickChoice() {
+    protected void showChoice() {
         setCardPackLists();
     }
 
@@ -148,16 +157,31 @@ public class ChooseDeckPlay {
 
     public void setCardPackLists() {
         decks = database.getAllDecks();
-        cardPack.getItems().clear();
+        listDecks.getItems().clear();
         for (Deck deck : decks) {
-            cardPack.getItems().add(deck);
+            listDecks.getItems().add(deck.getName());
         }
-        cardPack.setOnAction(event -> { // click on an item
+
+        selectDeck.setOnAction(event -> {
+            String selectedDeck = listDecks.getSelectionModel().getSelectedItem();
+            for (Deck deck : decks){
+                if (deck.isDeck(selectedDeck)){
+                    currentDeck = deck;
+                }
+            }
+            System.out.println("Selected Deck : "+selectedDeck);
+            System.out.println(currentDeck.getCardList());
+            cardIndex = 0;
+            getNextRandomCard();
+            updateDisplayArea("Question");
+    });
+
+        /**cardPack.setOnAction(event -> { // click on an item
             cardIndex = 0;
             currentDeck = cardPack.getSelectionModel().getSelectedItem();
             getNextRandomCard();
             updateDisplayArea("Question");
-        });
+        });*/
 
     }
     public void updateDisplayArea(String name) {

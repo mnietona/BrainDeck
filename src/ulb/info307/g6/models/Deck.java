@@ -56,4 +56,9 @@ public class Deck implements Serializable {
 
     public String toString() {return getName();}
 
+    public boolean isDeck(String name){
+        if(name == this.name) return true;
+        else return false;
+    }
+
 }
