@@ -9,12 +9,13 @@ import ulb.info307.g6.views.ChooseDeckPlay.*;
 
 import java.io.IOException;
 
-public class ChooseDeckPlayController implements ChooseDeckPlayListener{
+
+
+public class ChooseDeckPlayController implements ChooseDeckPlayListener {
     private final Stage stage;
     private final Listener listener;
 
-    private ChooseDeckPlay chooseDeckPlayController;
-
+    private ChooseDeckPlay chooseDeckPlay;
 
     public ChooseDeckPlayController(Stage stage, Listener listener) {
         this.stage = stage;
@@ -24,26 +25,31 @@ public class ChooseDeckPlayController implements ChooseDeckPlayListener{
     public void show() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/ChooseDeckPlay.fxml"));
-            loader.load();
-            chooseDeckPlayController = loader.getController();
-            chooseDeckPlayController.setListener(this);
-            Parent root = loader.getRoot();
-
-            this.stage.setScene(new Scene(root, 600, 408));
-            this.stage.setTitle("Study your decks");
-            this.stage.show();
-            chooseDeckPlayController.showChoice();
-            // quand on clique sur le bouton "home", on appelle la méthode clickHome()
-
-
+            Parent root = loader.load();
+            chooseDeckPlay = loader.getController();
+            chooseDeckPlay.setListener(this);
+            Scene scene = new Scene(root, 600, 408);
+            stage.setScene(scene);
+            stage.setTitle("Study your decks");
+            stage.show();
+            chooseDeckPlay.showChoice();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
 
+    public void clickHome() {
+        listener.clickHome();
+        this.stage.hide();
+    }
+
+
+
     public interface Listener {
         void clickHome();
+
     }
 }
+
 

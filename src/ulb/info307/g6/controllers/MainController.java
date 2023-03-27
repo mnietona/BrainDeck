@@ -1,27 +1,15 @@
 package ulb.info307.g6.controllers;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.stage.Stage;
-import org.jetbrains.annotations.NotNull;
-import ulb.info307.g6.views.ChooseDeckPlay;
-import ulb.info307.g6.views.ChooseDeckPlay.*;
-import ulb.info307.g6.views.EditMenu;
-import ulb.info307.g6.views.MainMenu;
-import ulb.info307.g6.views.MainMenu.*;
-import ulb.info307.g6.views.EditMenu.*;
 
-import java.io.IOException;
+import javafx.stage.Stage;
+
 
 
 public class MainController extends Application implements MenuController.Listener, ChooseDeckPlayController.Listener, EditMenuController.Listener {
 
 
     private MenuController menuController;
-    private Stage currentStage;
 
 
     @Override
@@ -64,6 +52,7 @@ public class MainController extends Application implements MenuController.Listen
         System.out.println("Home");
         menuController.show();
     }
+
 
     public static void main(String[] args) {
         launch(args);

@@ -1,31 +1,22 @@
 package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
 
-import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
 import ulb.info307.g6.controllers.DeckDaoNitriteImplementation;
 import ulb.info307.g6.controllers.CardDaoNitriteImplementation;
-import ulb.info307.g6.controllers.MainController;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.models.Card;
 
 import java.util.List;
 
-import java.io.IOException;
 import javafx.scene.text.Text;
-import javafx.beans.value.*;
 
 import java.util.Random;
 
@@ -182,14 +173,14 @@ public class ChooseDeckPlay {
             cardIndex = 0;
             getNextRandomCard();
             updateDisplayArea("Question");
-    });
+        });
 
         /**cardPack.setOnAction(event -> { // click on an item
-            cardIndex = 0;
-            currentDeck = cardPack.getSelectionModel().getSelectedItem();
-            getNextRandomCard();
-            updateDisplayArea("Question");
-        });*/
+         cardIndex = 0;
+         currentDeck = cardPack.getSelectionModel().getSelectedItem();
+         getNextRandomCard();
+         updateDisplayArea("Question");
+         });*/
 
     }
     public void updateDisplayArea(String name) {
@@ -219,4 +210,3 @@ public class ChooseDeckPlay {
     }
 
 }
-
