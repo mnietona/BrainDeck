@@ -2,12 +2,12 @@ package ulb.info307.g6.models;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class CardProbabilities implements Probabilities {
+public class CardProbabilities {
     public double[] cardProbabilities = {};
     public ArrayList<Integer> returnedCardsIndex = new ArrayList<>();
     public ArrayList<Integer> cardsIndexCount = new ArrayList<>();
     public int cardsToSkip = 0;
-    @Override
+
     public void initCardProbabilities(int numberOfCards)
     {
         double probability = (double) 1/numberOfCards;
@@ -20,13 +20,13 @@ public class CardProbabilities implements Probabilities {
         this.cardProbabilities = initialProbabilities;
     }
 
-    @Override
+
     public double[] getCardsProbabilities()
     {
         return this.cardProbabilities;
     }
 
-    @Override
+
     public double getCardProbability(int cardID)
     {
         double cardProbability = 0.0;
@@ -36,7 +36,7 @@ public class CardProbabilities implements Probabilities {
         }
         return cardProbability;
     }
-    @Override
+
     public void resetProbabilities()
     {
         if (this.cardProbabilities.length > 0)
@@ -49,7 +49,6 @@ public class CardProbabilities implements Probabilities {
         }
     }
 
-    @Override
     public void normalizeProbabilities()
     {
         double total_sum = 0;
@@ -63,7 +62,7 @@ public class CardProbabilities implements Probabilities {
             this.cardProbabilities[i] = this.cardProbabilities[i]/total_sum;
         }
     }
-    @Override
+
     public double getNewProbabilityValue(int knowledge) {
         double newWeight = 0;
         double totalCards = this.cardProbabilities.length;
@@ -82,7 +81,6 @@ public class CardProbabilities implements Probabilities {
         return newWeight;
     }
 
-    @Override
     public void updateCardProbability(int cardID, int knowledge)
     {
         double newCardProbability = getNewProbabilityValue(knowledge);
@@ -90,12 +88,11 @@ public class CardProbabilities implements Probabilities {
         normalizeProbabilities();
     }
 
-    @Override
     public void setCardProbabilities(double[] probabilities)
     {
         this.cardProbabilities = probabilities;
     }
-    @Override
+
     public void addNewCard()
     {
         int cardsCount = this.cardProbabilities.length;
@@ -164,13 +161,43 @@ public class CardProbabilities implements Probabilities {
 
         return total_probability;
     }
-    @Override
-    public int getRandomCardId()
+
+
+    public int getRandomCardIndex()
     {
-        return 0;
+        if (this.cardProbabilities.length > 0)
+        {
+            double cumProbability = 0.0;
+            Random randomVal = new Random();
+            double randomDouble = randomVal.nextDouble();
+            for (int i = 0; i < this.cardProbabilities.length; i++)
+            {
+                cumProbability += this.cardProbabilities[i];
+                if (randomDouble <= cumProbability && cardNotUsed(i))
+                {
+                    decrementOtherCardsCount();
+                    this.cardsIndexCount.add(this.cardsToSkip);
+                    return i;
+                }
+            }
+            cumProbability = 0.0;
+            for (int j = 0; j < this.cardProbabilities.length; j++)
+            {
+                if(!this.returnedCardsIndex.contains(j))
+                {
+                    cumProbability += this.cardProbabilities[j];
+                    if (randomDouble*sumNotUsedProbabilities() <= cumProbability && cardNotUsed(j))
+                    {
+                        decrementOtherCardsCount();
+                        this.cardsIndexCount.add(this.cardsToSkip);
+                        return j;
+                    }
+                }
+            }
+        }
+        return -1;
     }
 
-    @Override
     public void showAllProba()
     { // utiliser dans l'event du bouton pour voir si les valeurs changent.
         for (double x : this.cardProbabilities)
