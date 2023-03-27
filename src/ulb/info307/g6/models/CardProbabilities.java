@@ -127,6 +127,43 @@ public class CardProbabilities implements Probabilities {
         return true;
     }
 
+    public void decrementOtherCardsCount()
+    {
+        if (this.cardsIndexCount.size() > 0)
+        {
+            for(int i = 0; i < this.cardsIndexCount.size(); i++)
+            {
+                int newIndexCount = this.cardsIndexCount.get(i)-1;
+                this.cardsIndexCount.set(i,newIndexCount);
+                if(this.cardsIndexCount.get(i) == 0)
+                {
+                    this.cardsIndexCount.remove(i);
+                    this.returnedCardsIndex.remove(i);
+                }
+            }
+        }
+
+    }
+
+    public double sumNotUsedProbabilities()
+    {
+        ArrayList<Double> tempProbabilities = new ArrayList<>();
+        double total_probability = 0.0;
+
+        for (double i: this.cardProbabilities)
+        {
+            tempProbabilities.add(i);
+        }
+        for (int j : this.returnedCardsIndex) {
+            tempProbabilities.remove(tempProbabilities.get(j));
+        }
+
+        for (double probability : tempProbabilities) {
+            total_probability += probability;
+        }
+
+        return total_probability;
+    }
     @Override
     public int getRandomCardId()
     {
