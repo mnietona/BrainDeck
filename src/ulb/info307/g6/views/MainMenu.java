@@ -15,7 +15,7 @@ public class MainMenu {
     private MainMenuListener listener;
 
 
-    public void setListener(MainController listener) {
+    public void setListener(MainMenuListener listener) {
         this.listener = listener;
     }
 

@@ -10,6 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
 import ulb.info307.g6.controllers.DeckDaoNitriteImplementation;
+import ulb.info307.g6.controllers.MainController;
 import ulb.info307.g6.models.Deck;
 
 import java.util.List;
@@ -43,7 +44,7 @@ public class EditMenu {
             Deck selectedItem = cardPack.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
                 selectedDeck = selectedItem;
-                accessNewWindow("/ulb/info307/g6/views/EditCardMenu.fxml");
+                //accessNewWindow("/ulb/info307/g6/views/EditCardMenu.fxml");
             }
         }
         //accessNewWindow("/ulb/info307/g6/views/EditCardMenu.fxml");
@@ -55,7 +56,7 @@ public class EditMenu {
     @FXML
     protected void clickCreate() {
         System.out.println("Add");
-        accessNewWindow("/ulb/info307/g6/views/CreatePackMenu.fxml");
+        //accessNewWindow("/ulb/info307/g6/views/CreatePackMenu.fxml");
     }
 
     @FXML
@@ -72,10 +73,12 @@ public class EditMenu {
         setCardPackLists();
         updateDeckTitle();
     }
+    private EditMenuListener listener;
 
-    public void homeButtonAction() {
-        accessNewWindow("/ulb/info307/g6/views/MainMenu.fxml");
+    public void setListener(EditMenuListener listener) {
+        this.listener = listener;
     }
+
 
     public void setCardPackLists() {
         decks = database.getAllDecks();
@@ -96,19 +99,13 @@ public class EditMenu {
             deckTitle.setText("No deck selected");
         }
     }
+    public void clickHome() {
+        listener.clickHome();
+    }
 
-    public void accessNewWindow(String name) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(name));
-            Parent root = loader.load();
-            //MainMenu newWindowMenu = loader.getController();
-            Scene scene = new Scene(root, 600, 408);
-            Stage stage = (Stage) buttonHome.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+    public interface EditMenuListener {
+        void clickHome();
     }
 
 }

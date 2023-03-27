@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
 
 import ulb.info307.g6.controllers.DeckDaoNitriteImplementation;
 import ulb.info307.g6.controllers.CardDaoNitriteImplementation;
+import ulb.info307.g6.controllers.MainController;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.models.Card;
 
@@ -147,13 +148,20 @@ public class ChooseDeckPlay {
 
     }
     @FXML
-    protected void showChoice() {
+    public void showChoice() {
         setCardPackLists();
     }
 
-    public void clickHome() {
-        accessNewWindow("/ulb/info307/g6/views/MainMenu.fxml");
+    private ChooseDeckPlayListener listener;
+
+    public void setListener(ChooseDeckPlayListener listener) {
+        this.listener = listener;
     }
+
+    public void clickHome() {
+        listener.clickHome();
+    }
+
 
     public void setCardPackLists() {
         decks = database.getAllDecks();
@@ -206,19 +214,9 @@ public class ChooseDeckPlay {
         }
     }
 
-
-    public void accessNewWindow(String name) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(name));
-            Parent root = loader.load();
-            //MainMenu newWindowMenu = loader.getController();
-            Scene scene = new Scene(root, 600, 408);
-            Stage stage = (Stage) buttonHome.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public interface ChooseDeckPlayListener {
+        void clickHome();
     }
+
 }
 
