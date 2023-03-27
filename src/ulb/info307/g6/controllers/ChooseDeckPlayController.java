@@ -120,14 +120,13 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
         }
 
         chooseDeckPlay.selectDeck.setOnAction(event -> {
+
             String selectedDeck = chooseDeckPlay.listDecks.getSelectionModel().getSelectedItem();
             for (Deck deck : decks) {
                 if (deck.isDeck(selectedDeck)) {
                     currentDeck = deck;
                 }
             }
-            System.out.println("Selected Deck : " + selectedDeck);
-            System.out.println(currentDeck.getCardList());
             cardIndex = 0;
 
             if (currentDeck.getCardList().size() > 0) {

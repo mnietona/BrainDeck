@@ -1,37 +1,17 @@
 package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
-import javafx.stage.Stage;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.paint.Color;
-import javafx.scene.layout.VBox;
-import ulb.info307.g6.controllers.DeckDaoNitriteImplementation;
-import ulb.info307.g6.controllers.CardDaoNitriteImplementation;
-import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.models.Card;
-import ulb.info307.g6.views.EditMenu;
-
-
-import java.util.List;
-
-import java.io.IOException;
-import java.util.ArrayList;
+import ulb.info307.g6.models.Deck;
 
 public class EditCardMenu {
-    static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
-    static CardDaoNitriteImplementation databaseCard = new CardDaoNitriteImplementation(); // Initialize the DAO for the database
 
-    public Deck deck = EditMenu.selectedDeck;
-    public List<Card> cards; // liste de cartes de Python
+    private Deck deck;
 
-
-    public EditCardMenu() {}
+    private EditCardMenuListener listener;
 
     @FXML
     private TextArea questionInput;
@@ -39,114 +19,87 @@ public class EditCardMenu {
     @FXML
     private TextArea answerInput;
 
-
     @FXML
     private Button buttonBack;
     @FXML
     private Button buttonEditCard;
 
     @FXML
-    private ComboBox<Card> pickCard;
-
-    @FXML
-    private VBox root;
-
-
-    @FXML
-    protected void clickEditCard() {
-
-        Card selectedItem = deck.getCardList().get(pickCard.getSelectionModel().getSelectedIndex());
-        if (selectedItem != null && questionInput.getText() != "" && answerInput.getText() != "") {
-            selectedItem.setQuestion(questionInput.getText());
-            selectedItem.setAnswer(answerInput.getText());
-            databaseCard.updateCard(selectedItem);
-            database.updateDeck(deck);
-            updateQuestionAnswer();
-            System.out.println("Edit : " + selectedItem.getId());
-        }
-
-
-
-    }
+    public ComboBox<Card> pickCard;
 
     @FXML
     private Button buttonAddCard;
 
-    @FXML
-    protected void clickCreateCard() {
-        if (questionInput.getText() != "" && answerInput.getText() != ""){
-            Card card = new Card(questionInput.getText(), answerInput.getText());
-            deck.addCard(card);
-            databaseCard.updateCard(card);
-            database.updateDeck(deck);
-            updateQuestionAnswer();
-            System.out.println("Add : " + card.getId());
-        }
+    public void setDeck(Deck deck) {
+        this.deck = deck;
+    }
+    public void setListener(EditCardMenuListener listener) {
+        this.listener = listener;
     }
 
     @FXML
-    protected void clickChoice() {
-        setCardLists();
+    private void clickEditCard() {
+        listener.clickEditCard();
     }
-
 
     @FXML
-    protected void clickRemoveCard() {
-        Card selectedItem = deck.getCardList().get(pickCard.getSelectionModel().getSelectedIndex());
-        deck.removeCard(selectedItem);
-        databaseCard.deleteCard(selectedItem);
-        database.updateDeck(deck);
-        updateQuestionAnswer();
-        System.out.println("Remove : " + selectedItem.getId());
-        setCardLists();
+    private void clickCreateCard() {
+        listener.clickCreateCard();
     }
 
-    public void backButtonAction() {
-        accessNewWindow("/ulb/info307/g6/views/EditMenu.fxml");
+    @FXML
+    private void clickChoice() {
+        listener.clickChoice();
     }
 
+    @FXML
+    private void clickRemoveCard() {
+        listener.clickRemoveCard();
+    }
+
+    @FXML
+    private void backButtonAction() {
+        listener.clickBack();
+    }
 
     public void setCardLists() {
-
         pickCard.getItems().clear();
         for (Card card : deck.getCardList()) {
             pickCard.getItems().add(card);
-
         }
         pickCard.setOnAction(event -> { // click on an item
             updateQuestionAnswer();
         });
-
     }
 
     public void updateQuestionAnswer() {
-
-        Card selectedItem =  pickCard.getSelectionModel().getSelectedItem();
-
+        Card selectedItem = pickCard.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
             questionInput.setText(selectedItem.getQuestion());
             answerInput.setText(selectedItem.getAnswer());
-        }
-        else {
+        } else {
             questionInput.setText("");
             answerInput.setText("");
         }
     }
 
+    public String getQuestionInput() {
+        return questionInput.getText();
+    }
 
+    public String getAnswerInput() {
+        return answerInput.getText();
+    }
 
-    public void accessNewWindow(String name) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(name));
-            Parent root = loader.load();
-            //MainMenu newWindowMenu = loader.getController();
-            Scene scene = new Scene(root, 600, 408);
-            Stage stage = (Stage) buttonBack.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public Card getSelectedCard() {
+        return pickCard.getSelectionModel().getSelectedItem();
+    }
+
+    public interface EditCardMenuListener {
+        void clickEditCard();
+        void clickCreateCard();
+        void clickChoice();
+        void clickRemoveCard();
+        void clickBack();
     }
 }
-

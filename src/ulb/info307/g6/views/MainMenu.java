@@ -22,8 +22,6 @@ public class MainMenu {
     public void studyButtonAction() {
         listener.studyButtonAction();
 
-
-
     }
 
     public void editButtonAction() {

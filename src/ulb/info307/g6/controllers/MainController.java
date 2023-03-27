@@ -26,7 +26,6 @@ public class MainController extends Application implements MenuController.Listen
 
     @Override
     public void studyButtonAction() {
-        // Actions à effectuer lors du clic sur le bouton "Study"
         menuController.hide();
         Stage stage = new Stage();
         ChooseDeckPlayController chooseDeckPlayController = new ChooseDeckPlayController(stage, this);
@@ -47,11 +46,8 @@ public class MainController extends Application implements MenuController.Listen
 
     @Override
     public void clickHome() {
-        // Actions à effectuer lors du clic sur le bouton "Home" de la vue ChooseDeckPlay
-        System.out.println("Home");
         menuController.show();
     }
-
 
     public static void main(String[] args) {
         launch(args);

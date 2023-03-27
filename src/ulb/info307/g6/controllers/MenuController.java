@@ -4,10 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ulb.info307.g6.views.MainMenu.*;
 import ulb.info307.g6.views.MainMenu;
-import ulb.info307.g6.views.ChooseDeckPlay;
-import ulb.info307.g6.views.EditMenu;
 import javafx.scene.control.Alert;
 
 import java.io.IOException;

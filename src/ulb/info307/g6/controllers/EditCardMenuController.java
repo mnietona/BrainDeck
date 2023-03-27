@@ -1,0 +1,99 @@
+package ulb.info307.g6.controllers;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import ulb.info307.g6.models.Deck;
+import ulb.info307.g6.models.Card;
+import ulb.info307.g6.views.EditCardMenu;
+import java.io.IOException;
+
+
+public class EditCardMenuController implements EditCardMenu.EditCardMenuListener {
+
+    static CardDaoNitriteImplementation databaseCard = new CardDaoNitriteImplementation();
+    static DeckDaoNitriteImplementation databaseDeck = new DeckDaoNitriteImplementation();
+
+    private final Stage stage;
+    private final Listener listener;
+    private Deck deck;
+    private EditCardMenu editCardMenu;
+
+    public EditCardMenuController(Stage stage, Listener listener, Deck deck) {
+        this.stage = stage;
+        this.listener = listener;
+        this.deck = deck;
+    }
+
+    public void show() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/EditCardMenu.fxml"));
+            loader.load();
+            editCardMenu = loader.getController();
+            editCardMenu.setListener(this);
+            editCardMenu.setDeck(deck);
+            Parent root = loader.getRoot();
+
+            this.stage.setScene(new Scene(root));
+            this.stage.setTitle("Edit cards in the deck");
+            this.stage.show();
+            clickChoice();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void clickEditCard() {
+        Card selectedItem = editCardMenu.getSelectedCard();
+        if (selectedItem != null && !editCardMenu.getQuestionInput().isEmpty() && !editCardMenu.getAnswerInput().isEmpty()) {
+            selectedItem.setQuestion(editCardMenu.getQuestionInput());
+            selectedItem.setAnswer(editCardMenu.getAnswerInput());
+            databaseCard.updateCard(selectedItem);
+            databaseDeck.updateDeck(deck);
+            editCardMenu.setCardLists();
+            editCardMenu.updateQuestionAnswer();
+        }
+    }
+
+    @Override
+    public void clickCreateCard() {
+        if (!editCardMenu.getQuestionInput().isEmpty() && !editCardMenu.getAnswerInput().isEmpty()) {
+            Card card = new Card(editCardMenu.getQuestionInput(), editCardMenu.getAnswerInput());
+            deck.addCard(card);
+            databaseCard.updateCard(card);
+            databaseDeck.updateDeck(deck);
+            editCardMenu.updateQuestionAnswer();
+        }
+    }
+
+    @Override
+    public void clickChoice() {
+        editCardMenu.setCardLists();
+    }
+
+    @Override
+    public void clickRemoveCard() {
+        Card selectedItem = editCardMenu.getSelectedCard();
+        if (selectedItem != null) {
+            deck.removeCard(selectedItem);
+            databaseCard.deleteCard(selectedItem);
+            databaseDeck.updateDeck(deck);
+            editCardMenu.updateQuestionAnswer();
+            editCardMenu.setCardLists();
+        }
+    }
+
+
+    @Override
+    public void clickBack() {
+        listener.clickBack();
+        this.stage.hide();
+    }
+
+    public interface Listener {
+        void clickBack();
+    }
+}
