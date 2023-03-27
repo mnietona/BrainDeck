@@ -48,7 +48,6 @@ public class MainController extends Application implements MenuController.Listen
     @Override
     public void clickHome() {
         // Actions à effectuer lors du clic sur le bouton "Home" de la vue ChooseDeckPlay
-        currentStage.hide();
         System.out.println("Home");
         menuController.show();
     }
