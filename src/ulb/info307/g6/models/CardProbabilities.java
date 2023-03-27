@@ -1,9 +1,12 @@
 package ulb.info307.g6.models;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class CardProbabilities implements Probabilities {
-    public double[] cardProbabilities;
-
+    public double[] cardProbabilities = {};
+    public ArrayList<Integer> returnedCardsIndex = new ArrayList<>();
+    public ArrayList<Integer> cardsIndexCount = new ArrayList<>();
+    public int cardsToSkip = 0;
     @Override
     public void initCardProbabilities(int numberOfCards)
     {
@@ -108,6 +111,10 @@ public class CardProbabilities implements Probabilities {
     }
 
 
+    public void setCardsToSkip(int quantity)
+    {
+        this.cardsToSkip = quantity;
+    }
 
     @Override
     public int getRandomCardId()
