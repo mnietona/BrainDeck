@@ -116,6 +116,17 @@ public class CardProbabilities implements Probabilities {
         this.cardsToSkip = quantity;
     }
 
+    public boolean cardNotUsed(int z)
+    {
+        for(int i: this.returnedCardsIndex)
+        {
+            if (i == z) { return false; }
+        }
+
+        this.returnedCardsIndex.add(z);
+        return true;
+    }
+
     @Override
     public int getRandomCardId()
     {
