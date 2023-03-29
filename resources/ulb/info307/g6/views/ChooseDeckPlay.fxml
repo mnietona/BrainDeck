@@ -10,7 +10,7 @@
         <AnchorPane prefHeight="408.0" prefWidth="600.0">
             <children>
                 <Button fx:id="buttonFlipCard" layoutX="407.0" layoutY="346.0" mnemonicParsing="false" onAction="#clickFlipCard" prefHeight="26.0" prefWidth="71.0" text="Flip" />
-                <Button fx:id="buttonBackCard" layoutX="272.0" layoutY="345.0" mnemonicParsing="false" onAction="#clickBackCard" text="Restart" />
+                <Button fx:id="buttonBackCard" layoutX="272.0" layoutY="345.0" mnemonicParsing="false" onAction="#clickBackCard" text="Previous" />
                 <Button fx:id="buttonNextCard" layoutX="532.0" layoutY="348.0" mnemonicParsing="false" onAction="#clickNextCard" prefHeight="26.0" prefWidth="54.0" text="Next" />
                 <Button fx:id="buttonHome" layoutX="14.0" layoutY="362.0" mnemonicParsing="false" onAction="#clickHome" text="Home" />
             <ComboBox fx:id="knowledgeLevel" layoutX="442.0" layoutY="1.0" onMouseClicked="#clickKnowledgeLevel" prefHeight="25.0" prefWidth="158.0" promptText="Knowledge Level" />

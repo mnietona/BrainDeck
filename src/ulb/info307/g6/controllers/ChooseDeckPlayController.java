@@ -23,7 +23,8 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
     private CardDaoNitriteImplementation databaseCard = new CardDaoNitriteImplementation();
     private List<Deck> decks;
 
-    private int[] lastIndex = new int[2];
+    private int[] lastIndex = new int[3];
+    private boolean nextAlreadyClicked = false;
     private int cardIndex = 0;
     private Deck currentDeck = null;
 
@@ -67,19 +68,22 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
     }
 
     public void clickNextCard() {
-        getNextRandomCard();
-        updateDisplayArea("Question");
+        if (!currentDeck.isEmpty()) {
+            getNextRandomCard();
+            updateDisplayArea("Question");
+            nextAlreadyClicked = true;
+        }
     }
 
     public void clickBackCard() {
-        if (cardIndex > 0) {
-            cardIndex--;
+        if (nextAlreadyClicked) {
+            cardIndex = lastIndex[1];
             updateDisplayArea("Question");
         }
     }
 
     public void clickFlipCard() {
-        if (currentDeck != null) {
+        if (currentDeck != null && !currentDeck.isEmpty()) {
             if (chooseDeckPlay.displayTitle.getText().equals("Question")) {
                 updateDisplayArea("  Answer");
             } else if (chooseDeckPlay.displayTitle.getText().equals("  Answer")) {
@@ -95,7 +99,7 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
     }
 
     public void updateKnowledgeLevel(Level level) {
-        if (currentDeck.getSize() > 0) {
+        if (!currentDeck.isEmpty()) {
             Card card = currentDeck.getCardList().get(cardIndex);
             switch (level) {
                 case VERYBAD -> card.setKnowledgeLevel(0);
@@ -126,7 +130,7 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
             }
             cardIndex = 0;
 
-            if (currentDeck.getCardList().size() > 0) {
+            if (!currentDeck.isEmpty()) {
                 getNextRandomCard();
                 updateDisplayArea("Question");
             } else {
@@ -136,16 +140,21 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
     }
 
     private void getNextRandomCard() {
-
-        Random rand = new Random();
-        int random = rand.nextInt(currentDeck.getCardList().size());
-        while (random == lastIndex[0] || random == lastIndex[1]) {
-            random = rand.nextInt(currentDeck.getCardList().size());
+        int nextCardIndex = 0;
+        if (currentDeck.getSize() == 2 || currentDeck.getSize() == 3) {
+            nextCardIndex = (cardIndex + 1)%currentDeck.getSize();
+        } else if (currentDeck.getSize() > 3) {
+            Random rand = new Random();
+            int random = rand.nextInt(currentDeck.getSize());
+            while (random == lastIndex[0] || random == lastIndex[1] || random == lastIndex[2]) {
+                random = rand.nextInt(currentDeck.getSize());
+            }
+            nextCardIndex = random;
         }
-        cardIndex = random;
+        cardIndex = nextCardIndex;
+        lastIndex[2] = lastIndex[1];
         lastIndex[1] = lastIndex[0];
-        lastIndex[0] = random;
-
+        lastIndex[0] = nextCardIndex;
     }
 
     public void updateDisplayArea(String name) {
