@@ -31,6 +31,7 @@ public class Deck implements Serializable {
     public List<Card> getCardList() {
         return cardList;
     }
+    public int getSize() {return getCardList().size();}
 
     public void setCardList(List<Card> cardList) {
         this.cardList = cardList;

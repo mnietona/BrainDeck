@@ -28,6 +28,7 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
     private Deck currentDeck = null;
 
     private ChooseDeckPlay chooseDeckPlay;
+    private enum Level {VERYBAD, BAD, AVERAGE, GOOD, VERYGOOD};
 
     public ChooseDeckPlayController(Stage stage, Listener listener) {
         this.stage = stage;
@@ -93,19 +94,15 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
         }
     }
 
-    public void updateKnowledgeLevel() {
-        if (currentDeck.getCardList().size() > 0) {
+    public void updateKnowledgeLevel(Level level) {
+        if (currentDeck.getSize() > 0) {
             Card card = currentDeck.getCardList().get(cardIndex);
-            if (chooseDeckPlay.knowledgeLevel.getValue().equals("Very bad")) {
-                card.setKnowledgeLevel(0);
-            } else if (chooseDeckPlay.knowledgeLevel.getValue().equals("Bad")) {
-                card.setKnowledgeLevel(1);
-            } else if (chooseDeckPlay.knowledgeLevel.getValue().equals("Average")) {
-                card.setKnowledgeLevel(2);
-            } else if (chooseDeckPlay.knowledgeLevel.getValue().equals("Good")) {
-                card.setKnowledgeLevel(3);
-            } else if (chooseDeckPlay.knowledgeLevel.getValue().equals("Very good")) {
-                card.setKnowledgeLevel(4);
+            switch (level) {
+                case VERYBAD -> card.setKnowledgeLevel(0);
+                case BAD -> card.setKnowledgeLevel(1);
+                case AVERAGE -> card.setKnowledgeLevel(2);
+                case GOOD -> card.setKnowledgeLevel(3);
+                case VERYGOOD -> card.setKnowledgeLevel(4);
             }
             databaseCard.updateCard(card);
             database.updateDeck(currentDeck);
@@ -174,7 +171,14 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
             chooseDeckPlay.knowledgeLevel.getItems().add(option);
         }
         chooseDeckPlay.knowledgeLevel.setOnAction(event -> {
-            updateKnowledgeLevel();
+            String stringLevel = chooseDeckPlay.knowledgeLevel.getValue();
+            switch(stringLevel) {
+                case("Very bad") -> updateKnowledgeLevel(Level.VERYBAD);
+                case("Bad") -> updateKnowledgeLevel(Level.BAD);
+                case("Average") -> updateKnowledgeLevel(Level.AVERAGE);
+                case("Good") -> updateKnowledgeLevel(Level.GOOD);
+                case("Very good") -> updateKnowledgeLevel(Level.VERYGOOD);
+            }
         });
     }
 

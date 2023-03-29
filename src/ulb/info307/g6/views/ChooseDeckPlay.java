@@ -3,6 +3,7 @@ package ulb.info307.g6.views;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import ulb.info307.g6.controllers.ChooseDeckPlayController;
 
 public class ChooseDeckPlay {
 
@@ -57,32 +58,14 @@ public class ChooseDeckPlay {
 
 
 
-    public void updateDisplayArea(String name) {
-        listener.updateDisplayArea(name);
-    }
 
-    public void showChoice() {
-        listener.showChoice();
-    }
-
-    public void setChoice() {
-        listener.setChoice();
-    }
-
-    public void updateKnowledgeLevel() {
-        listener.updateKnowledgeLevel();
-    }
 
 
     public interface ChooseDeckPlayListener {
         void clickHome();
-        void updateDisplayArea(String name);
-        void showChoice();
         void clickNextCard();
         void clickBackCard();
         void clickFlipCard();
         void clickKnowledgeLevel();
-        void updateKnowledgeLevel();
-        void setChoice();
     }
 }
