@@ -30,7 +30,7 @@ public class CardProbabilities {
     public double getCardProbability(int cardID)
     {
         double cardProbability = 0.0;
-        if (cardID >= 0 && cardID < this.cardProbabilities.length - 1)
+        if (cardID >= 0 && cardID <= this.cardProbabilities.length - 1)
         {
             cardProbability = this.cardProbabilities[cardID];
         }
