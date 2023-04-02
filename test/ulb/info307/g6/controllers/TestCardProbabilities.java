@@ -13,5 +13,19 @@ class TestCardProbabilities {
 
     static CardProbabilities cardProbabilities;
     static int numberOfCards;
+    @BeforeAll
+    static void initCardProbabilities()
+    {
+        numberOfCards = 5;
+        cardProbabilities = new CardProbabilities();
+        cardProbabilities.initCardProbabilities(numberOfCards);
+    }
+
+    @Test
+    void getCardProbability() {
+        assertEquals(cardProbabilities.getCardProbability(0), cardProbabilities.cardProbabilities[0]);
+        assertEquals(cardProbabilities.getCardProbability(numberOfCards/2), cardProbabilities.cardProbabilities[numberOfCards/2]);
+        assertEquals(cardProbabilities.getCardProbability(numberOfCards-1), cardProbabilities.cardProbabilities[numberOfCards-1]);
+    }
 
 }
