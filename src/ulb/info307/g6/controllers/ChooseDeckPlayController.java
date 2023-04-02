@@ -117,17 +117,12 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
         decks = database.getAllDecks();
         chooseDeckPlay.listDecks.getItems().clear();
         for (Deck deck : decks) {
-            chooseDeckPlay.listDecks.getItems().add(deck.getName());
+            chooseDeckPlay.listDecks.getItems().add(deck);
         }
 
-        chooseDeckPlay.selectDeck.setOnAction(event -> {
+        chooseDeckPlay.listDecks.setOnMouseClicked(event -> {
 
-            String selectedDeck = chooseDeckPlay.listDecks.getSelectionModel().getSelectedItem();
-            for (Deck deck : decks) {
-                if (deck.isDeck(selectedDeck)) {
-                    currentDeck = deck;
-                }
-            }
+            currentDeck = chooseDeckPlay.listDecks.getSelectionModel().getSelectedItem();
             cardIndex = 0;
 
             if (!currentDeck.isEmpty()) {
@@ -137,6 +132,20 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
                 chooseDeckPlay.displayTextQA.setText("The deck " + currentDeck.getName() + " is empty");
             }
         });
+        /*
+        chooseDeckPlay.selectDeck.setOnAction(event -> {
+
+            currentDeck = chooseDeckPlay.listDecks.getSelectionModel().getSelectedItem();
+            cardIndex = 0;
+
+            if (!currentDeck.isEmpty()) {
+                getNextRandomCard();
+                updateDisplayArea("Question");
+            } else {
+                chooseDeckPlay.displayTextQA.setText("The deck " + currentDeck.getName() + " is empty");
+            }
+        });
+         */
     }
 
     private void getNextRandomCard() {

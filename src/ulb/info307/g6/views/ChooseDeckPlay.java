@@ -3,7 +3,7 @@ package ulb.info307.g6.views;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
-import ulb.info307.g6.controllers.ChooseDeckPlayController;
+import ulb.info307.g6.models.Deck;
 
 public class ChooseDeckPlay {
 
@@ -16,9 +16,7 @@ public class ChooseDeckPlay {
     @FXML
     private Button buttonNextCard;
     @FXML
-    public ListView<String> listDecks = new ListView();
-    @FXML
-    public Button selectDeck;
+    public ListView<Deck> listDecks = new ListView();
     @FXML
     public Text displayTitle;
     @FXML

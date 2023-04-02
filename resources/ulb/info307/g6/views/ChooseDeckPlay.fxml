@@ -32,7 +32,6 @@
                      </font>
                   </Label>
                   <ListView fx:id="listDecks" prefHeight="356.0" prefWidth="169.0" />
-                  <Button fx:id="selectDeck" mnemonicParsing="false" text="Select Deck" />
                </children></VBox>
             </children>
         </AnchorPane>
