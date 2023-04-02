@@ -45,4 +45,14 @@ class TestCardProbabilities {
         assertEquals(total_probability, 1);
     }
 
+    @Test
+    void resetProbabilities() {
+        cardProbabilities.updateCardProbability(0, 0);
+        cardProbabilities.resetProbabilities();
+        for (int i = 0; i < numberOfCards; i++)
+        {
+            assertEquals(cardProbabilities.getCardProbability(i), (double) 1/numberOfCards);
+        }
+    }
+
 }
