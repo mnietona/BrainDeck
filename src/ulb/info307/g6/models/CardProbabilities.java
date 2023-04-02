@@ -65,18 +65,22 @@ public class CardProbabilities {
 
     public double getNewProbabilityValue(int knowledge) {
         double newWeight = 0;
-        double totalCards = this.cardProbabilities.length;
         switch (knowledge) {
             case 0:
                 newWeight = 1.9; // Very bad
+                break;
             case 1:
                 newWeight = 1.6;
+                break;
             case 2:
                 newWeight = 1.4;
+                break;
             case 3:
                 newWeight = 1.2;
+                break;
             case 4:
-                newWeight = 1; // Very good
+                newWeight = 0.8; // Very good
+                break;
         }
         return newWeight;
     }
