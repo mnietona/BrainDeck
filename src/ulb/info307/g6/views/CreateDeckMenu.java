@@ -4,9 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 
-public class CreatePackMenu {
+public class CreateDeckMenu {
 
-    private CreatePackMenuListener listener;
+    private CreateDeckMenuListener listener;
 
     @FXML
     private TextField inputBox;
@@ -28,11 +28,11 @@ public class CreatePackMenu {
         listener.clickBack();
     }
 
-    public void setListener(CreatePackMenuListener listener) {
+    public void setListener(CreateDeckMenuListener listener) {
         this.listener = listener;
     }
 
-    public interface CreatePackMenuListener {
+    public interface CreateDeckMenuListener {
         void clickBack();
         void clickConfirm(String inputText);
     }

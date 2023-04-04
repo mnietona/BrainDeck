@@ -10,7 +10,7 @@ import ulb.info307.g6.views.EditMenu;
 import java.io.IOException;
 import java.util.List;
 
-public class EditMenuController implements EditMenu.EditMenuListener, CreatePackMenuController.Listener, EditCardMenuController.Listener {
+public class EditMenuController implements EditMenu.EditMenuListener, CreateDeckMenuController.Listener, EditCardMenuController.Listener {
 
     static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
     private final Stage stage;
@@ -69,8 +69,8 @@ public class EditMenuController implements EditMenu.EditMenuListener, CreatePack
     public void clickCreate() {
         this.stage.hide();
         Stage stage = new Stage();
-        CreatePackMenuController createPackMenuController = new CreatePackMenuController(stage, this);
-        createPackMenuController.show();
+        CreateDeckMenuController createDeckMenuController = new CreateDeckMenuController(stage, this);
+        createDeckMenuController.show();
     }
 
 
