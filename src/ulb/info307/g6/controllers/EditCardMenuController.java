@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.models.Card;
+import ulb.info307.g6.models.CardGapFill;
 import ulb.info307.g6.views.EditCardMenu;
 import java.io.IOException;
 
@@ -19,6 +20,8 @@ public class EditCardMenuController implements EditCardMenu.EditCardMenuListener
     private final Listener listener;
     private Deck deck;
     private EditCardMenu editCardMenu;
+
+    private String GAP_FILL_MARKER = "/gapfill ";
 
     public EditCardMenuController(Stage stage, Listener listener, Deck deck) {
         this.stage = stage;
@@ -60,13 +63,20 @@ public class EditCardMenuController implements EditCardMenu.EditCardMenuListener
 
     @Override
     public void clickCreateCard() {
-        if (!editCardMenu.getQuestionInput().isEmpty() && !editCardMenu.getAnswerInput().isEmpty()) {
-            Card card = new Card(editCardMenu.getQuestionInput(), editCardMenu.getAnswerInput());
+        Card card;
+        if (editCardMenu.getQuestionInput().contains(GAP_FILL_MARKER)) { // Gap-fill card
+            String cleanQuestion = editCardMenu.getQuestionInput().replaceAll(GAP_FILL_MARKER, "") + " "; // replaceAll to remove the marker, space at the end for split subtleties when the separator is at the end
+            card = new CardGapFill(cleanQuestion, editCardMenu.getAnswerInput());
+        } else {
+            card = new Card(editCardMenu.getQuestionInput(), editCardMenu.getAnswerInput()); // Classic card
+        }
+        if (card.isValid()) {
             deck.addCard(card);
             databaseCard.updateCard(card);
             databaseDeck.updateDeck(deck);
-            editCardMenu.updateQuestionAnswer();
         }
+        editCardMenu.updateQuestionAnswer();
+
     }
 
     @Override
