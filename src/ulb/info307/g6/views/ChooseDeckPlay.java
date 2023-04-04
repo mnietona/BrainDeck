@@ -10,8 +10,6 @@ public class ChooseDeckPlay {
     @FXML
     private Button buttonHome;
     @FXML
-    private Button buttonBackCard;
-    @FXML
     private Button buttonFlipCard;
     @FXML
     private Button buttonNextCard;
@@ -40,11 +38,6 @@ public class ChooseDeckPlay {
     }
 
     @FXML
-    protected void clickBackCard() {
-        listener.clickBackCard();
-    }
-
-    @FXML
     protected void clickFlipCard() {
         listener.clickFlipCard();
     }
@@ -62,7 +55,6 @@ public class ChooseDeckPlay {
     public interface ChooseDeckPlayListener {
         void clickHome();
         void clickNextCard();
-        void clickBackCard();
         void clickFlipCard();
         void clickKnowledgeLevel();
     }

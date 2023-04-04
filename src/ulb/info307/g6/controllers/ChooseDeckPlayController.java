@@ -75,13 +75,6 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
         }
     }
 
-    public void clickBackCard() {
-        if (nextAlreadyClicked) {
-            cardIndex = lastIndex[1];
-            updateDisplayArea("Question");
-        }
-    }
-
     public void clickFlipCard() {
         if (currentDeck != null && !currentDeck.isEmpty()) {
             if (chooseDeckPlay.displayTitle.getText().equals("Question")) {
