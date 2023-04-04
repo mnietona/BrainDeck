@@ -2,14 +2,20 @@ package ulb.info307.g6.models;
 
 
 public class CardGapFill extends Card {
-    private final String QUESTION_SEPARATOR = " _ ";
+    public final static String QUESTION_SEPARATOR = "_";
     private final String ANSWER_SEPARATOR = ", ";
     private final String[] questionParts;
     private final String[] answerParts;
+
+
     public CardGapFill(String questionInput, String answerInput) {
         super(questionInput, answerInput);
         questionParts = questionInput.split(QUESTION_SEPARATOR);
         answerParts = answerInput.split(ANSWER_SEPARATOR);
+    }
+
+    public static boolean isCardGapFilType(Card card) {
+        return card.getQuestion().contains(QUESTION_SEPARATOR);
     }
 
     @Override
@@ -23,7 +29,7 @@ public class CardGapFill extends Card {
         for (int i = 0; i < questionParts.length; i++) {
             question.append(questionParts[i]);
             if (i < answerParts.length) {
-                question.append(ANSWER_SEPARATOR);
+                question.append(QUESTION_SEPARATOR);
             }
         }
         return question.toString();
@@ -32,6 +38,20 @@ public class CardGapFill extends Card {
     @Override
     public int getNumberOfFlips() {
         return answerParts.length;
+    }
+
+    @Override
+    public String getNthFlippedAnswer(int n) {
+        if (n > getNumberOfFlips()) {
+            return "INCORRECT LENGTH NUMBER OF ANSWERS ASKED";
+        }
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < questionParts.length; i++) {
+            res.append(questionParts[i]);
+            if (i < n) {res.append(answerParts[i]);}
+            else if (i < questionParts.length - 1) {res.append(QUESTION_SEPARATOR);}
+        }
+        return res.toString();
     }
 }
 

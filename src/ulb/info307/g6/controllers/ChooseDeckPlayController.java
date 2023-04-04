@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ulb.info307.g6.models.Card;
+import ulb.info307.g6.models.CardGapFill;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.views.ChooseDeckPlay;
 
@@ -24,12 +25,13 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
     private List<Deck> decks;
 
     private int[] lastIndex = new int[3];
-    private boolean nextAlreadyClicked = false;
+    private int flipIndex = 0;
+    private int numberOfFlipsAuthorizedForCurrentCard = 1;
     private int cardIndex = 0;
     private Deck currentDeck = null;
 
     private ChooseDeckPlay chooseDeckPlay;
-    private enum Level {VERYBAD, BAD, AVERAGE, GOOD, VERYGOOD};
+    private enum Level {VERY_BAD, BAD, AVERAGE, GOOD, VERY_GOOD}
 
     public ChooseDeckPlayController(Stage stage, Listener listener) {
         this.stage = stage;
@@ -70,18 +72,15 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
     public void clickNextCard() {
         if (!currentDeck.isEmpty()) {
             getNextRandomCard();
-            updateDisplayArea("Question");
-            nextAlreadyClicked = true;
+            flipIndex = 0;
+            updateDisplayArea();
         }
     }
 
     public void clickFlipCard() {
         if (currentDeck != null && !currentDeck.isEmpty()) {
-            if (chooseDeckPlay.displayTitle.getText().equals("Question")) {
-                updateDisplayArea("  Answer");
-            } else if (chooseDeckPlay.displayTitle.getText().equals("  Answer")) {
-                updateDisplayArea("Question");
-            }
+            flipIndex = (flipIndex + 1) % (numberOfFlipsAuthorizedForCurrentCard + 1);
+            updateDisplayArea();
         }
     }
 
@@ -95,11 +94,11 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
         if (!currentDeck.isEmpty()) {
             Card card = currentDeck.getCardList().get(cardIndex);
             switch (level) {
-                case VERYBAD -> card.setKnowledgeLevel(0);
+                case VERY_BAD -> card.setKnowledgeLevel(0);
                 case BAD -> card.setKnowledgeLevel(1);
                 case AVERAGE -> card.setKnowledgeLevel(2);
                 case GOOD -> card.setKnowledgeLevel(3);
-                case VERYGOOD -> card.setKnowledgeLevel(4);
+                case VERY_GOOD -> card.setKnowledgeLevel(4);
             }
             databaseCard.updateCard(card);
             database.updateDeck(currentDeck);
@@ -117,28 +116,15 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
 
             currentDeck = chooseDeckPlay.listDecks.getSelectionModel().getSelectedItem();
             cardIndex = 0;
+            flipIndex = 0;
 
             if (!currentDeck.isEmpty()) {
                 getNextRandomCard();
-                updateDisplayArea("Question");
+                updateDisplayArea();
             } else {
                 chooseDeckPlay.displayTextQA.setText("The deck " + currentDeck.getName() + " is empty");
             }
         });
-        /*
-        chooseDeckPlay.selectDeck.setOnAction(event -> {
-
-            currentDeck = chooseDeckPlay.listDecks.getSelectionModel().getSelectedItem();
-            cardIndex = 0;
-
-            if (!currentDeck.isEmpty()) {
-                getNextRandomCard();
-                updateDisplayArea("Question");
-            } else {
-                chooseDeckPlay.displayTextQA.setText("The deck " + currentDeck.getName() + " is empty");
-            }
-        });
-         */
     }
 
     private void getNextRandomCard() {
@@ -159,18 +145,29 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
         lastIndex[0] = nextCardIndex;
     }
 
-    public void updateDisplayArea(String name) {
+    private boolean questionIsDisplayed() {
+        // We have not yet flipped the card, so the question is displayed
+        return flipIndex == 0;
+    }
+
+    public void updateDisplayArea() {
         if (currentDeck == null) {
             chooseDeckPlay.displayTitle.setText("");
             chooseDeckPlay.displayTextQA.setText("No deck selected");
-        }else {
+        } else {
             Card card = currentDeck.getCardList().get(cardIndex);
-            if (name.equals("Question")) {
+            if (CardGapFill.isCardGapFilType(card)) {
+                // We transform the card into its extended type cardGapFill if necessary
+                // (to know if the card is of the type cardGapFill, we check whether its question contains the "gap" marker "_")
+                card = new CardGapFill(card.getQuestion(),card.getAnswer());
+            }
+            numberOfFlipsAuthorizedForCurrentCard = card.getNumberOfFlips();
+            if (questionIsDisplayed()) {
                 chooseDeckPlay.displayTitle.setText("Question");
                 chooseDeckPlay.displayTextQA.setText(card.getQuestion());
-            } else if (name.equals("  Answer")) {
+            } else  {
                 chooseDeckPlay.displayTitle.setText("  Answer");
-                chooseDeckPlay.displayTextQA.setText(card.getAnswer());
+                chooseDeckPlay.displayTextQA.setText(card.getNthFlippedAnswer(flipIndex));
             }
         }
     }
@@ -184,11 +181,11 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
         chooseDeckPlay.knowledgeLevel.setOnAction(event -> {
             String stringLevel = chooseDeckPlay.knowledgeLevel.getValue();
             switch(stringLevel) {
-                case("Very bad") -> updateKnowledgeLevel(Level.VERYBAD);
+                case("Very bad") -> updateKnowledgeLevel(Level.VERY_BAD);
                 case("Bad") -> updateKnowledgeLevel(Level.BAD);
                 case("Average") -> updateKnowledgeLevel(Level.AVERAGE);
                 case("Good") -> updateKnowledgeLevel(Level.GOOD);
-                case("Very good") -> updateKnowledgeLevel(Level.VERYGOOD);
+                case("Very good") -> updateKnowledgeLevel(Level.VERY_GOOD);
             }
         });
     }

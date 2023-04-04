@@ -1,6 +1,5 @@
 package ulb.info307.g6.models;
 
-import org.dizitart.no2.NitriteId;
 import org.dizitart.no2.objects.Id;
 
 import java.io.Serializable;
@@ -10,16 +9,17 @@ public class Card implements Serializable {
 
     @Id
     private long id;
-    private String question;
+    private String res;
     private String answer;
     private int knowledgeLevel; // 5 levels: 0, 1, 2, 3, 4 from bad to good
+
 
     public Card() {
     }
 
     public Card(String question, String answer) {
         this.id = new Random().nextLong();
-        this.question = question;
+        this.res = question;
         this.answer = answer;
         this.knowledgeLevel = 0; // 0 is the lowest level (doesn't know the card)
     }
@@ -31,15 +31,18 @@ public class Card implements Serializable {
     public void setId(long id) {this.id = id; }
 
     public String getQuestion() {
-        return question;
+        return res;
     }
 
     public void setQuestion(String question) {
-        this.question = question;
+        this.res = question;
     }
 
     public String getAnswer() {
         return answer;
+    }
+    public String getNthFlippedAnswer(int i) {
+        return getAnswer();
     }
 
     public void setAnswer(String answer) {
@@ -55,15 +58,17 @@ public class Card implements Serializable {
     }
 
     public boolean isValid() {
-        return question != null && answer != null && !question.isEmpty() && !answer.isEmpty();
+        return res != null && answer != null && !res.isEmpty() && !answer.isEmpty();
     }
 
     public int getNumberOfFlips() {
         return 1;
     }
 
+
+
     public String toString() {
-        String s = question;
+        String s = res;
         int length = s.length();
         s = s.substring(0, Math.min(length, 20));
         if (s.length() < length) s += "...";
