@@ -1,14 +1,19 @@
 package ulb.info307.g6.views;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.Deck;
 
-public class EditCardMenu {
+import java.util.List;
 
+public class EditCardMenu {
+    @FXML
+    public ListView<Card> cardListViewEditCardMenu = new ListView();
     private Deck deck;
 
     private EditCardMenuListener listener;
@@ -20,15 +25,13 @@ public class EditCardMenu {
     private TextArea answerInput;
 
     @FXML
-    private Button buttonBack;
+    private Button buttonRemoveCard;
     @FXML
     private Button buttonEditCard;
 
-    @FXML
-    public ComboBox<Card> pickCard;
 
     @FXML
-    private Button buttonAddCard;
+    private Button buttonCreateCard;
 
     public void setDeck(Deck deck) {
         this.deck = deck;
@@ -62,25 +65,30 @@ public class EditCardMenu {
         listener.clickBack();
     }
 
-    public void setCardLists() {
-        pickCard.getItems().clear();
+    public void setCardLists(Deck deck) {
+        cardListViewEditCardMenu.getItems().clear();
         for (Card card : deck.getCardList()) {
-            pickCard.getItems().add(card);
+            cardListViewEditCardMenu.getItems().add(card);
+            System.out.println(card);
         }
-        pickCard.setOnAction(event -> { // click on an item
+        cardListViewEditCardMenu.setOnMouseClicked(event -> {
             updateQuestionAnswer();
         });
     }
 
     public void updateQuestionAnswer() {
-        Card selectedItem = pickCard.getSelectionModel().getSelectedItem();
+        Card selectedItem = cardListViewEditCardMenu.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
             questionInput.setText(selectedItem.getQuestion());
             answerInput.setText(selectedItem.getAnswer());
         } else {
-            questionInput.setText("");
-            answerInput.setText("");
+            clearTextFields();
         }
+    }
+
+    public void clearTextFields() {
+        questionInput.setText("");
+        answerInput.setText("");
     }
 
     public String getQuestionInput() {
@@ -92,7 +100,11 @@ public class EditCardMenu {
     }
 
     public Card getSelectedCard() {
-        return pickCard.getSelectionModel().getSelectedItem();
+        return cardListViewEditCardMenu.getSelectionModel().getSelectedItem();
+    }
+
+    public void clickBack() {
+        listener.clickBack();
     }
 
     public interface EditCardMenuListener {

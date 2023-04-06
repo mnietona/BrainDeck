@@ -11,17 +11,14 @@ import ulb.info307.g6.models.Deck;
 import java.util.List;
 
 public class EditMenu {
-    public List<Deck> decks;
+    @FXML
+    public Button buttonCreate;
+    @FXML
+    public Button buttonRemove;
     @FXML
     private Button buttonHome;
     @FXML
-    private Button buttonEdit;
-    @FXML
-    private Button buttonAdd;
-    @FXML
     public ListView<Deck> deckListViewEditMenu = new ListView();
-    @FXML
-    public ComboBox<Deck> cardPack;
     @FXML
     private VBox root;
     @FXML
@@ -67,7 +64,6 @@ public class EditMenu {
     }
 
     public void setDeckListView(List<Deck> decks) {
-        this.decks = decks;
         deckListViewEditMenu.getItems().clear();
         for (Deck deck : decks) {
             deckListViewEditMenu.getItems().add(deck);

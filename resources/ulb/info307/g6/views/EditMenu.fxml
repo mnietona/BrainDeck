@@ -13,7 +13,7 @@
       <Button fx:id="buttonHome" onAction="#clickHome" prefWidth="169.0" text="Home" />
    </VBox>
 
-   <!-- Right pane : card + knowledge lvl + flip + next -->
+   <!-- Right pane : ... -->
    <VBox alignment="TOP_CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
 
       <HBox alignment="TOP_CENTER" spacing="10">

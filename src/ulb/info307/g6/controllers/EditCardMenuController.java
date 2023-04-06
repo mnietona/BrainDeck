@@ -56,7 +56,7 @@ public class EditCardMenuController implements EditCardMenu.EditCardMenuListener
             selectedItem.setAnswer(editCardMenu.getAnswerInput());
             databaseCard.updateCard(selectedItem);
             databaseDeck.updateDeck(deck);
-            editCardMenu.setCardLists();
+            editCardMenu.setCardLists(deck);
             editCardMenu.updateQuestionAnswer();
         }
     }
@@ -74,13 +74,14 @@ public class EditCardMenuController implements EditCardMenu.EditCardMenuListener
             deck.addCard(card);
             databaseCard.updateCard(card);
             databaseDeck.updateDeck(deck);
+            editCardMenu.setCardLists(deck);
         }
-        editCardMenu.updateQuestionAnswer();
+        editCardMenu.clearTextFields();
     }
 
     @Override
     public void clickChoice() {
-        editCardMenu.setCardLists();
+        editCardMenu.setCardLists(deck);
     }
 
     @Override
@@ -91,7 +92,8 @@ public class EditCardMenuController implements EditCardMenu.EditCardMenuListener
             databaseCard.deleteCard(selectedItem);
             databaseDeck.updateDeck(deck);
             editCardMenu.updateQuestionAnswer();
-            editCardMenu.setCardLists();
+            editCardMenu.setCardLists(deck);
+            editCardMenu.clearTextFields();
         }
     }
 
