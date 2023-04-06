@@ -8,7 +8,7 @@ import ulb.info307.g6.models.Deck;
 
 public class ChooseDeckPlay {
     @FXML
-    public ListView<Deck> listDecks = new ListView();
+    public ListView<Deck> deckList = new ListView();
     @FXML
     private Button buttonHome;
     @FXML
@@ -43,6 +43,15 @@ public class ChooseDeckPlay {
     @FXML
     protected void clickFlipCard() {
         listener.clickFlipCard();
+    }
+
+    public void deactivateSlider() {
+        KnowledgeLvlSlider.setDisable(true);
+        KnowledgeLvlSlider.setOpacity(0.5);
+    }
+    public void activateSlider() {
+        KnowledgeLvlSlider.setDisable(false);
+        KnowledgeLvlSlider.setOpacity(1);
     }
 
     public interface ChooseDeckPlayListener {

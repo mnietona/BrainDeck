@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.Random;
 
 public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayListener {
+    private static final String BACKGROUND_QUESTION = "-fx-background-color: #ADD8E6; -fx-background-radius: 10px";
+    private static final String BACKGROUND_ANSWER = "-fx-background-color: #FFA07A; -fx-background-radius: 10px";
     private final Stage stage;
     private final Listener listener;
 
@@ -52,7 +54,7 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
             this.stage.setTitle("Study your decks");
             this.stage.show();
             showChoice();
-
+            chooseDeckPlay.deactivateSlider();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -66,7 +68,7 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
     }
 
     public void showChoice() {
-        setCardPackLists();
+        setDeckList();
     }
 
     public void clickNextCard() {
@@ -74,6 +76,7 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
             getNextRandomCard();
             flipIndex = 0;
             updateDisplayArea();
+            chooseDeckPlay.deactivateSlider();
         }
     }
 
@@ -81,12 +84,11 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
         if (currentDeck != null && !currentDeck.isEmpty()) {
             flipIndex = (flipIndex + 1) % (numberOfFlipsAuthorizedForCurrentCard + 1);
             updateDisplayArea();
-        }
-    }
-
-    public void clickKnowledgeLevel() {
-        if (currentDeck != null) {
-            setChoice();
+            if (flipIndex == numberOfFlipsAuthorizedForCurrentCard) {
+                chooseDeckPlay.activateSlider();
+            } else {
+                chooseDeckPlay.deactivateSlider();
+            }
         }
     }
 
@@ -105,16 +107,15 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
         }
     }
 
-    private void setCardPackLists() {
+    private void setDeckList() {
         decks = database.getAllDecks();
-        chooseDeckPlay.listDecks.getItems().clear();
+        chooseDeckPlay.deckList.getItems().clear();
         for (Deck deck : decks) {
-            chooseDeckPlay.listDecks.getItems().add(deck);
+            chooseDeckPlay.deckList.getItems().add(deck);
         }
-
-        chooseDeckPlay.listDecks.setOnMouseClicked(event -> {
-
-            currentDeck = chooseDeckPlay.listDecks.getSelectionModel().getSelectedItem();
+        chooseDeckPlay.deckList.setOnMouseClicked(event -> {
+            chooseDeckPlay.deactivateSlider();
+            currentDeck = chooseDeckPlay.deckList.getSelectionModel().getSelectedItem();
             cardIndex = 0;
             flipIndex = 0;
 
@@ -125,6 +126,7 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
                 chooseDeckPlay.displayTextQA.setText("The deck " + currentDeck.getName() + " is empty");
             }
         });
+
     }
 
     private void getNextRandomCard() {
@@ -152,7 +154,6 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
 
     public void updateDisplayArea() {
         if (currentDeck == null) {
-            //chooseDeckPlay.displayTitle.setText("");
             chooseDeckPlay.displayTextQA.setText("No deck selected");
         } else {
             Card card = currentDeck.getCardList().get(cardIndex);
@@ -163,10 +164,10 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
             }
             numberOfFlipsAuthorizedForCurrentCard = card.getNumberOfFlips();
             if (questionIsDisplayed()) {
-                chooseDeckPlay.cardBackground.setStyle("-fx-background-color: #ADD8E6; -fx-background-radius: 10px;");
+                chooseDeckPlay.cardBackground.setStyle(BACKGROUND_QUESTION);
                 chooseDeckPlay.displayTextQA.setText(card.getQuestion());
             } else  {
-                chooseDeckPlay.cardBackground.setStyle("-fx-background-color: #FFA07A; -fx-background-radius: 10px;");
+                chooseDeckPlay.cardBackground.setStyle(BACKGROUND_ANSWER);
                 chooseDeckPlay.displayTextQA.setText(card.getNthFlippedAnswer(flipIndex));
             }
         }

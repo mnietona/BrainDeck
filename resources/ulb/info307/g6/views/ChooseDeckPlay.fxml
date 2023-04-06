@@ -9,7 +9,7 @@
 
     <!-- Left pane : list of decks + home -->
     <VBox alignment="CENTER" spacing="5.0">
-        <ListView fx:id="listDecks" prefWidth="169.0" VBox.vgrow="ALWAYS" />
+        <ListView fx:id="deckList" prefWidth="169.0" VBox.vgrow="ALWAYS" />
         <Button fx:id="buttonHome" onAction="#clickHome" prefWidth="169.0" text="Home" />
     </VBox>
 
