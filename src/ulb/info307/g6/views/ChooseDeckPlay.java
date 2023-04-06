@@ -2,11 +2,11 @@ package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import ulb.info307.g6.models.Deck;
 
 public class ChooseDeckPlay {
-
     @FXML
     private Button buttonHome;
     @FXML
@@ -16,9 +16,9 @@ public class ChooseDeckPlay {
     @FXML
     public ListView<Deck> listDecks = new ListView();
     @FXML
-    public Text displayTitle;
-    @FXML
     public Text displayTextQA;
+    @FXML
+    public Pane cardBackground;
     @FXML
     public ComboBox<String> knowledgeLevel;
 
@@ -41,16 +41,6 @@ public class ChooseDeckPlay {
     protected void clickFlipCard() {
         listener.clickFlipCard();
     }
-
-    @FXML
-    protected void clickKnowledgeLevel() {
-        listener.clickKnowledgeLevel();
-    }
-
-
-
-
-
 
     public interface ChooseDeckPlayListener {
         void clickHome();

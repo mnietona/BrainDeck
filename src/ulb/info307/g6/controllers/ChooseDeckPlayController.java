@@ -152,7 +152,7 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
 
     public void updateDisplayArea() {
         if (currentDeck == null) {
-            chooseDeckPlay.displayTitle.setText("");
+            //chooseDeckPlay.displayTitle.setText("");
             chooseDeckPlay.displayTextQA.setText("No deck selected");
         } else {
             Card card = currentDeck.getCardList().get(cardIndex);
@@ -163,10 +163,10 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
             }
             numberOfFlipsAuthorizedForCurrentCard = card.getNumberOfFlips();
             if (questionIsDisplayed()) {
-                chooseDeckPlay.displayTitle.setText("Question");
+                chooseDeckPlay.cardBackground.setStyle("-fx-background-color: #ADD8E6; -fx-background-radius: 10px;");
                 chooseDeckPlay.displayTextQA.setText(card.getQuestion());
             } else  {
-                chooseDeckPlay.displayTitle.setText("  Answer");
+                chooseDeckPlay.cardBackground.setStyle("-fx-background-color: #FFA07A; -fx-background-radius: 10px;");
                 chooseDeckPlay.displayTextQA.setText(card.getNthFlippedAnswer(flipIndex));
             }
         }
