@@ -76,7 +76,6 @@ public class EditCardMenuController implements EditCardMenu.EditCardMenuListener
             databaseDeck.updateDeck(deck);
         }
         editCardMenu.updateQuestionAnswer();
-
     }
 
     @Override

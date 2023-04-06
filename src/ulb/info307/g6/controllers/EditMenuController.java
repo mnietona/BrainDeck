@@ -54,7 +54,7 @@ public class EditMenuController implements EditMenu.EditMenuListener, CreateDeck
     public void clickEdit() {
         List<Deck> decks = fetchDecksFromDatabase();
         if (decks != null) {
-            Deck selectedItem = editMenuController.cardPack.getSelectionModel().getSelectedItem();
+            Deck selectedItem = editMenuController.deckListViewEditMenu.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
                 this.stage.hide();
                 Stage stage = new Stage();
@@ -77,14 +77,14 @@ public class EditMenuController implements EditMenu.EditMenuListener, CreateDeck
     @Override
     public void clickChoice() {
         List<Deck> decks = fetchDecksFromDatabase();
-        editMenuController.setCardPackLists(decks);
+        editMenuController.setDeckListView(decks);
         editMenuController.updateDeckTitle();
     }
 
 
     @Override
     public void clickRemove() {
-        Deck selectedItem = editMenuController.cardPack.getSelectionModel().getSelectedItem();
+        Deck selectedItem = editMenuController.deckListViewEditMenu.getSelectionModel().getSelectedItem();
         database.deleteDeck(selectedItem);
         database.updateDeck(selectedItem);
         clickChoice();

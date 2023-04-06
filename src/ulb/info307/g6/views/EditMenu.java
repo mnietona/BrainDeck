@@ -3,6 +3,7 @@ package ulb.info307.g6.views;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import ulb.info307.g6.models.Deck;
@@ -17,6 +18,8 @@ public class EditMenu {
     private Button buttonEdit;
     @FXML
     private Button buttonAdd;
+    @FXML
+    public ListView<Deck> deckListViewEditMenu = new ListView();
     @FXML
     public ComboBox<Deck> cardPack;
     @FXML
@@ -55,7 +58,7 @@ public class EditMenu {
         listener.clickRemove();
     }
     public void updateDeckTitle() {
-        Deck selectedItem = cardPack.getSelectionModel().getSelectedItem();
+        Deck selectedItem = deckListViewEditMenu.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
             deckTitle.setText(selectedItem.getName());
         } else {
@@ -63,13 +66,13 @@ public class EditMenu {
         }
     }
 
-    public void setCardPackLists(List<Deck> decks) {
+    public void setDeckListView(List<Deck> decks) {
         this.decks = decks;
-        cardPack.getItems().clear();
+        deckListViewEditMenu.getItems().clear();
         for (Deck deck : decks) {
-            cardPack.getItems().add(deck);
+            deckListViewEditMenu.getItems().add(deck);
         }
-        cardPack.setOnAction(event -> { // click on an item
+        deckListViewEditMenu.setOnMouseClicked(event -> { // click on an item
             updateDeckTitle();
         });
     }
