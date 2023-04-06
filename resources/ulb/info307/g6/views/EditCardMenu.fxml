@@ -6,33 +6,28 @@
 <?import javafx.scene.text.*?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="5.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.EditCardMenu">
-
     <!-- Left pane : list of decks + home -->
     <VBox alignment="CENTER" spacing="5.0">
         <ListView fx:id="cardListViewEditCardMenu" prefWidth="169.0" VBox.vgrow="ALWAYS" />
         <Button fx:id="buttonBack" onAction="#clickBack" prefWidth="169.0" text="Back" />
     </VBox>
 
-    <!-- Right pane : ... -->
+    <!-- Right pane : textboxes + edit/create/remove card -->
     <VBox alignment="TOP_CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
-
         <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
-
             <Label text="Question">
-                    <font>
-                        <Font size="20.0" />
-                    </font>
-                </Label>
+                <font>
+                    <Font size="20.0" />
+                </font>
+            </Label>
+            <TextArea fx:id="questionInput" VBox.vgrow="ALWAYS" />
 
-                <TextArea fx:id="questionInput" />
-
-                <Label text="Answer">
-                    <font>
-                        <Font size="20.0" />
-                    </font>
-                </Label>
-                <TextArea fx:id="answerInput" />
-
+            <Label text="Answer">
+                <font>
+                    <Font size="20.0" />
+                </font>
+            </Label>
+            <TextArea fx:id="answerInput" VBox.vgrow="ALWAYS" />
         </VBox>
 
         <HBox alignment="TOP_CENTER" spacing="5.0">
@@ -40,9 +35,9 @@
             <Button fx:id="buttonCreateCard" onAction="#clickCreateCard" text="Create card" />
             <Button fx:id="buttonRemoveCard" onAction="#clickRemoveCard" text="Remove card" />
         </HBox>
-
     </VBox>
-   <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-   </padding>
+
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+    </padding>
 </HBox>

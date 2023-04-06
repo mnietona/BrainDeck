@@ -6,34 +6,30 @@
 <?import javafx.scene.text.*?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="5.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.EditMenu">
+    <!-- Left pane : list of decks + home -->
+    <VBox alignment="CENTER" spacing="5.0">
+        <ListView fx:id="deckListViewEditMenu" prefWidth="169.0" VBox.vgrow="ALWAYS" />
+        <Button fx:id="buttonHome" onAction="#clickHome" prefWidth="169.0" text="Home" />
+    </VBox>
 
-   <!-- Left pane : list of decks + home -->
-   <VBox alignment="CENTER" spacing="5.0">
-      <ListView fx:id="deckListViewEditMenu" prefWidth="169.0" VBox.vgrow="ALWAYS" />
-      <Button fx:id="buttonHome" onAction="#clickHome" prefWidth="169.0" text="Home" />
-   </VBox>
-
-   <!-- Right pane : ... -->
-   <VBox alignment="TOP_CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
-
-      <HBox alignment="TOP_CENTER" spacing="10">
-         <Button fx:id="buttonEdit" mnemonicParsing="false" onAction="#clickEdit" text="Edit deck" />
-         <Button fx:id="buttonCreate" mnemonicParsing="false" onAction="#clickCreate" text="Create deck" />
-         <Button fx:id="buttonRemove" mnemonicParsing="false" onAction="#clickRemove" text="Remove deck" />
-      </HBox>
-
-      <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
-         <children>
+    <!-- Right pane : selected deck + edit/create/remove deck -->
+    <VBox alignment="TOP_CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
+        <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
             <Text fx:id="deckTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="No deck selected" textAlignment="CENTER">
-               <font>
-                  <Font size="36.0" />
-               </font>
+                <font>
+                    <Font size="20.0" />
+                </font>
             </Text>
-         </children>
-      </VBox>
+        </VBox>
 
-   </VBox>
-   <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-   </padding>
+        <HBox alignment="TOP_CENTER" spacing="10">
+            <Button fx:id="buttonEdit" mnemonicParsing="false" onAction="#clickEdit" text="Edit deck" />
+            <Button fx:id="buttonCreate" mnemonicParsing="false" onAction="#clickCreate" text="Create deck" />
+            <Button fx:id="buttonRemove" mnemonicParsing="false" onAction="#clickRemove" text="Remove deck" />
+        </HBox>
+    </VBox>
+
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+    </padding>
 </HBox>
