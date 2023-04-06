@@ -2,8 +2,7 @@ package ulb.info307.g6.models;
 
 
 public class CardGapFill extends Card {
-    public final static String QUESTION_SEPARATOR = "_";
-    private final String ANSWER_SEPARATOR = ", ";
+    public final static String QUESTION_SEPARATOR = "_"; // Arbitrary choice of separator, could be anything
     private final String[] questionParts;
     private final String[] answerParts;
 
@@ -11,6 +10,7 @@ public class CardGapFill extends Card {
     public CardGapFill(String questionInput, String answerInput) {
         super(questionInput, answerInput);
         questionParts = questionInput.split(QUESTION_SEPARATOR);
+        String ANSWER_SEPARATOR = ", "; // Arbitrary choice of separator, could be anything
         answerParts = answerInput.split(ANSWER_SEPARATOR);
     }
 
@@ -26,10 +26,10 @@ public class CardGapFill extends Card {
     @Override
     public String getQuestion() {
         StringBuilder question = new StringBuilder();
-        for (int i = 0; i < questionParts.length; i++) {
+        for (int i = 0; i < questionParts.length; i++) { // Reconstruction of the question as a String with the answers hidden
             question.append(questionParts[i]);
             if (i < answerParts.length) {
-                question.append(QUESTION_SEPARATOR);
+                question.append(QUESTION_SEPARATOR.repeat(answerParts[i].length())); // Replace the answer part by the same number of letters as the answer part
             }
         }
         return question.toString();
@@ -46,10 +46,12 @@ public class CardGapFill extends Card {
             return "INCORRECT LENGTH NUMBER OF ANSWERS ASKED";
         }
         StringBuilder res = new StringBuilder();
-        for (int i = 0; i < questionParts.length; i++) {
+        for (int i = 0; i < questionParts.length; i++) { //
             res.append(questionParts[i]);
             if (i < n) {res.append(answerParts[i]);}
-            else if (i < questionParts.length - 1) {res.append(QUESTION_SEPARATOR);}
+            else if (i < questionParts.length - 1) {
+                res.append(QUESTION_SEPARATOR.repeat(answerParts[i].length())); // Replace the answer part by the same number of letters as the answer part
+            }
         }
         return res.toString();
     }
