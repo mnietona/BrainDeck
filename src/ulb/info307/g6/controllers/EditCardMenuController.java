@@ -21,7 +21,7 @@ public class EditCardMenuController implements EditCardMenu.EditCardMenuListener
     private Deck deck;
     private EditCardMenu editCardMenu;
 
-    private String GAP_FILL_MARKER = "/gapfill ";
+    private final String GAP_FILL_MARKER = "/gapfill ";
 
     public EditCardMenuController(Stage stage, Listener listener, Deck deck) {
         this.stage = stage;
@@ -35,13 +35,12 @@ public class EditCardMenuController implements EditCardMenu.EditCardMenuListener
             loader.load();
             editCardMenu = loader.getController();
             editCardMenu.setListener(this);
-            editCardMenu.setDeck(deck);
             Parent root = loader.getRoot();
 
             this.stage.setScene(new Scene(root));
             this.stage.setTitle("Edit cards in the deck");
             this.stage.show();
-            clickChoice();
+            editCardMenu.setCardList(deck);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,7 +55,7 @@ public class EditCardMenuController implements EditCardMenu.EditCardMenuListener
             selectedItem.setAnswer(editCardMenu.getAnswerInput());
             databaseCard.updateCard(selectedItem);
             databaseDeck.updateDeck(deck);
-            editCardMenu.setCardLists(deck);
+            editCardMenu.setCardList(deck);
             editCardMenu.updateQuestionAnswer();
         }
     }
@@ -74,14 +73,9 @@ public class EditCardMenuController implements EditCardMenu.EditCardMenuListener
             deck.addCard(card);
             databaseCard.updateCard(card);
             databaseDeck.updateDeck(deck);
-            editCardMenu.setCardLists(deck);
+            editCardMenu.setCardList(deck);
         }
         editCardMenu.clearTextFields();
-    }
-
-    @Override
-    public void clickChoice() {
-        editCardMenu.setCardLists(deck);
     }
 
     @Override
@@ -91,8 +85,7 @@ public class EditCardMenuController implements EditCardMenu.EditCardMenuListener
             deck.removeCard(selectedItem);
             databaseCard.deleteCard(selectedItem);
             databaseDeck.updateDeck(deck);
-            editCardMenu.updateQuestionAnswer();
-            editCardMenu.setCardLists(deck);
+            editCardMenu.setCardList(deck);
             editCardMenu.clearTextFields();
         }
     }
