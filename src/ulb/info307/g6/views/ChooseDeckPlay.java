@@ -8,19 +8,22 @@ import ulb.info307.g6.models.Deck;
 
 public class ChooseDeckPlay {
     @FXML
+    public ListView<Deck> listDecks = new ListView();
+    @FXML
     private Button buttonHome;
+    @FXML
+    public Pane cardBackground;
+    @FXML
+    public Text displayTextQA;
     @FXML
     private Button buttonFlipCard;
     @FXML
     private Button buttonNextCard;
     @FXML
-    public ListView<Deck> listDecks = new ListView();
+    private Slider KnowledgeLvlSlider;
+
     @FXML
-    public Text displayTextQA;
-    @FXML
-    public Pane cardBackground;
-    @FXML
-    public ComboBox<String> knowledgeLevel;
+    public ComboBox<String> knowledgeLevel;  // TODO: te be removed, changed to slider
 
     private ChooseDeckPlayListener listener;
 
@@ -46,6 +49,5 @@ public class ChooseDeckPlay {
         void clickHome();
         void clickNextCard();
         void clickFlipCard();
-        void clickKnowledgeLevel();
     }
 }

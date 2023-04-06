@@ -10,7 +10,7 @@
     <!-- Left pane : list of decks + home -->
     <VBox alignment="CENTER" spacing="5.0">
         <ListView fx:id="listDecks" prefWidth="169.0" VBox.vgrow="ALWAYS" />
-        <Button fx:id="buttonHome" onAction="#clickHome" text="Home" />
+        <Button fx:id="buttonHome" onAction="#clickHome" prefWidth="169.0" text="Home" />
     </VBox>
 
     <!-- Right pane : card + knowledge lvl + flip + next -->
@@ -28,14 +28,13 @@
             </Pane>
         </VBox>
 
-        <HBox alignment="CENTER" spacing="5.0">
-            <!-- TODO: add onAction and id -->
-            <Button text="Very bad" />
-            <Button text="Bad" />
-            <Button text="Average" />
-            <Button text="Good" />
-            <Button text="Very good" />
-        </HBox>
+        <Label text="Knowledge level">
+         <VBox.margin>
+            <Insets bottom="-5.0" />
+         </VBox.margin></Label>
+
+        <!-- TODO: add actions -->
+        <Slider fx:id="KnowledgeLvlSlider" blockIncrement="1.0" majorTickUnit="1.0" max="4.0" maxWidth="400.0" minWidth="400.0" minorTickCount="0" prefWidth="400.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
 
         <HBox alignment="CENTER" spacing="5.0">
             <Button fx:id="buttonFlipCard" onAction="#clickFlipCard" text="Flip" />
