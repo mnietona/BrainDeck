@@ -61,7 +61,9 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
 
 
     public void clickHome() {
-        updateCardKnowledgeLevel();
+        if (currentDeck != null) {
+            updateCardKnowledgeLevel();
+        }
         listener.clickHome();
         this.stage.hide();
     }
