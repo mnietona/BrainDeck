@@ -11,7 +11,7 @@ public class Card implements Serializable {
     private long id;
     private String res;
     private String answer;
-    private int knowledgeLevel; // 5 levels: 0, 1, 2, 3, 4 from bad to good
+    private Double knowledgeLevel; // 5 levels: 0, 1, 2, 3, 4 from bad to good
 
 
     public Card() {
@@ -21,7 +21,7 @@ public class Card implements Serializable {
         this.id = new Random().nextLong();
         this.res = question;
         this.answer = answer;
-        this.knowledgeLevel = 0; // 0 is the lowest level (doesn't know the card)
+        this.knowledgeLevel = 0d; // 0 is the lowest level (doesn't know the card)
     }
 
     public long getId() {
@@ -49,11 +49,11 @@ public class Card implements Serializable {
         this.answer = answer;
     }
 
-    public int getKnowledgeLevel() {
+    public Double getKnowledgeLevel() {
         return knowledgeLevel;
     }
 
-    public void setKnowledgeLevel(int knowledgeLevel) {
+    public void setKnowledgeLevel(Double knowledgeLevel) {
         this.knowledgeLevel = knowledgeLevel;
     }
 

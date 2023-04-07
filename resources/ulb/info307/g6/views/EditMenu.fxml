@@ -23,9 +23,9 @@
         </VBox>
 
         <HBox alignment="TOP_CENTER" spacing="10">
-            <Button fx:id="buttonEdit" mnemonicParsing="false" onAction="#clickEdit" text="Edit deck" />
-            <Button fx:id="buttonCreate" mnemonicParsing="false" onAction="#clickCreate" text="Create deck" />
-            <Button fx:id="buttonRemove" mnemonicParsing="false" onAction="#clickRemove" text="Remove deck" />
+            <Button fx:id="buttonEdit" onAction="#clickEdit" text="Edit deck" />
+            <Button fx:id="buttonCreate" onAction="#clickCreate" text="Create deck" />
+            <Button fx:id="buttonRemove" onAction="#clickRemove" text="Remove deck" />
         </HBox>
     </VBox>
 

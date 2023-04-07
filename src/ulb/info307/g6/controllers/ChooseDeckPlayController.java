@@ -9,9 +9,6 @@ import ulb.info307.g6.models.CardGapFill;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.views.ChooseDeckPlay;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Random;
@@ -54,6 +51,7 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
             this.stage.setTitle("Study your decks");
             this.stage.show();
             showChoice();
+            chooseDeckPlay.setSliderLabels();
             chooseDeckPlay.deactivateSlider();
         } catch (IOException e) {
             e.printStackTrace();
@@ -63,6 +61,7 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
 
 
     public void clickHome() {
+        updateCardKnowledgeLevel();
         listener.clickHome();
         this.stage.hide();
     }
@@ -73,15 +72,19 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
 
     public void clickNextCard() {
         if (!currentDeck.isEmpty()) {
+            updateCardKnowledgeLevel();
             getNextRandomCard();
             flipIndex = 0;
             updateDisplayArea();
             chooseDeckPlay.deactivateSlider();
+            updateSliderPosition();
         }
     }
 
     public void clickFlipCard() {
         if (currentDeck != null && !currentDeck.isEmpty()) {
+            updateCardKnowledgeLevel();
+            updateSliderPosition();
             flipIndex = (flipIndex + 1) % (numberOfFlipsAuthorizedForCurrentCard + 1);
             updateDisplayArea();
             if (flipIndex == numberOfFlipsAuthorizedForCurrentCard) {
@@ -92,20 +95,18 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
         }
     }
 
-    public void updateKnowledgeLevel(Level level) {
+    public void updateCardKnowledgeLevel() {
         if (!currentDeck.isEmpty()) {
             Card card = currentDeck.getCardList().get(cardIndex);
-            switch (level) {
-                case VERY_BAD -> card.setKnowledgeLevel(0);
-                case BAD -> card.setKnowledgeLevel(1);
-                case AVERAGE -> card.setKnowledgeLevel(2);
-                case GOOD -> card.setKnowledgeLevel(3);
-                case VERY_GOOD -> card.setKnowledgeLevel(4);
-            }
+            card.setKnowledgeLevel(chooseDeckPlay.getSelectedKnowledgeLvl());
             databaseCard.updateCard(card);
             database.updateDeck(currentDeck);
         }
     }
+     private void updateSliderPosition() {
+        Card card = currentDeck.getCardList().get(cardIndex);
+        chooseDeckPlay.setSliderLvl(card.getKnowledgeLevel());
+     }
 
     private void setDeckList() {
         decks = database.getAllDecks();
@@ -157,6 +158,7 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
             chooseDeckPlay.displayTextQA.setText("No deck selected");
         } else {
             Card card = currentDeck.getCardList().get(cardIndex);
+            updateSliderPosition();
             if (CardGapFill.isCardGapFilType(card)) {
                 // We transform the card into its extended type cardGapFill if necessary
                 // (to know if the card is of the type cardGapFill, we check whether its question contains the "gap" marker "_")
@@ -171,24 +173,6 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
                 chooseDeckPlay.displayTextQA.setText(card.getNthFlippedAnswer(flipIndex));
             }
         }
-    }
-
-    public void setChoice() {
-        chooseDeckPlay.knowledgeLevel.getItems().clear();
-        ObservableList<String> options = FXCollections.observableArrayList("Very bad", "Bad", "Average", "Good", "Very good");
-        for (String option : options) {
-            chooseDeckPlay.knowledgeLevel.getItems().add(option);
-        }
-        chooseDeckPlay.knowledgeLevel.setOnAction(event -> {
-            String stringLevel = chooseDeckPlay.knowledgeLevel.getValue();
-            switch(stringLevel) {
-                case("Very bad") -> updateKnowledgeLevel(Level.VERY_BAD);
-                case("Bad") -> updateKnowledgeLevel(Level.BAD);
-                case("Average") -> updateKnowledgeLevel(Level.AVERAGE);
-                case("Good") -> updateKnowledgeLevel(Level.GOOD);
-                case("Very good") -> updateKnowledgeLevel(Level.VERY_GOOD);
-            }
-        });
     }
 
     public interface Listener {

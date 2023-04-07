@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="5.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.EditCardMenu">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="5.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.EditCardMenu">
     <!-- Left pane : list of decks + home -->
     <VBox alignment="CENTER" spacing="5.0">
         <ListView fx:id="cardListViewEditCardMenu" prefWidth="169.0" VBox.vgrow="ALWAYS" />
@@ -14,14 +14,14 @@
 
     <!-- Right pane : textboxes + edit/create/remove card -->
     <VBox alignment="TOP_CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
-        <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
-            <HBox alignment="CENTER_LEFT" spacing="15.0">
+        <VBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
                 <Label text="Question">
                     <font>
                         <Font size="20.0" />
                     </font>
                 </Label>
-                <CheckBox fx:id="gapFillCheckBox" text="Gap-fill question" />
+                <CheckBox fx:id="gapFillCheckBox" text="Gap-fill" />
             </HBox>
             <TextArea fx:id="questionInput" VBox.vgrow="ALWAYS" />
 

@@ -4,23 +4,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.util.StringConverter;
 import ulb.info307.g6.models.Deck;
 
 public class ChooseDeckPlay {
     @FXML
     public ListView<Deck> deckList = new ListView();
     @FXML
-    private Button buttonHome;
-    @FXML
     public Pane cardBackground;
     @FXML
     public Text displayTextQA;
     @FXML
-    private Button buttonFlipCard;
-    @FXML
-    private Button buttonNextCard;
-    @FXML
-    private Slider KnowledgeLvlSlider;
+    private Slider knowledgeLvlSlider;
 
     @FXML
     public ComboBox<String> knowledgeLevel;  // TODO: te be removed, changed to slider
@@ -46,12 +41,51 @@ public class ChooseDeckPlay {
     }
 
     public void deactivateSlider() {
-        KnowledgeLvlSlider.setDisable(true);
-        KnowledgeLvlSlider.setOpacity(0.5);
+        knowledgeLvlSlider.setDisable(true);
+        knowledgeLvlSlider.setOpacity(0.5);
     }
     public void activateSlider() {
-        KnowledgeLvlSlider.setDisable(false);
-        KnowledgeLvlSlider.setOpacity(1);
+        knowledgeLvlSlider.setDisable(false);
+        knowledgeLvlSlider.setOpacity(1);
+    }
+
+    public void setSliderLabels() {
+        knowledgeLvlSlider.setLabelFormatter(new StringConverter<Double>() {
+            @Override
+            public String toString(Double n) {
+                if (n == 0) {
+                    return "Very bad";
+                } else if (n == 1) {
+                    return "Bad";
+                } else if (n == 2) {
+                    return "Average";
+                } else if (n == 3) {
+                    return "Good";
+                } else if (n == 4) {
+                    return "Very good";
+                }
+                return "";
+            }
+            @Override
+            public Double fromString(String s) {
+                return switch (s) {
+                    case "Very bad" -> 0d;
+                    case "Bad" -> 1d;
+                    case "Average" -> 2d;
+                    case "Good" -> 3d;
+                    case "Very good" -> 4d;
+                    default -> null;
+                };
+            }
+        });
+    }
+
+    public Double getSelectedKnowledgeLvl() {
+        return knowledgeLvlSlider.getValue();
+    }
+
+    public void setSliderLvl(Double lvl) {
+        knowledgeLvlSlider.setValue(lvl);
     }
 
     public interface ChooseDeckPlayListener {
