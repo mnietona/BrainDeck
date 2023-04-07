@@ -118,6 +118,7 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
         }
         chooseDeckPlay.deckList.setOnMouseClicked(event -> {
             chooseDeckPlay.deactivateSlider();
+            chooseDeckPlay.activateActionButtons();
             currentDeck = chooseDeckPlay.deckList.getSelectionModel().getSelectedItem();
             cardIndex = 0;
             flipIndex = 0;

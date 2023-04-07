@@ -16,9 +16,10 @@ public class ChooseDeckPlay {
     public Text displayTextQA;
     @FXML
     private Slider knowledgeLvlSlider;
-
     @FXML
-    public ComboBox<String> knowledgeLevel;  // TODO: te be removed, changed to slider
+    private Label knowledgeLvlSliderTitle;
+    @FXML
+    private Button buttonFlipCard, buttonNextCard;
 
     private ChooseDeckPlayListener listener;
 
@@ -42,11 +43,15 @@ public class ChooseDeckPlay {
 
     public void deactivateSlider() {
         knowledgeLvlSlider.setDisable(true);
-        knowledgeLvlSlider.setOpacity(0.5);
+        knowledgeLvlSliderTitle.setDisable(true);
     }
     public void activateSlider() {
         knowledgeLvlSlider.setDisable(false);
-        knowledgeLvlSlider.setOpacity(1);
+        knowledgeLvlSliderTitle.setDisable(false);
+    }
+    public void activateActionButtons() {
+        buttonFlipCard.setDisable(false);
+        buttonNextCard.setDisable(false);
     }
 
     public void setSliderLabels() {
