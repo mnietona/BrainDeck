@@ -1,6 +1,7 @@
 package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import ulb.info307.g6.models.Card;
@@ -14,11 +15,17 @@ public class EditCardMenu {
     private TextArea questionInput;
     @FXML
     private TextArea answerInput;
+    @FXML
+    private CheckBox gapFillCheckBox;
 
     public void setListener(EditCardMenuListener listener) {
         this.listener = listener;
     }
 
+    @FXML
+    public void clickBack() {
+        listener.clickBack();
+    }
     @FXML
     private void clickEditCard() {
         listener.clickEditCard();
@@ -32,11 +39,6 @@ public class EditCardMenu {
     @FXML
     private void clickRemoveCard() {
         listener.clickRemoveCard();
-    }
-
-    @FXML
-    private void backButtonAction() {
-        listener.clickBack();
     }
 
     public void setCardList(Deck deck) {
@@ -75,10 +77,10 @@ public class EditCardMenu {
     public Card getSelectedCard() {
         return cardListViewEditCardMenu.getSelectionModel().getSelectedItem();
     }
-
-    public void clickBack() {
-        listener.clickBack();
+    public boolean cardIsGapFill() {
+        return gapFillCheckBox.isSelected();
     }
+
 
     public interface EditCardMenuListener {
         void clickEditCard();

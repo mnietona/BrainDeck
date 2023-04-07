@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.jetbrains.annotations.NotNull;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.CardGapFill;
@@ -62,13 +63,7 @@ public class EditCardMenuController implements EditCardMenu.EditCardMenuListener
 
     @Override
     public void clickCreateCard() {
-        Card card;
-        if (editCardMenu.getQuestionInput().contains(GAP_FILL_MARKER)) { // Gap-fill card
-            String cleanQuestion = editCardMenu.getQuestionInput().replaceAll(GAP_FILL_MARKER, "") + " "; // replaceAll to remove the marker, space at the end for split subtleties when the separator is at the end
-            card = new CardGapFill(cleanQuestion, editCardMenu.getAnswerInput());
-        } else {
-            card = new Card(editCardMenu.getQuestionInput(), editCardMenu.getAnswerInput()); // Classic card
-        }
+        Card card = getCardEntered();
         if (card.isValid()) {
             deck.addCard(card);
             databaseCard.updateCard(card);
@@ -76,6 +71,18 @@ public class EditCardMenuController implements EditCardMenu.EditCardMenuListener
             editCardMenu.setCardList(deck);
         }
         editCardMenu.clearTextFields();
+    }
+
+    @NotNull
+    private Card getCardEntered() {
+        Card card;
+        if (editCardMenu.cardIsGapFill()) { // Gap-fill card
+            String cleanQuestion = editCardMenu.getQuestionInput().replaceAll(GAP_FILL_MARKER, "") + " "; // replaceAll to remove the marker, space at the end for split subtleties when the separator is at the end
+            card = new CardGapFill(cleanQuestion, editCardMenu.getAnswerInput());
+        } else {
+            card = new Card(editCardMenu.getQuestionInput(), editCardMenu.getAnswerInput()); // Classic card
+        }
+        return card;
     }
 
     @Override
