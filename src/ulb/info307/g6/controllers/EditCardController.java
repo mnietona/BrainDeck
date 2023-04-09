@@ -65,13 +65,7 @@ public class EditCardController implements EditCard.EditCardMenuListener {
 
     @NotNull
     private Card getCardEntered() {
-        Card card;
-        if (editCardView.cardIsGapFill()) { // Gap-fill card
-            card = new CardGapFill(editCardView.getQuestionInput(), editCardView.getAnswerInput());
-        } else {
-            card = new Card(editCardView.getQuestionInput(), editCardView.getAnswerInput()); // Classic card
-        }
-        return card;
+        return new Card(editCardView.getQuestionInput(), editCardView.getAnswerInput());
     }
 
     @Override

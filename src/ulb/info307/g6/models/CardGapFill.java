@@ -8,7 +8,8 @@ public class CardGapFill extends Card {
 
 
     public CardGapFill(String questionInput, String answerInput) {
-        super(questionInput, answerInput);
+        super(questionInput + " ", answerInput);
+        questionInput = questionInput + " "; // Add a space at the end to avoid a bug when the last part of the question is a gap
         questionParts = questionInput.split(QUESTION_SEPARATOR);
         String ANSWER_SEPARATOR = ", "; // Arbitrary choice of separator, could be anything
         answerParts = answerInput.split(ANSWER_SEPARATOR);
@@ -46,9 +47,11 @@ public class CardGapFill extends Card {
             return "INCORRECT LENGTH NUMBER OF ANSWERS ASKED";
         }
         StringBuilder res = new StringBuilder();
-        for (int i = 0; i < questionParts.length; i++) { //
+        for (int i = 0; i < questionParts.length; i++) {
             res.append(questionParts[i]);
-            if (i < n) {res.append(answerParts[i]);}
+            if (i < n) {
+                res.append(answerParts[i]);
+            }
             else if (i < questionParts.length - 1) {
                 res.append(QUESTION_SEPARATOR.repeat(answerParts[i].length())); // Replace the answer part by the same number of letters as the answer part
             }
