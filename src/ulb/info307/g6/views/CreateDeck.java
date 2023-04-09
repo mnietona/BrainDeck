@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 
-public class CreateDeck {
+public class CreateDeck implements View {
 
     private CreateDeckMenuListener listener;
 
@@ -28,8 +28,9 @@ public class CreateDeck {
         listener.clickBack();
     }
 
-    public void setListener(CreateDeckMenuListener listener) {
-        this.listener = listener;
+    @Override
+    public void setListener(Object listener) {
+        this.listener = (CreateDeckMenuListener) listener;
     }
 
     public interface CreateDeckMenuListener {

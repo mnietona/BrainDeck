@@ -21,6 +21,8 @@ public class StudyController extends Controller implements Study.StudyListener {
     private Deck currentDeck = null;
     public StudyController(Stage stage) {
         super(stage, "/ulb/info307/g6/views/Study.fxml", "Study your decks");
+        studyView = (Study) view;
+
         setDeckList();
         studyView.setSliderLabels();
         studyView.deactivateSlider();

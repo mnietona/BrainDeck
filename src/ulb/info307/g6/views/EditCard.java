@@ -7,7 +7,7 @@ import javafx.scene.control.TextArea;
 import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.Deck;
 
-public class EditCard {
+public class EditCard implements View {
     @FXML
     public ListView<Card> cardListViewEditCardMenu = new ListView();
     private EditCardMenuListener listener;
@@ -18,8 +18,9 @@ public class EditCard {
     @FXML
     private CheckBox gapFillCheckBox;
 
-    public void setListener(EditCardMenuListener listener) {
-        this.listener = listener;
+    @Override
+    public void setListener(Object listener) {
+        this.listener = (EditCardMenuListener) listener;
     }
 
     @FXML

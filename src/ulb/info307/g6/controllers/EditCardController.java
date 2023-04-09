@@ -1,41 +1,23 @@
 package ulb.info307.g6.controllers;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.CardGapFill;
 import ulb.info307.g6.views.EditCard;
-import java.io.IOException;
 
-public class EditCardController implements EditCard.EditCardMenuListener {
-    private final Stage stage;
+public class EditCardController extends Controller implements EditCard.EditCardMenuListener {
     static CardDaoNitriteImplementation databaseCard = new CardDaoNitriteImplementation();
     static DeckDaoNitriteImplementation databaseDeck = new DeckDaoNitriteImplementation();
     private Deck deck;
     private EditCard editCardView;
 
     public EditCardController(Stage stage, Deck deck) {
-        this.stage = stage;
+        super(stage, "/ulb/info307/g6/views/EditCard.fxml", "Edit cards in the deck");
         this.deck = deck;
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/EditCard.fxml"));
-            Parent root = loader.load();
-            editCardView = loader.getController();
-            editCardView.setListener(this);
-
-            Scene scene = new Scene(root, 600, 408);
-            stage.setScene(scene);
-            stage.setTitle("Edit cards in the deck");
-            stage.show();
-            editCardView.setCardList(deck);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        editCardView = (EditCard) view;
+        editCardView.setCardList(deck);
     }
 
     @Override

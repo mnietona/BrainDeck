@@ -1,34 +1,17 @@
 package ulb.info307.g6.controllers;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.views.CreateDeck;
-import java.io.IOException;
 
-public class CreateDeckController implements CreateDeck.CreateDeckMenuListener {
-    private final Stage stage;
+public class CreateDeckController extends Controller implements CreateDeck.CreateDeckMenuListener {
     static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
 
     private CreateDeck createDeckView;
 
     public CreateDeckController(Stage stage) {
-        this.stage = stage;
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/CreateDeck.fxml"));
-            Parent root = loader.load();
-            createDeckView = loader.getController();
-            createDeckView.setListener(this);
-
-            Scene scene = new Scene(root, 600, 408);
-            stage.setScene(scene);
-            stage.setTitle("Create a new deck");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        super(stage, "/ulb/info307/g6/views/CreateDeck.fxml", "Create a new deck");
+        createDeckView = (CreateDeck) view;
     }
 
     @Override

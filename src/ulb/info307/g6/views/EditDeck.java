@@ -3,13 +3,12 @@ package ulb.info307.g6.views;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import ulb.info307.g6.models.Deck;
 
 import java.util.List;
 
-public class EditDeck {
+public class EditDeck implements View {
     @FXML
     public Button buttonCreate;
     @FXML
@@ -22,9 +21,9 @@ public class EditDeck {
     public Text deckTitle;
 
     private EditDeckListener listener;
-
-    public void setListener(EditDeckListener listener) {
-        this.listener = listener;
+    @Override
+    public void setListener(Object listener) {
+        this.listener = (EditDeckListener) listener;
     }
 
     @FXML

@@ -1,37 +1,18 @@
 package ulb.info307.g6.controllers;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.views.EditDeck;
-import java.io.IOException;
 import java.util.List;
 
-public class EditDeckController implements EditDeck.EditDeckListener {
+public class EditDeckController extends Controller implements EditDeck.EditDeckListener {
     static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
-    private final Stage stage;
     private EditDeck editDeckView;
 
     public EditDeckController(Stage stage) {
-        this.stage = stage;
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/EditDeck.fxml"));
-            Parent root = loader.load();
-            editDeckView = loader.getController();
-            editDeckView.setListener(this);
-
-            Scene scene = new Scene(root, 600, 408);
-            stage.setScene(scene);
-            stage.setTitle("Edit your decks");
-
-            // Call the setDeckList method when the controller is shown to populate the cardPack list
-            setDeckList();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        super(stage, "/ulb/info307/g6/views/EditDeck.fxml", "Edit Deck");
+        editDeckView = (EditDeck) view;
+        setDeckList();
     }
 
     @Override
