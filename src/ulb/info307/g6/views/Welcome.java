@@ -3,7 +3,7 @@ package ulb.info307.g6.views;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class Welcome {
+public class Welcome implements View {
     @FXML
     public Button playButton;
     @FXML
@@ -20,6 +20,11 @@ public class Welcome {
 
     public void editButtonAction() {
         listener.editButtonAction();
+    }
+
+    @Override
+    public void setListener(Object listener) {
+        this.listener = (WelcomeListener) listener;
     }
 
     /**

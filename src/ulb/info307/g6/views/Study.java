@@ -7,7 +7,7 @@ import javafx.scene.text.Text;
 import javafx.util.StringConverter;
 import ulb.info307.g6.models.Deck;
 
-public class Study {
+public class Study implements View {
     @FXML
     public ListView<Deck> deckList = new ListView();
     @FXML
@@ -25,8 +25,9 @@ public class Study {
             BACKGROUND_QUESTION = "-fx-background-color: #ADD8E6; -fx-background-radius: 10px";
     private StudyListener listener;
 
-    public void setListener(StudyListener listener) {
-        this.listener = listener;
+    @Override
+    public void setListener(Object listener) {
+        this.listener = (StudyListener) listener;
     }
 
     @FXML

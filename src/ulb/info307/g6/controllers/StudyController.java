@@ -12,8 +12,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
-public class StudyController implements Study.StudyListener {
-    private final Stage stage;
+public class StudyController extends Controller implements Study.StudyListener {
     private Study studyView;
 
     private DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation();
@@ -24,27 +23,11 @@ public class StudyController implements Study.StudyListener {
     private int numberOfFlipsAuthorizedForCurrentCard = 1;
     private int cardIndex = 0;
     private Deck currentDeck = null;
-
     public StudyController(Stage stage) {
-        this.stage = stage;
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/Study.fxml"));
-            Parent root = loader.load();
-            studyView = loader.getController();
-            studyView.setListener(this);
-
-            Scene scene = new Scene(root, 600, 408);
-            stage.setScene(scene);
-            stage.setTitle("Study your decks");
-            // No need for stage.show(), windows is already shown (from WelcomeController)
-
-            setDeckList();
-            studyView.setSliderLabels();
-            studyView.deactivateSlider();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        super(stage, "/ulb/info307/g6/views/Study.fxml", "Study your decks");
+        setDeckList();
+        studyView.setSliderLabels();
+        studyView.deactivateSlider();
     }
 
     public void updateCardKnowledgeLevel() {
