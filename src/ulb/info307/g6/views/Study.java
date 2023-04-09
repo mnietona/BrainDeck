@@ -99,13 +99,6 @@ public class Study implements View {
         knowledgeLvlSlider.setValue(lvl);
     }
 
-    public void setCardBackground(boolean isQuestion) {
-        if (isQuestion) {
-
-        } else {
-
-        }
-    }
 
     public void setCardText(String text) {
         displayTextQA.setText(text);
