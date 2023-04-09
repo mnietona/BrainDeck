@@ -22,12 +22,11 @@ public class Welcome {
         listener.editButtonAction();
     }
 
+    /**
+     * Controller (passed in constructor) listens to actions that happens in view controller.
+     */
     public interface WelcomeListener {
         void studyButtonAction();
         void editButtonAction();
     }
-
-
-
 }
-

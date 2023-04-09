@@ -8,118 +8,68 @@ import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.CardGapFill;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.views.Study;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
-public class StudyController implements Study.ChooseDeckPlayListener {
-    private static final String BACKGROUND_QUESTION = "-fx-background-color: #ADD8E6; -fx-background-radius: 10px";
-    private static final String BACKGROUND_ANSWER = "-fx-background-color: #FFA07A; -fx-background-radius: 10px";
+public class StudyController implements Study.StudyListener {
     private final Stage stage;
-    private final Listener listener;
+    private Study studyView;
 
     private DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation();
     private CardDaoNitriteImplementation databaseCard = new CardDaoNitriteImplementation();
     private List<Deck> decks;
-
     private int[] lastIndex = new int[3];
     private int flipIndex = 0;
     private int numberOfFlipsAuthorizedForCurrentCard = 1;
     private int cardIndex = 0;
     private Deck currentDeck = null;
 
-    private Study chooseDeckPlay;
-    private enum Level {VERY_BAD, BAD, AVERAGE, GOOD, VERY_GOOD}
-
-    public StudyController(Stage stage, Listener listener) {
+    public StudyController(Stage stage) {
         this.stage = stage;
-        this.listener = listener;
-    }
-
-    public void show() {
-        chooseDeckPlay = new Study();
-        chooseDeckPlay.setListener(this);
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/Study.fxml"));
-            loader.load();
-            chooseDeckPlay = loader.getController();
-            chooseDeckPlay.setListener(this);
-            Parent root = loader.getRoot();
+            Parent root = loader.load();
+            studyView = loader.getController();
+            studyView.setListener(this);
 
-            this.stage.setScene(new Scene(root, 600, 408));
-            this.stage.setTitle("Study your decks");
-            this.stage.show();
-            showChoice();
-            chooseDeckPlay.setSliderLabels();
-            chooseDeckPlay.deactivateSlider();
+            Scene scene = new Scene(root, 600, 408);
+            stage.setScene(scene);
+            stage.setTitle("Study your decks");
+            // No need for stage.show(), windows is already shown (from WelcomeController)
+
+            setDeckList();
+            studyView.setSliderLabels();
+            studyView.deactivateSlider();
+
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-
-
-    public void clickHome() {
-        if (currentDeck != null) {
-            updateCardKnowledgeLevel();
-        }
-        listener.clickHome();
-        this.stage.hide();
-    }
-
-    public void showChoice() {
-        setDeckList();
-    }
-
-    public void clickNextCard() {
-        if (!currentDeck.isEmpty()) {
-            updateCardKnowledgeLevel();
-            getNextRandomCard();
-            flipIndex = 0;
-            updateDisplayArea();
-            chooseDeckPlay.deactivateSlider();
-            updateSliderPosition();
-        }
-    }
-
-    public void clickFlipCard() {
-        if (currentDeck != null && !currentDeck.isEmpty()) {
-            updateCardKnowledgeLevel();
-            updateSliderPosition();
-            flipIndex = (flipIndex + 1) % (numberOfFlipsAuthorizedForCurrentCard + 1);
-            updateDisplayArea();
-            if (flipIndex == numberOfFlipsAuthorizedForCurrentCard) {
-                chooseDeckPlay.activateSlider();
-            } else {
-                chooseDeckPlay.deactivateSlider();
-            }
         }
     }
 
     public void updateCardKnowledgeLevel() {
         if (!currentDeck.isEmpty()) {
             Card card = currentDeck.getCardList().get(cardIndex);
-            card.setKnowledgeLevel(chooseDeckPlay.getSelectedKnowledgeLvl());
+            card.setKnowledgeLevel(studyView.getSelectedKnowledgeLvl());
             databaseCard.updateCard(card);
             database.updateDeck(currentDeck);
         }
     }
      private void updateSliderPosition() {
         Card card = currentDeck.getCardList().get(cardIndex);
-        chooseDeckPlay.setSliderLvl(card.getKnowledgeLevel());
+        studyView.setSliderLvl(card.getKnowledgeLevel());
      }
 
     private void setDeckList() {
         decks = database.getAllDecks();
-        chooseDeckPlay.deckList.getItems().clear();
+        studyView.deckList.getItems().clear();
         for (Deck deck : decks) {
-            chooseDeckPlay.deckList.getItems().add(deck);
+            studyView.deckList.getItems().add(deck);
         }
-        chooseDeckPlay.deckList.setOnMouseClicked(event -> {
-            chooseDeckPlay.deactivateSlider();
-            chooseDeckPlay.activateActionButtons();
-            currentDeck = chooseDeckPlay.deckList.getSelectionModel().getSelectedItem();
+        studyView.deckList.setOnMouseClicked(event -> {
+            studyView.deactivateSlider();
+            studyView.activateActionButtons();
+            currentDeck = studyView.deckList.getSelectionModel().getSelectedItem();
             cardIndex = 0;
             flipIndex = 0;
 
@@ -127,10 +77,9 @@ public class StudyController implements Study.ChooseDeckPlayListener {
                 getNextRandomCard();
                 updateDisplayArea();
             } else {
-                chooseDeckPlay.displayTextQA.setText("The deck " + currentDeck.getName() + " is empty");
+                studyView.displayTextQA.setText("The deck " + currentDeck.getName() + " is empty");
             }
         });
-
     }
 
     private void getNextRandomCard() {
@@ -158,7 +107,7 @@ public class StudyController implements Study.ChooseDeckPlayListener {
 
     public void updateDisplayArea() {
         if (currentDeck == null) {
-            chooseDeckPlay.displayTextQA.setText("No deck selected");
+            studyView.displayTextQA.setText("No deck selected");
         } else {
             Card card = currentDeck.getCardList().get(cardIndex);
             updateSliderPosition();
@@ -168,18 +117,42 @@ public class StudyController implements Study.ChooseDeckPlayListener {
                 card = new CardGapFill(card.getQuestion(),card.getAnswer());
             }
             numberOfFlipsAuthorizedForCurrentCard = card.getNumberOfFlips();
-            if (questionIsDisplayed()) {
-                chooseDeckPlay.cardBackground.setStyle(BACKGROUND_QUESTION);
-                chooseDeckPlay.displayTextQA.setText(card.getQuestion());
-            } else  {
-                chooseDeckPlay.cardBackground.setStyle(BACKGROUND_ANSWER);
-                chooseDeckPlay.displayTextQA.setText(card.getNthFlippedAnswer(flipIndex));
-            }
+            studyView.flipCard(questionIsDisplayed(), card.getQuestion(), card.getNthFlippedAnswer(flipIndex));
         }
     }
 
-    public interface Listener {
-        void clickHome();
+    @Override
+    public void clickHome() {
+        if (currentDeck != null) {
+            updateCardKnowledgeLevel();
+        }
+        new WelcomeController(stage);
+    }
+
+    @Override
+    public void clickNextCard() {
+        if (!currentDeck.isEmpty()) {
+            updateCardKnowledgeLevel();
+            getNextRandomCard();
+            flipIndex = 0;
+            updateDisplayArea();
+            studyView.deactivateSlider();
+            updateSliderPosition();
+        }
+    }
+
+    @Override
+    public void clickFlipCard() {
+        if (currentDeck != null && !currentDeck.isEmpty()) {
+            updateCardKnowledgeLevel();
+            updateSliderPosition();
+            flipIndex = (flipIndex + 1) % (numberOfFlipsAuthorizedForCurrentCard + 1);
+            updateDisplayArea();
+            if (flipIndex == numberOfFlipsAuthorizedForCurrentCard) {
+                studyView.activateSlider();
+            } else {
+                studyView.deactivateSlider();
+            }
+        }
     }
 }
-

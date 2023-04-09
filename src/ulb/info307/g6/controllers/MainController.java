@@ -21,8 +21,7 @@ public class MainController extends Application {  // StudyController.Listener, 
     @Override
     public void start(Stage primaryStage) {
         try {
-            WelcomeController welcomeController = new WelcomeController(primaryStage);
-            welcomeController.show();
+            new WelcomeController(primaryStage);
         } catch (Exception e) {
             e.printStackTrace();
         }

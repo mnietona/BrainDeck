@@ -20,13 +20,16 @@ public class Study {
     private Label knowledgeLvlSliderTitle;
     @FXML
     private Button buttonFlipCard, buttonNextCard;
+    private static final String
+            BACKGROUND_ANSWER = "-fx-background-color: #FFA07A; -fx-background-radius: 10px",
+            BACKGROUND_QUESTION = "-fx-background-color: #ADD8E6; -fx-background-radius: 10px";
+    private StudyListener listener;
 
-    private ChooseDeckPlayListener listener;
-
-    public void setListener(ChooseDeckPlayListener listener) {
+    public void setListener(StudyListener listener) {
         this.listener = listener;
     }
 
+    @FXML
     public void clickHome() {
         listener.clickHome();
     }
@@ -45,10 +48,12 @@ public class Study {
         knowledgeLvlSlider.setDisable(true);
         knowledgeLvlSliderTitle.setDisable(true);
     }
+
     public void activateSlider() {
         knowledgeLvlSlider.setDisable(false);
         knowledgeLvlSliderTitle.setDisable(false);
     }
+
     public void activateActionButtons() {
         buttonFlipCard.setDisable(false);
         buttonNextCard.setDisable(false);
@@ -93,7 +98,29 @@ public class Study {
         knowledgeLvlSlider.setValue(lvl);
     }
 
-    public interface ChooseDeckPlayListener {
+    public void setCardBackground(boolean isQuestion) {
+        if (isQuestion) {
+
+        } else {
+
+        }
+    }
+
+    public void setCardText(String text) {
+        displayTextQA.setText(text);
+    }
+
+    public void flipCard(boolean isQuestion, String question, String answer) {
+        if (isQuestion) {
+            cardBackground.setStyle(BACKGROUND_QUESTION);
+            setCardText(question);
+        } else {
+            cardBackground.setStyle(BACKGROUND_ANSWER);
+            setCardText(answer);
+        }
+    }
+
+    public interface StudyListener {
         void clickHome();
         void clickNextCard();
         void clickFlipCard();
