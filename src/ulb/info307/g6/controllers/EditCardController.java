@@ -21,28 +21,22 @@ public class EditCardController implements EditCard.EditCardMenuListener {
     private final Stage stage;
     private final Listener listener;
     private Deck deck;
-    private EditCard editCard;
+    private EditCard editCardView;
 
-    private final String GAP_FILL_MARKER = "/gapfill ";
-
-    public EditCardController(Stage stage, Listener listener, Deck deck) {
+    public EditCardController(Stage stage, Deck deck) {
         this.stage = stage;
-        this.listener = listener;
         this.deck = deck;
-    }
-
-    public void show() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/EditCard.fxml"));
-            loader.load();
-            editCard = loader.getController();
-            editCard.setListener(this);
-            Parent root = loader.getRoot();
+            Parent root = loader.load();
+            editCardView = loader.getController();
+            editCardView.setListener(this);
 
-            this.stage.setScene(new Scene(root));
-            this.stage.setTitle("Edit cards in the deck");
-            this.stage.show();
-            editCard.setCardList(deck);
+            Scene scene = new Scene(root, 600, 408);
+            stage.setScene(scene);
+            stage.setTitle("Edit cards in the deck");
+            stage.show();
+            editCardView.setCardList(deck);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -51,14 +45,14 @@ public class EditCardController implements EditCard.EditCardMenuListener {
 
     @Override
     public void clickEditCard() {
-        Card selectedItem = editCard.getSelectedCard();
-        if (selectedItem != null && !editCard.getQuestionInput().isEmpty() && !editCard.getAnswerInput().isEmpty()) {
-            selectedItem.setQuestion(editCard.getQuestionInput());
-            selectedItem.setAnswer(editCard.getAnswerInput());
+        Card selectedItem = editCardView.getSelectedCard();
+        if (selectedItem != null && !editCardView.getQuestionInput().isEmpty() && !editCardView.getAnswerInput().isEmpty()) {
+            selectedItem.setQuestion(editCardView.getQuestionInput());
+            selectedItem.setAnswer(editCardView.getAnswerInput());
             databaseCard.updateCard(selectedItem);
             databaseDeck.updateDeck(deck);
-            editCard.setCardList(deck);
-            editCard.updateQuestionAnswer();
+            editCardView.setCardList(deck);
+            editCardView.updateQuestionAnswer();
         }
     }
 
@@ -69,32 +63,31 @@ public class EditCardController implements EditCard.EditCardMenuListener {
             deck.addCard(card);
             databaseCard.updateCard(card);
             databaseDeck.updateDeck(deck);
-            editCard.setCardList(deck);
+            editCardView.setCardList(deck);
         }
-        editCard.clearTextFields();
+        editCardView.clearTextFields();
     }
 
     @NotNull
     private Card getCardEntered() {
         Card card;
-        if (editCard.cardIsGapFill()) { // Gap-fill card
-            String cleanQuestion = editCard.getQuestionInput().replaceAll(GAP_FILL_MARKER, "") + " "; // replaceAll to remove the marker, space at the end for split subtleties when the separator is at the end
-            card = new CardGapFill(cleanQuestion, editCard.getAnswerInput());
+        if (editCardView.cardIsGapFill()) { // Gap-fill card
+            card = new CardGapFill(editCardView.getQuestionInput(), editCardView.getAnswerInput());
         } else {
-            card = new Card(editCard.getQuestionInput(), editCard.getAnswerInput()); // Classic card
+            card = new Card(editCardView.getQuestionInput(), editCardView.getAnswerInput()); // Classic card
         }
         return card;
     }
 
     @Override
     public void clickRemoveCard() {
-        Card selectedItem = editCard.getSelectedCard();
+        Card selectedItem = editCardView.getSelectedCard();
         if (selectedItem != null) {
             deck.removeCard(selectedItem);
             databaseCard.deleteCard(selectedItem);
             databaseDeck.updateDeck(deck);
-            editCard.setCardList(deck);
-            editCard.clearTextFields();
+            editCardView.setCardList(deck);
+            editCardView.clearTextFields();
         }
     }
 

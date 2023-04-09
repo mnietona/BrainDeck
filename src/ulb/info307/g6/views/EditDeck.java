@@ -23,9 +23,9 @@ public class EditDeck {
     @FXML
     public Text deckTitle;
 
-    private EditMenuListener listener;
+    private EditDeckListener listener;
 
-    public void setListener(EditMenuListener listener) {
+    public void setListener(EditDeckListener listener) {
         this.listener = listener;
     }
 
@@ -43,12 +43,7 @@ public class EditDeck {
     public void clickCreate() {
         listener.clickCreate();
     }
-
-    @FXML
-    public void clickChoice() {
-        listener.clickChoice();
-    }
-
+    
     @FXML
     public void clickRemove() {
         listener.clickRemove();
@@ -72,12 +67,10 @@ public class EditDeck {
         });
     }
 
-
-    public interface EditMenuListener {
+    public interface EditDeckListener {
         void clickHome();
         void clickEdit();
         void clickCreate();
-        void clickChoice();
         void clickRemove();
     }
 }

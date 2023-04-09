@@ -21,23 +21,18 @@ public class EditDeckController implements EditDeck.EditMenuListener, CreateDeck
 
     public EditDeckController(Stage stage, Listener listener) {
         this.stage = stage;
-        this.listener = listener;
-    }
-
-    public void show() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/EditDeck.fxml"));
-            loader.load();
-            editDeckController = loader.getController();
-            editDeckController.setListener(this);
-            Parent root = loader.getRoot();
+            Parent root = loader.load();
+            editDeckView = loader.getController();
+            editDeckView.setListener(this);
 
-            this.stage.setScene(new Scene(root, 600, 408));
-            this.stage.setTitle("Edit your decks");
-            this.stage.show();
+            Scene scene = new Scene(root, 600, 408);
+            stage.setScene(scene);
+            stage.setTitle("Edit your decks");
 
-            // Call the clickChoice method when the controller is shown to populate the cardPack list
-            clickChoice();
+            // Call the setDeckList method when the controller is shown to populate the cardPack list
+            setDeckList();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,20 +41,16 @@ public class EditDeckController implements EditDeck.EditMenuListener, CreateDeck
 
     @Override
     public void clickHome() {
-        listener.clickHome();
-        this.stage.hide();
+        new WelcomeController(stage);
     }
 
     @Override
     public void clickEdit() {
-        List<Deck> decks = fetchDecksFromDatabase();
+        List<Deck> decks = database.getAllDecks();
         if (decks != null) {
-            Deck selectedItem = editDeckController.deckListViewEditMenu.getSelectionModel().getSelectedItem();
+            Deck selectedItem = editDeckView.deckListViewEditMenu.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
-                this.stage.hide();
-                Stage stage = new Stage();
-                EditCardController editCardController = new EditCardController(stage, this, selectedItem);
-                editCardController.show();
+                new EditCardController(stage, selectedItem);
             }
         }
     }
@@ -73,33 +64,18 @@ public class EditDeckController implements EditDeck.EditMenuListener, CreateDeck
         createDeckController.show();
     }
 
-
-    @Override
-    public void clickChoice() {
-        List<Deck> decks = fetchDecksFromDatabase();
-        editDeckController.setDeckListView(decks);
-        editDeckController.updateDeckTitle();
+    public void setDeckList() {
+        List<Deck> decks = database.getAllDecks();
+        editDeckView.setDeckListView(decks);
+        editDeckView.updateDeckTitle();
     }
 
 
     @Override
     public void clickRemove() {
-        Deck selectedItem = editDeckController.deckListViewEditMenu.getSelectionModel().getSelectedItem();
+        Deck selectedItem = editDeckView.deckListViewEditMenu.getSelectionModel().getSelectedItem();
         database.deleteDeck(selectedItem);
         database.updateDeck(selectedItem);
-        clickChoice();
-    }
-
-
-    private List<Deck> fetchDecksFromDatabase() {
-        return database.getAllDecks();
-    }
-    @Override
-    public void clickBack(){
-        show();
-    }
-
-    public interface Listener {
-        void clickHome();
+        setDeckList();
     }
 }

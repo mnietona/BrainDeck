@@ -13,28 +13,21 @@ public class CreateDeckController implements CreateDeck.CreateDeckMenuListener {
 
     static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
 
-    private final Stage stage;
-
-    private CreateDeck createDeck;
+    private CreateDeck createDeckView;
 
     private final Listener listener;
 
     public CreateDeckController(Stage stage, Listener listener) {
         this.stage = stage;
-        this.listener = listener;
-    }
-
-    public void show() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/CreateDeck.fxml"));
-            loader.load();
-            createDeck = loader.getController();
-            createDeck.setListener(this);
-            Parent root = loader.getRoot();
+            Parent root = loader.load();
+            createDeckView = loader.getController();
+            createDeckView.setListener(this);
 
-            this.stage.setScene(new Scene(root));
-            this.stage.setTitle("Create a new deck");
-            this.stage.show();
+            Scene scene = new Scene(root, 600, 408);
+            stage.setScene(scene);
+            stage.setTitle("Create a new deck");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -43,8 +36,7 @@ public class CreateDeckController implements CreateDeck.CreateDeckMenuListener {
 
     @Override
     public void clickBack() {
-        listener.clickBack();
-        this.stage.hide();
+        new EditDeckController(stage);
     }
 
     @Override

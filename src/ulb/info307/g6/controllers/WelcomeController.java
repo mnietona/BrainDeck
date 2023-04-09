@@ -38,6 +38,6 @@ public class WelcomeController implements Welcome.WelcomeListener {
 
     @Override
     public void editButtonAction() {
-        //editDeckController.show();
+        new EditDeckController(stage);
     }
 }
