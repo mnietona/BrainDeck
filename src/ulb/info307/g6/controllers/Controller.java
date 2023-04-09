@@ -14,16 +14,18 @@ import java.io.IOException;
 public class Controller {
     protected final Stage stage;
     protected View view;
+    private final int WIDTH_OVERHEAD = 16, HEIGHT_OVERHEAD = 39;
 
     public Controller(Stage stage, String fxmlPath, String title) {
         this.stage = stage;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
-            view = loader.getController(); // to get the controller of the new window
+            view = loader.getController(); // To get the controller of the new menu.
             view.setListener(this);
 
-            Scene scene = new Scene(root, 600, 408);
+            // Window will not reset size when changing menu.
+            Scene scene = new Scene(root, stage.getWidth()-WIDTH_OVERHEAD, stage.getHeight()-HEIGHT_OVERHEAD);
             stage.setScene(scene);
             stage.setTitle(title);
             stage.show();
