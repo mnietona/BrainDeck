@@ -19,8 +19,6 @@ public class EditDeck {
     @FXML
     public ListView<Deck> deckListViewEditMenu = new ListView();
     @FXML
-    private VBox root;
-    @FXML
     public Text deckTitle;
 
     private EditDeckListener listener;
@@ -48,6 +46,7 @@ public class EditDeck {
     public void clickRemove() {
         listener.clickRemove();
     }
+
     public void updateDeckTitle() {
         Deck selectedItem = deckListViewEditMenu.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {

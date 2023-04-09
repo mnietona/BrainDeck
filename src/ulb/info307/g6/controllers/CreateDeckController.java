@@ -6,18 +6,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.views.CreateDeck;
-
 import java.io.IOException;
 
 public class CreateDeckController implements CreateDeck.CreateDeckMenuListener {
-
+    private final Stage stage;
     static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
 
     private CreateDeck createDeckView;
 
-    private final Listener listener;
-
-    public CreateDeckController(Stage stage, Listener listener) {
+    public CreateDeckController(Stage stage) {
         this.stage = stage;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/CreateDeck.fxml"));
@@ -45,9 +42,5 @@ public class CreateDeckController implements CreateDeck.CreateDeckMenuListener {
         database.addDeck(deck); // Add the deck to the database
         database.updateDeck(deck); // Update the deck in the database
         clickBack();
-    }
-
-    public interface Listener {
-        void clickBack();
     }
 }

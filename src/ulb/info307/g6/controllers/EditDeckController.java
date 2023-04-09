@@ -6,20 +6,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.views.EditDeck;
-
 import java.io.IOException;
 import java.util.List;
 
-public class EditDeckController implements EditDeck.EditMenuListener, CreateDeckController.Listener, EditCardController.Listener {
-
+public class EditDeckController implements EditDeck.EditDeckListener {
     static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
     private final Stage stage;
-    private final Listener listener;
-    private EditDeck editDeckController;
+    private EditDeck editDeckView;
 
-
-
-    public EditDeckController(Stage stage, Listener listener) {
+    public EditDeckController(Stage stage) {
         this.stage = stage;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/EditDeck.fxml"));
@@ -55,13 +50,9 @@ public class EditDeckController implements EditDeck.EditMenuListener, CreateDeck
         }
     }
 
-
     @Override
     public void clickCreate() {
-        this.stage.hide();
-        Stage stage = new Stage();
-        CreateDeckController createDeckController = new CreateDeckController(stage, this);
-        createDeckController.show();
+        new CreateDeckController(stage);
     }
 
     public void setDeckList() {
@@ -69,7 +60,6 @@ public class EditDeckController implements EditDeck.EditMenuListener, CreateDeck
         editDeckView.setDeckListView(decks);
         editDeckView.updateDeckTitle();
     }
-
 
     @Override
     public void clickRemove() {

@@ -9,17 +9,12 @@ import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.CardGapFill;
 import ulb.info307.g6.views.EditCard;
-
 import java.io.IOException;
 
-
 public class EditCardController implements EditCard.EditCardMenuListener {
-
+    private final Stage stage;
     static CardDaoNitriteImplementation databaseCard = new CardDaoNitriteImplementation();
     static DeckDaoNitriteImplementation databaseDeck = new DeckDaoNitriteImplementation();
-
-    private final Stage stage;
-    private final Listener listener;
     private Deck deck;
     private EditCard editCardView;
 
@@ -91,14 +86,8 @@ public class EditCardController implements EditCard.EditCardMenuListener {
         }
     }
 
-
     @Override
     public void clickBack() {
-        listener.clickBack();
-        this.stage.hide();
-    }
-
-    public interface Listener {
-        void clickBack();
+        new EditDeckController(stage);
     }
 }
