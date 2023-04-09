@@ -5,13 +5,12 @@ import javafx.scene.control.Button;
 
 public class Welcome implements View {
     @FXML
-    public Button playButton;
-    @FXML
-    public Button editButton;
+    public Button playButton, editButton;
     private WelcomeListener listener;
 
-    public void setListener(WelcomeListener listener) {
-        this.listener = listener;
+    @Override
+    public void setListener(Object listener) {
+        this.listener = (WelcomeListener) listener;
     }
 
     public void studyButtonAction() {
@@ -22,13 +21,9 @@ public class Welcome implements View {
         listener.editButtonAction();
     }
 
-    @Override
-    public void setListener(Object listener) {
-        this.listener = (WelcomeListener) listener;
-    }
-
     /**
-     * Controller (passed in constructor) listens to actions that happens in view controller.
+     * Controller (passed in constructor) will implement the listener interface to "listen" to then handle
+     * actions that happens in view controller.
      */
     public interface WelcomeListener {
         void studyButtonAction();

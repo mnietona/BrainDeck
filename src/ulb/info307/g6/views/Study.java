@@ -11,13 +11,15 @@ public class Study implements View {
     @FXML
     public ListView<Deck> deckList = new ListView();
     @FXML
+    private Button buttonHome;
+    @FXML
     public Pane cardBackground;
     @FXML
     public Text displayTextQA;
     @FXML
-    private Slider knowledgeLvlSlider;
-    @FXML
     private Label knowledgeLvlSliderTitle;
+    @FXML
+    private Slider knowledgeLvlSlider;
     @FXML
     private Button buttonFlipCard, buttonNextCard;
     private static final String
@@ -98,7 +100,6 @@ public class Study implements View {
     public void setSliderLvl(Double lvl) {
         knowledgeLvlSlider.setValue(lvl);
     }
-
 
     public void setCardText(String text) {
         displayTextQA.setText(text);

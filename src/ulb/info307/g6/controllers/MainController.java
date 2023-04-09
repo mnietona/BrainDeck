@@ -3,20 +3,19 @@ package ulb.info307.g6.controllers;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-/**
- * Start JavaFX.
- */
-public class MainController extends Application {  // StudyController.Listener, EditDeckController.Listener
+public class MainController extends Application {
 
     /**
-     * Entry point of the application, called by launcher.
+     * Entry point of the program, called by launcher.
      */
     public static void main(String[] args) {
         launch(args);
     }
 
     /**
-     * Entry point of JavaFX application, called on launch() in main.
+     * Entry point of the JavaFX app.
+     *
+     * @param primaryStage Window of the app, passed to all controllers.
      */
     @Override
     public void start(Stage primaryStage) {

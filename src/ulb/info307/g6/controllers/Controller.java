@@ -5,12 +5,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ulb.info307.g6.views.View;
-
 import java.io.IOException;
 
+/**
+ * Base class for all controllers.
+ * Updates window from loaded view + title and sets the listener.
+ */
 public class Controller {
     protected final Stage stage;
     protected View view;
+
     public Controller(Stage stage, String fxmlPath, String title) {
         this.stage = stage;
         try {
@@ -23,7 +27,6 @@ public class Controller {
             stage.setScene(scene);
             stage.setTitle(title);
             stage.show();
-
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -4,9 +4,8 @@ import javafx.stage.Stage;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.views.CreateDeck;
 
-public class CreateDeckController extends Controller implements CreateDeck.CreateDeckMenuListener {
-    static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
-
+public class CreateDeckController extends Controller implements CreateDeck.CreateDeckListener {
+    static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation();  // Initialize the DAO for the database
     private CreateDeck createDeckView;
 
     public CreateDeckController(Stage stage) {

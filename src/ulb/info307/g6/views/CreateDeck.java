@@ -5,17 +5,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 
 public class CreateDeck implements View {
-
-    private CreateDeckMenuListener listener;
-
     @FXML
     private TextField inputBox;
-
     @FXML
-    private Button buttonConfirm;
+    private Button buttonConfirm, buttonBack;
+    private CreateDeckListener listener;
 
-    @FXML
-    private Button buttonBack;
+    @Override
+    public void setListener(Object listener) {
+        this.listener = (CreateDeckListener) listener;
+    }
 
     @FXML
     private void clickConfirm() {
@@ -28,14 +27,8 @@ public class CreateDeck implements View {
         listener.clickBack();
     }
 
-    @Override
-    public void setListener(Object listener) {
-        this.listener = (CreateDeckMenuListener) listener;
-    }
-
-    public interface CreateDeckMenuListener {
-        void clickBack();
+    public interface CreateDeckListener {
         void clickConfirm(String inputText);
+        void clickBack();
     }
-
 }

@@ -5,22 +5,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 import ulb.info307.g6.models.Deck;
-
 import java.util.List;
 
 public class EditDeck implements View {
     @FXML
-    public Button buttonCreate;
-    @FXML
-    public Button buttonRemove;
-    @FXML
     private Button buttonHome;
     @FXML
-    public ListView<Deck> deckListViewEditMenu = new ListView();
+    public ListView<Deck> deckListViewEditDeck = new ListView();
     @FXML
     public Text deckTitle;
-
+    @FXML
+    private Button buttonEdit, buttonCreate, buttonRemove;
     private EditDeckListener listener;
+
     @Override
     public void setListener(Object listener) {
         this.listener = (EditDeckListener) listener;
@@ -47,7 +44,7 @@ public class EditDeck implements View {
     }
 
     public void updateDeckTitle() {
-        Deck selectedItem = deckListViewEditMenu.getSelectionModel().getSelectedItem();
+        Deck selectedItem = deckListViewEditDeck.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
             deckTitle.setText(selectedItem.getName());
         } else {
@@ -56,11 +53,11 @@ public class EditDeck implements View {
     }
 
     public void setDeckListView(List<Deck> decks) {
-        deckListViewEditMenu.getItems().clear();
+        deckListViewEditDeck.getItems().clear();
         for (Deck deck : decks) {
-            deckListViewEditMenu.getItems().add(deck);
+            deckListViewEditDeck.getItems().add(deck);
         }
-        deckListViewEditMenu.setOnMouseClicked(event -> { // click on an item
+        deckListViewEditDeck.setOnMouseClicked(event -> {  // click on an item
             updateDeckTitle();
         });
     }

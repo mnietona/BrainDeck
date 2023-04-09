@@ -10,7 +10,6 @@ import java.util.Random;
 
 public class StudyController extends Controller implements Study.StudyListener {
     private Study studyView;
-
     private DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation();
     private CardDaoNitriteImplementation databaseCard = new CardDaoNitriteImplementation();
     private List<Deck> decks;
@@ -19,6 +18,7 @@ public class StudyController extends Controller implements Study.StudyListener {
     private int numberOfFlipsAuthorizedForCurrentCard = 1;
     private int cardIndex = 0;
     private Deck currentDeck = null;
+
     public StudyController(Stage stage) {
         super(stage, "/ulb/info307/g6/views/Study.fxml", "Study your decks");
         studyView = (Study) view;
@@ -36,10 +36,11 @@ public class StudyController extends Controller implements Study.StudyListener {
             database.updateDeck(currentDeck);
         }
     }
-     private void updateSliderPosition() {
+
+    private void updateSliderPosition() {
         Card card = currentDeck.getCardList().get(cardIndex);
         studyView.setSliderLvl(card.getKnowledgeLevel());
-     }
+    }
 
     private void setDeckList() {
         decks = database.getAllDecks();

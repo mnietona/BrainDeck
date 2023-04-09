@@ -24,7 +24,7 @@ public class EditDeckController extends Controller implements EditDeck.EditDeckL
     public void clickEdit() {
         List<Deck> decks = database.getAllDecks();
         if (decks != null) {
-            Deck selectedItem = editDeckView.deckListViewEditMenu.getSelectionModel().getSelectedItem();
+            Deck selectedItem = editDeckView.deckListViewEditDeck.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
                 new EditCardController(stage, selectedItem);
             }
@@ -44,7 +44,7 @@ public class EditDeckController extends Controller implements EditDeck.EditDeckL
 
     @Override
     public void clickRemove() {
-        Deck selectedItem = editDeckView.deckListViewEditMenu.getSelectionModel().getSelectedItem();
+        Deck selectedItem = editDeckView.deckListViewEditDeck.getSelectionModel().getSelectedItem();
         database.deleteDeck(selectedItem);
         database.updateDeck(selectedItem);
         setDeckList();

@@ -1,6 +1,7 @@
 package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -9,24 +10,27 @@ import ulb.info307.g6.models.Deck;
 
 public class EditCard implements View {
     @FXML
-    public ListView<Card> cardListViewEditCardMenu = new ListView();
-    private EditCardMenuListener listener;
+    private ListView<Card> cardListViewEditCard = new ListView();
     @FXML
-    private TextArea questionInput;
-    @FXML
-    private TextArea answerInput;
+    private Button buttonBack;
     @FXML
     private CheckBox gapFillCheckBox;
+    @FXML
+    private TextArea questionInput, answerInput;
+    @FXML
+    private Button buttonEditCard, buttonCreateCard, buttonRemoveCard;
+    private EditCardListener listener;
 
     @Override
     public void setListener(Object listener) {
-        this.listener = (EditCardMenuListener) listener;
+        this.listener = (EditCardListener) listener;
     }
 
     @FXML
     public void clickBack() {
         listener.clickBack();
     }
+
     @FXML
     private void clickEditCard() {
         listener.clickEditCard();
@@ -43,17 +47,17 @@ public class EditCard implements View {
     }
 
     public void setCardList(Deck deck) {
-        cardListViewEditCardMenu.getItems().clear();
+        cardListViewEditCard.getItems().clear();
         for (Card card : deck.getCardList()) {
-            cardListViewEditCardMenu.getItems().add(card);
+            cardListViewEditCard.getItems().add(card);
         }
-        cardListViewEditCardMenu.setOnMouseClicked(event -> {
+        cardListViewEditCard.setOnMouseClicked(event -> {
             updateQuestionAnswer();
         });
     }
 
     public void updateQuestionAnswer() {
-        Card selectedCard = cardListViewEditCardMenu.getSelectionModel().getSelectedItem();
+        Card selectedCard = cardListViewEditCard.getSelectionModel().getSelectedItem();
         if (selectedCard != null) {
             questionInput.setText(selectedCard.getQuestion());
             answerInput.setText(selectedCard.getAnswer());
@@ -76,17 +80,17 @@ public class EditCard implements View {
     }
 
     public Card getSelectedCard() {
-        return cardListViewEditCardMenu.getSelectionModel().getSelectedItem();
+        return cardListViewEditCard.getSelectionModel().getSelectedItem();
     }
+
     public boolean cardIsGapFill() {
         return gapFillCheckBox.isSelected();
     }
 
-
-    public interface EditCardMenuListener {
+    public interface EditCardListener {
+        void clickBack();
         void clickEditCard();
         void clickCreateCard();
         void clickRemoveCard();
-        void clickBack();
     }
 }
