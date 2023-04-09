@@ -1,14 +1,10 @@
 package ulb.info307.g6.controllers;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.CardGapFill;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.views.Study;
-import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
