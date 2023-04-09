@@ -2,7 +2,6 @@ package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -10,7 +9,7 @@ import ulb.info307.g6.models.Deck;
 
 import java.util.List;
 
-public class EditMenu {
+public class EditDeck {
     @FXML
     public Button buttonCreate;
     @FXML

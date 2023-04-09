@@ -2,34 +2,27 @@ package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import ulb.info307.g6.controllers.MainController;
 
-public class MainMenu {
-
+public class Welcome {
     @FXML
     public Button playButton;
-
     @FXML
     public Button editButton;
+    private WelcomeListener listener;
 
-    private MainMenuListener listener;
-
-
-    public void setListener(MainMenuListener listener) {
+    public void setListener(WelcomeListener listener) {
         this.listener = listener;
     }
 
     public void studyButtonAction() {
         listener.studyButtonAction();
-
     }
 
     public void editButtonAction() {
         listener.editButtonAction();
-
     }
 
-    public interface MainMenuListener {
+    public interface WelcomeListener {
         void studyButtonAction();
         void editButtonAction();
     }

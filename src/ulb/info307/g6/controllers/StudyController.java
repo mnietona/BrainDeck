@@ -7,13 +7,13 @@ import javafx.stage.Stage;
 import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.CardGapFill;
 import ulb.info307.g6.models.Deck;
-import ulb.info307.g6.views.ChooseDeckPlay;
+import ulb.info307.g6.views.Study;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
-public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayListener {
+public class StudyController implements Study.ChooseDeckPlayListener {
     private static final String BACKGROUND_QUESTION = "-fx-background-color: #ADD8E6; -fx-background-radius: 10px";
     private static final String BACKGROUND_ANSWER = "-fx-background-color: #FFA07A; -fx-background-radius: 10px";
     private final Stage stage;
@@ -29,19 +29,19 @@ public class ChooseDeckPlayController implements ChooseDeckPlay.ChooseDeckPlayLi
     private int cardIndex = 0;
     private Deck currentDeck = null;
 
-    private ChooseDeckPlay chooseDeckPlay;
+    private Study chooseDeckPlay;
     private enum Level {VERY_BAD, BAD, AVERAGE, GOOD, VERY_GOOD}
 
-    public ChooseDeckPlayController(Stage stage, Listener listener) {
+    public StudyController(Stage stage, Listener listener) {
         this.stage = stage;
         this.listener = listener;
     }
 
     public void show() {
-        chooseDeckPlay = new ChooseDeckPlay();
+        chooseDeckPlay = new Study();
         chooseDeckPlay.setListener(this);
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/ChooseDeckPlay.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/Study.fxml"));
             loader.load();
             chooseDeckPlay = loader.getController();
             chooseDeckPlay.setListener(this);

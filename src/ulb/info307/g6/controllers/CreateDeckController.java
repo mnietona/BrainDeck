@@ -5,31 +5,31 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ulb.info307.g6.models.Deck;
-import ulb.info307.g6.views.CreateDeckMenu;
+import ulb.info307.g6.views.CreateDeck;
 
 import java.io.IOException;
 
-public class CreateDeckMenuController implements CreateDeckMenu.CreateDeckMenuListener {
+public class CreateDeckController implements CreateDeck.CreateDeckMenuListener {
 
     static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
 
     private final Stage stage;
 
-    private CreateDeckMenu createDeckMenu;
+    private CreateDeck createDeck;
 
     private final Listener listener;
 
-    public CreateDeckMenuController(Stage stage, Listener listener) {
+    public CreateDeckController(Stage stage, Listener listener) {
         this.stage = stage;
         this.listener = listener;
     }
 
     public void show() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/CreateDeckMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/CreateDeck.fxml"));
             loader.load();
-            createDeckMenu = loader.getController();
-            createDeckMenu.setListener(this);
+            createDeck = loader.getController();
+            createDeck.setListener(this);
             Parent root = loader.getRoot();
 
             this.stage.setScene(new Scene(root));

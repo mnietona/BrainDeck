@@ -5,31 +5,31 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ulb.info307.g6.models.Deck;
-import ulb.info307.g6.views.EditMenu;
+import ulb.info307.g6.views.EditDeck;
 
 import java.io.IOException;
 import java.util.List;
 
-public class EditMenuController implements EditMenu.EditMenuListener, CreateDeckMenuController.Listener, EditCardMenuController.Listener {
+public class EditDeckController implements EditDeck.EditMenuListener, CreateDeckController.Listener, EditCardController.Listener {
 
     static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
     private final Stage stage;
     private final Listener listener;
-    private EditMenu editMenuController;
+    private EditDeck editDeckController;
 
 
 
-    public EditMenuController(Stage stage, Listener listener) {
+    public EditDeckController(Stage stage, Listener listener) {
         this.stage = stage;
         this.listener = listener;
     }
 
     public void show() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/EditMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/EditDeck.fxml"));
             loader.load();
-            editMenuController = loader.getController();
-            editMenuController.setListener(this);
+            editDeckController = loader.getController();
+            editDeckController.setListener(this);
             Parent root = loader.getRoot();
 
             this.stage.setScene(new Scene(root, 600, 408));
@@ -54,12 +54,12 @@ public class EditMenuController implements EditMenu.EditMenuListener, CreateDeck
     public void clickEdit() {
         List<Deck> decks = fetchDecksFromDatabase();
         if (decks != null) {
-            Deck selectedItem = editMenuController.deckListViewEditMenu.getSelectionModel().getSelectedItem();
+            Deck selectedItem = editDeckController.deckListViewEditMenu.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
                 this.stage.hide();
                 Stage stage = new Stage();
-                EditCardMenuController editCardMenuController = new EditCardMenuController(stage, this, selectedItem);
-                editCardMenuController.show();
+                EditCardController editCardController = new EditCardController(stage, this, selectedItem);
+                editCardController.show();
             }
         }
     }
@@ -69,22 +69,22 @@ public class EditMenuController implements EditMenu.EditMenuListener, CreateDeck
     public void clickCreate() {
         this.stage.hide();
         Stage stage = new Stage();
-        CreateDeckMenuController createDeckMenuController = new CreateDeckMenuController(stage, this);
-        createDeckMenuController.show();
+        CreateDeckController createDeckController = new CreateDeckController(stage, this);
+        createDeckController.show();
     }
 
 
     @Override
     public void clickChoice() {
         List<Deck> decks = fetchDecksFromDatabase();
-        editMenuController.setDeckListView(decks);
-        editMenuController.updateDeckTitle();
+        editDeckController.setDeckListView(decks);
+        editDeckController.updateDeckTitle();
     }
 
 
     @Override
     public void clickRemove() {
-        Deck selectedItem = editMenuController.deckListViewEditMenu.getSelectionModel().getSelectedItem();
+        Deck selectedItem = editDeckController.deckListViewEditMenu.getSelectionModel().getSelectedItem();
         database.deleteDeck(selectedItem);
         database.updateDeck(selectedItem);
         clickChoice();

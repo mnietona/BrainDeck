@@ -7,7 +7,7 @@ import javafx.scene.control.TextArea;
 import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.Deck;
 
-public class EditCardMenu {
+public class EditCard {
     @FXML
     public ListView<Card> cardListViewEditCardMenu = new ListView();
     private EditCardMenuListener listener;

@@ -7,7 +7,7 @@ import javafx.scene.text.Text;
 import javafx.util.StringConverter;
 import ulb.info307.g6.models.Deck;
 
-public class ChooseDeckPlay {
+public class Study {
     @FXML
     public ListView<Deck> deckList = new ListView();
     @FXML
