@@ -5,11 +5,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.util.StringConverter;
-import ulb.info307.g6.models.Deck;
 
-public class Study implements View {
-    @FXML
-    public ListView<Deck> deckListView = new ListView();
+public class Study extends ViewWithDeckList {
     @FXML
     private Button buttonHome;
     @FXML
@@ -117,9 +114,15 @@ public class Study implements View {
         cardText.setText(text);
     }
 
+    @Override
+    protected void actionOnDeckSelection() {
+        listener.deckSelected();
+    }
+
     public interface StudyListener {
         void clickHome();
         void clickNextCard();
         void clickFlipCard();
+        void deckSelected();
     }
 }
