@@ -9,22 +9,23 @@ Application multiplateforme d’aide à l’étude basée sur un système de fla
 
 ## Lancer l'application
 
-### Depuis IntelliJ :
+### Depuis IntelliJ
 0. Télécharger le repository et l'ouvrir dans IntelliJ
 1. Bouton \<Load Gradle Project> sur le pop-up "Gradle build scripts found"
 2. Click droit puis <Run 'Launcher.main()'> sur le fichier "src/ulb.info307g6/Launcher"
 3. Pour les lancements suivants; <Maj+F10> (ou bouton <Run 'Launcher'> en haut à droite)
 
-### Avec le .jar :
+### Avec le .jar
 0. Télécharger le repository
 1.  ...
 
-## Démo
-...
+## Schémas
+### Structure des menus de l'application
+![](/resources/img/menuStructure.png)
 
 ## Accès au repo (ssh)
 
-### Windows :
+### Windows
 ```
 Ouvrir un terminal
 -> "ssh-keygen -t ed25519"
