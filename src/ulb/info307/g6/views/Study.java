@@ -9,13 +9,13 @@ import ulb.info307.g6.models.Deck;
 
 public class Study implements View {
     @FXML
-    public ListView<Deck> deckList = new ListView();
+    public ListView<Deck> deckList = new ListView();  // TODO: to be renamed to deckListView when refactored to private
     @FXML
     private Button buttonHome;
     @FXML
-    public Pane cardBackground;
+    private Pane cardBackground;
     @FXML
-    public Text displayTextQA;
+    private Text cardText;
     @FXML
     private Label knowledgeLvlSliderTitle;
     @FXML
@@ -23,8 +23,9 @@ public class Study implements View {
     @FXML
     private Button buttonFlipCard, buttonNextCard;
     private static final String
-            BACKGROUND_ANSWER = "-fx-background-color: #FFA07A; -fx-background-radius: 10px",
-            BACKGROUND_QUESTION = "-fx-background-color: #ADD8E6; -fx-background-radius: 10px";
+            ANSWER_BACKGROUND = "-fx-background-color: #FFA07A; -fx-background-radius: 10px",
+            QUESTION_BACKGROUND = "-fx-background-color: #ADD8E6; -fx-background-radius: 10px",
+            CLEAR_BACKGROUND = "-fx-background-color: transparent; ";
     private StudyListener listener;
 
     @Override
@@ -101,18 +102,19 @@ public class Study implements View {
         knowledgeLvlSlider.setValue(lvl);
     }
 
-    public void setCardText(String text) {
-        displayTextQA.setText(text);
-    }
-
     public void flipCard(boolean isQuestion, String question, String answer) {
         if (isQuestion) {
-            cardBackground.setStyle(BACKGROUND_QUESTION);
-            setCardText(question);
+            cardBackground.setStyle(QUESTION_BACKGROUND);
+            cardText.setText(question);
         } else {
-            cardBackground.setStyle(BACKGROUND_ANSWER);
-            setCardText(answer);
+            cardBackground.setStyle(ANSWER_BACKGROUND);
+            cardText.setText(answer);
         }
+    }
+
+    public void showEmptyDeck(String text) {
+        cardBackground.setStyle(CLEAR_BACKGROUND);
+        cardText.setText(text);
     }
 
     public interface StudyListener {

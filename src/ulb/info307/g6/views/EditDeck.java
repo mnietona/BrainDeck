@@ -11,9 +11,9 @@ public class EditDeck implements View {
     @FXML
     private Button buttonHome;
     @FXML
-    public ListView<Deck> deckListView = new ListView();
+    private ListView<Deck> deckListView = new ListView();
     @FXML
-    public Text deckTitle;
+    private Text deckTitle;
     @FXML
     private Button buttonEdit, buttonCreate, buttonRemove;
     private EditDeckListener listener;
@@ -42,9 +42,11 @@ public class EditDeck implements View {
     public void clickRemove() {
         listener.clickRemove();
     }
+
     public Deck getSelectedDeck() {
         return deckListView.getSelectionModel().getSelectedItem();
     }
+
     public boolean isDeckSelected() {
         return getSelectedDeck() != null;
     }

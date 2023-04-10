@@ -15,9 +15,9 @@
     <!-- Right pane : card + knowledge lvl + flip/next -->
     <VBox alignment="TOP_CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
         <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
-            <Pane fx:id="cardBackground" maxHeight="250.0" maxWidth="400.0" minHeight="250.0" minWidth="400.0" prefHeight="250.0" prefWidth="400.0" style="-fx-background-color: transparent; ">
+            <Pane fx:id="cardBackground" maxHeight="250.0" maxWidth="400.0" minHeight="250.0" minWidth="400.0" prefHeight="250.0" prefWidth="400.0" style="-fx-background-color: transparent;">
                 <VBox alignment="CENTER" maxHeight="250.0" maxWidth="400.0" minHeight="250.0" minWidth="400.0" prefHeight="250.0" prefWidth="400.0" spacing="5.0">
-                    <Text fx:id="displayTextQA" text="Select a deck on the left" textAlignment="CENTER" wrappingWidth="390.0">
+                    <Text fx:id="cardText" text="Select a deck" textAlignment="CENTER" wrappingWidth="390.0">
                         <font>
                             <Font size="20.0" />
                         </font>

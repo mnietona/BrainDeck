@@ -10,7 +10,7 @@ import ulb.info307.g6.models.Deck;
 
 public class EditCard implements View {
     @FXML
-    private ListView<Card> cardListViewEditCard = new ListView();
+    private ListView<Card> cardListView = new ListView();
     @FXML
     private Button buttonBack;
     @FXML
@@ -47,17 +47,17 @@ public class EditCard implements View {
     }
 
     public void setCardList(Deck deck) {
-        cardListViewEditCard.getItems().clear();
+        cardListView.getItems().clear();
         for (Card card : deck.getCardList()) {
-            cardListViewEditCard.getItems().add(card);
+            cardListView.getItems().add(card);
         }
-        cardListViewEditCard.setOnMouseClicked(event -> {
+        cardListView.setOnMouseClicked(event -> {
             updateQuestionAnswer();
         });
     }
 
     public void updateQuestionAnswer() {
-        Card selectedCard = cardListViewEditCard.getSelectionModel().getSelectedItem();
+        Card selectedCard = cardListView.getSelectionModel().getSelectedItem();
         if (selectedCard != null) {
             questionInput.setText(selectedCard.getQuestion());
             answerInput.setText(selectedCard.getAnswer());
@@ -83,7 +83,7 @@ public class EditCard implements View {
     }
 
     public Card getSelectedCard() {
-        return cardListViewEditCard.getSelectionModel().getSelectedItem();
+        return cardListView.getSelectionModel().getSelectedItem();
     }
 
     public boolean cardIsGapFill() {

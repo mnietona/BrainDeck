@@ -42,6 +42,8 @@ public class StudyController extends Controller implements Study.StudyListener {
         studyView.setSliderLvl(card.getKnowledgeLevel());
     }
 
+    // TODO: move to setDeckListView in Study.java so that deckList can be set to private
+    //  see EditDeck.java for example
     private void setDeckList() {
         decks = database.getAllDecks();
         studyView.deckList.getItems().clear();
@@ -59,7 +61,7 @@ public class StudyController extends Controller implements Study.StudyListener {
                 getNextRandomCard();
                 updateDisplayArea();
             } else {
-                studyView.displayTextQA.setText("The deck " + currentDeck.getName() + " is empty");
+                studyView.showEmptyDeck("The deck " + currentDeck.getName() + " is empty");
             }
         });
     }
@@ -88,9 +90,7 @@ public class StudyController extends Controller implements Study.StudyListener {
     }
 
     public void updateDisplayArea() {
-        if (currentDeck == null) {
-            studyView.displayTextQA.setText("No deck selected");
-        } else {
+        if (currentDeck != null) {
             Card card = currentDeck.getCardList().get(cardIndex);
             updateSliderPosition();
             if (CardGapFill.isCardGapFilType(card)) {
