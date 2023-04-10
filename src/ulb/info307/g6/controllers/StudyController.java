@@ -5,14 +5,11 @@ import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.CardGapFill;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.views.Study;
-import java.util.List;
 import java.util.Random;
 
-public class StudyController extends Controller implements Study.StudyListener {
+public class StudyController extends ControllerWithDeckList implements Study.StudyListener {
     private Study studyView;
-    private DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation();
     private CardDaoNitriteImplementation databaseCard = new CardDaoNitriteImplementation();
-    private List<Deck> decks;
     private int[] lastIndex = new int[3];
     private int flipIndex = 0;
     private int numberOfFlipsAuthorizedForCurrentCard = 1;
@@ -23,7 +20,6 @@ public class StudyController extends Controller implements Study.StudyListener {
         super(stage, "/ulb/info307/g6/views/Study.fxml", "Study your decks");
         studyView = (Study) view;
 
-        setDeckList();
         studyView.setSliderLabels();
         studyView.deactivateSlider();
     }
@@ -40,30 +36,6 @@ public class StudyController extends Controller implements Study.StudyListener {
     private void updateSliderPosition() {
         Card card = currentDeck.getCardList().get(cardIndex);
         studyView.setSliderLvl(card.getKnowledgeLevel());
-    }
-
-    // TODO: move to setDeckListView in Study.java so that deckList can be set to private
-    //  see EditDeck.java for example
-    private void setDeckList() {
-        decks = database.getAllDecks();
-        studyView.deckListView.getItems().clear();
-        for (Deck deck : decks) {
-            studyView.deckListView.getItems().add(deck);
-        }
-        studyView.deckListView.setOnMouseClicked(event -> {
-            studyView.deactivateSlider();
-            studyView.activateActionButtons();
-            currentDeck = studyView.deckListView.getSelectionModel().getSelectedItem();
-            cardIndex = 0;
-            flipIndex = 0;
-
-            if (!currentDeck.isEmpty()) {
-                getNextRandomCard();
-                updateDisplayArea();
-            } else {
-                studyView.showEmptyDeck("The deck " + currentDeck.getName() + " is empty");
-            }
-        });
     }
 
     private void getNextRandomCard() {
@@ -135,6 +107,22 @@ public class StudyController extends Controller implements Study.StudyListener {
             } else {
                 studyView.deactivateSlider();
             }
+        }
+    }
+
+    @Override
+    public void deckSelected() {
+        studyView.deactivateSlider();
+        studyView.activateActionButtons();
+        currentDeck = studyView.getSelectedDeck();
+        cardIndex = 0;
+        flipIndex = 0;
+
+        if (!currentDeck.isEmpty()) {
+            getNextRandomCard();
+            updateDisplayArea();
+        } else {
+            studyView.showEmptyDeck("The deck " + currentDeck.getName() + " is empty");
         }
     }
 }
