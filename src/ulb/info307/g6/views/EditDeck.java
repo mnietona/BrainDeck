@@ -11,7 +11,7 @@ public class EditDeck implements View {
     @FXML
     private Button buttonHome;
     @FXML
-    public ListView<Deck> deckListViewEditDeck = new ListView();
+    public ListView<Deck> deckListView = new ListView();
     @FXML
     public Text deckTitle;
     @FXML
@@ -42,22 +42,27 @@ public class EditDeck implements View {
     public void clickRemove() {
         listener.clickRemove();
     }
+    public Deck getSelectedDeck() {
+        return deckListView.getSelectionModel().getSelectedItem();
+    }
+    public boolean isDeckSelected() {
+        return getSelectedDeck() != null;
+    }
 
     public void updateDeckTitle() {
-        Deck selectedItem = deckListViewEditDeck.getSelectionModel().getSelectedItem();
-        if (selectedItem != null) {
-            deckTitle.setText(selectedItem.getName());
+        if (getSelectedDeck() != null) {
+            deckTitle.setText(getSelectedDeck().getName());
         } else {
             deckTitle.setText("No deck selected");
         }
     }
 
     public void setDeckListView(List<Deck> decks) {
-        deckListViewEditDeck.getItems().clear();
+        deckListView.getItems().clear();
         for (Deck deck : decks) {
-            deckListViewEditDeck.getItems().add(deck);
+            deckListView.getItems().add(deck);
         }
-        deckListViewEditDeck.setOnMouseClicked(event -> {  // click on an item
+        deckListView.setOnMouseClicked(event -> {  // click on an item
             updateDeckTitle();
         });
     }

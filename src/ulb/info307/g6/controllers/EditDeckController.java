@@ -15,6 +15,11 @@ public class EditDeckController extends Controller implements EditDeck.EditDeckL
         setDeckList();
     }
 
+    public void setDeckList() {
+        editDeckView.setDeckListView(database.getAllDecks());
+        editDeckView.updateDeckTitle();
+    }
+
     @Override
     public void clickHome() {
         new WelcomeController(stage);
@@ -22,12 +27,8 @@ public class EditDeckController extends Controller implements EditDeck.EditDeckL
 
     @Override
     public void clickEdit() {
-        List<Deck> decks = database.getAllDecks();
-        if (decks != null) {
-            Deck selectedItem = editDeckView.deckListViewEditDeck.getSelectionModel().getSelectedItem();
-            if (selectedItem != null) {
-                new EditCardController(stage, selectedItem);
-            }
+        if (editDeckView.isDeckSelected()) {
+            new EditCardController(stage, editDeckView.getSelectedDeck());
         }
     }
 
@@ -36,17 +37,12 @@ public class EditDeckController extends Controller implements EditDeck.EditDeckL
         new CreateDeckController(stage);
     }
 
-    public void setDeckList() {
-        List<Deck> decks = database.getAllDecks();
-        editDeckView.setDeckListView(decks);
-        editDeckView.updateDeckTitle();
-    }
-
     @Override
     public void clickRemove() {
-        Deck selectedItem = editDeckView.deckListViewEditDeck.getSelectionModel().getSelectedItem();
-        database.deleteDeck(selectedItem);
-        database.updateDeck(selectedItem);
-        setDeckList();
+        if (editDeckView.isDeckSelected()) {
+            database.deleteDeck(editDeckView.getSelectedDeck());
+            database.updateDeck(editDeckView.getSelectedDeck());
+            setDeckList();
+        }
     }
 }
