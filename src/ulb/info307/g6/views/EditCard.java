@@ -78,6 +78,9 @@ public class EditCard implements View {
     public String getAnswerInput() {
         return answerInput.getText();
     }
+    public boolean atLeastOneInputIsEmpty() {
+        return questionInput.getText().isEmpty() || answerInput.getText().isEmpty();
+    }
 
     public Card getSelectedCard() {
         return cardListViewEditCard.getSelectionModel().getSelectedItem();

@@ -2,6 +2,7 @@ package ulb.info307.g6.controllers;
 
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
+import ulb.info307.g6.models.CardGapFill;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.models.Card;
 import ulb.info307.g6.views.EditCard;
@@ -22,31 +23,37 @@ public class EditCardController extends Controller implements EditCard.EditCardL
     @Override
     public void clickEditCard() {
         Card selectedItem = editCardView.getSelectedCard();
-        if (selectedItem != null && !editCardView.getQuestionInput().isEmpty() && !editCardView.getAnswerInput().isEmpty()) {
+        if (selectedItem != null && !editCardView.atLeastOneInputIsEmpty()) {
             selectedItem.setQuestion(editCardView.getQuestionInput());
             selectedItem.setAnswer(editCardView.getAnswerInput());
             databaseCard.updateCard(selectedItem);
-            databaseDeck.updateDeck(deck);
-            editCardView.setCardList(deck);
-            editCardView.updateQuestionAnswer();
-        }
-    }
-
-    @Override
-    public void clickCreateCard() {
-        Card card = getCardEntered();
-        if (card.isValid()) {
-            deck.addCard(card);
-            databaseCard.updateCard(card);
             databaseDeck.updateDeck(deck);
             editCardView.setCardList(deck);
         }
         editCardView.clearTextFields();
     }
 
+    @Override
+    public void clickCreateCard() {
+        if (!editCardView.atLeastOneInputIsEmpty()) {
+            Card card = getCardEntered();
+            if (card.isValid()) {
+                deck.addCard(card);
+                databaseCard.updateCard(card);
+                databaseDeck.updateDeck(deck);
+                editCardView.setCardList(deck);
+            }
+        }
+        editCardView.clearTextFields();
+    }
+
     @NotNull
     private Card getCardEntered() {
-        return new Card(editCardView.getQuestionInput(), editCardView.getAnswerInput());
+        if (editCardView.cardIsGapFill()) {
+            return new CardGapFill(editCardView.getQuestionInput(), editCardView.getAnswerInput());
+        } else {
+            return new Card(editCardView.getQuestionInput(), editCardView.getAnswerInput());
+        }
     }
 
     @Override
