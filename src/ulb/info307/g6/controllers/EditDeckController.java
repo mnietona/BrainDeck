@@ -1,6 +1,7 @@
 package ulb.info307.g6.controllers;
 
 import javafx.stage.Stage;
+import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.views.EditDeck;
 
 public class EditDeckController extends ControllerWithDeckList implements EditDeck.EditDeckListener {

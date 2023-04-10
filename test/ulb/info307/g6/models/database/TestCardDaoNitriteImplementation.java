@@ -1,8 +1,6 @@
-package ulb.info307.g6.controllers;
+package ulb.info307.g6.models.database;
 
-import org.dizitart.no2.objects.ObjectRepository;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ulb.info307.g6.models.Card;
 

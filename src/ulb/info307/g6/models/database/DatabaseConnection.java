@@ -1,4 +1,4 @@
-package ulb.info307.g6.controllers;
+package ulb.info307.g6.models.database;
 
 import org.dizitart.no2.Nitrite;
 

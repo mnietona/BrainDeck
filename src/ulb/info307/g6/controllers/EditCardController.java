@@ -5,6 +5,8 @@ import org.jetbrains.annotations.NotNull;
 import ulb.info307.g6.models.CardGapFill;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.models.Card;
+import ulb.info307.g6.models.database.CardDaoNitriteImplementation;
+import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.views.EditCard;
 
 public class EditCardController extends Controller implements EditCard.EditCardListener {
