@@ -28,5 +28,5 @@ public abstract class ViewWithDeckList implements View {
         });
     }
 
-    public abstract void actionOnDeckSelection();
+    protected abstract void actionOnDeckSelection();
 }

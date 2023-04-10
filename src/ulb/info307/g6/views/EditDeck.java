@@ -2,9 +2,7 @@ package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
-import ulb.info307.g6.models.Deck;
 
 public class EditDeck extends ViewWithDeckList {
     @FXML
@@ -49,7 +47,7 @@ public class EditDeck extends ViewWithDeckList {
     }
 
     @Override
-    public void actionOnDeckSelection() {
+    protected void actionOnDeckSelection() {
         updateDeckTitle();
     }
 
