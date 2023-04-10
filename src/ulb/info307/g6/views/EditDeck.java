@@ -5,13 +5,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 import ulb.info307.g6.models.Deck;
-import java.util.List;
 
-public class EditDeck implements View {
+public class EditDeck extends ViewWithDeckList {
     @FXML
     private Button buttonHome;
-    @FXML
-    private ListView<Deck> deckListView = new ListView();
     @FXML
     private Text deckTitle;
     @FXML
@@ -43,14 +40,6 @@ public class EditDeck implements View {
         listener.clickRemove();
     }
 
-    public Deck getSelectedDeck() {
-        return deckListView.getSelectionModel().getSelectedItem();
-    }
-
-    public boolean isDeckSelected() {
-        return getSelectedDeck() != null;
-    }
-
     public void updateDeckTitle() {
         if (getSelectedDeck() != null) {
             deckTitle.setText(getSelectedDeck().getName());
@@ -59,14 +48,9 @@ public class EditDeck implements View {
         }
     }
 
-    public void setDeckListView(List<Deck> decks) {
-        deckListView.getItems().clear();
-        for (Deck deck : decks) {
-            deckListView.getItems().add(deck);
-        }
-        deckListView.setOnMouseClicked(event -> {  // click on an item
-            updateDeckTitle();
-        });
+    @Override
+    public void actionOnDeckSelection() {
+        updateDeckTitle();
     }
 
     public interface EditDeckListener {

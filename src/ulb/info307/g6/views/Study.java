@@ -9,7 +9,7 @@ import ulb.info307.g6.models.Deck;
 
 public class Study implements View {
     @FXML
-    public ListView<Deck> deckList = new ListView();  // TODO: to be renamed to deckListView when refactored to private
+    public ListView<Deck> deckListView = new ListView();
     @FXML
     private Button buttonHome;
     @FXML

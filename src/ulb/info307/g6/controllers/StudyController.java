@@ -46,14 +46,14 @@ public class StudyController extends Controller implements Study.StudyListener {
     //  see EditDeck.java for example
     private void setDeckList() {
         decks = database.getAllDecks();
-        studyView.deckList.getItems().clear();
+        studyView.deckListView.getItems().clear();
         for (Deck deck : decks) {
-            studyView.deckList.getItems().add(deck);
+            studyView.deckListView.getItems().add(deck);
         }
-        studyView.deckList.setOnMouseClicked(event -> {
+        studyView.deckListView.setOnMouseClicked(event -> {
             studyView.deactivateSlider();
             studyView.activateActionButtons();
-            currentDeck = studyView.deckList.getSelectionModel().getSelectedItem();
+            currentDeck = studyView.deckListView.getSelectionModel().getSelectedItem();
             cardIndex = 0;
             flipIndex = 0;
 
