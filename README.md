@@ -19,11 +19,7 @@ Application multiplateforme d’aide à l’étude basée sur un système de fla
 0. Télécharger le repository
 1.  ...
 
-
----
-
----
-
+# 
 
 ## Schémas
 ### Structure des menus de l'application
