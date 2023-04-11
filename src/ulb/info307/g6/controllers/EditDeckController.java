@@ -11,6 +11,13 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
     public EditDeckController(Stage stage) {
         super(stage, "/ulb/info307/g6/views/EditDeck.fxml", "Edit Deck");
         editDeckView = (EditDeck) view;
+        editDeckView.activateActionButtons(false);
+    }
+
+    @Override
+    public void deckSelected(){
+        editDeckView.updateDeckTitle();
+        editDeckView.activateActionButtons(true);
     }
 
     @Override
@@ -37,6 +44,7 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
             database.updateDeck(editDeckView.getSelectedDeck());
             setDeckList();
             editDeckView.updateDeckTitle();
+            editDeckView.activateActionButtons(false);
         }
     }
 }

@@ -46,9 +46,14 @@ public class EditDeck extends ViewWithDeckList {
         }
     }
 
+    public void activateActionButtons(boolean activate) {
+        buttonEdit.setDisable(!activate);
+        buttonRemove.setDisable(!activate);
+    }
+
     @Override
     protected void actionOnDeckSelection() {
-        updateDeckTitle();
+        listener.deckSelected();
     }
 
     public interface EditDeckListener {
@@ -56,5 +61,6 @@ public class EditDeck extends ViewWithDeckList {
         void clickEdit();
         void clickCreate();
         void clickRemove();
+        void deckSelected();
     }
 }

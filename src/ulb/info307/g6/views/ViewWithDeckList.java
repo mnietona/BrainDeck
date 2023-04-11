@@ -23,7 +23,7 @@ public abstract class ViewWithDeckList implements View {
             deckListView.getItems().add(deck);
         }
         deckListView.setOnMouseClicked(event -> {  // click on an item
-            actionOnDeckSelection();
+            if (isDeckSelected()) actionOnDeckSelection();
         });
     }
 

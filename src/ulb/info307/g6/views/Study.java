@@ -55,9 +55,9 @@ public class Study extends ViewWithDeckList {
         knowledgeLvlSliderTitle.setDisable(false);
     }
 
-    public void activateActionButtons() {
-        buttonFlipCard.setDisable(false);
-        buttonNextCard.setDisable(false);
+    public void activateActionButtons(boolean activate) {
+        buttonFlipCard.setDisable(!activate);
+        buttonNextCard.setDisable(!activate);
     }
 
     public void setSliderLabels() {

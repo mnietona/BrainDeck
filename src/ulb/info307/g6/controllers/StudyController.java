@@ -23,6 +23,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
 
         studyView.setSliderLabels();
         studyView.deactivateSlider();
+        studyView.activateActionButtons(false);
     }
 
     public void updateCardKnowledgeLevel() {
@@ -114,8 +115,8 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
     @Override
     public void deckSelected() {
         studyView.deactivateSlider();
-        studyView.activateActionButtons();
         currentDeck = studyView.getSelectedDeck();
+        studyView.activateActionButtons(!currentDeck.isEmpty());
         cardIndex = 0;
         flipIndex = 0;
 
