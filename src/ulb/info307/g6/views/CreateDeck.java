@@ -27,6 +27,20 @@ public class CreateDeck implements View {
         listener.clickBack();
     }
 
+    @FXML
+    private void textChange() {
+        System.out.println("textChange");
+        activateButton(inputIsValid());
+    }
+
+    public boolean inputIsValid() {
+        return !inputBox.getText().isEmpty();
+    }
+
+    public void activateButton(boolean activate) {
+        buttonConfirm.setDisable(!activate);
+    }
+
     public interface CreateDeckListener {
         void clickConfirm(String inputText);
         void clickBack();

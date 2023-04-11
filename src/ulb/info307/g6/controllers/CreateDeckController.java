@@ -12,6 +12,7 @@ public class CreateDeckController extends Controller implements CreateDeck.Creat
     public CreateDeckController(Stage stage) {
         super(stage, "/ulb/info307/g6/views/CreateDeck.fxml", "Create a new deck");
         createDeckView = (CreateDeck) view;
+        createDeckView.activateButton(false);
     }
 
     @Override
