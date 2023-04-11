@@ -46,6 +46,17 @@ public class EditCard implements View {
         listener.clickRemoveCard();
     }
 
+    @FXML
+    private void inputChange() {
+        if (atLeastOneInputIsEmpty()) {
+            activateEditButton(false);
+            activateCreateButton(false);
+        } else {
+            activateCreateButton(true);
+            if (isCardSelected()) activateEditButton(true);
+        }
+    }
+
     public void setCardList(Deck deck) {
         cardListView.getItems().clear();
         for (Card card : deck.getCardList()) {
@@ -53,7 +64,12 @@ public class EditCard implements View {
         }
         cardListView.setOnMouseClicked(event -> {
             updateQuestionAnswer();
+            if (isCardSelected()) activateButtons(true);
         });
+    }
+
+    private boolean isCardSelected() {
+        return cardListView.getSelectionModel().getSelectedItem() != null;
     }
 
     public void updateQuestionAnswer() {
@@ -69,6 +85,24 @@ public class EditCard implements View {
     public void clearTextFields() {
         questionInput.setText("");
         answerInput.setText("");
+    }
+
+    public void activateRemoveButton(boolean activate) {
+        buttonRemoveCard.setDisable(!activate);
+    }
+
+    public void activateEditButton(boolean activate) {
+        buttonEditCard.setDisable(!activate);
+    }
+
+    public void activateCreateButton(boolean activate) {
+        buttonCreateCard.setDisable(!activate);
+    }
+
+    public void activateButtons(boolean activate) {
+        activateRemoveButton(activate);
+        activateEditButton(activate);
+        activateCreateButton(activate);
     }
 
     public String getQuestionInput() {

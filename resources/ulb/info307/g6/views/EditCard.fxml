@@ -23,14 +23,14 @@
                 </Label>
                 <CheckBox fx:id="gapFillCheckBox" text="Gap-fill" />
             </HBox>
-            <TextArea fx:id="questionInput" VBox.vgrow="ALWAYS" />
+            <TextArea fx:id="questionInput" onKeyTyped="#inputChange" VBox.vgrow="ALWAYS" />
 
             <Label text="Answer">
                 <font>
                     <Font size="20.0" />
                 </font>
             </Label>
-            <TextArea fx:id="answerInput" VBox.vgrow="ALWAYS" />
+            <TextArea fx:id="answerInput" onKeyTyped="#inputChange" VBox.vgrow="ALWAYS" />
         </VBox>
 
         <HBox alignment="TOP_CENTER" spacing="5.0">

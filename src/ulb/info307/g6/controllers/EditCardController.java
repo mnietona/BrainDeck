@@ -20,6 +20,7 @@ public class EditCardController extends Controller implements EditCard.EditCardL
         this.deck = deck;
         editCardView = (EditCard) view;
         editCardView.setCardList(deck);
+        editCardView.activateButtons(false);
     }
 
     @Override
@@ -67,6 +68,7 @@ public class EditCardController extends Controller implements EditCard.EditCardL
             databaseDeck.updateDeck(deck);
             editCardView.setCardList(deck);
             editCardView.clearTextFields();
+            editCardView.activateButtons(false);
         }
     }
 
