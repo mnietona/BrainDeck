@@ -36,6 +36,7 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
             database.deleteDeck(editDeckView.getSelectedDeck());
             database.updateDeck(editDeckView.getSelectedDeck());
             setDeckList();
+            editDeckView.updateDeckTitle();
         }
     }
 }

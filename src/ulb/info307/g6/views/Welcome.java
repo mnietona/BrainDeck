@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 
 public class Welcome implements View {
     @FXML
-    private Button playButton, editButton;
+    private Button studyButton, editButton;
     private WelcomeListener listener;
 
     @Override

@@ -19,11 +19,9 @@ Application multiplateforme d’aide à l’étude basée sur un système de fla
 0. Télécharger le repository
 1.  ...
 
-# 
-
 ## Schémas
 ### Structure des menus de l'application
-![](/resources/img/menuStructure.png)
+![](/resources/diagrams/menuStructure.png)
 
 ## Accès au repo (ssh)
 
@@ -44,14 +42,3 @@ Retourner sur le terminal se deplacer à l'endroit où cloner le repository
 The authenticity of host... -> "yes"
 Enter passhprase... -> Entrer le mot de passe introduit plus tôt
 ```
-
-### Linux
-```
-```
-
-### macOS
-```
-```
-
-## Liens utils
-- Organisation et suivi des tâches : https://universitelibrebruxelles-my.sharepoint.com/:x:/g/personal/adrien_beslier_ulb_be/EbxqI2QjQB1Mnmaf7tUvUlsBBPic7kc17buuY6wX7cvh0w?e=n2aWS9
