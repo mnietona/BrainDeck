@@ -10,7 +10,7 @@ public class EditDeck extends ViewWithDeckList {
     @FXML
     private Text deckTitle;
     @FXML
-    private Button buttonEdit, buttonCreate, buttonRemove;
+    private Button buttonEdit, buttonCreate, buttonRemove, buttonResetProba;
     private EditDeckListener listener;
 
     @Override
@@ -37,6 +37,8 @@ public class EditDeck extends ViewWithDeckList {
     public void clickRemove() {
         listener.clickRemove();
     }
+    @FXML
+    public void clickResetProba() { listener.clickResetProba(); }
 
     public void updateDeckTitle() {
         if (getSelectedDeck() != null) {
@@ -49,6 +51,7 @@ public class EditDeck extends ViewWithDeckList {
     public void activateActionButtons(boolean activate) {
         buttonEdit.setDisable(!activate);
         buttonRemove.setDisable(!activate);
+        buttonResetProba.setDisable(!activate);
     }
 
     @Override
@@ -61,6 +64,7 @@ public class EditDeck extends ViewWithDeckList {
         void clickEdit();
         void clickCreate();
         void clickRemove();
+        void clickResetProba();
         void deckSelected();
     }
 }

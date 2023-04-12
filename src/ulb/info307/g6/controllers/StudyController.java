@@ -10,7 +10,6 @@ import ulb.info307.g6.views.Study;
 
 public class StudyController extends ControllerWithDeckList implements Study.StudyListener {
     private Study studyView;
-    private CardDaoNitriteImplementation databaseCard = new CardDaoNitriteImplementation();
     private int[] lastIndex = new int[3];
     private int flipIndex = 0;
     private int numberOfFlipsAuthorizedForCurrentCard = 1;
@@ -30,11 +29,8 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
     public void updateCardKnowledgeLevel() {
         if (!currentDeck.isEmpty()) {
             Card card = currentDeck.getCardList().get(cardIndex);
-            double newProba = cardProbabilities.getWeight(studyView.getSelectedKnowledgeLvl());
-            card.setProbability(card.getProbability() * newProba);
-            databaseCard.updateCard(card);
-            database.updateDeck(currentDeck);
-            cardProbabilities.normalizeProbability(currentDeck,databaseCard,database);
+            int knowledgeLvl = studyView.getSelectedKnowledgeLvl();
+            cardProbabilities.updateProbability(currentDeck, card, knowledgeLvl);
         }
     }
 
@@ -136,7 +132,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
         flipIndex = 0;
 
         if (!currentDeck.isEmpty()) {
-            cardProbabilities.initCardProbabilities(currentDeck,databaseCard,database);
+            cardProbabilities.initCardProbabilities(currentDeck);
             getNextRandomCard();
             updateDisplayArea();
         } else {

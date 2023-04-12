@@ -4,7 +4,10 @@ import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 
 public class CardProbabilities{
 
-    public void initCardProbabilities(Deck deck, CardDaoNitriteImplementation databaseCard, DeckDaoNitriteImplementation database) {
+    static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
+    static CardDaoNitriteImplementation databaseCard = new CardDaoNitriteImplementation();
+
+    public void initCardProbabilities(Deck deck) {
         if (!isNormalized(deck)) { // If the sum of the probabilities is not 1, we normalize them sum != 1
             int numberOfCards = deck.getSize();
             double probability = (double) 1 / numberOfCards;
@@ -16,7 +19,7 @@ public class CardProbabilities{
         }
     }
 
-    public void normalizeProbability(Deck deck, CardDaoNitriteImplementation databaseCard, DeckDaoNitriteImplementation database) {
+    public void normalizeProbability(Deck deck) {
         double sum = getSumProbability(deck);
         if (isNotOne(sum)) {
             for (Card card : deck.getCardList()) {
@@ -25,6 +28,13 @@ public class CardProbabilities{
             }
             database.updateDeck(deck);
         }
+    }
+    public void updateProbability(Deck deck, Card card, int knowledgeLvl) {
+        double newProba = card.getProbability() * getWeight(knowledgeLvl);
+        card.setProbability(newProba);
+        databaseCard.updateCard(card);
+        database.updateDeck(deck);
+        normalizeProbability(deck);
     }
     private double getSumProbability(Deck deck) {
         double sum = 0;
@@ -53,8 +63,7 @@ public class CardProbabilities{
         };
     }
 
-    // TODO : pour bouton Reset poids
-    public void resetProbability(Deck deck,CardDaoNitriteImplementation databaseCard, DeckDaoNitriteImplementation database) {
+    public void resetProbability(Deck deck) {
         int numberOfCards = deck.getSize();
         double probability = (double) 1 / numberOfCards;
         for (Card card : deck.getCardList()) {
