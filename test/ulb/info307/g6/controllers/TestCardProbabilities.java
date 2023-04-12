@@ -54,5 +54,4 @@ class TestCardProbabilities {
             assertEquals(cardProbabilities.getCardProbability(i), (double) 1/numberOfCards);
         }
     }
-
 }

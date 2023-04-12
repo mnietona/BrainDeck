@@ -106,11 +106,10 @@ public class CardProbabilities {
         {
             newProbabilities[i] = this.cardProbabilities[i];
         }
-        newProbabilities[cardsCount+1] = initialCardProbability;
+        newProbabilities[cardsCount] = initialCardProbability;
         this.cardProbabilities = newProbabilities;
         normalizeProbabilities();
     }
-
 
     public void setCardsToSkip(int quantity)
     {
