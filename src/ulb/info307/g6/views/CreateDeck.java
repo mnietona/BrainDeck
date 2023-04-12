@@ -29,7 +29,6 @@ public class CreateDeck implements View {
 
     @FXML
     private void textChange() {
-        System.out.println("textChange");
         activateButton(inputIsValid());
     }
 
