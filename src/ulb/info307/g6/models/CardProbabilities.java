@@ -1,129 +1,61 @@
 package ulb.info307.g6.models;
-import java.util.Random;
+import ulb.info307.g6.models.database.CardDaoNitriteImplementation;
+import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 
-public class CardProbabilities implements Probabilities {
-    public double[] cardProbabilities;
+public class CardProbabilities{
 
-    @Override
-    public void initCardProbabilities(int numberOfCards)
-    {
-        double probability = (double) 1/numberOfCards;
-        double[] initialProbabilities = new double[numberOfCards];
+    public void initCardProbabilities(Deck deck, CardDaoNitriteImplementation databaseCard, DeckDaoNitriteImplementation database) {
+        int numberOfCards = deck.getSize();
+        double probability = (double) 1 / numberOfCards;
+        double sum = 0;
 
-        for (int i = 0; i < initialProbabilities.length; i++)
-        {
-            initialProbabilities[i] = probability;
-        }
-        this.cardProbabilities = initialProbabilities;
-    }
+        for (Card card : deck.getCardList())
+            sum += card.getKnowledgeLevel();
 
-    @Override
-    public double[] getCardsProbabilities()
-    {
-        return this.cardProbabilities;
-    }
-
-    @Override
-    public double getCardProbability(int cardID)
-    {
-        double cardProbability = 0.0;
-        if (cardID >= 0 && cardID < this.cardProbabilities.length - 1)
-        {
-            cardProbability = this.cardProbabilities[cardID];
-        }
-        return cardProbability;
-    }
-    @Override
-    public void resetProbabilities()
-    {
-        if (this.cardProbabilities.length > 0)
-        {
-            double initial = (double) 1/cardProbabilities.length;
-            for (int i = 0; i < cardProbabilities.length; i++)
-            {
-                this.cardProbabilities[i] = initial;
+        if (Math.abs(sum - 1) > 1e-9) { // If the sum of the probabilities is not 1, we normalize them sum != 1
+            for (Card card : deck.getCardList()) {
+                card.setKnowledgeLevel(probability);
+                databaseCard.updateCard(card);
             }
+            database.updateDeck(deck);
         }
     }
 
-    @Override
-    public void normalizeProbabilities()
-    {
-        double total_sum = 0;
-        for (double i : this.cardProbabilities)
-        {
-            total_sum += i;
+    public void updateProbability(Deck deck,CardDaoNitriteImplementation databaseCard, DeckDaoNitriteImplementation database) {
+        double sum = 0;
+        for (Card card : deck.getCardList()) {
+            sum += card.getKnowledgeLevel();
         }
-
-        for (int i = 0; i < this.cardProbabilities.length; i++)
-        {
-            this.cardProbabilities[i] = this.cardProbabilities[i]/total_sum;
+        if (Math.abs(sum - 1) > 1e-9) {
+            for (Card card : deck.getCardList()) {
+                double normalizedProbability = card.getKnowledgeLevel() / sum;
+                card.setKnowledgeLevel(normalizedProbability);
+                databaseCard.updateCard(card);
+            }
+            database.updateDeck(deck);
         }
     }
-    @Override
+
     public double getNewProbabilityValue(int knowledge) {
-        double newWeight = 0;
-        double totalCards = this.cardProbabilities.length;
-        switch (knowledge) {
-            case 0:
-                newWeight = 1.9; // Very bad
-            case 1:
-                newWeight = 1.6;
-            case 2:
-                newWeight = 1.4;
-            case 3:
-                newWeight = 1.2;
-            case 4:
-                newWeight = 1; // Very good
+        return switch (knowledge) {
+            case 0 -> 1.5; // Very bad
+            case 1 -> 1.25;
+            case 2 -> 1;
+            case 3 -> 0.75;
+            case 4 -> 0.5; // Very good
+            default -> 1;
+        };
+    }
+
+    // TODO : pour bouton Reset poids
+    public void resetProbability(Deck deck,CardDaoNitriteImplementation databaseCard, DeckDaoNitriteImplementation database) {
+        int numberOfCards = deck.getSize();
+        double probability = (double) 1 / numberOfCards;
+        for (Card card : deck.getCardList()) {
+            card.setKnowledgeLevel(probability);
+            databaseCard.updateCard(card);
         }
-        return newWeight;
+        database.updateDeck(deck);
     }
-
-    @Override
-    public void updateCardProbability(int cardID, int knowledge)
-    {
-        double newCardProbability = getNewProbabilityValue(knowledge);
-        this.cardProbabilities[cardID] = this.cardProbabilities[cardID]*newCardProbability;
-        normalizeProbabilities();
-    }
-
-    @Override
-    public void setCardProbabilities(double[] probabilities)
-    {
-        this.cardProbabilities = probabilities;
-    }
-    @Override
-    public void addNewCard()
-    {
-        int cardsCount = this.cardProbabilities.length;
-        double initialCardProbability = (double) 1/(cardsCount+1);
-        double[] newProbabilities = new double[cardsCount+1];
-        for (int i = 0; i < cardsCount; i++)
-        {
-            newProbabilities[i] = this.cardProbabilities[i];
-        }
-        newProbabilities[cardsCount+1] = initialCardProbability;
-        this.cardProbabilities = newProbabilities;
-        normalizeProbabilities();
-    }
-
-
-
-    @Override
-    public int getRandomCardId()
-    {
-        return 0;
-    }
-
-    @Override
-    public void showAllProba()
-    { // utiliser dans l'event du bouton pour voir si les valeurs changent.
-        for (double x : this.cardProbabilities)
-        {
-            System.out.println(x);
-        }
-    }
-
-
 
 }

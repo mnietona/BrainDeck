@@ -56,6 +56,8 @@ public class Study extends ViewWithDeckList {
     }
 
     public void setSliderLabels() {
+
+        knowledgeLvlSlider.setValue(2);
         knowledgeLvlSlider.setLabelFormatter(new StringConverter<Double>() {
             @Override
             public String toString(Double n) {
@@ -86,9 +88,7 @@ public class Study extends ViewWithDeckList {
         });
     }
 
-    public Double getSelectedKnowledgeLvl() {
-        return knowledgeLvlSlider.getValue();
-    }
+    public int getSelectedKnowledgeLvl() {return (int) knowledgeLvlSlider.getValue();}
 
     public void setSliderLvl(Double lvl) {
         knowledgeLvlSlider.setValue(lvl);

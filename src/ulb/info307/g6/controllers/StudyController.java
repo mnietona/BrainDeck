@@ -3,10 +3,10 @@ package ulb.info307.g6.controllers;
 import javafx.stage.Stage;
 import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.CardGapFill;
+import ulb.info307.g6.models.CardProbabilities;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.models.database.CardDaoNitriteImplementation;
 import ulb.info307.g6.views.Study;
-import java.util.Random;
 
 public class StudyController extends ControllerWithDeckList implements Study.StudyListener {
     private Study studyView;
@@ -16,6 +16,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
     private int numberOfFlipsAuthorizedForCurrentCard = 1;
     private int cardIndex = 0;
     private Deck currentDeck = null;
+    private CardProbabilities cardProbabilities = new CardProbabilities();
 
     public StudyController(Stage stage) {
         super(stage, "/ulb/info307/g6/views/Study.fxml", "Study your decks");
@@ -29,34 +30,51 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
     public void updateCardKnowledgeLevel() {
         if (!currentDeck.isEmpty()) {
             Card card = currentDeck.getCardList().get(cardIndex);
-            card.setKnowledgeLevel(studyView.getSelectedKnowledgeLvl());
+            double newProba = cardProbabilities.getNewProbabilityValue(studyView.getSelectedKnowledgeLvl());
+            card.setKnowledgeLevel(card.getKnowledgeLevel() * newProba);
             databaseCard.updateCard(card);
             database.updateDeck(currentDeck);
+            cardProbabilities.updateProbability(currentDeck,databaseCard,database);
         }
     }
 
     private void updateSliderPosition() {
-        Card card = currentDeck.getCardList().get(cardIndex);
-        studyView.setSliderLvl(card.getKnowledgeLevel());
+        double levelDefault = 2.0;
+        studyView.setSliderLvl(levelDefault);
     }
 
     private void getNextRandomCard() {
         int nextCardIndex = 0;
+
         if (currentDeck.getSize() == 2 || currentDeck.getSize() == 3) {
-            nextCardIndex = (cardIndex + 1)%currentDeck.getSize();
+            nextCardIndex = (cardIndex + 1) % currentDeck.getSize();
         } else if (currentDeck.getSize() > 3) {
-            Random rand = new Random();
-            int random = rand.nextInt(currentDeck.getSize());
-            while (random == lastIndex[0] || random == lastIndex[1] || random == lastIndex[2]) {
-                random = rand.nextInt(currentDeck.getSize());
+            double random = Math.random(); // Génère un nombre aléatoire entre 0 et 1
+            double cumulativeProbability = 0.0;
+
+            int i = 0;
+            for (Card card : currentDeck.getCardList()) {
+                cumulativeProbability += card.getKnowledgeLevel();
+
+                if (random <= cumulativeProbability) {
+                    nextCardIndex = i;
+                    break;
+                }
+                i++;
             }
-            nextCardIndex = random;
+
+            if (nextCardIndex == lastIndex[0] || nextCardIndex == lastIndex[1] || nextCardIndex == lastIndex[2]) {
+                getNextRandomCard();
+                return;
+            }
         }
+
         cardIndex = nextCardIndex;
         lastIndex[2] = lastIndex[1];
         lastIndex[1] = lastIndex[0];
         lastIndex[0] = nextCardIndex;
     }
+
 
     private boolean questionIsDisplayed() {
         // We have not yet flipped the card, so the question is displayed
@@ -100,8 +118,8 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
     @Override
     public void clickFlipCard() {
         if (currentDeck != null && !currentDeck.isEmpty()) {
-            updateCardKnowledgeLevel();
             updateSliderPosition();
+            updateCardKnowledgeLevel();
             flipIndex = (flipIndex + 1) % (numberOfFlipsAuthorizedForCurrentCard + 1);
             updateDisplayArea();
             studyView.activateSlider(flipIndex == numberOfFlipsAuthorizedForCurrentCard);
@@ -117,10 +135,12 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
         flipIndex = 0;
 
         if (!currentDeck.isEmpty()) {
+            cardProbabilities.initCardProbabilities(currentDeck,databaseCard,database);
             getNextRandomCard();
             updateDisplayArea();
         } else {
             studyView.showEmptyDeck("The deck " + currentDeck.getName() + " is empty");
         }
     }
+
 }
