@@ -1,4 +1,6 @@
 package ulb.info307.g6.models;
+import ulb.info307.g6.models.database.CardDaoNitriteImplementation;
+import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -71,6 +73,7 @@ public class CardProbabilities {
             database.updateDeck(deck);
         }
     }
+
 
 
     public double getWeight(int knowledge) {
@@ -203,14 +206,11 @@ public class CardProbabilities {
         return -1;
     }
 
-    public void showAllProba()
-    { // utiliser dans l'event du bouton pour voir si les valeurs changent.
-        for (double x : this.cardProbabilities)
-        {
-            System.out.println(x);
+    public void printProbability(Deck deck) {
+        System.out.println("Printing probability of deck " + deck.getName());
+        for (Card card : deck.getCardList()) {
+            System.out.println("Probability of card " + card.toString() + " : " + card.getProbability());
         }
     }
-
-
 
 }
