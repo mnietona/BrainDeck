@@ -22,7 +22,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
         studyView = (Study) view;
 
         studyView.setSliderLabels();
-        studyView.deactivateSlider();
+        studyView.activateSlider(false);
         studyView.activateActionButtons(false);
     }
 
@@ -92,7 +92,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
             getNextRandomCard();
             flipIndex = 0;
             updateDisplayArea();
-            studyView.deactivateSlider();
+            studyView.activateSlider(false);
             updateSliderPosition();
         }
     }
@@ -104,17 +104,13 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
             updateSliderPosition();
             flipIndex = (flipIndex + 1) % (numberOfFlipsAuthorizedForCurrentCard + 1);
             updateDisplayArea();
-            if (flipIndex == numberOfFlipsAuthorizedForCurrentCard) {
-                studyView.activateSlider();
-            } else {
-                studyView.deactivateSlider();
-            }
+            studyView.activateSlider(flipIndex == numberOfFlipsAuthorizedForCurrentCard);
         }
     }
 
     @Override
     public void deckSelected() {
-        studyView.deactivateSlider();
+        studyView.activateSlider(false);
         currentDeck = studyView.getSelectedDeck();
         studyView.activateActionButtons(!currentDeck.isEmpty());
         cardIndex = 0;

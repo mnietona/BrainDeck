@@ -45,14 +45,9 @@ public class Study extends ViewWithDeckList {
         listener.clickFlipCard();
     }
 
-    public void deactivateSlider() {
-        knowledgeLvlSlider.setDisable(true);
-        knowledgeLvlSliderTitle.setDisable(true);
-    }
-
-    public void activateSlider() {
-        knowledgeLvlSlider.setDisable(false);
-        knowledgeLvlSliderTitle.setDisable(false);
+    public void activateSlider(boolean activate) {
+        knowledgeLvlSlider.setDisable(!activate);
+        knowledgeLvlSliderTitle.setDisable(!activate);
     }
 
     public void activateActionButtons(boolean activate) {
