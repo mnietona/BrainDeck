@@ -85,6 +85,7 @@ public class EditCard implements View {
     public void clearTextFields() {
         questionInput.setText("");
         answerInput.setText("");
+        activateButtons(false);
     }
 
     public void activateRemoveButton(boolean activate) {
