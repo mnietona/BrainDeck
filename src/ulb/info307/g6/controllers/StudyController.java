@@ -113,6 +113,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
             studyView.activateSlider(false);
             updateSliderPosition();
         }
+        cardProbabilities.printProbability(currentDeck);
     }
 
     @Override

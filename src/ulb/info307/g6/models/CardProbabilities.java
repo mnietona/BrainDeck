@@ -5,14 +5,9 @@ import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 public class CardProbabilities{
 
     public void initCardProbabilities(Deck deck, CardDaoNitriteImplementation databaseCard, DeckDaoNitriteImplementation database) {
-        int numberOfCards = deck.getSize();
-        double probability = (double) 1 / numberOfCards;
-        double sum = 0;
-
-        for (Card card : deck.getCardList())
-            sum += card.getProbability();
-
-        if (Math.abs(sum - 1) > 1e-9) { // If the sum of the probabilities is not 1, we normalize them sum != 1
+        if (!isNormalized(deck)) { // If the sum of the probabilities is not 1, we normalize them sum != 1
+            int numberOfCards = deck.getSize();
+            double probability = (double) 1 / numberOfCards;
             for (Card card : deck.getCardList()) {
                 card.setProbability(probability);
                 databaseCard.updateCard(card);
@@ -22,22 +17,29 @@ public class CardProbabilities{
     }
 
     public void normalizeProbability(Deck deck, CardDaoNitriteImplementation databaseCard, DeckDaoNitriteImplementation database) {
-        double sum = 0;
-        for (Card card : deck.getCardList()) {
-            sum += card.getProbability();
-        }
-        if (!isAlmostOne(sum)) {
+        double sum = getSumProbability(deck);
+        if (isNotOne(sum)) {
             for (Card card : deck.getCardList()) {
-                double normalizedProbability = card.getProbability() / sum;
-                card.setProbability(normalizedProbability);
+                card.setProbability(card.getProbability() / sum);
                 databaseCard.updateCard(card);
             }
             database.updateDeck(deck);
         }
     }
+    private double getSumProbability(Deck deck) {
+        double sum = 0;
+        for (Card card : deck.getCardList()) {
+            sum += card.getProbability();
+        }
+        return sum;
+    }
 
-    public boolean isAlmostOne(double value) {
-        return Math.abs(value-1) < 1e-9;
+    private boolean isNotOne(double value) {
+        return Math.abs(value-1) > 1e-9;
+    }
+
+    private boolean isNormalized(Deck deck) {
+        return !isNotOne(getSumProbability(deck));
     }
 
     public double getWeight(int knowledge) {
@@ -60,6 +62,13 @@ public class CardProbabilities{
             databaseCard.updateCard(card);
         }
         database.updateDeck(deck);
+    }
+
+    public void printProbability(Deck deck) {
+        System.out.println("Printing probability of deck " + deck.getName());
+        for (Card card : deck.getCardList()) {
+            System.out.println("Probability of card " + card.toString() + " : " + card.getProbability());
+        }
     }
 
 }
