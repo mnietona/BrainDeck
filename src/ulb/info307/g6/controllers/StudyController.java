@@ -30,11 +30,11 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
     public void updateCardKnowledgeLevel() {
         if (!currentDeck.isEmpty()) {
             Card card = currentDeck.getCardList().get(cardIndex);
-            double newProba = cardProbabilities.getNewProbabilityValue(studyView.getSelectedKnowledgeLvl());
-            card.setKnowledgeLevel(card.getKnowledgeLevel() * newProba);
+            double newProba = cardProbabilities.getWeight(studyView.getSelectedKnowledgeLvl());
+            card.setProbability(card.getProbability() * newProba);
             databaseCard.updateCard(card);
             database.updateDeck(currentDeck);
-            cardProbabilities.updateProbability(currentDeck,databaseCard,database);
+            cardProbabilities.normalizeProbability(currentDeck,databaseCard,database);
         }
     }
 
@@ -54,7 +54,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
 
             int i = 0;
             for (Card card : currentDeck.getCardList()) {
-                cumulativeProbability += card.getKnowledgeLevel();
+                cumulativeProbability += card.getProbability();
 
                 if (random <= cumulativeProbability) {
                     nextCardIndex = i;

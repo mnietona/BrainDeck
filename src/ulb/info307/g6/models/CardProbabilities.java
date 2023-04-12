@@ -10,33 +10,37 @@ public class CardProbabilities{
         double sum = 0;
 
         for (Card card : deck.getCardList())
-            sum += card.getKnowledgeLevel();
+            sum += card.getProbability();
 
         if (Math.abs(sum - 1) > 1e-9) { // If the sum of the probabilities is not 1, we normalize them sum != 1
             for (Card card : deck.getCardList()) {
-                card.setKnowledgeLevel(probability);
+                card.setProbability(probability);
                 databaseCard.updateCard(card);
             }
             database.updateDeck(deck);
         }
     }
 
-    public void updateProbability(Deck deck,CardDaoNitriteImplementation databaseCard, DeckDaoNitriteImplementation database) {
+    public void normalizeProbability(Deck deck, CardDaoNitriteImplementation databaseCard, DeckDaoNitriteImplementation database) {
         double sum = 0;
         for (Card card : deck.getCardList()) {
-            sum += card.getKnowledgeLevel();
+            sum += card.getProbability();
         }
-        if (Math.abs(sum - 1) > 1e-9) {
+        if (!isAlmostOne(sum)) {
             for (Card card : deck.getCardList()) {
-                double normalizedProbability = card.getKnowledgeLevel() / sum;
-                card.setKnowledgeLevel(normalizedProbability);
+                double normalizedProbability = card.getProbability() / sum;
+                card.setProbability(normalizedProbability);
                 databaseCard.updateCard(card);
             }
             database.updateDeck(deck);
         }
     }
 
-    public double getNewProbabilityValue(int knowledge) {
+    public boolean isAlmostOne(double value) {
+        return Math.abs(value-1) < 1e-9;
+    }
+
+    public double getWeight(int knowledge) {
         return switch (knowledge) {
             case 0 -> 1.5; // Very bad
             case 1 -> 1.25;
@@ -52,7 +56,7 @@ public class CardProbabilities{
         int numberOfCards = deck.getSize();
         double probability = (double) 1 / numberOfCards;
         for (Card card : deck.getCardList()) {
-            card.setKnowledgeLevel(probability);
+            card.setProbability(probability);
             databaseCard.updateCard(card);
         }
         database.updateDeck(deck);
