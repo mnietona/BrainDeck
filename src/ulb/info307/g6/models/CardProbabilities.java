@@ -8,17 +8,22 @@ public class CardProbabilities {
     public ArrayList<Integer> cardsIndexCount = new ArrayList<>();
     public int cardsToSkip = 0;
 
-    public void initCardProbabilities(int numberOfCards)
-    {
-        double probability = (double) 1/numberOfCards;
-        double[] initialProbabilities = new double[numberOfCards];
 
-        for (int i = 0; i < initialProbabilities.length; i++)
-        {
-            initialProbabilities[i] = probability;
+    static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
+    static CardDaoNitriteImplementation databaseCard = new CardDaoNitriteImplementation();
+
+    public void initCardProbabilities(Deck deck) {
+        if (!isNormalized(deck)) { // If the sum of the probabilities is not 1, we normalize them sum != 1
+            int numberOfCards = deck.getSize();
+            double probability = (double) 1 / numberOfCards;
+            for (Card card : deck.getCardList()) {
+                card.setProbability(probability);
+                databaseCard.updateCard(card);
+            }
+            database.updateDeck(deck);
         }
-        this.cardProbabilities = initialProbabilities;
     }
+
 
 
     public double[] getCardsProbabilities()
@@ -37,60 +42,57 @@ public class CardProbabilities {
         return cardProbability;
     }
 
-    public void resetProbabilities()
-    {
-        if (this.cardProbabilities.length > 0)
-        {
-            double initial = (double) 1/cardProbabilities.length;
-            for (int i = 0; i < cardProbabilities.length; i++)
-            {
-                this.cardProbabilities[i] = initial;
+    public void resetProbability(Deck deck) {
+        int numberOfCards = deck.getSize();
+        double probability = (double) 1 / numberOfCards;
+        for (Card card : deck.getCardList()) {
+            card.setProbability(probability);
+            databaseCard.updateCard(card);
+        }
+        database.updateDeck(deck);
+    }
+
+
+    private double getSumProbability(Deck deck) {
+        double sum = 0;
+        for (Card card : deck.getCardList()) {
+            sum += card.getProbability();
+        }
+        return sum;
+    }
+
+    public void normalizeProbability(Deck deck) {
+        double sum = getSumProbability(deck);
+        if (isNotOne(sum)) {
+            for (Card card : deck.getCardList()) {
+                card.setProbability(card.getProbability() / sum);
+                databaseCard.updateCard(card);
             }
+            database.updateDeck(deck);
         }
     }
 
-    public void normalizeProbabilities()
-    {
-        double total_sum = 0;
-        for (double i : this.cardProbabilities)
-        {
-            total_sum += i;
-        }
 
-        for (int i = 0; i < this.cardProbabilities.length; i++)
-        {
-            this.cardProbabilities[i] = this.cardProbabilities[i]/total_sum;
-        }
+    public double getWeight(int knowledge) {
+        return switch (knowledge) {
+            case 0 -> 1.5; // Very bad
+            case 1 -> 1.25;
+            case 2 -> 1;
+            case 3 -> 0.75;
+            case 4 -> 0.5; // Very good
+            default -> 1;
+        };
     }
 
-    public double getNewProbabilityValue(int knowledge) {
-        double newWeight = 0;
-        switch (knowledge) {
-            case 0:
-                newWeight = 1.9; // Very bad
-                break;
-            case 1:
-                newWeight = 1.6;
-                break;
-            case 2:
-                newWeight = 1.4;
-                break;
-            case 3:
-                newWeight = 1.2;
-                break;
-            case 4:
-                newWeight = 0.8; // Very good
-                break;
-        }
-        return newWeight;
+
+    public void updateProbability(Deck deck, Card card, int knowledgeLvl) {
+        double newProba = card.getProbability() * getWeight(knowledgeLvl);
+        card.setProbability(newProba);
+        databaseCard.updateCard(card);
+        database.updateDeck(deck);
+        normalizeProbability(deck);
     }
 
-    public void updateCardProbability(int cardID, int knowledge)
-    {
-        double newCardProbability = getNewProbabilityValue(knowledge);
-        this.cardProbabilities[cardID] = this.cardProbabilities[cardID]*newCardProbability;
-        normalizeProbabilities();
-    }
 
     public void setCardProbabilities(double[] probabilities)
     {
