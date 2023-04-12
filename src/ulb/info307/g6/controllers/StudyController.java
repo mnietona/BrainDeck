@@ -5,7 +5,6 @@ import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.CardGapFill;
 import ulb.info307.g6.models.CardProbabilities;
 import ulb.info307.g6.models.Deck;
-import ulb.info307.g6.models.database.CardDaoNitriteImplementation;
 import ulb.info307.g6.views.Study;
 
 public class StudyController extends ControllerWithDeckList implements Study.StudyListener {
@@ -45,24 +44,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
         if (currentDeck.getSize() == 2 || currentDeck.getSize() == 3) {
             nextCardIndex = (cardIndex + 1) % currentDeck.getSize();
         } else if (currentDeck.getSize() > 3) {
-            double random = Math.random(); // Génère un nombre aléatoire entre 0 et 1
-            double cumulativeProbability = 0.0;
-
-            int i = 0;
-            for (Card card : currentDeck.getCardList()) {
-                cumulativeProbability += card.getProbability();
-
-                if (random <= cumulativeProbability) {
-                    nextCardIndex = i;
-                    break;
-                }
-                i++;
-            }
-
-            if (nextCardIndex == lastIndex[0] || nextCardIndex == lastIndex[1] || nextCardIndex == lastIndex[2]) {
-                getNextRandomCard();
-                return;
-            }
+            nextCardIndex = cardProbabilities.getRandomCardIndexExcluding(currentDeck,lastIndex);
         }
 
         cardIndex = nextCardIndex;

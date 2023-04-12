@@ -80,4 +80,36 @@ public class CardProbabilities{
         }
     }
 
+    public int getRandomCardIndex(Deck deck) {
+        double random = Math.random(); // Génère un nombre aléatoire entre 0 et 1
+        double cumulativeProbability = 0.0;
+
+        int i = 0;
+        for (Card card : deck.getCardList()) {
+            cumulativeProbability += card.getProbability();
+
+            if (random <= cumulativeProbability) {
+                return i;
+            }
+            i++;
+        }
+        return i;
+    }
+
+    public int getRandomCardIndexExcluding(Deck deck, int [] indexToExclude) {
+        int i = getRandomCardIndex(deck);
+        while (contains(indexToExclude, i)) {
+            i = getRandomCardIndex(deck);
+        }
+        return i;
+    }
+
+    private boolean contains(int [] array, int value) {
+        for (int i : array) {
+            if (i == value) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
