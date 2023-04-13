@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="5.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.EditCard">
+    <!-- Left pane : list of decks + home -->
+    <VBox alignment="CENTER" spacing="5.0">
+        <ListView fx:id="cardListView" prefWidth="169.0" VBox.vgrow="ALWAYS" />
+        <Button fx:id="buttonBack" onAction="#clickBack" prefWidth="169.0" text="Back" />
+    </VBox>
+
+    <!-- Right pane : textboxes + edit/create/remove card -->
+    <VBox alignment="TOP_CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
+        <VBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+                <Label text="Question">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <CheckBox fx:id="gapFillCheckBox" text="Gap-fill" />
+            </HBox>
+            <TextArea fx:id="questionInput" onKeyTyped="#inputChange" VBox.vgrow="ALWAYS" />
+
+            <Label text="Answer">
+                <font>
+                    <Font size="20.0" />
+                </font>
+            </Label>
+            <TextArea fx:id="answerInput" onKeyTyped="#inputChange" VBox.vgrow="ALWAYS" />
+        </VBox>
+
+        <HBox alignment="TOP_CENTER" spacing="5.0">
+            <Button fx:id="buttonEditCard" onAction="#clickEditCard" text="Edit card" />
+            <Button fx:id="buttonCreateCard" onAction="#clickCreateCard" text="Create card" />
+            <Button fx:id="buttonRemoveCard" onAction="#clickRemoveCard" text="Remove card" />
+        </HBox>
+    </VBox>
+
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+    </padding>
+</HBox>

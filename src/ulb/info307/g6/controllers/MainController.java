@@ -1,38 +1,31 @@
 package ulb.info307.g6.controllers;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import java.io.IOException;
-
 
 public class MainController extends Application {
+    private final int MIN_WIDTH = 616, MIN_HEIGHT = 439;  // Default size of window with contents of 600x400
 
-    @Override
-    public void start(Stage primaryStage) {
-        try {
-            FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/ulb/info307/g6/views/MainMenu.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root, 600, 408);
-            primaryStage.setScene(scene);
-            primaryStage.setTitle("Menu");
-            primaryStage.show();
-
-        } catch (IOException e) {
-            showErrorAlert();
-        }
-    }
-
-    private void showErrorAlert() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-    }
-
+    /**
+     * Entry point of the program, called by launcher.
+     */
     public static void main(String[] args) {
         launch(args);
     }
-}
 
+    /**
+     * Entry point of the JavaFX app.
+     *
+     * @param primaryStage Window of the app, passed to all controllers.
+     */
+    @Override
+    public void start(Stage primaryStage) {
+        try {
+            primaryStage.setMinWidth(MIN_WIDTH);
+            primaryStage.setMinHeight(MIN_HEIGHT);
+            new WelcomeController(primaryStage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

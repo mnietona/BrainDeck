@@ -31,6 +31,8 @@ public class Deck implements Serializable {
     public List<Card> getCardList() {
         return cardList;
     }
+    public int getSize() {return getCardList().size();}
+    public boolean isEmpty() {return getSize() == 0;}
 
     public void setCardList(List<Card> cardList) {
         this.cardList = cardList;
@@ -55,5 +57,10 @@ public class Deck implements Serializable {
     public long getId() {return id;}
 
     public String toString() {return getName();}
+
+    public boolean isDeck(String name){
+        if(name == this.name) return true;
+        else return false;
+    }
 
 }
