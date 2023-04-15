@@ -62,6 +62,7 @@ public class EditDeck extends ViewWithDeckList {
         buttonEdit.setDisable(!activate);
         buttonRemove.setDisable(!activate);
         buttonResetProba.setDisable(!activate);
+        buttonExport.setDisable(!activate);
     }
 
     @Override

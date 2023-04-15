@@ -1,9 +1,12 @@
 package ulb.info307.g6.controllers;
 
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import ulb.info307.g6.models.CardProbabilities;
 import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.views.EditDeck;
+
+import java.io.File;
 
 public class EditDeckController extends ControllerWithDeckList implements EditDeck.EditDeckListener {
     static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
@@ -20,6 +23,22 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
     public void deckSelected(){
         editDeckView.updateDeckTitle();
         editDeckView.activateActionButtons(true);
+    }
+
+    @Override
+    public void clickImport() {
+        FileChooser fileChooser = new FileChooser();
+        File selectedFile =  fileChooser.showOpenDialog(stage);
+        System.out.println(selectedFile);
+    }
+
+    @Override
+    public void clickExport() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialFileName(editDeckView.getSelectedDeck().getName()+"_export.json");
+        File selectedFile = fileChooser.showSaveDialog(stage);
+        System.out.println(selectedFile);
+
     }
 
     @Override
