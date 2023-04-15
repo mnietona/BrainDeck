@@ -14,6 +14,7 @@ public class Card implements Serializable {
     private Double probability; // 5 levels: 0, 1, 2, 3, 4 from bad to good
 
     public Card() {
+        this.id = new Random().nextLong();
     }
 
     public Card(String question, String answer) {
