@@ -1,12 +1,18 @@
 package ulb.info307.g6.controllers;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import ulb.info307.g6.models.CardProbabilities;
+import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.views.EditDeck;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.Scanner;
 
 public class EditDeckController extends ControllerWithDeckList implements EditDeck.EditDeckListener {
     static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
@@ -29,16 +35,41 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
     public void clickImport() {
         FileChooser fileChooser = new FileChooser();
         File selectedFile =  fileChooser.showOpenDialog(stage);
-        System.out.println(selectedFile);
+        try {
+            String fileContent = "";
+            Scanner s = new Scanner(selectedFile);
+            while (s.hasNextLine()) {
+                fileContent += s.nextLine();
+            }
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            Deck d = mapper.readValue(fileContent, Deck.class);
+            if (database.getDeckById(d.getId()) != null) {
+                database.updateDeck(d);
+            } else {
+                database.addDeck(d);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        setDeckList();
     }
 
     @Override
     public void clickExport() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialFileName(editDeckView.getSelectedDeck().getName()+"_export.json");
-        File selectedFile = fileChooser.showSaveDialog(stage);
-        System.out.println(selectedFile);
-
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            String deckContent = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(editDeckView.getSelectedDeck());
+            File selectedFile = fileChooser.showSaveDialog(stage);
+            FileWriter fileWriter = new FileWriter(selectedFile);
+            fileWriter.write(deckContent);
+            fileWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
