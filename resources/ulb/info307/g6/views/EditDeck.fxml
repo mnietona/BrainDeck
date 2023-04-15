@@ -27,6 +27,8 @@
             <Button fx:id="buttonCreate" onAction="#clickCreate" text="Create deck" />
             <Button fx:id="buttonRemove" onAction="#clickRemove" text="Remove deck" />
             <Button fx:id="buttonResetProba" onAction="#clickResetProba" text="Reset probabilities" />
+            <Button fx:id="buttonImport" onAction="#clickImport" text="Import" />
+            <Button fx:id="buttonExport" onAction="#clickExport" text="Export" />
         </HBox>
     </VBox>
 
