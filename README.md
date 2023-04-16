@@ -1,44 +1,31 @@
 # INFO-F-307 : Projet Flashcards (Groupe 6)
-Application multiplateforme d’aide à l’étude basée sur un système de flashcards, implémentée en Java.
+Application multiplateforme d’aide à l’étude basée sur un système de flashcards. Implémentée en Java.
 
-## Téléchargements requis
-* Dernière version de java : https://www.oracle.com/java/technologies/downloads/
-  * Version 19.0.2 : https://www.oracle.com/java/technologies/javase/jdk19-archive-downloads.html
-* IntelliJ IDEA : https://www.jetbrains.com/idea/download/
-  * Version Ultimate gratuite pour les étudiants : https://www.jetbrains.com/community/education/#students
+## Téléchargements
+* [Dernière version de java](https://www.oracle.com/java/technologies/downloads/)
+    * [Version 19.0.2](https://www.oracle.com/java/technologies/javase/jdk19-archive-downloads.html)
+* [IntelliJ IDEA](https://www.jetbrains.com/idea/download/)
+    * [Version Ultimate gratuite pour les étudiants](https://www.jetbrains.com/community/education/#students)
 
 ## Lancer l'application
+* Cloner ou télécharger le [repository](https://gitlab.ulb.be/ulb-infof307/2023-groupe-6). Ouvrir "dist/g6-iteration-2.jar".
 
-### Depuis IntelliJ
-0. Télécharger le repository et l'ouvrir dans IntelliJ
-1. Bouton \<Load Gradle Project> sur le pop-up "Gradle build scripts found"
-2. Click droit puis <Run 'Launcher.main()'> sur le fichier "src/ulb/info307/g6/Launcher"
-3. Pour les lancements suivants; <Maj+F10> (ou bouton <Run 'Launcher'> en haut à droite)
+#### Lancer l'application depuis IntelliJ
+1. Ouvrir le projet dans IntelliJ. Clicker sur le bouton \<Load Gradle Project> du pop-up "Gradle build scripts found", si ce n'est pas déjà fait.
+2. Pour le premier lancement;
+    - Click droit puis <Run 'Launcher.main()'> sur le fichier "src/ulb/info307/g6/Launcher".
+3. Pour les lancements suivants;
+    - Même chose que l'étape 2, ou sélectionner "Launcher" dans la liste des configurations, puis clicker sur le bouton <Run 'Launcher'> (flèche verte en haut à droite).
 
-### Avec le .jar
-0. Télécharger le repository
-1.  ...
+#### (re)Compiler et lancer le .jar depuis IntelliJ
+1. [Étape 1 section précédente](#lancer-lapplication-depuis-intellij).
+2. Dans le menu \<Gradle> à droite, click droit puis <Run '2023-groupe-6 [jar]'> sur l'élément "Tasks/build/jar".
+3. Lancer le .jar depuis IntelliJ;
+    - [Étape 2 section précédente](#lancer-lapplication-depuis-intellij), mais avec le bouton <Run 'g6-iteration-2.jar'> et le fichier "dist/g6-iteration-2.jar".
+    - [Étape 3 section précédente](#lancer-lapplication-depuis-intellij), mais avec "g6-iteration-2.jar" dans la liste des configurations.
 
+&nbsp;  
+&nbsp;  
 ## Schémas
 ### Structure des menus de l'application
 ![](/resources/diagrams/menuStructure.png)
-
-## Accès au repo (ssh)
-
-### Windows
-```
-Ouvrir un terminal
--> "ssh-keygen -t ed25519"
-Enter file... -> Appuyer sur ENTER pour sauvegarder les clés dans le dossier par défaut
-Enter passphrase... -> Entrer un mot de passe
-Enter same passphrase... -> Confirmer le mdp
-
-Ouvrir le fichier C:\Users\<username>\.ssh\id_ed25519.pub
-Copier la clé se trouvant dans le fichier et la mettre sur https://gitlab.ulb.be/-/profile/keys
-
-Retourner sur le terminal se deplacer à l'endroit où cloner le repository
--> git clone ssh://git@gitlab.ulb.be:30422/ulb-infof307/2023-groupe-6.git
-
-The authenticity of host... -> "yes"
-Enter passhprase... -> Entrer le mot de passe introduit plus tôt
-```
