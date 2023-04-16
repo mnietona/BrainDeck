@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class Deck implements Serializable {
     @Id
-    private long id;
+    private final long id;
     private String name;
     private List<Card> cardList;
 
@@ -37,10 +37,6 @@ public class Deck implements Serializable {
     @JsonIgnore
     public boolean isEmpty() {return getSize() == 0;}
 
-    public void setCardList(List<Card> cardList) {
-        this.cardList = cardList;
-    }
-
     public void addCard(Card card) {
         this.cardList.add(card);
     }
@@ -53,17 +49,8 @@ public class Deck implements Serializable {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public long getId() {return id;}
 
     public String toString() {return getName();}
-
-    public boolean isDeck(String name){
-        if(name == this.name) return true;
-        else return false;
-    }
 
 }
