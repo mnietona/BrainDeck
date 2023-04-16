@@ -9,7 +9,7 @@ import java.util.Random;
 public class Card implements Serializable {
 
     @Id
-    private long id;
+    private final long id;
     private String res;
     private String answer;
     private Double probability; // 5 levels: 0, 1, 2, 3, 4 from bad to good
@@ -29,8 +29,6 @@ public class Card implements Serializable {
         return id;
     }
 
-    public void setId(long id) {this.id = id; }
-
     public String getQuestion() {
         return res;
     }
@@ -42,6 +40,7 @@ public class Card implements Serializable {
     public String getAnswer() {
         return answer;
     }
+
     public String getNthFlippedAnswer(int i) {
         return getAnswer();
     }
@@ -54,14 +53,15 @@ public class Card implements Serializable {
         return probability;
     }
 
-
     public void setProbability(Double probability) {
         this.probability = probability;
     }
+
     @JsonIgnore
     public boolean isValid() {
         return res != null && answer != null && !res.isEmpty() && !answer.isEmpty();
     }
+
     @JsonIgnore
     public int getNumberOfFlips() {
         return 1;
