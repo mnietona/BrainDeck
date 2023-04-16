@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class MainController extends Application {
-    private final int MIN_WIDTH = 616, MIN_HEIGHT = 439;  // Default size of window with contents of 600x400
+    private final int MIN_WIDTH = 716, MIN_HEIGHT = 439;  // Default size of window with contents of 700x400
 
     /**
      * Entry point of the program, called by launcher.
