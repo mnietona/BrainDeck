@@ -1,5 +1,6 @@
 package ulb.info307.g6.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.dizitart.no2.objects.Id;
 
 import java.io.Serializable;
@@ -31,7 +32,9 @@ public class Deck implements Serializable {
     public List<Card> getCardList() {
         return cardList;
     }
+    @JsonIgnore
     public int getSize() {return getCardList().size();}
+    @JsonIgnore
     public boolean isEmpty() {return getSize() == 0;}
 
     public void setCardList(List<Card> cardList) {

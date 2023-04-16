@@ -1,5 +1,6 @@
 package ulb.info307.g6.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.dizitart.no2.objects.Id;
 
 import java.io.Serializable;
@@ -57,15 +58,15 @@ public class Card implements Serializable {
     public void setProbability(Double probability) {
         this.probability = probability;
     }
-
+    @JsonIgnore
     public boolean isValid() {
         return res != null && answer != null && !res.isEmpty() && !answer.isEmpty();
     }
-
+    @JsonIgnore
     public int getNumberOfFlips() {
         return 1;
     }
-
+    @Override
     public String toString() {
         String s = res;
         int length = s.length();
