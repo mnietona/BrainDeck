@@ -10,17 +10,18 @@ public class Card implements Serializable {
 
     @Id
     private final long id;
-    private String res;
+    private String question;
     private String answer;
     private Double probability; // 5 levels: 0, 1, 2, 3, 4 from bad to good
 
     public Card() {
         this.id = new Random().nextLong();
+        this.probability = null;
     }
 
     public Card(String question, String answer) {
         this.id = new Random().nextLong();
-        this.res = question;
+        this.question = question;
         this.answer = answer;
         this.probability = 1.0;
     }
@@ -30,11 +31,11 @@ public class Card implements Serializable {
     }
 
     public String getQuestion() {
-        return res;
+        return question;
     }
 
     public void setQuestion(String question) {
-        this.res = question;
+        this.question = question;
     }
 
     public String getAnswer() {
@@ -59,7 +60,7 @@ public class Card implements Serializable {
 
     @JsonIgnore
     public boolean isValid() {
-        return res != null && answer != null && !res.isEmpty() && !answer.isEmpty();
+        return question != null && answer != null && !question.isEmpty() && !answer.isEmpty();
     }
 
     @JsonIgnore
@@ -68,7 +69,7 @@ public class Card implements Serializable {
     }
     @Override
     public String toString() {
-        String s = res;
+        String s = question;
         int length = s.length();
         s = s.substring(0, Math.min(length, 20));
         if (s.length() < length) s += "...";
