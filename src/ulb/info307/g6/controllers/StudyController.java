@@ -14,7 +14,6 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
     private int numberOfFlipsAuthorizedForCurrentCard = 1;
     private int cardIndex = 0;
     private Deck currentDeck = null;
-    private CardProbabilities cardProbabilities = new CardProbabilities();
 
     public StudyController(Stage stage) {
         super(stage, "/ulb/info307/g6/views/Study.fxml", "Study your decks");
@@ -29,7 +28,8 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
         if (!currentDeck.isEmpty()) {
             Card card = currentDeck.getCardList().get(cardIndex);
             int knowledgeLvl = studyView.getSelectedKnowledgeLvl();
-            cardProbabilities.updateProbability(currentDeck, card, knowledgeLvl);
+            CardProbabilities.updateProbability(currentDeck, card, knowledgeLvl);
+            database.updateDeck(currentDeck);
         }
     }
 
@@ -44,7 +44,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
         if (currentDeck.getSize() == 2 || currentDeck.getSize() == 3) {
             nextCardIndex = (cardIndex + 1) % currentDeck.getSize();
         } else if (currentDeck.getSize() > 3) {
-            nextCardIndex = cardProbabilities.getRandomCardIndexExcluding(currentDeck,lastIndex);
+            nextCardIndex = CardProbabilities.getRandomCardIndexExcluding(currentDeck,lastIndex);
         }
 
         cardIndex = nextCardIndex;
@@ -91,7 +91,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
             studyView.activateSlider(false);
             updateSliderPosition();
         }
-        cardProbabilities.printProbability(currentDeck);
+        CardProbabilities.printProbability(currentDeck);
     }
 
     @Override
@@ -114,7 +114,8 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
         flipIndex = 0;
 
         if (!currentDeck.isEmpty()) {
-            cardProbabilities.initCardProbabilities(currentDeck);
+            CardProbabilities.initCardProbabilities(currentDeck);
+            database.updateDeck(currentDeck);
             getNextRandomCard();
             updateDisplayArea();
         } else {

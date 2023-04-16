@@ -6,18 +6,14 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import ulb.info307.g6.models.CardProbabilities;
 import ulb.info307.g6.models.Deck;
-import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.views.EditDeck;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Scanner;
 
 public class EditDeckController extends ControllerWithDeckList implements EditDeck.EditDeckListener {
-    static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation(); // Initialize the DAO for the database
     private EditDeck editDeckView;
-    private CardProbabilities cardProbabilities = new CardProbabilities();
 
     public EditDeckController(Stage stage) {
         super(stage, "/ulb/info307/g6/views/EditDeck.fxml", "Edit Deck");
@@ -103,7 +99,7 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
     @Override
     public void clickResetProba() {
         if (editDeckView.isDeckSelected()) {
-            cardProbabilities.resetProbability(editDeckView.getSelectedDeck());
+            CardProbabilities.resetProbability(editDeckView.getSelectedDeck());
             database.updateDeck(editDeckView.getSelectedDeck());
         }
     }
