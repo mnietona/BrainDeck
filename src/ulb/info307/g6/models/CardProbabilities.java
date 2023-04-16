@@ -37,7 +37,7 @@ public class CardProbabilities {
         return Math.abs(value-1) > 1e-9;
     }
 
-    private static boolean isNormalized(Deck deck) {
+    public static boolean isNormalized(Deck deck) {
         return !isNotOne(getSumProbability(deck));
     }
 

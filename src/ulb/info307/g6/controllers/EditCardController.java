@@ -3,14 +3,13 @@ package ulb.info307.g6.controllers;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 import ulb.info307.g6.models.CardGapFill;
+import ulb.info307.g6.models.CardProbabilities;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.models.Card;
-import ulb.info307.g6.models.database.CardDaoNitriteImplementation;
 import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.views.EditCard;
 
 public class EditCardController extends Controller implements EditCard.EditCardListener {
-    static CardDaoNitriteImplementation databaseCard = new CardDaoNitriteImplementation();
     static DeckDaoNitriteImplementation databaseDeck = new DeckDaoNitriteImplementation();
     private Deck deck;
     private EditCard editCardView;
@@ -29,7 +28,6 @@ public class EditCardController extends Controller implements EditCard.EditCardL
         if (selectedItem != null && !editCardView.atLeastOneInputIsEmpty()) {
             selectedItem.setQuestion(editCardView.getQuestionInput());
             selectedItem.setAnswer(editCardView.getAnswerInput());
-            databaseCard.updateCard(selectedItem);
             databaseDeck.updateDeck(deck);
             editCardView.setCardList(deck);
         }
@@ -41,10 +39,13 @@ public class EditCardController extends Controller implements EditCard.EditCardL
         if (!editCardView.atLeastOneInputIsEmpty()) {
             Card card = getCardEntered();
             if (card.isValid()) {
+                // that way the normalization will be coherent
+                card.setProbability(deck.isEmpty() ? 1.0 : (1.0 / deck.getSize()));
                 deck.addCard(card);
-                databaseCard.updateCard(card);
+                CardProbabilities.normalizeProbability(deck);
                 databaseDeck.updateDeck(deck);
                 editCardView.setCardList(deck);
+                CardProbabilities.printProbability(deck);
             }
         }
         editCardView.clearTextFields();
@@ -64,11 +65,12 @@ public class EditCardController extends Controller implements EditCard.EditCardL
         Card selectedItem = editCardView.getSelectedCard();
         if (selectedItem != null) {
             deck.removeCard(selectedItem);
-            databaseCard.deleteCard(selectedItem);
+            CardProbabilities.normalizeProbability(deck);
             databaseDeck.updateDeck(deck);
             editCardView.setCardList(deck);
             editCardView.clearTextFields();
             editCardView.activateButtons(false);
+            CardProbabilities.printProbability(deck);
         }
     }
 

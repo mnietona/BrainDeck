@@ -1,9 +1,9 @@
 package ulb.info307.g6.controllers;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.CardProbabilities;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.views.EditDeck;
@@ -38,8 +38,32 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
                 fileContent += s.nextLine();
             }
             ObjectMapper mapper = new ObjectMapper();
-            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             Deck d = mapper.readValue(fileContent, Deck.class);
+            if (d.isEmpty()) {
+                throw new IllegalArgumentException("Cannot import empty deck");
+            }
+            int amountOfEmptyProbaCards = 0;
+            for (Card c : d.getCardList()) {
+                if (c.getProbability() == null) {
+                    amountOfEmptyProbaCards++;
+                }
+            }
+            if (amountOfEmptyProbaCards >= 1) {
+                for (Card c : d.getCardList()) {
+                    if (c.getProbability() == null) {
+                        if (d.getSize() == amountOfEmptyProbaCards) {
+                            c.setProbability(1.0);
+                        } else {
+                            c.setProbability(1.0 / (d.getSize() - amountOfEmptyProbaCards));
+                        }
+                    }
+                }
+                CardProbabilities.normalizeProbability(d);
+            }
+            if (!CardProbabilities.isNormalized(d)) {
+                CardProbabilities.initCardProbabilities(d);
+                System.out.println("Probabilities were not good so we reset them for you");
+            }
             if (database.getDeckById(d.getId()) != null) {
                 database.updateDeck(d);
             } else {
@@ -101,6 +125,7 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
         if (editDeckView.isDeckSelected()) {
             CardProbabilities.resetProbability(editDeckView.getSelectedDeck());
             database.updateDeck(editDeckView.getSelectedDeck());
+            CardProbabilities.printProbability(editDeckView.getSelectedDeck());
         }
     }
 }
