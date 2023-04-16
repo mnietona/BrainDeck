@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'ulb.info307.g6'
-version 'iteration-1'
+version 'iteration-2'
 
 repositories {
     mavenCentral()
