@@ -4,7 +4,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import ulb.info307.g6.models.Deck;
 import java.util.List;
-
+/**
+ * The ViewWithDeckList class implements the View interface and is the controller for the ViewWithDeckList.fxml file.
+ * It is used to display a list of decks.
+ * It has a list view to select a deck.
+ */
 public abstract class ViewWithDeckList implements View {
     @FXML
     private ListView<Deck> deckListView = new ListView();
