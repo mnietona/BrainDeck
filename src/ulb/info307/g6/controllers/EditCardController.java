@@ -9,10 +9,13 @@ import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.views.EditCard;
 
+/**
+ * Controller for editing cards in a deck.
+ */
 public class EditCardController extends Controller implements EditCard.EditCardListener {
-    static DeckDaoNitriteImplementation databaseDeck = new DeckDaoNitriteImplementation();
-    private Deck deck;
-    private EditCard editCardView;
+    static DeckDaoNitriteImplementation databaseDeck = new DeckDaoNitriteImplementation(); // The deck database implementation
+    private Deck deck; // The deck being edited
+    private EditCard editCardView; // The view for editing a card
 
     public EditCardController(Stage stage, Deck deck) {
         super(stage, "/ulb/info307/g6/views/EditCard.fxml", "Edit cards in the deck");
@@ -51,15 +54,6 @@ public class EditCardController extends Controller implements EditCard.EditCardL
         editCardView.clearTextFields();
     }
 
-    @NotNull
-    private Card getCardEntered() {
-        if (editCardView.cardIsGapFill()) {
-            return new CardGapFill(editCardView.getQuestionInput(), editCardView.getAnswerInput());
-        } else {
-            return new Card(editCardView.getQuestionInput(), editCardView.getAnswerInput());
-        }
-    }
-
     @Override
     public void clickRemoveCard() {
         Card selectedItem = editCardView.getSelectedCard();
@@ -71,6 +65,15 @@ public class EditCardController extends Controller implements EditCard.EditCardL
             editCardView.clearTextFields();
             editCardView.activateButtons(false);
             CardProbabilities.printProbability(deck);
+        }
+    }
+
+    @NotNull
+    private Card getCardEntered() {
+        if (editCardView.cardIsGapFill()) {
+            return new CardGapFill(editCardView.getQuestionInput(), editCardView.getAnswerInput());
+        } else {
+            return new Card(editCardView.getQuestionInput(), editCardView.getAnswerInput());
         }
     }
 

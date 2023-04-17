@@ -18,7 +18,6 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
     public StudyController(Stage stage) {
         super(stage, "/ulb/info307/g6/views/Study.fxml", "Study your decks");
         studyView = (Study) view;
-
         studyView.setSliderLabels();
         studyView.activateSlider(false);
         studyView.activateActionButtons(false);
@@ -40,13 +39,11 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
 
     private void getNextRandomCard() {
         int nextCardIndex = 0;
-
         if (currentDeck.getSize() == 2 || currentDeck.getSize() == 3) {
             nextCardIndex = (cardIndex + 1) % currentDeck.getSize();
         } else if (currentDeck.getSize() > 3) {
             nextCardIndex = CardProbabilities.getRandomCardIndexExcluding(currentDeck,lastIndex);
         }
-
         cardIndex = nextCardIndex;
         lastIndex[2] = lastIndex[1];
         lastIndex[1] = lastIndex[0];
@@ -99,6 +96,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
         if (currentDeck != null && !currentDeck.isEmpty()) {
             updateSliderPosition();
             updateCardKnowledgeLevel();
+            // Increment flip index and limit it to the authorized number of flips
             flipIndex = (flipIndex + 1) % (numberOfFlipsAuthorizedForCurrentCard + 1);
             updateDisplayArea();
             studyView.activateSlider(flipIndex == numberOfFlipsAuthorizedForCurrentCard);
