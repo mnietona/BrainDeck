@@ -8,8 +8,8 @@ import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.views.Study;
 
 public class StudyController extends ControllerWithDeckList implements Study.StudyListener {
-    private Study studyView;
-    private int[] lastIndex = new int[3];
+    private final Study studyView;
+    private final int[] lastIndex = new int[3];
     private int flipIndex = 0;
     private int numberOfFlipsAuthorizedForCurrentCard = 1;
     private int cardIndex = 0;

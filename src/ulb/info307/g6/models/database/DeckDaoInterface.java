@@ -4,9 +4,9 @@ import ulb.info307.g6.models.Deck;
 import java.util.List;
 
 public interface DeckDaoInterface {
-    public boolean addDeck(Deck deck);
-    public boolean deleteDeck(Deck deck);
-    public boolean updateDeck(Deck deck);
-    public List<Deck> getAllDecks();
-    public Deck getDeckById(long id);
+    boolean addDeck(Deck deck);
+    boolean deleteDeck(Deck deck);
+    boolean updateDeck(Deck deck);
+    List<Deck> getAllDecks();
+    Deck getDeckById(long id);
 }

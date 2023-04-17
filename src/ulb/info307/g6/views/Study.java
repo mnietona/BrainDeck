@@ -14,8 +14,6 @@ import javafx.util.StringConverter;
  */
 public class Study extends ViewWithDeckList {
     @FXML
-    private Button buttonHome;
-    @FXML
     private Pane cardBackground;
     @FXML
     private Text cardText;
@@ -62,9 +60,8 @@ public class Study extends ViewWithDeckList {
     }
 
     public void setSliderLabels() {
-
-        knowledgeLvlSlider.setValue(2); // Set the default value to 2 (Middle of the slider)
-        knowledgeLvlSlider.setLabelFormatter(new StringConverter<Double>() {
+        knowledgeLvlSlider.setValue(2);  // Set the default value to 2 (Middle of the slider)
+        knowledgeLvlSlider.setLabelFormatter(new StringConverter<>() {
             @Override
             public String toString(Double n) {
                 if (n == 0) {
@@ -94,7 +91,9 @@ public class Study extends ViewWithDeckList {
         });
     }
 
-    public int getSelectedKnowledgeLvl() {return (int) knowledgeLvlSlider.getValue();}
+    public int getSelectedKnowledgeLvl() {
+        return (int) knowledgeLvlSlider.getValue();
+    }
 
     public void setSliderLvl(Double lvl) {
         knowledgeLvlSlider.setValue(lvl);

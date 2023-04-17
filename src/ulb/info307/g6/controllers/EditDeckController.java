@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class EditDeckController extends ControllerWithDeckList implements EditDeck.EditDeckListener {
-    private EditDeck editDeckView;
+    private final EditDeck editDeckView;
 
     public EditDeckController(Stage stage) {
         super(stage, "/ulb/info307/g6/views/EditDeck.fxml", "Edit Deck");
@@ -42,21 +42,20 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
 
     private File selectFile() {
         FileChooser fileChooser = new FileChooser();
-        File selectedFile =  fileChooser.showOpenDialog(stage);
-        return selectedFile;
+        return fileChooser.showOpenDialog(stage);
     }
 
     private String readFileContent(File selectedFile) {
-        String fileContent = "";
+        StringBuilder fileContent = new StringBuilder();
         try {
             Scanner s = new Scanner(selectedFile);
             while (s.hasNextLine()) {
-                fileContent += s.nextLine();
+                fileContent.append(s.nextLine());
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return fileContent;
+        return fileContent.toString();
     }
 
     private Deck importDeck(String fileContent) {
@@ -99,7 +98,7 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
             }
             CardProbabilities.normalizeProbability(d);
         }
-        if (!CardProbabilities.isNormalized(d)) {
+        if (CardProbabilities.isNotNormalized(d)) {
             CardProbabilities.initCardProbabilities(d);
             System.out.println("Probabilities were not good so we reset them for you");
         }

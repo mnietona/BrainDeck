@@ -9,7 +9,7 @@
     <!-- Left pane : list of decks + home -->
     <VBox alignment="CENTER" spacing="5.0">
         <ListView fx:id="deckListView" prefWidth="169.0" VBox.vgrow="ALWAYS" />
-        <Button fx:id="buttonHome" onAction="#clickHome" prefWidth="169.0" text="Home" />
+        <Button onAction="#clickHome" prefWidth="169.0" text="Home" />
     </VBox>
 
     <!-- Right pane : selected deck + edit/create/remove deck -->
@@ -24,10 +24,10 @@
 
         <HBox alignment="TOP_CENTER" spacing="10">
             <Button fx:id="buttonEdit" onAction="#clickEdit" text="Edit deck" />
-            <Button fx:id="buttonCreate" onAction="#clickCreate" text="Create deck" />
+            <Button onAction="#clickCreate" text="Create deck" />
             <Button fx:id="buttonRemove" onAction="#clickRemove" text="Remove deck" />
             <Button fx:id="buttonResetProba" onAction="#clickResetProba" text="Reset probabilities" />
-            <Button fx:id="buttonImport" onAction="#clickImport" text="Import" />
+            <Button onAction="#clickImport" text="Import" />
             <Button fx:id="buttonExport" onAction="#clickExport" text="Export" />
         </HBox>
     </VBox>

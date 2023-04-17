@@ -12,7 +12,7 @@ public class CreateDeck implements View {
     @FXML
     private TextField inputBox;
     @FXML
-    private Button buttonConfirm, buttonBack;
+    private Button buttonConfirm;
     private CreateDeckListener listener;
 
     @Override

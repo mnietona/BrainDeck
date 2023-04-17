@@ -10,9 +10,9 @@ import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.views.EditCard;
 
 public class EditCardController extends Controller implements EditCard.EditCardListener {
-    static DeckDaoNitriteImplementation databaseDeck = new DeckDaoNitriteImplementation(); // The deck database implementation
-    private Deck deck; // The deck being edited
-    private EditCard editCardView; // The view for editing a card
+    static DeckDaoNitriteImplementation databaseDeck = new DeckDaoNitriteImplementation();  // The deck database implementation
+    private final Deck deck;  // The deck being edited
+    private final EditCard editCardView;  // The view for editing a card
 
     public EditCardController(Stage stage, Deck deck) {
         super(stage, "/ulb/info307/g6/views/EditCard.fxml", "Edit cards in the deck");

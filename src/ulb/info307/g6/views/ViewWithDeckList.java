@@ -11,7 +11,7 @@ import java.util.List;
  */
 public abstract class ViewWithDeckList implements View {
     @FXML
-    private ListView<Deck> deckListView = new ListView();
+    private ListView<Deck> deckListView = new ListView<>();
 
     public Deck getSelectedDeck() {
         return deckListView.getSelectionModel().getSelectedItem();

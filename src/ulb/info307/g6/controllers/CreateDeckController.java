@@ -7,11 +7,10 @@ import ulb.info307.g6.views.CreateDeck;
 
 public class CreateDeckController extends Controller implements CreateDeck.CreateDeckListener {
     static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation();  // Initialize the DAO for the database
-    private CreateDeck createDeckView;
 
     public CreateDeckController(Stage stage) {
         super(stage, "/ulb/info307/g6/views/CreateDeck.fxml", "Create a new deck");
-        createDeckView = (CreateDeck) view;
+        CreateDeck createDeckView = (CreateDeck) view;
         createDeckView.activateButton(false);  // Disable the confirm button until the user inputs a deck name
     }
 

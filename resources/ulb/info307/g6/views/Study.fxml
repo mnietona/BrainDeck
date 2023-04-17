@@ -9,7 +9,7 @@
     <!-- Left pane : list of decks + home -->
     <VBox alignment="CENTER" spacing="5.0">
         <ListView fx:id="deckListView" prefWidth="169.0" VBox.vgrow="ALWAYS" />
-        <Button fx:id="buttonHome" onAction="#clickHome" prefWidth="169.0" text="Home" />
+        <Button onAction="#clickHome" prefWidth="169.0" text="Home" />
     </VBox>
 
     <!-- Right pane : card + knowledge lvl + flip/next -->

@@ -3,7 +3,7 @@ package ulb.info307.g6.models;
 public class CardProbabilities {
 
     public static void initCardProbabilities(Deck deck) {
-        if (!isNormalized(deck)) { // If the sum of the probabilities is not 1, we normalize them sum != 1
+        if (isNotNormalized(deck)) { // If the sum of the probabilities is not 1, we normalize them sum != 1
             int numberOfCards = deck.getSize();
             double probability = (double) 1 / numberOfCards;
             for (Card card : deck.getCardList()) {
@@ -39,18 +39,17 @@ public class CardProbabilities {
         return Math.abs(value-1) > 1e-9;
     }
 
-    public static boolean isNormalized(Deck deck) {
-        return !isNotOne(getSumProbability(deck));
+    public static boolean isNotNormalized(Deck deck) {
+        return isNotOne(getSumProbability(deck));
     }
 
     public static double getWeight(int knowledge) {
         return switch (knowledge) {
             case 0 -> 1.5; // Very bad
             case 1 -> 1.25;
-            case 2 -> 1;
             case 3 -> 0.75;
             case 4 -> 0.5; // Very good
-            default -> 1;
+            default -> 1;  // Case 2
         };
     }
 

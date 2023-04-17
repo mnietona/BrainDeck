@@ -4,14 +4,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.models.Card;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class TestDeckDaoNitriteImplementation {
-
     static Deck test_deck;
     static DeckDaoNitriteImplementation ddni;
 

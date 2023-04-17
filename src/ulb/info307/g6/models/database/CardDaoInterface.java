@@ -7,9 +7,9 @@ import java.util.List;
  * Since cards are stored within a deck, this interface might be redundant.
  */
 public interface CardDaoInterface {
-    public boolean addCard(Card card);
-    public boolean deleteCard(Card card);
-    public boolean updateCard(Card card);
-    public List<Card> getAllCards();
-    public Card getCardById(long id);
+    boolean addCard(Card card);
+    boolean deleteCard(Card card);
+    boolean updateCard(Card card);
+    List<Card> getAllCards();
+    Card getCardById(long id);
 }

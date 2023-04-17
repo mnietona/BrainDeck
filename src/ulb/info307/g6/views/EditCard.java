@@ -17,9 +17,7 @@ import ulb.info307.g6.models.Deck;
  */
 public class EditCard implements View {
     @FXML
-    private ListView<Card> cardListView = new ListView();
-    @FXML
-    private Button buttonBack;
+    private ListView<Card> cardListView = new ListView<>();
     @FXML
     private CheckBox gapFillCheckBox;
     @FXML

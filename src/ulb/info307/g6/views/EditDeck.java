@@ -14,11 +14,9 @@ import javafx.scene.text.Text;
  */
 public class EditDeck extends ViewWithDeckList {
     @FXML
-    private Button buttonHome;
-    @FXML
     private Text deckTitle;
     @FXML
-    private Button buttonEdit, buttonCreate, buttonRemove, buttonResetProba, buttonExport, buttonImport;
+    private Button buttonEdit, buttonRemove, buttonResetProba, buttonExport;
     private EditDeckListener listener;
 
     @Override

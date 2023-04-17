@@ -9,7 +9,7 @@
     <!-- Left pane : list of decks + home -->
     <VBox alignment="CENTER" spacing="5.0">
         <ListView fx:id="cardListView" prefWidth="169.0" VBox.vgrow="ALWAYS" />
-        <Button fx:id="buttonBack" onAction="#clickBack" prefWidth="169.0" text="Back" />
+        <Button onAction="#clickBack" prefWidth="169.0" text="Back" />
     </VBox>
 
     <!-- Right pane : textboxes + edit/create/remove card -->
