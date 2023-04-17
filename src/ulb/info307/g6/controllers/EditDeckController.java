@@ -7,7 +7,6 @@ import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.CardProbabilities;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.views.EditDeck;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;

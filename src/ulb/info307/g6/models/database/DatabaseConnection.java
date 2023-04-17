@@ -6,7 +6,6 @@ public class DatabaseConnection {
     private static Nitrite con = null;
 
     static {
-        //TODO: move the db into the resources of the jar
         String db_path = "db.db";
         try {
             Class.forName("org.dizitart.no2.Nitrite");

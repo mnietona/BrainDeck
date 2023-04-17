@@ -9,13 +9,12 @@ import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.Deck;
 
 /**
- * The EditCard class implements the View interface and is the controller for the EditCard.fxml file.
- * It is used to edit a card.
- * It has a list view to select a card, a text area to enter the question and a text area to enter the answer.
- * It has a checkbox to select if the card is a gap fill card.
- * It has a button to edit the selected card, a button to create a new card and a button to remove the selected card.
+ * View controller of the EditCard menu, implements View interface and is the controller for the EditCard.fxml file.
+ * Contains :
+ * - a list view to select a card, a text area to enter the question and a text area to enter the answer.
+ * - a checkbox to select if the card is a gap fill card.
+ * - a button to edit the selected card, a button to create a new card and a button to remove the selected card.
  */
-
 public class EditCard implements View {
     @FXML
     private ListView<Card> cardListView = new ListView();
@@ -54,7 +53,9 @@ public class EditCard implements View {
         listener.clickRemoveCard();
     }
 
-    // Method called when input changes in the question or answer text areas
+    /**
+     * Method called when input changes in the question or answer text areas.
+     */
     @FXML
     private void inputChange() {
         if (atLeastOneInputIsEmpty()) {
@@ -65,7 +66,10 @@ public class EditCard implements View {
             if (isCardSelected()) activateEditButton(true);
         }
     }
-    // Method to set the card list view with the cards from the given deck
+
+    /**
+     * Method to set the card list view with the cards from the given deck.
+     */
     public void setCardList(Deck deck) {
         cardListView.getItems().clear();
         for (Card card : deck.getCardList()) {

@@ -5,10 +5,12 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
 /**
- * The EditDeck class implements the View interface and is the controller for the EditDeck.fxml file.
- * It is used to edit a deck.
- * It has a list view to select a deck, a text field to enter the name of the deck and a button to confirm the name change.
- * It has a button to edit the selected deck, a button to create a new deck and a button to remove the selected deck.
+ * View controller of the EditDeck menu, implements View interface and is the controller for the EditDeck.fxml file.
+ * Contains :
+ * - a list view to select a deck, a text field to enter the name of the deck and a button to confirm the name change.
+ * - a button to edit the selected deck, a button to create a new deck and a button to remove the selected deck.
+ * - a button to reset the probability of the selected deck.
+ * - a button to import a deck from a file and a button to export the selected deck to a file.
  */
 public class EditDeck extends ViewWithDeckList {
     @FXML

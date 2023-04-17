@@ -50,7 +50,6 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
         lastIndex[0] = nextCardIndex;
     }
 
-
     private boolean questionIsDisplayed() {
         // We have not yet flipped the card, so the question is displayed
         return flipIndex == 0;
@@ -120,5 +119,4 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
             studyView.showEmptyDeck("The deck " + currentDeck.getName() + " is empty");
         }
     }
-
 }

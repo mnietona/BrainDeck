@@ -2,10 +2,10 @@ package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+
 /**
- * The Welcome class implements the View interface and is the controller for the Welcome.fxml file.
- * It is used to display the welcome screen.
- * It has two buttons to go to the study or edit mode.
+ * View controller of the Welcome menu, implements View interface and is the controller for the Welcome.fxml file.
+ * Contains two buttons to go to the study or edit mode.
  */
 public class Welcome implements View {
     @FXML

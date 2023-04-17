@@ -2,12 +2,10 @@ package ulb.info307.g6.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.dizitart.no2.objects.Id;
-
 import java.io.Serializable;
 import java.util.Random;
 
 public class Card implements Serializable {
-
     @Id
     private final long id;
     private String question;
@@ -67,6 +65,7 @@ public class Card implements Serializable {
     public int getNumberOfFlips() {
         return 1;
     }
+
     @Override
     public String toString() {
         String s = question;

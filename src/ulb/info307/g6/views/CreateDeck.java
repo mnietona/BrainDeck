@@ -5,9 +5,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 
 /**
- * The CreateDeck class implements the View interface and is the controller for the CreateDeck.fxml file.
- * It is used to create a new deck.
- * It has a text field to enter the name of the new deck and a button to confirm the creation.
+ * View controller of the CreateDeck menu, implements View interface and is the controller for the CreateDeck.fxml file.
+ * Contains a text field to enter the name of the new deck and a button to confirm the creation.
  */
 public class CreateDeck implements View {
     @FXML
@@ -40,7 +39,10 @@ public class CreateDeck implements View {
     public boolean inputIsValid() {
         return !inputBox.getText().isEmpty();
     }
-    // Method to activate/deactivate the confirmation button depending on the validity of the input
+
+    /**
+     * Method to activate/deactivate the confirmation button depending on the validity of the input.
+     */
     public void activateButton(boolean activate) {
         buttonConfirm.setDisable(!activate);
     }

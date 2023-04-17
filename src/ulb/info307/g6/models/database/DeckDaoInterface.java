@@ -1,8 +1,6 @@
 package ulb.info307.g6.models.database;
 
-import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.Deck;
-
 import java.util.List;
 
 public interface DeckDaoInterface {

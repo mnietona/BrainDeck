@@ -3,7 +3,6 @@ package ulb.info307.g6.models.database;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.dizitart.no2.objects.filters.ObjectFilters;
 import ulb.info307.g6.models.Deck;
-
 import java.util.List;
 
 public class DeckDaoNitriteImplementation implements DeckDaoInterface {

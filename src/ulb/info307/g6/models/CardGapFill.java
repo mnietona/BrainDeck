@@ -1,11 +1,9 @@
 package ulb.info307.g6.models;
 
-
 public class CardGapFill extends Card {
     public final static String QUESTION_SEPARATOR = "_"; // Arbitrary choice of separator, could be anything
     private final String[] questionParts;
     private final String[] answerParts;
-
 
     public CardGapFill(String questionInput, String answerInput) {
         super(questionInput + " ", answerInput);

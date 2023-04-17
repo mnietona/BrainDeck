@@ -20,11 +20,13 @@ public class CardProbabilities {
             }
         }
     }
+
     public static void updateProbability(Deck deck, Card card, int knowledgeLvl) {
         double newProba = card.getProbability() * getWeight(knowledgeLvl);
         card.setProbability(newProba);
         normalizeProbability(deck);
     }
+
     private static double getSumProbability(Deck deck) {
         double sum = 0;
         for (Card card : deck.getCardList()) {

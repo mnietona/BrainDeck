@@ -2,7 +2,6 @@ package ulb.info307.g6.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.dizitart.no2.objects.Id;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +16,7 @@ public class Deck implements Serializable {
     public Deck() {
         this.id = new Random().nextLong();
     }
+
     public Deck(String name) {
         this.id = new Random().nextLong();
         this.cardList = new ArrayList<>();
@@ -32,10 +32,16 @@ public class Deck implements Serializable {
     public List<Card> getCardList() {
         return cardList;
     }
+
     @JsonIgnore
-    public int getSize() {return getCardList().size();}
+    public int getSize() {
+        return getCardList().size();
+    }
+
     @JsonIgnore
-    public boolean isEmpty() {return getSize() == 0;}
+    public boolean isEmpty() {
+        return getSize() == 0;
+    }
 
     public void addCard(Card card) {
         this.cardList.add(card);
@@ -49,8 +55,11 @@ public class Deck implements Serializable {
         return name;
     }
 
-    public long getId() {return id;}
+    public long getId() {
+        return id;
+    }
 
-    public String toString() {return getName();}
-
+    public String toString() {
+        return getName();
+    }
 }

@@ -17,7 +17,9 @@ public class ControllerWithDeckList extends Controller {
         setDeckList();
     }
 
-    // Sets the deck list in the view with all the decks from the database.
+    /**
+     * Sets the deck list in the view with all the decks from the database.
+     */
     protected void setDeckList() {
         viewWithDeckList.setDeckListView(database.getAllDecks());
     }
