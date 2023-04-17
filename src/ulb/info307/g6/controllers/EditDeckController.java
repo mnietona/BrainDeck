@@ -9,7 +9,9 @@ import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.views.EditDeck;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class EditDeckController extends ControllerWithDeckList implements EditDeck.EditDeckListener {
@@ -29,51 +31,87 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
 
     @Override
     public void clickImport() {
+        File selectedFile = selectFile();
+        String fileContent = readFileContent(selectedFile);
+        Deck d = importDeck(fileContent);
+        checkEmptyDeck(d);
+        int amountOfEmptyProbaCards = countEmptyProbabilityCards(d);
+        setCardProbabilities(d, amountOfEmptyProbaCards);
+        checkAndUpdateDeckInDatabase(d);
+        setDeckList();
+    }
+
+    private File selectFile() {
         FileChooser fileChooser = new FileChooser();
         File selectedFile =  fileChooser.showOpenDialog(stage);
+        return selectedFile;
+    }
+
+    private String readFileContent(File selectedFile) {
+        String fileContent = "";
         try {
-            String fileContent = "";
             Scanner s = new Scanner(selectedFile);
             while (s.hasNextLine()) {
                 fileContent += s.nextLine();
             }
-            ObjectMapper mapper = new ObjectMapper();
-            Deck d = mapper.readValue(fileContent, Deck.class);
-            if (d.isEmpty()) {
-                throw new IllegalArgumentException("Cannot import empty deck");
-            }
-            int amountOfEmptyProbaCards = 0;
-            for (Card c : d.getCardList()) {
-                if (c.getProbability() == null) {
-                    amountOfEmptyProbaCards++;
-                }
-            }
-            if (amountOfEmptyProbaCards >= 1) {
-                for (Card c : d.getCardList()) {
-                    if (c.getProbability() == null) {
-                        if (d.getSize() == amountOfEmptyProbaCards) {
-                            c.setProbability(1.0);
-                        } else {
-                            c.setProbability(1.0 / (d.getSize() - amountOfEmptyProbaCards));
-                        }
-                    }
-                }
-                CardProbabilities.normalizeProbability(d);
-            }
-            if (!CardProbabilities.isNormalized(d)) {
-                CardProbabilities.initCardProbabilities(d);
-                System.out.println("Probabilities were not good so we reset them for you");
-            }
-            if (database.getDeckById(d.getId()) != null) {
-                database.updateDeck(d);
-            } else {
-                database.addDeck(d);
-            }
-        } catch (Exception e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        return fileContent;
+    }
 
-        setDeckList();
+    private Deck importDeck(String fileContent) {
+        ObjectMapper mapper = new ObjectMapper();
+        Deck d = null;
+        try {
+            d = mapper.readValue(fileContent, Deck.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return d;
+    }
+
+    private void checkEmptyDeck(Deck d) {
+        if (d.isEmpty()) {
+            throw new IllegalArgumentException("Cannot import empty deck");
+        }
+    }
+
+    private int countEmptyProbabilityCards(Deck d) {
+        int amountOfEmptyProbaCards = 0;
+        for (Card c : d.getCardList()) {
+            if (c.getProbability() == null) {
+                amountOfEmptyProbaCards++;
+            }
+        }
+        return amountOfEmptyProbaCards;
+    }
+
+    private void setCardProbabilities(Deck d, int amountOfEmptyProbaCards) {
+        if (amountOfEmptyProbaCards >= 1) {
+            for (Card c : d.getCardList()) {
+                if (c.getProbability() == null) {
+                    if (d.getSize() == amountOfEmptyProbaCards) {
+                        c.setProbability(1.0);
+                    } else {
+                        c.setProbability(1.0 / (d.getSize() - amountOfEmptyProbaCards));
+                    }
+                }
+            }
+            CardProbabilities.normalizeProbability(d);
+        }
+        if (!CardProbabilities.isNormalized(d)) {
+            CardProbabilities.initCardProbabilities(d);
+            System.out.println("Probabilities were not good so we reset them for you");
+        }
+    }
+
+    private void checkAndUpdateDeckInDatabase(Deck d) {
+        if (database.getDeckById(d.getId()) != null) {
+            database.updateDeck(d);
+        } else {
+            database.addDeck(d);
+        }
     }
 
     @Override
