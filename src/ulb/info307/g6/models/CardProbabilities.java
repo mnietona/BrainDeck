@@ -1,9 +1,8 @@
 package ulb.info307.g6.models;
 
 public class CardProbabilities {
-
     public static void initCardProbabilities(Deck deck) {
-        if (isNotNormalized(deck)) { // If the sum of the probabilities is not 1, we normalize them sum != 1
+        if (isNotNormalized(deck)) {  // If the sum of the probabilities is not 1, we normalize them sum != 1
             int numberOfCards = deck.getSize();
             double probability = (double) 1 / numberOfCards;
             for (Card card : deck.getCardList()) {
@@ -69,7 +68,7 @@ public class CardProbabilities {
     }
 
     public static int getRandomCardIndex(Deck deck) {
-        double random = Math.random(); // Génère un nombre aléatoire entre 0 et 1
+        double random = Math.random(); // Generates a random number between 0 and 1
         double cumulativeProbability = 0.0;
 
         int i = 0;

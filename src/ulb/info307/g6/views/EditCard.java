@@ -11,9 +11,10 @@ import ulb.info307.g6.models.Deck;
 /**
  * View controller of the EditCard menu, implements View interface and is the controller for the EditCard.fxml file.
  * Contains :
- * - a list view to select a card, a text area to enter the question and a text area to enter the answer.
- * - a checkbox to select if the card is a gap fill card.
- * - a button to edit the selected card, a button to create a new card and a button to remove the selected card.
+ * - a list view to select a card,
+ * - a back button, and buttons to create a new card or edit/remove the selected card
+ * - two text areas to enter the question and the answer of the card
+ * - a checkbox to select if the card is a gap fill card when creating/editing a card
  */
 public class EditCard implements View {
     @FXML

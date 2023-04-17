@@ -2,7 +2,8 @@ package ulb.info307.g6.views;
 
 /**
  * View controller of the Welcome menu, implements View interface and is the controller for the Welcome.fxml file.
- * Contains two buttons to go to the study or edit mode.
+ * Contains :
+ * - two buttons, to go to the study or edit menus
  */
 public class Welcome implements View {
     private WelcomeListener listener;

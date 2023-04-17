@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 
 /**
  * View controller of the CreateDeck menu, implements View interface and is the controller for the CreateDeck.fxml file.
- * Contains a text field to enter the name of the new deck and a button to confirm the creation.
+ * Contains a text field to enter the name of the new deck and a buttons to confirm its creation or go back.
  */
 public class CreateDeck implements View {
     @FXML

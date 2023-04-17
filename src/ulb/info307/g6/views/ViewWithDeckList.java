@@ -6,8 +6,7 @@ import ulb.info307.g6.models.Deck;
 import java.util.List;
 
 /**
- * Super (parent) class of view controllers.
- * Contains a list view to select a deck.
+ * Parent class of view controllers containing a ListView of decks.
  */
 public abstract class ViewWithDeckList implements View {
     @FXML
@@ -26,7 +25,7 @@ public abstract class ViewWithDeckList implements View {
         for (Deck deck : decks) {
             deckListView.getItems().add(deck);
         }
-        deckListView.setOnMouseClicked(event -> {  // click on an item
+        deckListView.setOnMouseClicked(event -> {  // Click on an item of the list
             if (isDeckSelected()) actionOnDeckSelection();
         });
     }

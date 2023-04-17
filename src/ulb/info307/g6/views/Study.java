@@ -8,9 +8,10 @@ import javafx.util.StringConverter;
 
 /**
  * View controller of the Study menu, implements View interface and is the controller for the Study.fxml file.
- * It has :
- * - a list view to select a deck, a text field to enter the name of the deck and a button to confirm the name change.
- * - a button to edit the selected deck, a button to create a new deck and a button to remove the selected deck.
+ * Contains :
+ * - a ListView to select a deck
+ * - a home button, a button to flip the card, and a button to go to the next card
+ * - a slider to set the knowledge level of the card (and chage it's probability of occurence)
  */
 public class Study extends ViewWithDeckList {
     @FXML
