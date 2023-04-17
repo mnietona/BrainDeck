@@ -6,6 +6,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.util.StringConverter;
 
+/**
+ * The Study class implements the View interface and is the controller for the Study.fxml file.
+ * It is used to study a deck.
+ * It has a list view to select a deck, a text field to enter the name of the deck and a button to confirm the name change.
+ * It has a button to edit the selected deck, a button to create a new deck and a button to remove the selected deck.
+ */
 public class Study extends ViewWithDeckList {
     @FXML
     private Button buttonHome;
@@ -57,7 +63,7 @@ public class Study extends ViewWithDeckList {
 
     public void setSliderLabels() {
 
-        knowledgeLvlSlider.setValue(2);
+        knowledgeLvlSlider.setValue(2); // Set the default value to 2 (Average/Middle)
         knowledgeLvlSlider.setLabelFormatter(new StringConverter<Double>() {
             @Override
             public String toString(Double n) {
