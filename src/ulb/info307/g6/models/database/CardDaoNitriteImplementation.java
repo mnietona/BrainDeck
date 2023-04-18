@@ -6,7 +6,7 @@ import ulb.info307.g6.models.Card;
 import java.util.List;
 
 public class CardDaoNitriteImplementation implements CardDaoInterface {
-    ObjectRepository<Card> con = DatabaseConnection.getConnection().getRepository(Card.class);
+    final ObjectRepository<Card> con = DatabaseConnection.getConnection().getRepository(Card.class);
 
     @Override
     public boolean addCard(Card card) {
