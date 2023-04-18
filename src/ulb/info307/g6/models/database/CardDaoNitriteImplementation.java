@@ -5,8 +5,9 @@ import org.dizitart.no2.objects.filters.ObjectFilters;
 import ulb.info307.g6.models.Card;
 import java.util.List;
 
-public class CardDaoNitriteImplementation implements CardDaoInterface{
-    static ObjectRepository<Card> con = DatabaseConnection.getConnection().getRepository(Card.class);
+public class CardDaoNitriteImplementation implements CardDaoInterface {
+    ObjectRepository<Card> con = DatabaseConnection.getConnection().getRepository(Card.class);
+
     @Override
     public boolean addCard(Card card) {
         try {

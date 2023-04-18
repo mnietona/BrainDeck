@@ -6,8 +6,7 @@ import ulb.info307.g6.models.Deck;
 import java.util.List;
 
 public class DeckDaoNitriteImplementation implements DeckDaoInterface {
-    static ObjectRepository<Deck> con = DatabaseConnection.getConnection().getRepository(Deck.class);
-
+    ObjectRepository<Deck> con = DatabaseConnection.getConnection().getRepository(Deck.class);
     @Override
     public boolean addDeck(Deck deck) {
         try {
