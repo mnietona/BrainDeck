@@ -28,6 +28,10 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
         editDeckView.activateActionButtons(true);
     }
 
+    // TODO extract to import/export methods to separate model class
+    // TODO exception thrown when no file is selected, same for export
+    // TODO check if selected file is valid / empty (imported deck will be null otherwise for example)
+    // TODO ctrl+shift+t "catch" to find all places where exceptions are thrown
     @Override
     public void clickImport() {
         File selectedFile = selectFile();

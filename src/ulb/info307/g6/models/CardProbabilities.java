@@ -1,7 +1,8 @@
 package ulb.info307.g6.models;
 
-public class CardProbabilities {
+public class CardProbabilities {  // TODO remove static
     public static void initCardProbabilities(Deck deck) {
+        // TODO move to Deck
         if (isNotNormalized(deck)) {  // If the sum of the probabilities is not 1, we normalize them sum != 1
             int numberOfCards = deck.getSize();
             double probability = (double) 1 / numberOfCards;

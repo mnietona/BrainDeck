@@ -29,8 +29,8 @@ public class Deck implements Serializable {
         this.cardList = cardList;
     }
 
-    public List<Card> getCardList() {
-        return cardList;
+    public List<Card> getCardList() {  // TODO don't modify list from outside of Deck, encapsulate !
+        return cardList;  // TODO alternative : Collections.unmodifiableList(cardList) to prevent modification and leave access
     }
 
     @JsonIgnore

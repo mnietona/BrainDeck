@@ -3,7 +3,7 @@ package ulb.info307.g6.models.database;
 import ulb.info307.g6.models.Deck;
 import java.util.List;
 
-public interface DeckDaoInterface {
+public interface DeckDaoInterface {  // TODO Removed if unused or use interface instead of class in controllers
     boolean addDeck(Deck deck);
     boolean deleteDeck(Deck deck);
     boolean updateDeck(Deck deck);

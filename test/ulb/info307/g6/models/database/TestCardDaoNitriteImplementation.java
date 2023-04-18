@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TestCardDaoNitriteImplementation {
     static Card test_card;
-    static CardDaoNitriteImplementation cdni;
+    static CardDaoNitriteImplementation cdni;  // TODO change to CardDaoInterface
 
     @BeforeAll
     static void initTestCard() {

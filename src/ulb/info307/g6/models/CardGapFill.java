@@ -14,7 +14,7 @@ public class CardGapFill extends Card {
     }
 
     public static boolean isCardGapFilType(Card card) {
-        return card.getQuestion().contains(QUESTION_SEPARATOR);
+        return card.getQuestion().contains(QUESTION_SEPARATOR);  // TODO demeter ?
     }
 
     @Override
@@ -39,8 +39,9 @@ public class CardGapFill extends Card {
         return answerParts.length;
     }
 
+    // TODO: contains view, justify or use DTO, check other similar methods
     @Override
-    public String getNthFlippedAnswer(int n) {
+    public String getNthFlippedAnswer(int n) {  // TODO Change variable name for clarity
         if (n > getNumberOfFlips()) {
             return "INCORRECT LENGTH NUMBER OF ANSWERS ASKED";
         }

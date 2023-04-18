@@ -11,7 +11,7 @@ import javafx.util.StringConverter;
  * Contains :
  * - a ListView to select a deck
  * - a home button, a button to flip the card, and a button to go to the next card
- * - a slider to set the knowledge level of the card (and chage it's probability of occurence)
+ * - a slider to set the knowledge level of the card (and change its probability of occurrence)
  */
 public class Study extends ViewWithDeckList {
     @FXML
