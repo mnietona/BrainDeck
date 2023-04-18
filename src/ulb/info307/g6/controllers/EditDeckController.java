@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import ulb.info307.g6.models.Card;
-import ulb.info307.g6.models.CardProbabilities;
+import ulb.info307.g6.models.DeckProbabilities;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.views.EditDeck;
 import java.io.File;
@@ -90,6 +90,7 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
     }
 
     private void setCardProbabilities(Deck d, int amountOfEmptyProbaCards) {
+        DeckProbabilities dp = new DeckProbabilities(d);
         if (amountOfEmptyProbaCards >= 1) {
             for (Card c : d.getCardList()) {
                 if (c.getProbability() == null) {
@@ -100,10 +101,10 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
                     }
                 }
             }
-            CardProbabilities.normalizeProbability(d);
+            dp.normalizeProbability();
         }
-        if (CardProbabilities.isNotNormalized(d)) {
-            CardProbabilities.initCardProbabilities(d);
+        if (dp.isNotNormalized()) {
+            dp.initDeckProbabilities();
             System.out.println("Probabilities were not good so we reset them for you");
         }
     }
@@ -163,9 +164,10 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
     @Override
     public void clickResetProba() {
         if (editDeckView.isDeckSelected()) {
-            CardProbabilities.resetProbability(editDeckView.getSelectedDeck());
+            DeckProbabilities deckProbabilities = new DeckProbabilities(editDeckView.getSelectedDeck());
+            deckProbabilities.resetProbability();
             database.updateDeck(editDeckView.getSelectedDeck());
-            CardProbabilities.printProbability(editDeckView.getSelectedDeck());
+            deckProbabilities.printProbability();
         }
     }
 }

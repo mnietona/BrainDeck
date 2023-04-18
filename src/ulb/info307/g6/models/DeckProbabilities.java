@@ -1,9 +1,15 @@
 package ulb.info307.g6.models;
 
-public class CardProbabilities {  // TODO: remove static
-    public static void initCardProbabilities(Deck deck) {
+public class DeckProbabilities extends Deck {
+    private final Deck deck;
+
+    public DeckProbabilities(Deck d) {
+        this.deck = d;
+    }
+
+    public void initDeckProbabilities() {
         // TODO: move to Deck
-        if (isNotNormalized(deck)) {  // If the sum of the probabilities is not 1, we normalize them sum != 1
+        if (isNotNormalized()) {  // If the sum of the probabilities is not 1, we normalize them sum != 1
             int numberOfCards = deck.getSize();
             double probability = (double) 1 / numberOfCards;
             for (Card card : deck.getCardList()) {
@@ -12,8 +18,8 @@ public class CardProbabilities {  // TODO: remove static
         }
     }
 
-    public static void normalizeProbability(Deck deck) {
-        double sum = getSumProbability(deck);
+    public void normalizeProbability() {
+        double sum = getSumProbability();
         if (isNotOne(sum)) {
             for (Card card : deck.getCardList()) {
                 card.setProbability(card.getProbability() / sum);
@@ -21,13 +27,13 @@ public class CardProbabilities {  // TODO: remove static
         }
     }
 
-    public static void updateProbability(Deck deck, Card card, int knowledgeLvl) {
+    public void updateProbability(Card card, int knowledgeLvl) {
         double newProba = card.getProbability() * getWeight(knowledgeLvl);
         card.setProbability(newProba);
-        normalizeProbability(deck);
+        normalizeProbability();
     }
 
-    private static double getSumProbability(Deck deck) {
+    private double getSumProbability() {
         double sum = 0;
         for (Card card : deck.getCardList()) {
             sum += card.getProbability();
@@ -35,15 +41,15 @@ public class CardProbabilities {  // TODO: remove static
         return sum;
     }
 
-    private static boolean isNotOne(double value) {
+    private boolean isNotOne(double value) {
         return Math.abs(value-1) > 1e-9;
     }
 
-    public static boolean isNotNormalized(Deck deck) {
-        return isNotOne(getSumProbability(deck));
+    public boolean isNotNormalized() {
+        return isNotOne(getSumProbability());
     }
 
-    public static double getWeight(int knowledge) {
+    public double getWeight(int knowledge) {
         return switch (knowledge) {
             case 0 -> 1.5; // Very bad
             case 1 -> 1.25;
@@ -53,7 +59,7 @@ public class CardProbabilities {  // TODO: remove static
         };
     }
 
-    public static void resetProbability(Deck deck) {
+    public void resetProbability() {
         int numberOfCards = deck.getSize();
         double probability = (double) 1 / numberOfCards;
         for (Card card : deck.getCardList()) {
@@ -61,21 +67,20 @@ public class CardProbabilities {  // TODO: remove static
         }
     }
 
-    public static void printProbability(Deck deck) {
+    public void printProbability() {
         System.out.println("Printing probability of deck " + deck.getName());
         for (Card card : deck.getCardList()) {
             System.out.println("Probability of card " + card.toString() + " : " + card.getProbability());
         }
     }
 
-    public static int getRandomCardIndex(Deck deck) {
+    public int getRandomCardIndex() {
         double random = Math.random(); // Generates a random number between 0 and 1
         double cumulativeProbability = 0.0;
 
         int i = 0;
         for (Card card : deck.getCardList()) {
             cumulativeProbability += card.getProbability();
-
             if (random <= cumulativeProbability) {
                 return i;
             }
@@ -84,15 +89,15 @@ public class CardProbabilities {  // TODO: remove static
         return i;
     }
 
-    public static int getRandomCardIndexExcluding(Deck deck, int [] indexToExclude) {
-        int i = getRandomCardIndex(deck);
+    public int getRandomCardIndexExcluding(int[] indexToExclude) {
+        int i = getRandomCardIndex();
         while (contains(indexToExclude, i)) {
-            i = getRandomCardIndex(deck);
+            i = getRandomCardIndex();
         }
         return i;
     }
 
-    private static boolean contains(int [] array, int value) {
+    private boolean contains(int [] array, int value) {
         for (int i : array) {
             if (i == value) {
                 return true;
