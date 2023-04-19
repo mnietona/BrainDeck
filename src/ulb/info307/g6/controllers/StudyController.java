@@ -61,7 +61,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
                 // (to know if the card is of the type cardGapFill, we check whether its question contains the "gap" marker "_")
                 card = new CardGapFill(card.getQuestion(),card.getAnswer());
             }
-            numberOfFlipsAuthorizedForCurrentCard = card.getNumberOfFlips();
+            numberOfFlipsAuthorizedForCurrentCard = card.getMaxNumberOfFlips();
             studyView.flipCard(questionIsDisplayed(), card.getQuestion(), card.getNthFlippedAnswer(flipIndex));
         }
     }

@@ -8,9 +8,6 @@ import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.views.EditCard;
 
-
-
-//TODO: reespacer
 import ulb.info307.g6.models.DeckProbabilities;
 
 public class EditCardController extends Controller implements EditCard.EditCardListener {

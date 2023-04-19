@@ -35,20 +35,23 @@ public class CardGapFill extends Card {
     }
 
     @Override
-    public int getNumberOfFlips() {
+    public int getMaxNumberOfFlips() {
         return answerParts.length;
     }
 
     // TODO: contains view, justify or use DTO, check other similar methods
     @Override
-    public String getNthFlippedAnswer(int n) {  // TODO Change variable name for clarity
-        if (n > getNumberOfFlips()) {
-            return "INCORRECT LENGTH NUMBER OF ANSWERS ASKED";
+    public String getNthFlippedAnswer(int numberOfFlips) {
+        try {
+            assert (numberOfFlips <= getMaxNumberOfFlips());
+        } catch (AssertionError e) {
+            System.out.println("INCORRECT NUMBER OF FLIPS");
+            return "INCORRECT NUMBER OF FLIPS";
         }
         StringBuilder res = new StringBuilder();
         for (int i = 0; i < questionParts.length; i++) {
             res.append(questionParts[i]);
-            if (i < n) {
+            if (i < numberOfFlips) {
                 res.append(answerParts[i]);
             }
             else if (i < questionParts.length - 1) {

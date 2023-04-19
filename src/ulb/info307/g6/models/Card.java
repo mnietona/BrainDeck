@@ -62,7 +62,7 @@ public class Card implements Serializable {
     }
 
     @JsonIgnore
-    public int getNumberOfFlips() {
+    public int getMaxNumberOfFlips() {
         return 1;
     }
 
