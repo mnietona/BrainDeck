@@ -17,4 +17,9 @@ public class WelcomeController extends Controller implements Welcome.WelcomeList
     public void editButtonAction() {
         new EditDeckController(stage);
     }
+
+    @Override
+    public void statisticsButtonAction() {
+        new StatisticsController(stage);
+    }
 }

@@ -46,6 +46,15 @@ public class DeckDaoNitriteImplementation {
         return null;
     }
 
+    public int getNumberOfDecks() {
+        try {
+            return con.find().toList().size();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     public Deck getDeckById(long id) {
         try {
             return con.find(ObjectFilters.eq("id", id)).firstOrDefault();
