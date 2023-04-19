@@ -7,22 +7,34 @@ import javafx.scene.text.Text;
 public class Statistics extends ViewWithDeckList {
     private StatisticsListener listener;
     @FXML
-    private Text textNumberOfDecks;
-
+    private Text upperText;
     @FXML
-    private Text textTotalNumberOfCards;
+    private Text lowerText;
 
     @FXML
     public void clickHome() {
         listener.clickHome();
     }
 
+    @FXML
+    public void clickGlobalStatistics() {
+        listener.showGlobalStatistics();
+    }
+
     public void setNumberOfDecks(int n) {
-        textNumberOfDecks.setText("Number of decks: " + n);
+        upperText.setText("Number of decks: " + n);
     }
 
     public void setTotalNumberOfCards(int n) {
-        textTotalNumberOfCards.setText("Total number of cards: " + n);
+        lowerText.setText("Total number of cards: " + n);
+    }
+
+    public void setDeckName(String name) {
+        upperText.setText("Deck name: " + name);
+    }
+
+    public void setNumberCardsOfDeck(int n) {
+        lowerText.setText("Number of cards in this deck: " + n);
     }
 
     @Override
@@ -38,5 +50,7 @@ public class Statistics extends ViewWithDeckList {
     public interface StatisticsListener {
         void clickHome();
         void clickDeck(Deck deck);
+        void showGlobalStatistics();
+
     }
 }

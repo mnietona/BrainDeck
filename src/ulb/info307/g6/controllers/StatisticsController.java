@@ -18,9 +18,14 @@ public class StatisticsController extends ControllerWithDeckList implements Stat
     }
 
     @Override
-    public void clickDeck(Deck deck) {
-        // TODO Auto-generated method stub
+    public void showGlobalStatistics() {
+        new StatisticsController(stage);
+    }
 
+    @Override
+    public void clickDeck(Deck deck) {
+        statisticsView.setDeckName(deck.getName());
+        statisticsView.setNumberCardsOfDeck(deck.getSize());
     }
 
 }

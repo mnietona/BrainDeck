@@ -9,25 +9,28 @@
     <!-- Left pane : list of decks + home -->
     <VBox alignment="CENTER" spacing="5.0">
         <ListView fx:id="deckListView" prefWidth="169.0" VBox.vgrow="ALWAYS" />
-        <Button onAction="#clickHome" prefWidth="169.0" text="Home" />
+        <Button onAction="#clickHome" prefWidth="169.0" text="Home" />"
     </VBox>
 
     <!-- Right pane : card + knowledge lvl + flip/next -->
     <VBox alignment="TOP_CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
         <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
             <VBox alignment="CENTER" maxHeight="250.0" maxWidth="400.0" minHeight="250.0" minWidth="400.0" prefHeight="250.0" prefWidth="400.0" spacing="5.0">
-                <Text fx:id="textNumberOfDecks" text="Number of Decks" textAlignment="CENTER" wrappingWidth="390.0">
+                <Text fx:id="upperText" text="Number of Decks" textAlignment="CENTER" wrappingWidth="390.0">
                     <font>
                         <Font size="20.0" />
                     </font>
                 </Text>
-                <Text fx:id="textTotalNumberOfCards" text="Total number of Cards" textAlignment="CENTER" wrappingWidth="390.0">
+                <Text fx:id="lowerText" text="Total number of Cards" textAlignment="CENTER" wrappingWidth="390.0">
                     <font>
                         <Font size="20.0" />
                     </font>
                 </Text>
             </VBox>
         </VBox>
+        <HBox alignment="CENTER" spacing="5.0">
+            <Button onAction="#clickGlobalStatistics" prefWidth="200.0" text="Global statistics" />
+        </HBox>
     </VBox>
 
     <padding>
