@@ -10,8 +10,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
     private int flipIndex = 0;
     private int numberOfFlipsAuthorizedForCurrentCard = 1;
     private int cardIndex = 0;
-    private Deck currentDeck = null;
-    private DeckProbabilities deckProbabilities;
+    private DeckProbabilities currentDeck = null;
 
     public StudyController(Stage stage) {
         super(stage, "/ulb/info307/g6/views/Study.fxml", "Study your decks");
@@ -25,7 +24,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
         if (!currentDeck.isEmpty()) {
             Card card = currentDeck.getCardList().get(cardIndex);
             int knowledgeLvl = studyView.getSelectedKnowledgeLvl();
-            deckProbabilities.updateProbability(card, knowledgeLvl);
+            currentDeck.updateProbability(card, knowledgeLvl);
             database.updateDeck(currentDeck);
         }
     }
@@ -40,7 +39,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
         if (currentDeck.getSize() == 2 || currentDeck.getSize() == 3) {
             nextCardIndex = (cardIndex + 1) % currentDeck.getSize();
         } else if (currentDeck.getSize() > 3) {
-            nextCardIndex = deckProbabilities.getRandomCardIndexExcluding(lastIndex);
+            nextCardIndex = currentDeck.getRandomCardIndexExcluding(lastIndex);
         }
         cardIndex = nextCardIndex;
         lastIndex[2] = lastIndex[1];
@@ -85,7 +84,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
             studyView.activateSlider(false);
             updateSliderPosition();
         }
-        deckProbabilities.printProbability();
+        currentDeck.printProbability();
     }
 
     @Override
@@ -103,14 +102,13 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
     @Override
     public void deckSelected() {
         studyView.activateSlider(false);
-        currentDeck = studyView.getSelectedDeck();
-        deckProbabilities = new DeckProbabilities(currentDeck);
+        currentDeck = new DeckProbabilities(studyView.getSelectedDeck());
         studyView.activateActionButtons(!currentDeck.isEmpty());
         cardIndex = 0;
         flipIndex = 0;
 
         if (!currentDeck.isEmpty()) {
-            deckProbabilities.initDeckProbabilities();
+            currentDeck.initDeckProbabilities();
             database.updateDeck(currentDeck);
             getNextRandomCard();
             updateDisplayArea();

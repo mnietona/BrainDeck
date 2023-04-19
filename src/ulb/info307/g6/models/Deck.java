@@ -17,6 +17,11 @@ public class Deck implements Serializable {
         this.id = new Random().nextLong();
     }
 
+    public Deck(Deck deck) {
+        this.id = deck.id;
+        this.name = deck.name;
+        this.cardList = new ArrayList<>(deck.cardList);
+    }
     public Deck(String name) {
         this.id = new Random().nextLong();
         this.cardList = new ArrayList<>();

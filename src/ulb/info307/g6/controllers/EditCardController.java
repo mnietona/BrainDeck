@@ -15,12 +15,12 @@ import ulb.info307.g6.models.DeckProbabilities;
 
 public class EditCardController extends Controller implements EditCard.EditCardListener {
     static DeckDaoNitriteImplementation databaseDeck = new DeckDaoNitriteImplementation();  // The deck database implementation  // TODO use interface instead
-    private final Deck deck;  // The deck being edited
+    private final DeckProbabilities deck;  // The deck being edited
     private final EditCard editCardView;  // The view for editing a card
 
     public EditCardController(Stage stage, Deck deck) {
         super(stage, "/ulb/info307/g6/views/EditCard.fxml", "Edit cards in the deck");
-        this.deck = deck;
+        this.deck = new DeckProbabilities(deck);
         editCardView = (EditCard) view;
         editCardView.setCardList(deck);
         editCardView.activateButtons(false);
@@ -46,11 +46,10 @@ public class EditCardController extends Controller implements EditCard.EditCardL
                 // that way the normalization will be coherent
                 card.setProbability(deck.isEmpty() ? 1.0 : (1.0 / deck.getSize()));
                 deck.addCard(card);
-                DeckProbabilities deckProbabilities = new DeckProbabilities(deck);
-                deckProbabilities.normalizeProbability();
+                deck.normalizeProbability();
                 databaseDeck.updateDeck(deck);
                 editCardView.setCardList(deck);
-                deckProbabilities.printProbability();
+                deck.printProbability();
             }
         }
         editCardView.clearTextFields();
@@ -61,13 +60,12 @@ public class EditCardController extends Controller implements EditCard.EditCardL
         Card selectedItem = editCardView.getSelectedCard();
         if (selectedItem != null) {
             deck.removeCard(selectedItem);
-            DeckProbabilities deckProbabilities = new DeckProbabilities(deck);
-            deckProbabilities.normalizeProbability();
+            deck.normalizeProbability();
             databaseDeck.updateDeck(deck);
             editCardView.setCardList(deck);
             editCardView.clearTextFields();
             editCardView.activateButtons(false);
-            deckProbabilities.printProbability();
+            deck.printProbability();
         }
     }
 

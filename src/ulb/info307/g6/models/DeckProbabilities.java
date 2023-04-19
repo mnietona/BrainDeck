@@ -1,18 +1,16 @@
 package ulb.info307.g6.models;
 
 public class DeckProbabilities extends Deck {
-    private final Deck deck;
 
-    public DeckProbabilities(Deck d) {
-        this.deck = d;
+    public DeckProbabilities(Deck deck) {
+        super(deck);
     }
 
     public void initDeckProbabilities() {
-        // TODO: move to Deck
         if (isNotNormalized()) {  // If the sum of the probabilities is not 1, we normalize them sum != 1
-            int numberOfCards = deck.getSize();
+            int numberOfCards = getSize();
             double probability = (double) 1 / numberOfCards;
-            for (Card card : deck.getCardList()) {
+            for (Card card : getCardList()) {
                 card.setProbability(probability);
             }
         }
@@ -21,7 +19,7 @@ public class DeckProbabilities extends Deck {
     public void normalizeProbability() {
         double sum = getSumProbability();
         if (isNotOne(sum)) {
-            for (Card card : deck.getCardList()) {
+            for (Card card : getCardList()) {
                 card.setProbability(card.getProbability() / sum);
             }
         }
@@ -35,7 +33,7 @@ public class DeckProbabilities extends Deck {
 
     private double getSumProbability() {
         double sum = 0;
-        for (Card card : deck.getCardList()) {
+        for (Card card : getCardList()) {
             sum += card.getProbability();
         }
         return sum;
@@ -60,16 +58,16 @@ public class DeckProbabilities extends Deck {
     }
 
     public void resetProbability() {
-        int numberOfCards = deck.getSize();
+        int numberOfCards = getSize();
         double probability = (double) 1 / numberOfCards;
-        for (Card card : deck.getCardList()) {
+        for (Card card : getCardList()) {
             card.setProbability(probability);
         }
     }
 
     public void printProbability() {
-        System.out.println("Printing probability of deck " + deck.getName());
-        for (Card card : deck.getCardList()) {
+        System.out.println("Printing probability of deck " + getName());
+        for (Card card : getCardList()) {
             System.out.println("Probability of card " + card.toString() + " : " + card.getProbability());
         }
     }
@@ -79,7 +77,7 @@ public class DeckProbabilities extends Deck {
         double cumulativeProbability = 0.0;
 
         int i = 0;
-        for (Card card : deck.getCardList()) {
+        for (Card card : getCardList()) {
             cumulativeProbability += card.getProbability();
             if (random <= cumulativeProbability) {
                 return i;
