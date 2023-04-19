@@ -1,7 +1,6 @@
 package ulb.info307.g6.models;
 
 public class DeckProbabilities extends Deck {
-
     public DeckProbabilities(Deck deck) {
         super(deck);
     }

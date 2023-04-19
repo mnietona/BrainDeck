@@ -5,10 +5,9 @@ import org.dizitart.no2.objects.filters.ObjectFilters;
 import ulb.info307.g6.models.Card;
 import java.util.List;
 
-public class CardDaoNitriteImplementation implements CardDaoInterface {
+public class CardDaoNitriteImplementation {
     final ObjectRepository<Card> con = DatabaseConnection.getConnection().getRepository(Card.class);
 
-    @Override
     public boolean addCard(Card card) {
         try {
             con.insert(card);
@@ -19,7 +18,6 @@ public class CardDaoNitriteImplementation implements CardDaoInterface {
         return false;
     }
 
-    @Override
     public boolean deleteCard(Card card) {
         try {
             con.remove(card);
@@ -30,7 +28,6 @@ public class CardDaoNitriteImplementation implements CardDaoInterface {
         return false;
     }
 
-    @Override
     public boolean updateCard(Card card) {
         try {
             con.update(card);
@@ -41,7 +38,6 @@ public class CardDaoNitriteImplementation implements CardDaoInterface {
         return false;
     }
 
-    @Override
     public List<Card> getAllCards() {
         try {
             return con.find().toList();
@@ -51,7 +47,6 @@ public class CardDaoNitriteImplementation implements CardDaoInterface {
         return null;
     }
 
-    @Override
     public Card getCardById(long id) {
         try {
             return con.find(ObjectFilters.eq("id", id)).firstOrDefault();

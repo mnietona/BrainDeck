@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TestDeckDaoNitriteImplementation {
     static Deck test_deck;
-    static DeckDaoNitriteImplementation ddni;  // TODO change to DeckDaoInterface
+    static DeckDaoNitriteImplementation ddni;
 
     @BeforeAll
     static void initTestDeck() {

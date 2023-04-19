@@ -5,9 +5,8 @@ import org.dizitart.no2.objects.filters.ObjectFilters;
 import ulb.info307.g6.models.Deck;
 import java.util.List;
 
-public class DeckDaoNitriteImplementation implements DeckDaoInterface {
+public class DeckDaoNitriteImplementation {
     ObjectRepository<Deck> con = DatabaseConnection.getConnection().getRepository(Deck.class);
-    @Override
     public boolean addDeck(Deck deck) {
         try {
             con.insert(deck);
@@ -18,7 +17,6 @@ public class DeckDaoNitriteImplementation implements DeckDaoInterface {
         return false;
     }
 
-    @Override
     public boolean deleteDeck(Deck deck) {
         try {
             con.remove(deck);
@@ -29,7 +27,6 @@ public class DeckDaoNitriteImplementation implements DeckDaoInterface {
         return false;
     }
 
-    @Override
     public boolean updateDeck(Deck deck) {
         try {
             con.update(deck);
@@ -40,7 +37,6 @@ public class DeckDaoNitriteImplementation implements DeckDaoInterface {
         return false;
     }
 
-    @Override
     public List<Deck> getAllDecks() {
         try {
             return con.find().toList();
@@ -50,7 +46,6 @@ public class DeckDaoNitriteImplementation implements DeckDaoInterface {
         return null;
     }
 
-    @Override
     public Deck getDeckById(long id) {
         try {
             return con.find(ObjectFilters.eq("id", id)).firstOrDefault();
