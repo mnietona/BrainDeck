@@ -13,6 +13,10 @@ public class Deck implements Serializable {
     private String name;
     private List<Card> cardList;
 
+    public Deck() {
+        this.id = new Random().nextLong();
+    }
+
     public Deck(Deck deck) {
         this.id = deck.id;
         this.name = deck.name;
