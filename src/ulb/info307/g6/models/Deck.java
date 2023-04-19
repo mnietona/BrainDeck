@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.dizitart.no2.objects.Id;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -11,10 +12,11 @@ public class Deck implements Serializable {
     @Id
     private final long id;
     private String name;
-    private List<Card> cardList;
+    protected List<Card> cardList;
 
     public Deck() {
         this.id = new Random().nextLong();
+        this.cardList = new ArrayList<>();
     }
 
     public Deck(Deck deck) {
@@ -34,8 +36,8 @@ public class Deck implements Serializable {
         this.cardList = cardList;
     }
 
-    public List<Card> getCardList() {  // TODO don't modify list from outside of Deck, encapsulate !
-        return cardList;  // TODO alternative : Collections.unmodifiableList(cardList) to prevent modification and leave access
+    public Iterator<Card> getCardIterator() {
+        return cardList.iterator();
     }
 
     public Card getCardByIndex(int index) {
@@ -48,7 +50,7 @@ public class Deck implements Serializable {
 
     @JsonIgnore
     public int getSize() {
-        return getCardList().size();
+        return cardList.size();
     }
 
     @JsonIgnore

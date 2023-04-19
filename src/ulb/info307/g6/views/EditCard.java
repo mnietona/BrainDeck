@@ -8,6 +8,8 @@ import javafx.scene.control.TextArea;
 import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.Deck;
 
+import java.util.Iterator;
+
 /**
  * View controller of the EditCard menu, implements View interface and is the controller for the EditCard.fxml file.
  * Contains :
@@ -71,8 +73,9 @@ public class EditCard implements View {
      */
     public void setCardList(Deck deck) {
         cardListView.getItems().clear();
-        for (Card card : deck.getCardList()) {
-            cardListView.getItems().add(card);
+        Iterator<Card> cardIterator = deck.getCardIterator();
+        while (cardIterator.hasNext()) {
+            cardListView.getItems().add(cardIterator.next());
         }
         cardListView.setOnMouseClicked(event -> {
             updateQuestionAnswer();

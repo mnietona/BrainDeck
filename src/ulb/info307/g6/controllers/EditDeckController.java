@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class EditDeckController extends ControllerWithDeckList implements EditDeck.EditDeckListener {
@@ -79,9 +80,11 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
         }
     }
 
-    private int countEmptyProbabilityCards(Deck d) {
+    private int countEmptyProbabilityCards(Deck deck) {
         int amountOfEmptyProbaCards = 0;
-        for (Card c : d.getCardList()) {
+        Iterator<Card> cardIterator = deck.getCardIterator();
+        while (cardIterator.hasNext()) {
+            Card c = cardIterator.next();
             if (c.getProbability() == null) {
                 amountOfEmptyProbaCards++;
             }
@@ -89,22 +92,24 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
         return amountOfEmptyProbaCards;
     }
 
-    private void setCardProbabilities(Deck d, int amountOfEmptyProbaCards) {
-        DeckProbabilities dp = (DeckProbabilities) d;
+    private void setCardProbabilities(Deck deck, int amountOfEmptyProbaCards) {
+        DeckProbabilities deckProbabilities = (DeckProbabilities) deck;
         if (amountOfEmptyProbaCards >= 1) {
-            for (Card c : d.getCardList()) {
+            Iterator<Card> cardIterator = deck.getCardIterator();
+            while (cardIterator.hasNext()) {
+                Card c = cardIterator.next();
                 if (c.getProbability() == null) {
-                    if (d.getSize() == amountOfEmptyProbaCards) {
+                    if (deck.getSize() == amountOfEmptyProbaCards) {
                         c.setProbability(1.0);
                     } else {
-                        c.setProbability(1.0 / (d.getSize() - amountOfEmptyProbaCards));
+                        c.setProbability(1.0 / (deck.getSize() - amountOfEmptyProbaCards));
                     }
                 }
             }
-            dp.normalizeProbability();
+            deckProbabilities.normalizeProbability();
         }
-        if (dp.isNotNormalized()) {
-            dp.initDeckProbabilities();
+        if (deckProbabilities.isNotNormalized()) {
+            deckProbabilities.initDeckProbabilities();
             System.out.println("Probabilities were not good so we reset them for you");
         }
     }

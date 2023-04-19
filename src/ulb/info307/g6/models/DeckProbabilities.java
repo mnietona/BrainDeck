@@ -10,7 +10,7 @@ public class DeckProbabilities extends Deck {
         if (isNotNormalized()) {  // If the sum of the probabilities is not 1, we normalize them sum != 1
             int numberOfCards = getSize();
             double probability = (double) 1 / numberOfCards;
-            for (Card card : getCardList()) {
+            for (Card card : cardList) {
                 card.setProbability(probability);
             }
         }
@@ -19,7 +19,7 @@ public class DeckProbabilities extends Deck {
     public void normalizeProbability() {
         double sum = getSumProbability();
         if (isNotOne(sum)) {
-            for (Card card : getCardList()) {
+            for (Card card : cardList) {
                 card.setProbability(card.getProbability() / sum);
             }
         }
@@ -34,7 +34,7 @@ public class DeckProbabilities extends Deck {
     private double getSumProbability() {
         if (isEmpty()) { return 0; }
         double sum = 0;
-        for (Card card : getCardList()) {
+        for (Card card : cardList) {
             sum += card.getProbability();
         }
         return sum;
@@ -61,14 +61,14 @@ public class DeckProbabilities extends Deck {
     public void resetProbability() {
         int numberOfCards = getSize();
         double probability = (double) 1 / numberOfCards;
-        for (Card card : getCardList()) {
+        for (Card card : cardList) {
             card.setProbability(probability);
         }
     }
 
     public void printProbability() {
         System.out.println("Printing probability of deck " + getName());
-        for (Card card : getCardList()) {
+        for (Card card : cardList) {
             System.out.println("Probability of card " + card.toString() + " : " + card.getProbability());
         }
     }
@@ -78,7 +78,7 @@ public class DeckProbabilities extends Deck {
         double cumulativeProbability = 0.0;
 
         int i = 0;
-        for (Card card : getCardList()) {
+        for (Card card : cardList) {
             cumulativeProbability += card.getProbability();
             if (random <= cumulativeProbability) {
                 return i;
