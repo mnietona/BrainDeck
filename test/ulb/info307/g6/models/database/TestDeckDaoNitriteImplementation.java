@@ -39,11 +39,11 @@ class TestDeckDaoNitriteImplementation {
     @Test
     void updateDeck() {
         assertTrue(ddni.addDeck(test_deck));
-        assertEquals(ddni.getDeckById(test_deck.getId()).getCardList().size(), test_deck.getCardList().size());
+        assertEquals(ddni.getDeckById(test_deck.getId()).getSize(), test_deck.getSize());
         Card test_update_card = new Card("3+2", "5");
         test_deck.addCard(test_update_card);
         assertTrue(ddni.updateDeck(test_deck));
-        assertEquals(ddni.getDeckById(test_deck.getId()).getCardList().size(), test_deck.getCardList().size());
+        assertEquals(ddni.getDeckById(test_deck.getId()).getSize(), test_deck.getSize());
         test_deck.removeCard(test_update_card);
         assertTrue(ddni.deleteDeck(test_deck));
     }

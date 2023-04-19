@@ -32,6 +32,7 @@ public class DeckProbabilities extends Deck {
     }
 
     private double getSumProbability() {
+        if (isEmpty()) { return 0; }
         double sum = 0;
         for (Card card : getCardList()) {
             sum += card.getProbability();

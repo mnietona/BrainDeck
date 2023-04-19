@@ -13,10 +13,6 @@ public class Deck implements Serializable {
     private String name;
     private List<Card> cardList;
 
-    public Deck() {
-        this.id = new Random().nextLong();
-    }
-
     public Deck(Deck deck) {
         this.id = deck.id;
         this.name = deck.name;
@@ -36,6 +32,14 @@ public class Deck implements Serializable {
 
     public List<Card> getCardList() {  // TODO don't modify list from outside of Deck, encapsulate !
         return cardList;  // TODO alternative : Collections.unmodifiableList(cardList) to prevent modification and leave access
+    }
+
+    public Card getCardByIndex(int index) {
+        try {
+            return cardList.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
     }
 
     @JsonIgnore

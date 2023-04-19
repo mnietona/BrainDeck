@@ -22,7 +22,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
 
     public void updateCardKnowledgeLevel() {
         if (!currentDeck.isEmpty()) {
-            Card card = currentDeck.getCardList().get(cardIndex);
+            Card card = currentDeck.getCardByIndex(cardIndex);
             int knowledgeLvl = studyView.getSelectedKnowledgeLvl();
             currentDeck.updateProbability(card, knowledgeLvl);
             database.updateDeck(currentDeck);
@@ -54,7 +54,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
 
     public void updateDisplayArea() {
         if (currentDeck != null) {
-            Card card = currentDeck.getCardList().get(cardIndex);
+            Card card = currentDeck.getCardByIndex(cardIndex);
             updateSliderPosition();
             if (CardGapFill.isCardGapFilType(card)) {
                 // We transform the card into its extended type cardGapFill if necessary
