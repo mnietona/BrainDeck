@@ -21,6 +21,11 @@
                         <Font size="20.0" />
                     </font>
                 </Text>
+                <Text fx:id="textTotalNumberOfCards" text="Total number of Cards" textAlignment="CENTER" wrappingWidth="390.0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Text>
             </VBox>
         </VBox>
     </VBox>

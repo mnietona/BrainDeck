@@ -9,6 +9,7 @@ public class StatisticsController extends ControllerWithDeckList implements Stat
         super(stage, "/ulb/info307/g6/views/Statistics.fxml", "Statistics");
         statisticsView = (Statistics) view;
         statisticsView.setNumberOfDecks(database.getNumberOfDecks());
+        statisticsView.setTotalNumberOfCards(database.getTotalNumberOfCards());
     }
 
     @Override
