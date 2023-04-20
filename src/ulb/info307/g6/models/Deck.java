@@ -3,6 +3,7 @@ package ulb.info307.g6.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.dizitart.no2.objects.Id;
 import java.io.Serializable;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -14,6 +15,8 @@ public class Deck implements Serializable {
     private String name;
     protected List<Card> cardList;
 
+    private long timeSpent; // Ajoutez ce champ pour stocker le temps passé
+
     public Deck() {
         this.id = new Random().nextLong();
         this.cardList = new ArrayList<>();
@@ -23,6 +26,7 @@ public class Deck implements Serializable {
         this.id = deck.id;
         this.name = deck.name;
         this.cardList = new ArrayList<>(deck.cardList);
+        this.timeSpent = deck.timeSpent;
     }
     public Deck(String name) {
         this.id = new Random().nextLong();
@@ -77,4 +81,15 @@ public class Deck implements Serializable {
     public String toString() {
         return getName();
     }
+
+    // Ajoutez les getters et setters pour le temps passé
+    public long getTimeSpent() {
+        return timeSpent;
+    }
+
+    public void setTimeSpent(long newTimeSpent) {
+        this.timeSpent = newTimeSpent;
+    }
+
+
 }

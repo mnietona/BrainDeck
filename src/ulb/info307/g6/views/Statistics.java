@@ -9,6 +9,8 @@ public class Statistics extends ViewWithDeckList {
     @FXML
     private Text upperText;
     @FXML
+    private Text middleText;
+    @FXML
     private Text lowerText;
 
     @FXML
@@ -36,6 +38,10 @@ public class Statistics extends ViewWithDeckList {
     public void setNumberCardsOfDeck(int n) {
         lowerText.setText("Number of cards in this deck: " + n);
     }
+
+    public void setTimeSpentOfDeck(String timeSpent) {middleText.setText("Time spent: " + timeSpent);}
+
+    public void setTimeSpentOfAllDeck(String timeSpent) {middleText.setText("Total Time: " + timeSpent);}
 
     @Override
     public void setListener(Object listener) {

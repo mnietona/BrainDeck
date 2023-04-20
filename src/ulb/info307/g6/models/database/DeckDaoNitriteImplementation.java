@@ -76,4 +76,18 @@ public class DeckDaoNitriteImplementation {
         }
         return null;
     }
+
+
+    public long getTotalTimeSpent() {
+        try {
+            long totalTimeSpend = 0;
+            for (Deck deck : con.find().toList()) {
+                totalTimeSpend += deck.getTimeSpent();
+            }
+            return totalTimeSpend;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

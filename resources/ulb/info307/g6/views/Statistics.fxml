@@ -21,11 +21,17 @@
                         <Font size="20.0" />
                     </font>
                 </Text>
+                <Text fx:id="middleText" text="Time spent" textAlignment="CENTER" wrappingWidth="390.0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Text>
                 <Text fx:id="lowerText" text="Total number of Cards" textAlignment="CENTER" wrappingWidth="390.0">
                     <font>
                         <Font size="20.0" />
                     </font>
                 </Text>
+
             </VBox>
         </VBox>
         <HBox alignment="CENTER" spacing="5.0">
