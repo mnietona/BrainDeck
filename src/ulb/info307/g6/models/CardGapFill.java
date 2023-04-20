@@ -14,7 +14,8 @@ public class CardGapFill extends Card {
     }
 
     public static boolean isCardGapFilType(Card card) {
-        return card.getQuestion().contains(QUESTION_SEPARATOR);  // TODO demeter ?
+        String question = card.getQuestion();
+        return question.contains(QUESTION_SEPARATOR);
     }
 
     @Override

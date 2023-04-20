@@ -6,7 +6,7 @@ import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.views.CreateDeck;
 
 public class CreateDeckController extends Controller implements CreateDeck.CreateDeckListener {
-    static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation();  // Initialize the DAO for the database  // TODO use interface instead
+    static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation();  // Initialize the DAO for the database
 
     public CreateDeckController(Stage stage) {
         super(stage, "/ulb/info307/g6/views/CreateDeck.fxml", "Create a new deck");
