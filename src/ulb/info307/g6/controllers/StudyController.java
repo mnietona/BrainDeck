@@ -4,6 +4,8 @@ import javafx.stage.Stage;
 import ulb.info307.g6.models.*;
 import ulb.info307.g6.views.Study;
 
+import java.time.Instant;
+
 public class StudyController extends ControllerWithDeckList implements Study.StudyListener {
     private final Study studyView;
     private final int[] lastIndex = new int[3];
@@ -11,6 +13,8 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
     private int numberOfFlipsAuthorizedForCurrentCard = 1;
     private int cardIndex = 0;
     private DeckProbabilities currentDeck = null;
+    private Instant deckSelectionStartTime;
+
 
     public StudyController(Stage stage) {
         super(stage, "/ulb/info307/g6/views/Study.fxml", "Study your decks");
@@ -70,6 +74,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
     public void clickHome() {
         if (currentDeck != null) {
             updateCardKnowledgeLevel();
+            updateTimeSpent();
         }
         new WelcomeController(stage);
     }
@@ -98,16 +103,18 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
             studyView.activateSlider(flipIndex == numberOfFlipsAuthorizedForCurrentCard);
         }
     }
-
     @Override
     public void deckSelected() {
+        updateTimeSpent();
         studyView.activateSlider(false);
         currentDeck = new DeckProbabilities(studyView.getSelectedDeck());
         studyView.activateActionButtons(!currentDeck.isEmpty());
+
         cardIndex = 0;
         flipIndex = 0;
 
         if (!currentDeck.isEmpty()) {
+            deckSelectionStartTime = Instant.now(); // start the timer
             currentDeck.initDeckProbabilities();
             database.updateDeck(currentDeck);
             getNextRandomCard();
@@ -116,4 +123,15 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
             studyView.showEmptyDeck("The deck " + currentDeck.getName() + " is empty");
         }
     }
+
+    private void updateTimeSpent() {
+        if (currentDeck != null) {
+            Instant deckSelectionEndTime = Instant.now();
+            long TotalTimeSpentOnDeck = currentDeck.getTimeSpent() + deckSelectionEndTime.getEpochSecond() - deckSelectionStartTime.getEpochSecond();
+            currentDeck.setTimeSpent(TotalTimeSpentOnDeck);
+            database.updateDeck(currentDeck);
+        }
+    }
+
+
 }
