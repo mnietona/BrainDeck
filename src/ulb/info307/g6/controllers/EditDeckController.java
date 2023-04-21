@@ -93,7 +93,7 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
     }
 
     private void setCardProbabilities(Deck deck, int amountOfEmptyProbaCards) {
-        DeckProbabilities deckProbabilities = (DeckProbabilities) deck;
+        DeckProbabilities deckProbabilities = new DeckProbabilities(deck);
         if (amountOfEmptyProbaCards >= 1) {
             Iterator<Card> cardIterator = deck.getCardIterator();
             while (cardIterator.hasNext()) {
