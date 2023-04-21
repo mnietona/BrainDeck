@@ -1,7 +1,7 @@
 package ulb.info307.g6.models;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.dizitart.no2.objects.Id;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,6 +13,7 @@ public class Deck implements Serializable {
     @Id
     private final long id;
     private String name;
+    @JsonProperty("cardList")
     protected List<Card> cardList;
 
     public Deck() {
@@ -40,11 +41,6 @@ public class Deck implements Serializable {
     @JsonIgnore
     public Iterator<Card> getCardIterator() {
         return cardList.iterator();
-    }
-
-    @JsonGetter("cardList")
-    private List<Card> getCardList() {
-        return cardList;
     }
 
     public Card getCardByIndex(int index) {
