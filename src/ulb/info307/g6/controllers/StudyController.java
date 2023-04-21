@@ -3,7 +3,6 @@ package ulb.info307.g6.controllers;
 import javafx.stage.Stage;
 import ulb.info307.g6.models.*;
 import ulb.info307.g6.views.Study;
-
 import java.time.Instant;
 
 public class StudyController extends ControllerWithDeckList implements Study.StudyListener {
@@ -13,8 +12,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
     private int numberOfFlipsAuthorizedForCurrentCard = 1;
     private int cardIndex = 0;
     private DeckProbabilities currentDeck = null;
-    private Instant deckSelectionStartTime;
-
+    private Instant cardSelectionTimeStart;
 
     public StudyController(Stage stage) {
         super(stage, "/ulb/info307/g6/views/Study.fxml", "Study your decks");
@@ -39,6 +37,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
     }
 
     private void getNextRandomCard() {
+        updateTimeSpent();
         int nextCardIndex = 0;
         if (currentDeck.getSize() == 2 || currentDeck.getSize() == 3) {
             nextCardIndex = (cardIndex + 1) % currentDeck.getSize();
@@ -49,6 +48,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
         lastIndex[2] = lastIndex[1];
         lastIndex[1] = lastIndex[0];
         lastIndex[0] = nextCardIndex;
+        cardSelectionTimeStart = Instant.now();
     }
 
     private boolean questionIsDisplayed() {
@@ -105,16 +105,14 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
     }
     @Override
     public void deckSelected() {
-        updateTimeSpent();
         studyView.activateSlider(false);
         currentDeck = new DeckProbabilities(studyView.getSelectedDeck());
         studyView.activateActionButtons(!currentDeck.isEmpty());
-
         cardIndex = 0;
         flipIndex = 0;
 
         if (!currentDeck.isEmpty()) {
-            deckSelectionStartTime = Instant.now(); // start the timer
+            cardSelectionTimeStart = Instant.now(); // start the timer
             currentDeck.initDeckProbabilities();
             database.updateDeck(currentDeck);
             getNextRandomCard();
@@ -126,12 +124,9 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
 
     private void updateTimeSpent() {
         if (currentDeck != null) {
-            Instant deckSelectionEndTime = Instant.now();
-            long TotalTimeSpentOnDeck = currentDeck.getTimeSpent() + deckSelectionEndTime.getEpochSecond() - deckSelectionStartTime.getEpochSecond();
-            currentDeck.setTimeSpent(TotalTimeSpentOnDeck);
+            Instant cardSelectionTimeEnd = Instant.now();
+            currentDeck.getCardByIndex(cardIndex).addTimeSpent(cardSelectionTimeStart, cardSelectionTimeEnd);
             database.updateDeck(currentDeck);
         }
     }
-
-
 }

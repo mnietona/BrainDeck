@@ -77,7 +77,6 @@ public class DeckDaoNitriteImplementation {
         return null;
     }
 
-
     public long getTotalTimeSpent() {
         try {
             long totalTimeSpend = 0;

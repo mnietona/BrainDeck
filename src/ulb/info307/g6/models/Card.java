@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.dizitart.no2.objects.Id;
 import java.io.Serializable;
 import java.util.Random;
+import java.time.Duration;
+import java.time.Instant;
 
 public class Card implements Serializable {
     @Id
@@ -11,6 +13,7 @@ public class Card implements Serializable {
     private String question;
     private String answer;
     private Double probability;  // 5 levels: 0, 1, 2, 3, 4 from bad to good
+    private long timeSpent = 0;
 
     public Card() {
         this.id = new Random().nextLong();
@@ -73,5 +76,14 @@ public class Card implements Serializable {
         s = s.substring(0, Math.min(length, 20));
         if (s.length() < length) s += "...";
         return s;
+    }
+
+    public long getTimeSpent() {
+        return timeSpent;
+    }
+
+    public void addTimeSpent(Instant start, Instant end) {
+        timeSpent += Duration.between(start, end).toSeconds();
+
     }
 }

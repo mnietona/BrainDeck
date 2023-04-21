@@ -1,8 +1,9 @@
-
 package ulb.info307.g6.views;
+
 import javafx.fxml.FXML;
 import ulb.info307.g6.models.Deck;
 import javafx.scene.text.Text;
+import java.time.Duration;
 
 public class Statistics extends ViewWithDeckList {
     private StatisticsListener listener;
@@ -39,9 +40,23 @@ public class Statistics extends ViewWithDeckList {
         lowerText.setText("Number of cards in this deck: " + n);
     }
 
-    public void setTimeSpentOfDeck(String timeSpent) {middleText.setText("Time spent: " + timeSpent);}
+    public void setTimeSpentOfDeck(long timeSpent) {
+        String timeSpentString = getTimeSpentAsString(timeSpent);
+        middleText.setText("Time spent: " + timeSpentString);
+    }
 
-    public void setTimeSpentOfAllDeck(String timeSpent) {middleText.setText("Total Time: " + timeSpent);}
+    public void setTimeSpentOfAllDeck(long timeSpent) {
+        String timeSpentString = getTimeSpentAsString(timeSpent);
+        middleText.setText("Total Time: " + timeSpentString);
+    }
+
+    public String getTimeSpentAsString(long timeSpentSecond) {
+        Duration duration = Duration.ofSeconds(timeSpentSecond);
+        long hours = duration.toHours();
+        long minutes = duration.minusHours(hours).toMinutes();
+        long seconds = duration.minusHours(hours).minusMinutes(minutes).getSeconds();
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+    }
 
     @Override
     public void setListener(Object listener) {
@@ -57,6 +72,5 @@ public class Statistics extends ViewWithDeckList {
         void clickHome();
         void clickDeck(Deck deck);
         void showGlobalStatistics();
-
     }
 }
