@@ -78,7 +78,6 @@ public class Card implements Serializable {
         return s;
     }
 
-    @JsonIgnore
     public long getTimeSpent() {
         return timeSpent;
     }

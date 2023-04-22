@@ -7,6 +7,7 @@ import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.views.EditCard;
+import ulb.info307.g6.models.CardLatex;
 
 import ulb.info307.g6.models.DeckProbabilities;
 
@@ -70,10 +71,13 @@ public class EditCardController extends Controller implements EditCard.EditCardL
     private Card getCardEntered() {
         if (editCardView.cardIsGapFill()) {
             return new CardGapFill(editCardView.getQuestionInput(), editCardView.getAnswerInput());
+        } else if (editCardView.cardIsLatex()) {
+            return new CardLatex(editCardView.getQuestionInput(), editCardView.getAnswerInput());
         } else {
             return new Card(editCardView.getQuestionInput(), editCardView.getAnswerInput());
         }
     }
+
 
     @Override
     public void clickBack() {
