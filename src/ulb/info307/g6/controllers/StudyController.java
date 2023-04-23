@@ -123,7 +123,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
     }
 
     private void updateTimeSpent() {
-        if (currentDeck != null) {
+        if (currentDeck != null && !currentDeck.isEmpty()) {
             Instant cardSelectionTimeEnd = Instant.now();
             currentDeck.getCardByIndex(cardIndex).addTimeSpent(cardSelectionTimeStart, cardSelectionTimeEnd);
             database.updateDeck(currentDeck);
