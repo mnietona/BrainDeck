@@ -1,12 +1,15 @@
 package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import ulb.info307.g6.models.Deck;
 import javafx.scene.text.Text;
 import java.time.Duration;
 
 public class Statistics extends ViewWithDeckList {
     private StatisticsListener listener;
+    @FXML
+    private Button cardsStatisticsButton;
     @FXML
     private Text firstText;
     @FXML
@@ -24,6 +27,11 @@ public class Statistics extends ViewWithDeckList {
     @FXML
     public void clickGlobalStatistics() {
         listener.showGlobalStatistics();
+    }
+
+    @FXML
+    public void clickCardsStatistics() {
+        listener.showCardsStatistics();
     }
 
     public void setNumberOfDecks(int n) {
@@ -72,6 +80,10 @@ public class Statistics extends ViewWithDeckList {
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 
+    public void activateButton(boolean activate) {
+        cardsStatisticsButton.setDisable(!activate);
+    }
+
     @Override
     public void setListener(Object listener) {
         this.listener = (StatisticsListener) listener;
@@ -86,5 +98,6 @@ public class Statistics extends ViewWithDeckList {
         void clickHome();
         void clickDeck(Deck deck);
         void showGlobalStatistics();
+        void showCardsStatistics();
     }
 }
