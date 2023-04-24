@@ -16,6 +16,8 @@ public class Card implements Serializable {
     private long timeSpent = 0;
     private int knowledgeLevel;
 
+    private int numberOfAppearances = 0;
+
     public Card() {
         this.id = new Random().nextLong();
         this.probability = null;
@@ -94,5 +96,13 @@ public class Card implements Serializable {
     public void addTimeSpent(Instant start, Instant end) {
         timeSpent += Duration.between(start, end).toSeconds();
 
+    }
+
+    public void increaseNumberOfAppearances() {
+        numberOfAppearances++;
+    }
+
+    public int getNumberOfAppearances() {
+        return numberOfAppearances;
     }
 }

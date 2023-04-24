@@ -127,6 +127,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
         if (currentDeck != null && !currentDeck.isEmpty()) {
             Instant cardSelectionTimeEnd = Instant.now();
             currentDeck.getCardByIndex(cardIndex).addTimeSpent(cardSelectionTimeStart, cardSelectionTimeEnd);
+            currentDeck.getCardByIndex(cardIndex).increaseNumberOfAppearances();
             database.updateDeck(currentDeck);
         }
     }

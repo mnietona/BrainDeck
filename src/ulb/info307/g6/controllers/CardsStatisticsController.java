@@ -23,5 +23,6 @@ public class CardsStatisticsController extends ControllerWithCardList implements
         cardsStatisticsView.setCardKnowledgeLevel(cardsStatisticsView.getSelectedCard().getKnowledgeLevel());
         cardsStatisticsView.setCardTimeSpent(cardsStatisticsView.getSelectedCard().getTimeSpent());
         cardsStatisticsView.setCardProbability(cardsStatisticsView.getSelectedCard().getProbability());
+        cardsStatisticsView.setCardNumberOfAppearances(cardsStatisticsView.getSelectedCard().getNumberOfAppearances());
     }
 }

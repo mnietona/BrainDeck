@@ -7,7 +7,7 @@ public class CardsStatistics extends ViewWithCardList {
     private CardsStatisticsListener listener;
 
     @FXML
-    Text firstText, secondText, thirdText;
+    Text firstText, secondText, thirdText, fourthText;
 
     @FXML
     private void clickBack() {
@@ -40,6 +40,12 @@ public class CardsStatistics extends ViewWithCardList {
         String text = "Probability: ";
         text += probability;
         thirdText.setText(text);
+    }
+
+    public void setCardNumberOfAppearances(int numberOfAppearances) {
+        String text = "Number of appearances: ";
+        text += numberOfAppearances;
+        fourthText.setText(text);
     }
 
     public interface CardsStatisticsListener {
