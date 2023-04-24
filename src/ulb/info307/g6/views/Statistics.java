@@ -8,11 +8,13 @@ import java.time.Duration;
 public class Statistics extends ViewWithDeckList {
     private StatisticsListener listener;
     @FXML
-    private Text upperText;
+    private Text firstText;
     @FXML
-    private Text middleText;
+    private Text secondText;
     @FXML
-    private Text lowerText;
+    private Text thirdText;
+    @FXML
+    private Text fourthText;
 
     @FXML
     public void clickHome() {
@@ -25,29 +27,41 @@ public class Statistics extends ViewWithDeckList {
     }
 
     public void setNumberOfDecks(int n) {
-        upperText.setText("Number of decks: " + n);
+        firstText.setText("Number of decks: " + n);
     }
 
     public void setTotalNumberOfCards(int n) {
-        lowerText.setText("Total number of cards: " + n);
+        thirdText.setText("Total number of cards: " + n);
     }
 
     public void setDeckName(String name) {
-        upperText.setText("Deck name: " + name);
+        firstText.setText("Deck name: " + name);
     }
 
     public void setNumberCardsOfDeck(int n) {
-        lowerText.setText("Number of cards in this deck: " + n);
+        thirdText.setText("Number of cards in this deck: " + n);
     }
 
     public void setTimeSpentOfDeck(long timeSpent) {
         String timeSpentString = getTimeSpentAsString(timeSpent);
-        middleText.setText("Time spent: " + timeSpentString);
+        secondText.setText("Time spent: " + timeSpentString);
     }
 
     public void setTimeSpentOfAllDeck(long timeSpent) {
         String timeSpentString = getTimeSpentAsString(timeSpent);
-        middleText.setText("Total Time: " + timeSpentString);
+        secondText.setText("Total Time: " + timeSpentString);
+    }
+
+    public void setKnowledgeLevelOfDeck(int knowledgeLevel) {
+        String s = switch (knowledgeLevel) {
+            case 0 -> "Beginner";
+            case 1 -> "Intermediate";
+            case 2 -> "Advanced";
+            case 3 -> "Expert";
+            case 4 -> "Master";
+            default -> "N/A";
+        };
+        fourthText.setText("Knowledge level: "+ s);
     }
 
     public String getTimeSpentAsString(long timeSpentSecond) {

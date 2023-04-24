@@ -38,6 +38,18 @@ public class Deck implements Serializable {
         this.cardList = cardList;
     }
 
+    public int getKnowledgeLevel() {
+        int knowledgeLevel = 0;
+        if (cardList.size() == 0) {
+            return 0;
+        }
+        for (Card card : cardList) {
+            knowledgeLevel += card.getKnowledgeLevel();
+        }
+        knowledgeLevel = knowledgeLevel / cardList.size();
+        return knowledgeLevel;
+    }
+
     @JsonIgnore
     public Iterator<Card> getCardIterator() {
         return cardList.iterator();

@@ -14,6 +14,7 @@ public class Card implements Serializable {
     private String answer;
     private Double probability;  // 5 levels: 0, 1, 2, 3, 4 from bad to good
     private long timeSpent = 0;
+    private int knowledgeLevel;
 
     public Card() {
         this.id = new Random().nextLong();
@@ -57,6 +58,14 @@ public class Card implements Serializable {
 
     public void setProbability(Double probability) {
         this.probability = probability;
+    }
+
+    public void setKnowledgeLevel(int knowledgeLevel) {
+        this.knowledgeLevel = knowledgeLevel;
+    }
+
+    public int getKnowledgeLevel() {
+        return knowledgeLevel;
     }
 
     @JsonIgnore
