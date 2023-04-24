@@ -16,7 +16,7 @@ public class EditCardController extends ControllerWithCardList implements EditCa
     private final EditCard editCardView;  // The view for editing a card
 
     public EditCardController(Stage stage, Deck deck) {
-        super(stage, "/ulb/info307/g6/views/EditCard.fxml", "Edit cards in the deck",deck);
+        super(stage, "/ulb/info307/g6/views/EditCard.fxml", "Edit cards in the deck " + deck.getName(),deck);
         this.deck = new DeckProbabilities(deck);
         editCardView = (EditCard) view;
         editCardView.activateButtons(false);
