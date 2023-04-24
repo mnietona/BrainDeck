@@ -6,9 +6,11 @@ import ulb.info307.g6.models.Deck;
 
 public class CardsStatisticsController extends ControllerWithCardList implements CardsStatistics.CardsStatisticsListener {
 
+    CardsStatistics cardsStatisticsView;
+
     public CardsStatisticsController(Stage stage, Deck deck) {
         super(stage, "/ulb/info307/g6/views/CardsStatistics.fxml", "Cards statistics", deck);
-        CardsStatistics cardsStatisticsView = (CardsStatistics) view;
+        cardsStatisticsView = (CardsStatistics) view;
     }
 
     @Override
@@ -17,7 +19,9 @@ public class CardsStatisticsController extends ControllerWithCardList implements
     }
 
     @Override
-    public void clickDeckStatistics() {
-        //TODO
+    public void showCardStatistics() {
+        cardsStatisticsView.setCardKnowledgeLevel(cardsStatisticsView.getSelectedCard().getKnowledgeLevel());
+        cardsStatisticsView.setCardTimeSpent(cardsStatisticsView.getSelectedCard().getTimeSpent());
+        cardsStatisticsView.setCardProbability(cardsStatisticsView.getSelectedCard().getProbability());
     }
 }
