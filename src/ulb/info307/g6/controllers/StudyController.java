@@ -26,6 +26,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
         if (!currentDeck.isEmpty()) {
             Card card = currentDeck.getCardByIndex(cardIndex);
             int knowledgeLvl = studyView.getSelectedKnowledgeLvl();
+            card.setKnowledgeLevel(knowledgeLvl); // We update the knowledge level of the card
             currentDeck.updateProbability(card, knowledgeLvl);
             database.updateDeck(currentDeck);
         }

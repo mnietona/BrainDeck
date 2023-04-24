@@ -29,6 +29,7 @@ public class StatisticsController extends ControllerWithDeckList implements Stat
         statisticsView.setDeckName(deck.getName());
         statisticsView.setTimeSpentOfDeck(deck.getTimeSpent());
         statisticsView.setNumberCardsOfDeck(deck.getSize());
+        statisticsView.setKnowledgeLevelOfDeck(deck.getKnowledgeLevel());
     }
 
 }
