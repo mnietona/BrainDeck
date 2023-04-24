@@ -9,7 +9,7 @@ public class CardsStatisticsController extends ControllerWithCardList implements
     CardsStatistics cardsStatisticsView;
 
     public CardsStatisticsController(Stage stage, Deck deck) {
-        super(stage, "/ulb/info307/g6/views/CardsStatistics.fxml", "Cards statistics", deck);
+        super(stage, "/ulb/info307/g6/views/CardsStatistics.fxml", "Cards statistics of deck " + deck.getName(), deck);
         cardsStatisticsView = (CardsStatistics) view;
     }
 
