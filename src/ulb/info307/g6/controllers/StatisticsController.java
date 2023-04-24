@@ -20,7 +20,6 @@ public class StatisticsController extends ControllerWithDeckList implements Stat
     @Override
     public void showGlobalStatistics() {
         statisticsView.activateButton(false);
-
         statisticsView.setNumberOfDecks(database.getNumberOfDecks());
         statisticsView.setTimeSpentOfAllDeck(database.getTotalTimeSpent());
         statisticsView.setTotalNumberOfCards(database.getTotalNumberOfCards());
@@ -28,7 +27,7 @@ public class StatisticsController extends ControllerWithDeckList implements Stat
 
     @Override
     public void showCardsStatistics() {
-        System.out.println("Cards");
+        new CardsStatisticsController(stage, statisticsView.getSelectedDeck());
     }
 
     @Override
