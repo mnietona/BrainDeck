@@ -27,4 +27,13 @@ public class TestDeckProbabilities {
         assertEquals(1.0/numberOfCards, card.getProbability(), 1e-9);
     }
 
+    @Test
+    public void testNormalizeProbability() {
+        deckProbabilities.initDeckProbabilities();
+        Card card = deckProbabilities.getCardByIndex(0);
+        deckProbabilities.updateProbability(card , 0);
+        deckProbabilities.normalizeProbability();
+        assertEquals(1.0, deckProbabilities.getSumProbability(), 1e-9);
+    }
+
 }
