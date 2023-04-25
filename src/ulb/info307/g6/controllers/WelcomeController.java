@@ -22,4 +22,9 @@ public class WelcomeController extends Controller implements Welcome.WelcomeList
     public void statisticsButtonAction() {
         new StatisticsController(stage);
     }
+
+    @Override
+    public void achievementsButtonAction() {
+    	new AchievementsController(stage);
+    }
 }

@@ -7,4 +7,5 @@
     <Button onAction="#studyButtonAction" prefHeight="50.0" prefWidth="80.0" text="Study" />
     <Button onAction="#editButtonAction" prefHeight="50.0" prefWidth="80.0" text="Edit" />
     <Button onAction="#statisticsButtonAction" prefHeight="50.0" prefWidth="80.0" text="Statistics" />
+    <Button onAction="#achievementsButtonAction" prefHeight="50.0" prefWidth="112.0" text="Achievements" />
 </HBox>
