@@ -31,8 +31,24 @@ public class TestDeckProbabilities {
     public void testNormalizeProbability() {
         deckProbabilities.initDeckProbabilities();
         Card card = deckProbabilities.getCardByIndex(0);
-        deckProbabilities.updateProbability(card , 0);
+        card.setProbability(0.5);
         deckProbabilities.normalizeProbability();
+        assertEquals(1.0, deckProbabilities.getSumProbability(), 1e-9);
+    }
+
+    @Test
+    public void testIsNotNormalized() {
+        deckProbabilities.initDeckProbabilities();
+        Card card = deckProbabilities.getCardByIndex(0);
+        card.setProbability(0.5);
+        assertTrue(deckProbabilities.isNotNormalized());
+    }
+
+    @Test
+    public void testUpdateProbability() {
+        deckProbabilities.initDeckProbabilities();
+        Card card = deckProbabilities.getCardByIndex(0);
+        deckProbabilities.updateProbability(card , 0);
         assertEquals(1.0, deckProbabilities.getSumProbability(), 1e-9);
     }
 
