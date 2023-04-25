@@ -16,6 +16,13 @@ public class TestDeckProbabilities {
         deck.addCard(new Card("Question1", "Answer1"));
         deck.addCard(new Card("Question2", "Answer2"));
         deck.addCard(new Card("Question3", "Answer3"));
+        deck.addCard(new Card("Question4", "Answer4"));
+        deck.addCard(new Card("Question5", "Answer5"));
+        deck.addCard(new Card("Question6", "Answer6"));
+        deck.addCard(new Card("Question7", "Answer7"));
+        deck.addCard(new Card("Question8", "Answer8"));
+        deck.addCard(new Card("Question9", "Answer9"));
+        deck.addCard(new Card("Question10", "Answer10"));
         deckProbabilities = new DeckProbabilities(deck);
     }
 
@@ -50,6 +57,22 @@ public class TestDeckProbabilities {
         Card card = deckProbabilities.getCardByIndex(0);
         deckProbabilities.updateProbability(card , 0);
         assertEquals(1.0, deckProbabilities.getSumProbability(), 1e-9);
+    }
+
+    @Test
+    public void testResetProbability() {
+        deckProbabilities.initDeckProbabilities();
+        Card card = deckProbabilities.getCardByIndex(0);
+        card.setProbability(0.5);
+        deckProbabilities.resetProbability();
+        assertEquals(1/3.0, card.getProbability(), 1e-9);
+    }
+
+    @Test
+    public void testEmptyDeckSumProbability() {
+        Deck emptyDeck = new Deck("EmptyDeck");
+        DeckProbabilities emptyDeckProbabilities = new DeckProbabilities(emptyDeck);
+        assertEquals(0, emptyDeckProbabilities.getSumProbability(), 1e-9);
     }
 
 }
