@@ -22,5 +22,33 @@ public class TestCardGapFill {
         assertTrue(CardGapFill.isCardGapFilType(cardGapFill));
     }
 
+    @Test
+    public void testIsValid() {
+        assertTrue(cardGapFill.isValid());
+        CardGapFill invalidCardGapFill = new CardGapFill("I have _ apples", "3, 5");
+        assertFalse(invalidCardGapFill.isValid());
+    }
+
+    @Test
+    public void testGetQuestion() {
+        String expectedQuestion = "I have _ apples and _ oranges ";
+        assertEquals(expectedQuestion, cardGapFill.getQuestion());
+    }
+
+    @Test
+    public void testGetMaxNumberOfFlips() {
+        assertEquals(2, cardGapFill.getMaxNumberOfFlips());
+    }
+
+    @Test
+    public void testGetNthFlippedAnswer() {
+        String expectedFirstFlip = "I have 3 apples and _ oranges ";
+        assertEquals(expectedFirstFlip, cardGapFill.getNthFlippedAnswer(1));
+
+        String expectedSecondFlip = "I have 3 apples and 5 oranges ";
+        assertEquals(expectedSecondFlip, cardGapFill.getNthFlippedAnswer(2));
+
+    }
+
 
 }
