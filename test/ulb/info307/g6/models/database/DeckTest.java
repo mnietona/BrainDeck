@@ -43,4 +43,46 @@ class DeckTest {
         assertEquals("Answer 2", card.getAnswer());
     }
 
+    @Test
+    void getSize() {
+        assertEquals(3, deck.getSize());
+    }
+
+    @Test
+    void isEmpty() {
+        assertFalse(deck.isEmpty());
+        Deck emptyDeck = new Deck("Empty Deck");
+        assertTrue(emptyDeck.isEmpty());
+    }
+
+    @Test
+    void addCard() {
+        Card newCard = new Card("Question 4", "Answer 4");
+        deck.addCard(newCard);
+        assertEquals(4, deck.getSize());
+        assertEquals(newCard, deck.getCardByIndex(3));
+    }
+
+    @Test
+    void removeCard() {
+        Card cardToRemove = deck.getCardByIndex(1);
+        deck.removeCard(cardToRemove);
+        assertEquals(2, deck.getSize());
+        assertNotEquals(cardToRemove, deck.getCardByIndex(1));
+    }
+
+    @Test
+    void getName() {
+        assertEquals(deckName, deck.getName());
+    }
+
+    @Test
+    void getTimeSpent() {
+        long expectedTimeSpent = 0;
+        for (Card card : cardList) {
+            expectedTimeSpent += card.getTimeSpent();
+        }
+        assertEquals(expectedTimeSpent, deck.getTimeSpent());
+    }
+
 }
