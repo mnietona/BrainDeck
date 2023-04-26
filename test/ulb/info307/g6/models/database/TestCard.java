@@ -2,8 +2,13 @@ package ulb.info307.g6.models.database;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import ulb.info307.g6.models.Card;
+
+import java.time.Instant;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class TestCard {
     private Card card;
@@ -56,5 +61,33 @@ public class TestCard {
         card.setKnowledgeLevel(3);
         assertEquals(3, card.getKnowledgeLevel());
     }
+
+    @Test
+    public void testIsValid() {
+        assertTrue(card.isValid());
+
+        Card invalidCard = new Card("", "");
+        assertFalse(invalidCard.isValid());
+    }
+
+    @Test
+    public void testGetMaxNumberOfFlips() {
+        assertEquals(1, card.getMaxNumberOfFlips());
+    }
+
+    @Test
+    public void testAddTimeSpent() {
+        Instant start = Instant.now();
+        Instant end = start.plusSeconds(5);
+        card.addTimeSpent(start, end);
+        assertEquals(5, card.getTimeSpent());
+    }
+
+    @Test
+    public void testIncreaseNumberOfAppearances() {
+        card.increaseNumberOfAppearances();
+        assertEquals(1, card.getNumberOfAppearances());
+    }
+
 
 }
