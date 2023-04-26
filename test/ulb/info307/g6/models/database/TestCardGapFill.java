@@ -50,5 +50,18 @@ public class TestCardGapFill {
 
     }
 
+    @Test
+    public void testGetNthFlippedAnswerWithIncorrectNumberOfFlips() {
+        String expectedIncorrectNumberOfFlipsMessage = "INCORRECT NUMBER OF FLIPS";
+        assertEquals(expectedIncorrectNumberOfFlipsMessage, cardGapFill.getNthFlippedAnswer(3));
+    }
+
+    @Test
+    public void testGetQuestionWithMultipleSpaces() {
+        CardGapFill cardWithMultipleSpaces = new CardGapFill("I have _  apples and _  oranges", "3, 5");
+        String expectedQuestion = "I have _  apples and _  oranges ";
+        assertEquals(expectedQuestion, cardWithMultipleSpaces.getQuestion());
+    }
+
 
 }
