@@ -40,4 +40,21 @@ public class TestCard {
         assertEquals("New answer.", card.getAnswer());
     }
 
+    @Test
+    public void testGetProbability() {
+        assertEquals(1.0, card.getProbability());
+    }
+
+    @Test
+    public void testSetProbability() {
+        card.setProbability(2.0);
+        assertEquals(2.0, card.getProbability());
+    }
+
+    @Test
+    public void testSetKnowledgeLevel() {
+        card.setKnowledgeLevel(3);
+        assertEquals(3, card.getKnowledgeLevel());
+    }
+
 }
