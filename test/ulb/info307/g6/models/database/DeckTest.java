@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.Deck;
-
+import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,6 +83,35 @@ class DeckTest {
             expectedTimeSpent += card.getTimeSpent();
         }
         assertEquals(expectedTimeSpent, deck.getTimeSpent());
+    }
+
+    @Test
+    void getCardIterator() {
+        Iterator<Card> cardIterator = deck.getCardIterator();
+        assertNotNull(cardIterator);
+        List<Card> cardListFromIterator = new ArrayList<>();
+        cardIterator.forEachRemaining(cardListFromIterator::add);
+        assertEquals(cardList, cardListFromIterator);
+    }
+
+    @Test
+    void getId() {
+        Deck anotherDeck = new Deck("Another Deck");
+        assertNotEquals(deck.getId(), anotherDeck.getId());
+    }
+
+    @Test
+    void deckCopyConstructor() {
+        Deck copiedDeck = new Deck(deck);
+        assertEquals(deck.getId(), copiedDeck.getId());
+        assertEquals(deck.getName(), copiedDeck.getName());
+        assertEquals(deck.getSize(), copiedDeck.getSize());
+        assertEquals(deck.getTimeSpent(), copiedDeck.getTimeSpent());
+        assertEquals(deck.getKnowledgeLevel(), copiedDeck.getKnowledgeLevel());
+
+        for (int i = 0; i < deck.getSize(); i++) {
+            assertEquals(deck.getCardByIndex(i), copiedDeck.getCardByIndex(i));
+        }
     }
 
 }
