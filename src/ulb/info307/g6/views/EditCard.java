@@ -1,10 +1,17 @@
 package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.stage.Stage;
+import javafx.scene.web.WebView;
+import org.w3c.dom.Element;
 import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.Deck;
 
@@ -28,7 +35,7 @@ public class EditCard implements View {
     @FXML
     private TextArea questionInput, answerInput;
     @FXML
-    private Button buttonEditCard, buttonCreateCard, buttonRemoveCard;
+    private Button buttonEditCard, buttonCreateCard, buttonRemoveCard, button_preview;
     private EditCardListener listener;
 
     @Override
@@ -54,6 +61,39 @@ public class EditCard implements View {
     @FXML
     private void clickRemoveCard() {
         listener.clickRemoveCard();
+    }
+
+    @FXML
+    private void click_preview() {
+        //TODO: move this with the other relevant code, this is just a proof of concept
+        //TODO: really "hacky" code for now, needs cleanup
+        WebView webview = new WebView();
+        WebEngine webEngine = webview.getEngine();
+        webEngine.documentProperty().addListener(((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                Element question = newValue.getElementById("question");
+                question.setTextContent(getQuestionInput());
+                Element answer = newValue.getElementById("answer");
+                answer.setTextContent(getAnswerInput());
+                webEngine.executeScript("reload_latex()");
+            }
+        }));
+        webEngine.load(getClass().getResource("test2.html").toExternalForm());
+
+        VBox vbox = new VBox(webview);
+        vbox.setAlignment(Pos.CENTER);
+
+
+
+        Scene secondScene = new Scene(vbox, 600, 600);
+
+        // New window (Stage)
+        Stage newWindow = new Stage();
+        newWindow.setTitle("Second Stage");
+        newWindow.setScene(secondScene);
+
+        // Set position of second window, related to primary window.
+        newWindow.show();
     }
 
     /**
@@ -146,7 +186,6 @@ public class EditCard implements View {
     public boolean cardIsLatex() {
         return latexCheckBox.isSelected();
     }
-
     public interface EditCardListener {
         void clickBack();
         void clickEditCard();

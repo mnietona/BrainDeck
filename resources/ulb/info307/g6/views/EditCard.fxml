@@ -38,6 +38,7 @@
             <Button fx:id="buttonEditCard" onAction="#clickEditCard" text="Edit card" />
             <Button fx:id="buttonCreateCard" onAction="#clickCreateCard" text="Create card" />
             <Button fx:id="buttonRemoveCard" onAction="#clickRemoveCard" text="Remove card" />
+         <Button fx:id="button_preview" mnemonicParsing="false" onAction="#click_preview" text="Preview" />
         </HBox>
     </VBox>
 
