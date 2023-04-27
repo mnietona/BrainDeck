@@ -80,16 +80,16 @@ public class EditCard implements View {
         }));
         webEngine.load(getClass().getResource("test2.html").toExternalForm());
 
+        // Stage which is containing Latex Preview html //
+
         VBox vbox = new VBox(webview);
         vbox.setAlignment(Pos.CENTER);
-
-
 
         Scene secondScene = new Scene(vbox, 600, 600);
 
         // New window (Stage)
         Stage newWindow = new Stage();
-        newWindow.setTitle("Second Stage");
+        newWindow.setTitle("Latex Preview");
         newWindow.setScene(secondScene);
 
         // Set position of second window, related to primary window.
