@@ -10,7 +10,6 @@ public class AchievementsController extends Controller implements Achievements.A
     public AchievementsController(Stage stage) {
         super(stage, "/ulb/info307/g6/views/Achievements.fxml", "Achievements");
         achievementsView = (Achievements) view;
-
     }
 
     @Override
