@@ -3,6 +3,7 @@ package ulb.info307.g6.views;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import ulb.info307.g6.models.Achievement;
 
@@ -27,6 +28,25 @@ public class Achievements implements View {
         List<Achievement> achievements = createAchievements(achieved);
         ObservableList<Achievement> observableAchievements = FXCollections.observableArrayList(achievements);
         cardListView.setItems(observableAchievements);
+
+        // Centrer le texte horizontalement
+        cardListView.setCellFactory(lv -> {
+            ListCell<Achievement> cell = new ListCell<>() {
+                @Override
+                protected void updateItem(Achievement item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setText(null);
+                    } else {
+                        setText(item.getDescription());
+                        setStyle("-fx-alignment: CENTER;");
+                    }
+                }
+            };
+            return cell;
+        });
+
+
     }
 
     private List<Achievement> createAchievements(List<Integer> achieved)
@@ -39,8 +59,6 @@ public class Achievements implements View {
         achievements.add(new Achievement("["+achieved.get(4)+"/1] Regular Player: Play the flashcard game every day for 10 consecutive days."));
         return achievements;
     }
-
-
 
 
     @FXML
