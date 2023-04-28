@@ -15,6 +15,7 @@ import org.w3c.dom.Element;
 import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.Deck;
 
+import java.util.Base64;
 import java.util.Iterator;
 
 /**
@@ -26,6 +27,9 @@ import java.util.Iterator;
  * - a checkbox to select if the card is a gap fill card when creating/editing a card
  */
 public class EditCard implements View {
+    private Stage preview_window = null;
+    private boolean preview = false;
+    private WebView web_preview = null;
     @FXML
     private ListView<Card> cardListView = new ListView<>();
     @FXML
@@ -63,37 +67,34 @@ public class EditCard implements View {
         listener.clickRemoveCard();
     }
 
+    private String get_page_url() {
+        String page_url = getClass().getResource("test2.html").toExternalForm();
+        page_url += "?q=" + Base64.getUrlEncoder().encodeToString(getQuestionInput().getBytes());
+        page_url += "&a=" + Base64.getUrlEncoder().encodeToString(getAnswerInput().getBytes());
+        return page_url;
+    }
+
     @FXML
     private void click_preview() {
         //TODO: move this with the other relevant code, this is just a proof of concept
         //TODO: really "hacky" code for now, needs cleanup
-        WebView webview = new WebView();
-        WebEngine webEngine = webview.getEngine();
-        webEngine.documentProperty().addListener(((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                Element question = newValue.getElementById("question");
-                question.setTextContent(getQuestionInput());
-                Element answer = newValue.getElementById("answer");
-                answer.setTextContent(getAnswerInput());
-                webEngine.executeScript("reload_latex()");
-            }
-        }));
-        webEngine.load(getClass().getResource("test2.html").toExternalForm());
-
-        VBox vbox = new VBox(webview);
-        vbox.setAlignment(Pos.CENTER);
-
-
-
-        Scene secondScene = new Scene(vbox, 600, 600);
-
-        // New window (Stage)
-        Stage newWindow = new Stage();
-        newWindow.setTitle("Second Stage");
-        newWindow.setScene(secondScene);
-
-        // Set position of second window, related to primary window.
-        newWindow.show();
+        if (preview) {
+            web_preview = null;
+            preview_window = null;
+            preview = false;
+            return;
+        } else {
+            preview = true;
+            web_preview = new WebView();
+            web_preview.getEngine().load(get_page_url());
+            VBox vbox = new VBox(web_preview);
+            vbox.setAlignment(Pos.CENTER);
+            Scene secondScene = new Scene(vbox, 600, 600);
+            Stage preview_window = new Stage();
+            preview_window.setTitle("Preview Latex");
+            preview_window.setScene(secondScene);
+            preview_window.show();
+        }
     }
 
     /**
@@ -106,7 +107,12 @@ public class EditCard implements View {
             activateCreateButton(false);
         } else {
             activateCreateButton(true);
-            if (isCardSelected()) activateEditButton(true);
+            if (isCardSelected()) {
+                activateEditButton(true);
+                if (preview) {
+                    web_preview.getEngine().load(get_page_url());
+                }
+            }
         }
     }
 

@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <!-- KaTeX requires the use of the HTML5 doctype. Without it, KaTeX may not render properly -->
-<html>
+<html lang="en">
     <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.6/dist/katex.min.css" integrity="sha384-mXD7x5S50Ko38scHSnD4egvoExgMPbrseZorkbE49evAfv9nNcbrXJ8LLNsDgh9d" crossorigin="anonymous">
+        <title>preview</title>
+        <link rel="stylesheet" href="katex/katex.min.css">
 
         <!-- The loading of KaTeX is deferred to speed up page rendering -->
-        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.6/dist/katex.min.js" integrity="sha384-j/ZricySXBnNMJy9meJCtyXTKMhIJ42heyr7oAdxTDBy/CYA9hzpMo+YTNV5C+1X" crossorigin="anonymous"></script>
+        <script defer src="katex/katex.min.js"></script>
 
         <!-- To automatically render math in text elements, include the auto-render extension: -->
-        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.6/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+        <script defer src="katex/contrib/auto-render.min.js"></script>
         <script type="text/javascript">
-            function reload_latex() {
-                renderMathInElement(document.body)
-            }
+            document.addEventListener('DOMContentLoaded', function() {
+                let searchparams = new URL(document.location).searchParams;
+                let question_text = atob(searchparams.get('q'));
+                let answer_text = atob(searchparams.get('a'));
+                document.getElementById('question').innerText = question_text;
+                document.getElementById('answer').innerText = answer_text;
+                renderMathInElement(document.body);
+            });
         </script>
         <style>
             #question {
@@ -26,9 +32,9 @@
         </style>
     </head>
   <body>
-  <h2>Question:</h2>
+    <h2>Question:</h2>
     <div id="question"></div>
-  <h2>Answer: </h2>
-  <div id="answer"></div>
+    <h2>Answer: </h2>
+    <div id="answer"></div>
   </body>
 </html>
