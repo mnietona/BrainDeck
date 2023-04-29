@@ -35,8 +35,6 @@ public class EditCard implements View {
     @FXML
     private CheckBox gapFillCheckBox;
     @FXML
-    private CheckBox latexCheckBox;
-    @FXML
     private TextArea questionInput, answerInput;
     @FXML
     private Button buttonEditCard, buttonCreateCard, buttonRemoveCard, button_preview;
@@ -189,9 +187,7 @@ public class EditCard implements View {
         return gapFillCheckBox.isSelected();
     }
 
-    public boolean cardIsLatex() {
-        return latexCheckBox.isSelected();
-    }
+
     public interface EditCardListener {
         void clickBack();
         void clickEditCard();
