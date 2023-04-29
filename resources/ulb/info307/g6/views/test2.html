@@ -1,40 +1,44 @@
 <!DOCTYPE html>
 <!-- KaTeX requires the use of the HTML5 doctype. Without it, KaTeX may not render properly -->
-<html lang="en">
-    <head>
-        <title>preview</title>
-        <link rel="stylesheet" href="katex/katex.min.css">
+<html>
+<head>
+    <link rel="stylesheet" href="katex/katex.min.css">
 
-        <!-- The loading of KaTeX is deferred to speed up page rendering -->
-        <script defer src="katex/katex.min.js"></script>
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="katex/katex.min.js"></script>
 
-        <!-- To automatically render math in text elements, include the auto-render extension: -->
-        <script defer src="katex/contrib/auto-render.min.js"></script>
-        <script type="text/javascript">
-            document.addEventListener('DOMContentLoaded', function() {
-                let searchparams = new URL(document.location).searchParams;
-                let question_text = atob(searchparams.get('q'));
-                let answer_text = atob(searchparams.get('a'));
-                document.getElementById('question').innerText = question_text;
-                document.getElementById('answer').innerText = answer_text;
-                renderMathInElement(document.body);
-            });
-        </script>
-        <style>
-            #question {
-                margin: 0.5cm;
-                background-color: aqua;
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="katex/contrib/auto-render.min.js"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            let searchparams = new URL(document.location).searchParams;
+            if (searchparams.get('text') == null) {
+                document.getElementById('card_text').innerHTML = "<h1>Please select a deck</h1>"
+                return;
             }
-            #answer {
-                margin: 0.5cm;
-                background-color: coral;
+            let card_text = atob(searchparams.get('text').replace('_', '/').replace('-', '+')); //since atob need url safe base64, we replace the forbidden characters
+            document.getElementById('card_text').innerText = card_text;
+            if (searchparams.get('type') == 'question') {
+                document.getElementById('card_text').classList.add('question')
+            } else if (searchparams.get('type') == 'answer') {
+                document.getElementById('card_text').classList.add('answer')
             }
-        </style>
-    </head>
-  <body>
-    <h2>Question:</h2>
-    <div id="question"></div>
-    <h2>Answer: </h2>
-    <div id="answer"></div>
-  </body>
+            renderMathInElement(document.body);
+        });
+    </script>
+    <style>
+        .answer {
+            background-color: aqua;
+            font-size: 40px;
+            border-style: solid;
+            border-color: blueviolet;
+        }
+        .question {
+            background-color: brown;
+        }
+    </style>
+</head>
+<body>
+<div id="card_text"></div>
+</body>
 </html>

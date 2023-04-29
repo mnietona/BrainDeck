@@ -7,6 +7,8 @@ import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.util.StringConverter;
 
+import java.util.Base64;
+
 /**
  * View controller of the Study menu, implements View interface and is the controller for the Study.fxml file.
  * Contains :
@@ -95,6 +97,7 @@ public class Study extends ViewWithDeckList {
         });
     }
 
+
     public int getSelectedKnowledgeLvl() {
         return (int) knowledgeLvlSlider.getValue();
     }
@@ -103,19 +106,24 @@ public class Study extends ViewWithDeckList {
         knowledgeLvlSlider.setValue(lvl);
     }
 
+    private String get_page_url(String text) {
+        String page_url = getClass().getResource("test2.html").toExternalForm();
+        page_url += "?text=" + Base64.getUrlEncoder().encodeToString(text.getBytes()); // Encode the text in base64 to avoid problems with special characters
+        return page_url;
+    }
+
     public void flipCard(boolean isQuestion, String question, String answer) {
         if (isQuestion) {
-            cardBackground.setStyle(QUESTION_BACKGROUND);
-            cardText.setText(question);
+            cardWebView.getEngine().load(get_page_url(question) + "&type=question");
         } else {
-            cardBackground.setStyle(ANSWER_BACKGROUND);
-            cardText.setText(answer);
+            cardWebView.getEngine().load(get_page_url(answer) + "&type=answer");
         }
     }
 
     public void showEmptyDeck(String text) {
-        cardBackground.setStyle(CLEAR_BACKGROUND);
-        cardText.setText(text);
+
+        cardWebView.getEngine().load("test2.html");
+
     }
 
     @Override
