@@ -16,7 +16,7 @@
     <VBox alignment="TOP_CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
         <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
          <children>
-            <WebView fx:id="cardWebView" prefHeight="240.0" prefWidth="516.0" />
+            <WebView fx:id="WebView" prefHeight="240.0" prefWidth="516.0" />
          </children>
         </VBox>
 

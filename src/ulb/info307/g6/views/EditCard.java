@@ -65,10 +65,9 @@ public class EditCard implements View {
         listener.clickRemoveCard();
     }
 
-    private String get_page_url() {
+    private String get_page_url(String text) {
         String page_url = getClass().getResource("test2.html").toExternalForm();
-        page_url += "?q=" + Base64.getUrlEncoder().encodeToString(getQuestionInput().getBytes());
-        page_url += "&a=" + Base64.getUrlEncoder().encodeToString(getAnswerInput().getBytes());
+        page_url += "?text=" + Base64.getUrlEncoder().encodeToString(text.getBytes()); // Encode the text in base64 to avoid problems with special characters
         return page_url;
     }
 
@@ -84,7 +83,7 @@ public class EditCard implements View {
         } else {
             preview = true;
             web_preview = new WebView();
-            web_preview.getEngine().load(get_page_url());
+            web_preview.getEngine().load(get_page_url("c"));
             VBox vbox = new VBox(web_preview);
             vbox.setAlignment(Pos.CENTER);
             Scene secondScene = new Scene(vbox, 600, 600);
@@ -108,7 +107,7 @@ public class EditCard implements View {
             if (isCardSelected()) {
                 activateEditButton(true);
                 if (preview) {
-                    web_preview.getEngine().load(get_page_url());
+                    web_preview.getEngine().load(get_page_url("test2.html"));
                 }
             }
         }
