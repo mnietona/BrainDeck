@@ -24,7 +24,7 @@ public class Study extends ViewWithDeckList {
     @FXML
     private Label knowledgeLvlSliderTitle;
     @FXML
-    private WebView cardWebView;
+    private WebView cardWebView; //probleme a l'initialisation
     @FXML
     private Slider knowledgeLvlSlider;
     @FXML
