@@ -3,7 +3,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" spacing="5.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Study">
     <!-- Left pane : list of decks + home -->
@@ -15,15 +15,9 @@
     <!-- Right pane : card + knowledge lvl + flip/next -->
     <VBox alignment="TOP_CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
         <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
-            <Pane fx:id="cardBackground" maxHeight="250.0" maxWidth="400.0" minHeight="250.0" minWidth="400.0" prefHeight="250.0" prefWidth="400.0" style="-fx-background-color: transparent;">
-                <VBox alignment="CENTER" maxHeight="250.0" maxWidth="400.0" minHeight="250.0" minWidth="400.0" prefHeight="250.0" prefWidth="400.0" spacing="5.0">
-                    <Text fx:id="cardText" text="Select a deck" textAlignment="CENTER" wrappingWidth="390.0">
-                        <font>
-                            <Font size="20.0" />
-                        </font>
-                    </Text>
-                </VBox>
-            </Pane>
+         <children>
+            <WebView fx:id="cardWebView" prefHeight="240.0" prefWidth="516.0" />
+         </children>
         </VBox>
 
         <Label fx:id="knowledgeLvlSliderTitle" text="Knowledge level">

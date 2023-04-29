@@ -89,7 +89,7 @@ public class EditCard implements View {
             vbox.setAlignment(Pos.CENTER);
             Scene secondScene = new Scene(vbox, 600, 600);
             Stage preview_window = new Stage();
-            preview_window.setTitle("Preview Latex");
+            preview_window.setTitle("Check your latex preview!"); //le preview sert a l'utilisateur pour verifier que le latex est correct
             preview_window.setScene(secondScene);
             preview_window.show();
         }

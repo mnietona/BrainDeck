@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebView;
 import javafx.util.StringConverter;
 
 /**
@@ -20,6 +21,8 @@ public class Study extends ViewWithDeckList {
     private Text cardText;
     @FXML
     private Label knowledgeLvlSliderTitle;
+    @FXML
+    private WebView cardWebView;
     @FXML
     private Slider knowledgeLvlSlider;
     @FXML
