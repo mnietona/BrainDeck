@@ -15,7 +15,7 @@ public class WelcomeController extends Controller implements Welcome.WelcomeList
             statistics = new Statistics();
             StatisticsDatabase.insert(statistics);
         }
-        statistics.updateLastDay();
+        statistics.update();
         StatisticsDatabase.update(statistics);
     }
 
