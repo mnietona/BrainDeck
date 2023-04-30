@@ -24,7 +24,7 @@ public class StatisticsDao {
         try {
             return con.find().toList().get(0);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("No statistics found in database.");
         }
         return null;
     }

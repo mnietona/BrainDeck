@@ -26,19 +26,15 @@ public class Statistics {
         return longestDayStreak;
     }
 
-    public Calendar getStringLastDay() {
-        return previousStartupDate;
-    }
-
     public void update() {
         Calendar today = Calendar.getInstance();
-        System.out.println("currentDayStreak: " + currentDayStreak);
-        if (isDayBefore(previousStartupDate, today)) {
-            currentDayStreak++;
-            System.out.println("currentDayStreak: " + currentDayStreak);
-            if (currentDayStreak > longestDayStreak) longestDayStreak = currentDayStreak;
-        } else if ((isNotSameDay(previousStartupDate, today))) {
-            resetCurrentStreak();
+        if (previousStartupDate != null) {  // If it's not the first time the app is launched
+            if (isDayBefore(previousStartupDate, today)) {
+                currentDayStreak++;
+                if (currentDayStreak > longestDayStreak) longestDayStreak = currentDayStreak;
+            } else if ((isNotSameDay(previousStartupDate, today))) {
+                resetCurrentStreak();
+            }
         }
         updateLastDay();
     }

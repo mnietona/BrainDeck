@@ -5,7 +5,6 @@ import ulb.info307.g6.models.Statistics;
 import ulb.info307.g6.models.database.StatisticsDao;
 import ulb.info307.g6.views.Achievements;
 
-import javax.sound.midi.SysexMessage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,14 +12,12 @@ public class AchievementsController extends Controller implements Achievements.A
 
     private final Achievements achievementsView;
     public final StatisticsDao StatisticsDatabase = new StatisticsDao();
+    private final Statistics statistics = StatisticsDatabase.getStatistics();
 
     public AchievementsController(Stage stage) {
         super(stage, "/ulb/info307/g6/views/Achievements.fxml", "Achievements");
-        Statistics statistics = StatisticsDatabase.getStatistics();
-        System.out.println(statistics.getStringLastDay());
         achievementsView = (Achievements) view;
-        setAchievements();
-        showAchievementsList();
+        setProgressBars();
     }
 
     @Override
@@ -29,20 +26,9 @@ public class AchievementsController extends Controller implements Achievements.A
     }
 
     @Override
-    public void setAchievements() {
-        List<Integer> achieved = new ArrayList<>();
-        achieved.add(0);
-        achieved.add(1);
-        achieved.add(0);
-        achieved.add(1);
-        achieved.add(1);
-        achievementsView.setAchievementsView(achieved);
+    public void setProgressBars() {
+        Statistics statistics = StatisticsDatabase.getStatistics();
+        double progress1 = statistics.getLongestDayStreak() / 10.0;
+        achievementsView.showProgressBars(progress1);
     }
-
-    @Override
-    public void showAchievementsList() {
-        achievementsView.showAchievementsList();
-    }
-
-
 }

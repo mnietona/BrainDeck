@@ -6,17 +6,17 @@ import ulb.info307.g6.models.database.StatisticsDao;
 import ulb.info307.g6.views.Welcome;
 
 public class WelcomeController extends Controller implements Welcome.WelcomeListener  {
-    public final StatisticsDao StatisticsDatabase = new StatisticsDao();  //
+    public final StatisticsDao statisticsDatabase = new StatisticsDao();
 
     public WelcomeController(Stage stage) {
         super(stage, "/ulb/info307/g6/views/Welcome.fxml", "Menu");
-        Statistics statistics = StatisticsDatabase.getStatistics();
+        Statistics statistics = statisticsDatabase.getStatistics();
         if (statistics == null) {
             statistics = new Statistics();
-            StatisticsDatabase.insert(statistics);
+            statisticsDatabase.insert(statistics);
         }
         statistics.update();
-        StatisticsDatabase.update(statistics);
+        statisticsDatabase.update(statistics);
     }
 
     @Override
@@ -36,6 +36,6 @@ public class WelcomeController extends Controller implements Welcome.WelcomeList
 
     @Override
     public void achievementsButtonAction() {
-    	new AchievementsController(stage);
+        new AchievementsController(stage);
     }
 }
