@@ -25,9 +25,6 @@ import java.util.Iterator;
  * - a checkbox to select if the card is a gap fill card when creating/editing a card
  */
 public class EditCard implements View {
-    private Stage previewWindow = null;
-    private boolean preview = false;
-    private WebView webPreview = null;
     @FXML
     private ListView<Card> cardListView = new ListView<>();
     @FXML
@@ -35,7 +32,7 @@ public class EditCard implements View {
     @FXML
     private TextArea questionInput, answerInput;
     @FXML
-    private Button buttonEditCard, buttonCreateCard, buttonRemoveCard, button_preview;
+    private Button buttonEditCard, buttonCreateCard, buttonRemoveCard, buttonPreview;
     private EditCardListener listener;
 
     @Override
@@ -68,36 +65,12 @@ public class EditCard implements View {
         listener.clickRemoveCard();
     }
 
-    private String givePageUrl() {
-        String page_url = getClass().getResource("PreviewCard.html").toExternalForm();
-        page_url += "?q=" + Base64.getUrlEncoder().encodeToString(getQuestionInput().getBytes()); // Encode the text in base64 to avoid problems with special characters
-        page_url += "&a=" + Base64.getUrlEncoder().encodeToString(getAnswerInput().getBytes());
-        return page_url;
-    }
-
-
-    public void printPreview() {
-        //TODO: move this with the other relevant code, this is just a proof of concept
-        //TODO: really "hacky" code for now, needs cleanup
-
-        preview = true;
-        webPreview = new WebView();
-        webPreview.getEngine().load(givePageUrl());
-        VBox vbox = new VBox(webPreview);
-        vbox.setAlignment(Pos.CENTER);
-        Scene secondScene = new Scene(vbox, 600, 600);
-        Stage preview_window = new Stage();
-        preview_window.setTitle("Check your latex preview!"); //le preview sert a l'utilisateur pour verifier que le latex est correct
-        preview_window.setScene(secondScene);
-        preview_window.show();
-
-    }
-
     /**
      * Method called when input changes in the question or answer text areas.
      */
     @FXML
     private void inputChange() {
+        listener.cardChanged();
         if (atLeastOneInputIsEmpty()) {
             activateEditButton(false);
             activateCreateButton(false);
@@ -105,9 +78,6 @@ public class EditCard implements View {
             activateCreateButton(true);
             if (isCardSelected()) {
                 activateEditButton(true);
-                if (preview) {
-                    webPreview.getEngine().load(givePageUrl());
-                }
             }
         }
     }
@@ -123,7 +93,10 @@ public class EditCard implements View {
         }
         cardListView.setOnMouseClicked(event -> {
             updateQuestionAnswer();
-            if (isCardSelected()) activateButtons(true);
+            if (isCardSelected()) {
+                activateButtons(true);
+                listener.cardChanged();
+            }
         });
     }
 
@@ -181,23 +154,6 @@ public class EditCard implements View {
         return cardListView.getSelectionModel().getSelectedItem();
     }
 
-    public void setPreview(Boolean bool) {
-        this.preview=bool;
-    }
-    public void setwebPreview(WebView webPreview) {
-        this.webPreview=webPreview;
-    }
-
-    public void setPreviewWindow(Stage previewWindow) {
-        this.previewWindow=previewWindow;
-    }
-
-    public boolean getPreview() {
-        return preview;
-    }
-    public void closePreviewWindow() {
-        previewWindow.close();
-    }
     public boolean cardIsGapFill() {
         return gapFillCheckBox.isSelected();
     }
@@ -209,5 +165,6 @@ public class EditCard implements View {
         void clickCreateCard();
         void clickRemoveCard();
         void clickPreview();
+        void cardChanged();
     }
 }

@@ -57,6 +57,14 @@ public class EditCardController extends Controller implements EditCard.EditCardL
             previewEnabled = true;
         }
     }
+
+    @Override
+    public void cardChanged() {
+        if (previewEnabled) {
+            previewCardController.changePage(getPageUrl());
+        }
+    }
+
     @Override
     public void clickCreateCard() {
         if (!editCardView.atLeastOneInputIsEmpty()) {

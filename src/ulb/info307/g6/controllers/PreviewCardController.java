@@ -41,6 +41,10 @@ public class PreviewCardController {
         void closeRequest();
     }
 
+    public void changePage(String url) {
+        previewCardView.setPageView(url);
+    }
+
     public void setListener(Object object) {
         listener = (PreviewCardControllerListener) object;
     }
