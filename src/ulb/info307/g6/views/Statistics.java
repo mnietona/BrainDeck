@@ -11,13 +11,7 @@ public class Statistics extends ViewWithDeckList {
     @FXML
     private Button cardsStatisticsButton;
     @FXML
-    private Text firstText;
-    @FXML
-    private Text secondText;
-    @FXML
-    private Text thirdText;
-    @FXML
-    private Text fourthText;
+    private Text firstText, secondText, thirdText, fourthText, fifthText;
 
     @FXML
     public void clickHome() {
@@ -70,6 +64,10 @@ public class Statistics extends ViewWithDeckList {
             default -> "N/A";
         };
         fourthText.setText("Knowledge level: "+ s);
+    }
+
+    public void setDayStreak(int currentDayStreak, int longestDayStreak) {
+        fifthText.setText("Current day streak: " + currentDayStreak + "\n" + "Longest day streak: " + longestDayStreak);
     }
 
     public String getTimeSpentAsString(long timeSpentSecond) {

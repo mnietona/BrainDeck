@@ -1,10 +1,7 @@
 package ulb.info307.g6.controllers;
 
 import javafx.stage.Stage;
-import org.dizitart.no2.objects.ObjectRepository;
 import ulb.info307.g6.models.Statistics;
-import ulb.info307.g6.models.database.DatabaseConnection;
-import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.models.database.StatisticsDao;
 import ulb.info307.g6.views.Welcome;
 

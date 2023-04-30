@@ -36,12 +36,16 @@
                         <Font size="20.0" />
                     </font>
                 </Text>
-
+                <Text fx:id="fifthText" textAlignment="CENTER" wrappingWidth="390.0">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Text>
             </VBox>
         </VBox>
         <HBox alignment="CENTER" spacing="5.0">
             <Button fx:id="cardsStatisticsButton" onAction="#clickCardsStatistics" prefWidth="200.0" text="Statistics for cards of deck" />
-            <Button onAction="#clickGlobalStatistics" prefWidth="200.0" text="Global statistics" />
+            <Button fx:id="globalStatisticsButton" onAction="#clickGlobalStatistics" prefWidth="200.0" text="Global statistics" disable="true" /> <!-- Gray out button when no deck is selected -->
         </HBox>
     </VBox>
 
