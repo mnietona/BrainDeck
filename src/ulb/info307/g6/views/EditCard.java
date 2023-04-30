@@ -1,19 +1,12 @@
 package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.scene.web.WebView;
 import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.Deck;
-
-import java.util.Base64;
 import java.util.Iterator;
 
 /**
