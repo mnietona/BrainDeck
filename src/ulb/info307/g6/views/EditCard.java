@@ -66,7 +66,7 @@ public class EditCard implements View {
     }
 
     private String get_page_url(String text) {
-        String page_url = getClass().getResource("test2.html").toExternalForm();
+        String page_url = getClass().getResource("showCard.html").toExternalForm();
         page_url += "?text=" + Base64.getUrlEncoder().encodeToString(text.getBytes()); // Encode the text in base64 to avoid problems with special characters
         return page_url;
     }
@@ -107,7 +107,7 @@ public class EditCard implements View {
             if (isCardSelected()) {
                 activateEditButton(true);
                 if (preview) {
-                    web_preview.getEngine().load(get_page_url("test2.html"));
+                    web_preview.getEngine().load(get_page_url("showCard.html"));
                 }
             }
         }

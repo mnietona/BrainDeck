@@ -106,8 +106,12 @@ public class Study extends ViewWithDeckList {
         knowledgeLvlSlider.setValue(lvl);
     }
 
+    /**
+     * Set the text of the card to base64 encoded text
+     * @param text The text to set
+     */
     private String get_page_url(String text) {
-        String page_url = getClass().getResource("test2.html").toExternalForm();
+        String page_url = getClass().getResource("showCard.html").toExternalForm();//no need to handle exception since the html file is in the same package
         page_url += "?text=" + Base64.getUrlEncoder().encodeToString(text.getBytes()); // Encode the text in base64 to avoid problems with special characters
         return page_url;
     }
@@ -122,7 +126,7 @@ public class Study extends ViewWithDeckList {
 
     public void showEmptyDeck(String text) {
 
-        cardWebView.getEngine().load("test2.html");
+        cardWebView.getEngine().load("showCard.html");
 
     }
 
