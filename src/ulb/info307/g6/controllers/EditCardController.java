@@ -10,11 +10,14 @@ import ulb.info307.g6.views.EditCard;
 
 import ulb.info307.g6.models.DeckProbabilities;
 
-public class EditCardController extends Controller implements EditCard.EditCardListener {
+import java.util.Base64;
+
+public class EditCardController extends Controller implements EditCard.EditCardListener, PreviewCardController.PreviewCardControllerListener {
     static DeckDaoNitriteImplementation databaseDeck = new DeckDaoNitriteImplementation();  // The deck database implementation
     private final DeckProbabilities deck;  // The deck being edited
-    private final EditCard editCardView;  // The view for editing a card
-
+    private final EditCard editCardView; // The view for editing a card
+    private PreviewCardController previewCardController;
+    private boolean previewEnabled = false;
 
 
     public EditCardController(Stage stage, Deck deck) {
@@ -36,20 +39,23 @@ public class EditCardController extends Controller implements EditCard.EditCardL
         }
         editCardView.clearTextFields();
     }
-    public void clickPreview(){
-        if (editCardView.getPreview()) {
 
-            //editCardView.setwebPreview(null)  ;
-            //editCardView.setPreviewWindow(null) ;
-            editCardView.closePreviewWindow();
-            editCardView.setPreview(false) ;
+    private String getPageUrl() {
+        String page_url = getClass().getResource("/ulb/info307/g6/views/PreviewCard.html").toExternalForm();
+        page_url += "?q=" + Base64.getUrlEncoder().encodeToString(editCardView.getQuestionInput().getBytes()); // Encode the text in base64 to avoid problems with special characters
+        page_url += "&a=" + Base64.getUrlEncoder().encodeToString(editCardView.getAnswerInput().getBytes());
+        return page_url;
+    }
 
-
-
+    public void clickPreview() {
+        if (previewEnabled) {
+            previewCardController.close();
+            previewEnabled = false;
         } else {
-            editCardView.printPreview();
+            previewCardController = new PreviewCardController(getPageUrl());
+            previewCardController.setListener(this);
+            previewEnabled = true;
         }
-
     }
     @Override
     public void clickCreateCard() {
@@ -90,6 +96,11 @@ public class EditCardController extends Controller implements EditCard.EditCardL
         } else {
             return new Card(editCardView.getQuestionInput(), editCardView.getAnswerInput());
         }
+    }
+
+    @Override
+    public void closeRequest() {
+        previewEnabled = false;
     }
 
 
