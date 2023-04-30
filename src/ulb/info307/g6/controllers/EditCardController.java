@@ -106,6 +106,9 @@ public class EditCardController extends Controller implements EditCard.EditCardL
 
     @Override
     public void clickBack() {
+        if (previewEnabled) {
+            previewCardController.close();
+        }
         new EditDeckController(stage);
     }
 
