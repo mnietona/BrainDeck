@@ -1,10 +1,12 @@
 package ulb.info307.g6.models;
 
-public class Achievement {
+public class Achievements {
     private final String description;
+    private final int dayStreak;
 
-    public Achievement(String description) {
+    public Achievements(String description) {
         this.description = description;
+        this.dayStreak = 0;
     }
 
     @Override
