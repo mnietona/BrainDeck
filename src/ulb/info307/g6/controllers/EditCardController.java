@@ -39,11 +39,12 @@ public class EditCardController extends Controller implements EditCard.EditCardL
     public void clickPreview(){
         if (editCardView.getPreview()) {
 
-            editCardView.setwebPreview(null)  ;
-            editCardView.setPreviewWindow(null) ;
+            //editCardView.setwebPreview(null)  ;
+            //editCardView.setPreviewWindow(null) ;
+            editCardView.closePreviewWindow();
             editCardView.setPreview(false) ;
 
-            editCardView.closePreviewWindow();
+
 
         } else {
             editCardView.printPreview();
