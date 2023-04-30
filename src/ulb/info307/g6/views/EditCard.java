@@ -8,10 +8,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
-import javafx.scene.web.WebEngine;
 import javafx.stage.Stage;
 import javafx.scene.web.WebView;
-import org.w3c.dom.Element;
 import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.Deck;
 
@@ -27,9 +25,9 @@ import java.util.Iterator;
  * - a checkbox to select if the card is a gap fill card when creating/editing a card
  */
 public class EditCard implements View {
-    private Stage preview_window = null;
+    private Stage previewWindow = null;
     private boolean preview = false;
-    private WebView web_preview = null;
+    private WebView webPreview = null;
     @FXML
     private ListView<Card> cardListView = new ListView<>();
     @FXML
@@ -51,6 +49,11 @@ public class EditCard implements View {
     }
 
     @FXML
+    public void clickPreview() {
+        listener.clickPreview();
+    }
+
+    @FXML
     private void clickEditCard() {
         listener.clickEditCard();
     }
@@ -65,33 +68,29 @@ public class EditCard implements View {
         listener.clickRemoveCard();
     }
 
-    private String get_page_url(String text) {
-        String page_url = getClass().getResource("showCard.html").toExternalForm();
-        page_url += "?text=" + Base64.getUrlEncoder().encodeToString(text.getBytes()); // Encode the text in base64 to avoid problems with special characters
+    private String givePageUrl() {
+        String page_url = getClass().getResource("PreviewCard.html").toExternalForm();
+        page_url += "?q=" + Base64.getUrlEncoder().encodeToString(getQuestionInput().getBytes()); // Encode the text in base64 to avoid problems with special characters
+        page_url += "&a=" + Base64.getUrlEncoder().encodeToString(getAnswerInput().getBytes());
         return page_url;
     }
 
-    @FXML
-    private void click_preview() {
+
+    public void printPreview() {
         //TODO: move this with the other relevant code, this is just a proof of concept
         //TODO: really "hacky" code for now, needs cleanup
-        if (preview) {
-            web_preview = null;
-            preview_window = null;
-            preview = false;
-            return;
-        } else {
-            preview = true;
-            web_preview = new WebView();
-            web_preview.getEngine().load(get_page_url("c"));
-            VBox vbox = new VBox(web_preview);
-            vbox.setAlignment(Pos.CENTER);
-            Scene secondScene = new Scene(vbox, 600, 600);
-            Stage preview_window = new Stage();
-            preview_window.setTitle("Check your latex preview!"); //le preview sert a l'utilisateur pour verifier que le latex est correct
-            preview_window.setScene(secondScene);
-            preview_window.show();
-        }
+
+        preview = true;
+        webPreview = new WebView();
+        webPreview.getEngine().load(givePageUrl());
+        VBox vbox = new VBox(webPreview);
+        vbox.setAlignment(Pos.CENTER);
+        Scene secondScene = new Scene(vbox, 600, 600);
+        Stage preview_window = new Stage();
+        preview_window.setTitle("Check your latex preview!"); //le preview sert a l'utilisateur pour verifier que le latex est correct
+        preview_window.setScene(secondScene);
+        preview_window.show();
+
     }
 
     /**
@@ -107,7 +106,7 @@ public class EditCard implements View {
             if (isCardSelected()) {
                 activateEditButton(true);
                 if (preview) {
-                    web_preview.getEngine().load(get_page_url("showCard.html"));
+                    webPreview.getEngine().load(givePageUrl());
                 }
             }
         }
@@ -182,6 +181,23 @@ public class EditCard implements View {
         return cardListView.getSelectionModel().getSelectedItem();
     }
 
+    public void setPreview(Boolean bool) {
+        this.preview=bool;
+    }
+    public void setwebPreview(WebView webPreview) {
+        this.webPreview=webPreview;
+    }
+
+    public void setPreviewWindow(Stage previewWindow) {
+        this.previewWindow=previewWindow;
+    }
+
+    public boolean getPreview() {
+        return preview;
+    }
+    public void closePreviewWindow() {
+        previewWindow.close();
+    }
     public boolean cardIsGapFill() {
         return gapFillCheckBox.isSelected();
     }
@@ -192,5 +208,6 @@ public class EditCard implements View {
         void clickEditCard();
         void clickCreateCard();
         void clickRemoveCard();
+        void clickPreview();
     }
 }

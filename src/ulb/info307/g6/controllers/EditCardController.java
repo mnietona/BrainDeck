@@ -15,6 +15,8 @@ public class EditCardController extends Controller implements EditCard.EditCardL
     private final DeckProbabilities deck;  // The deck being edited
     private final EditCard editCardView;  // The view for editing a card
 
+
+
     public EditCardController(Stage stage, Deck deck) {
         super(stage, "/ulb/info307/g6/views/EditCard.fxml", "Edit cards in the deck");
         this.deck = new DeckProbabilities(deck);
@@ -34,7 +36,20 @@ public class EditCardController extends Controller implements EditCard.EditCardL
         }
         editCardView.clearTextFields();
     }
+    public void clickPreview(){
+        if (editCardView.getPreview()) {
 
+            editCardView.setwebPreview(null)  ;
+            editCardView.setPreviewWindow(null) ;
+            editCardView.setPreview(false) ;
+
+            editCardView.closePreviewWindow();
+
+        } else {
+            editCardView.printPreview();
+        }
+
+    }
     @Override
     public void clickCreateCard() {
         if (!editCardView.atLeastOneInputIsEmpty()) {
@@ -51,6 +66,7 @@ public class EditCardController extends Controller implements EditCard.EditCardL
         }
         editCardView.clearTextFields();
     }
+
 
     @Override
     public void clickRemoveCard() {
@@ -80,4 +96,6 @@ public class EditCardController extends Controller implements EditCard.EditCardL
     public void clickBack() {
         new EditDeckController(stage);
     }
+
 }
+
