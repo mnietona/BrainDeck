@@ -13,6 +13,13 @@ public class WelcomeController extends Controller implements Welcome.WelcomeList
 
     public WelcomeController(Stage stage) {
         super(stage, "/ulb/info307/g6/views/Welcome.fxml", "Menu");
+        Statistics statistics = StatisticsDatabase.getStatistics();
+        if (statistics == null) {
+            statistics = new Statistics();
+            StatisticsDatabase.insert(statistics);
+        }
+        statistics.updateLastDay();
+        StatisticsDatabase.update(statistics);
     }
 
     @Override
