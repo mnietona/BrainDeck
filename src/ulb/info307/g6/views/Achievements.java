@@ -5,7 +5,7 @@ import javafx.scene.control.ProgressBar;
 
 public class Achievements implements View {
     @FXML
-    private ProgressBar firstProgressBar, secondProgressBar, thirdProgressBar, fourthProgressBar, fifthProgressBar;
+    private ProgressBar progressBar1, progressBar2, progressBar3, progressBar4, progressBar5;
 
     private AchievementsListener listener;
 
@@ -16,11 +16,11 @@ public class Achievements implements View {
 
     @FXML
     public void showProgressBars(double progress1,double progress2, double progress3, double progress4, double progress5) {
-        firstProgressBar.setProgress(progress1);
-        secondProgressBar.setProgress(progress2);
-        thirdProgressBar.setProgress(progress3);
-        fourthProgressBar.setProgress(progress4);
-        fifthProgressBar.setProgress(progress5);
+        progressBar1.setProgress(progress1);
+        progressBar2.setProgress(progress2);
+        progressBar3.setProgress(progress3);
+        progressBar4.setProgress(progress4);
+        progressBar5.setProgress(progress5);
     }
 
     @Override

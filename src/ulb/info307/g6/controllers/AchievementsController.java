@@ -9,10 +9,8 @@ import ulb.info307.g6.models.Deck;
 import java.util.List;
 
 public class AchievementsController extends Controller implements Achievements.AchievementsListener {
-
     private final Achievements achievementsView;
     public final StatisticsDao StatisticsDatabase = new StatisticsDao();
-
     public final DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation();
     private final Statistics statistics = StatisticsDatabase.getStatistics();
 
@@ -29,12 +27,12 @@ public class AchievementsController extends Controller implements Achievements.A
 
     @Override
     public void setProgressBars() {
-        double progress1 = statistics.getLongestDayStreak() / 10.0;
-        double progress2 = statistics.getLongestDayStreak() / 5.0;
+        double progress1 = statistics.getLongestDayStreak() / 5.0;
+        double progress2 = statistics.getLongestDayStreak() / 10.0;
         double progress3 = getHighestKnowledgeLevel() / 5.0;
         double progress4 = getHighestNumberOfCardsPerDeck() / 10.0;
         double progress5 = database.getTotalNumberOfCards() / 100.0;
-        achievementsView.showProgressBars(progress1,progress2,progress3,progress4,progress5);
+        achievementsView.showProgressBars(progress1, progress2, progress3, progress4, progress5);
     }
 
     private int getHighestKnowledgeLevel() {
