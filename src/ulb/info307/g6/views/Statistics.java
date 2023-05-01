@@ -11,9 +11,6 @@ public class Statistics extends ViewWithDeckList {
     @FXML
     private Button cardsStatisticsButton;
     @FXML
-    private Text firstText, secondText, thirdText, fourthText, fifthText;
-
-    @FXML
     private Text globalStat1, globalStat2, globalStat3, globalStat4, globalStat5;
     @FXML
     private Text deckStat1, deckStat2, deckStat3, deckStat4;
