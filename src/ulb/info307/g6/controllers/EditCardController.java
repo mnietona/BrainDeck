@@ -12,7 +12,7 @@ import ulb.info307.g6.models.DeckProbabilities;
 
 import java.util.Base64;
 
-public class EditCardController extends ControllerWithCardList implements EditCard.EditCardListener {
+public class EditCardController extends ControllerWithCardList implements EditCard.EditCardListener, PreviewCardController.PreviewCardControllerListener {
     static DeckDaoNitriteImplementation databaseDeck = new DeckDaoNitriteImplementation();  // The deck database implementation
     private final DeckProbabilities deck;  // The deck being edited
     private final EditCard editCardView; // The view for editing a card
@@ -104,6 +104,7 @@ public class EditCardController extends ControllerWithCardList implements EditCa
         }
     }
 
+    @Override
     public void closeRequest() {
         previewEnabled = false;
     }
