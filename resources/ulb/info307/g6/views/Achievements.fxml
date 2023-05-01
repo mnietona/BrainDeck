@@ -8,24 +8,18 @@
 
     <VBox prefHeight="347.0" prefWidth="791.0" spacing="5.0">
         <Pane prefHeight="49.0" prefWidth="791.0">
-            <children>
-                <ProgressBar fx:id="secondProgressBar" layoutX="396.0" layoutY="16.0" prefHeight="18.0" prefWidth="257.0" progress="0.0" />
-                <Label layoutX="23.0" layoutY="16.0" text="5 consecutive days of using the app" />
-            </children>
+            <ProgressBar fx:id="secondProgressBar" layoutX="396.0" layoutY="16.0" prefHeight="18.0" prefWidth="257.0" progress="0.0" />
+            <Label layoutX="23.0" layoutY="16.0" text="5 consecutive days of using the app" />
         </Pane>
 
       <Pane prefHeight="49.0" prefWidth="791.0">
-         <children>
-               <ProgressBar fx:id="firstProgressBar" layoutX="396.0" layoutY="16.0" prefHeight="18.0" prefWidth="257.0" progress="0.0" />
-               <Label layoutX="23.0" layoutY="16.0" text="10 consecutive days of using the app" />
-         </children>
+          <ProgressBar fx:id="firstProgressBar" layoutX="396.0" layoutY="16.0" prefHeight="18.0" prefWidth="257.0" progress="0.0" />
+          <Label layoutX="23.0" layoutY="16.0" text="10 consecutive days of using the app" />
       </Pane>
 
     <Pane prefHeight="49.0" prefWidth="791.0">
-        <children>
-            <ProgressBar fx:id="thirdProgressBar" layoutX="396.0" layoutY="16.0" prefHeight="18.0" prefWidth="257.0" progress="0.0" />
-            <Label layoutX="23.0" layoutY="16.0" text="X" />
-        </children>
+        <ProgressBar fx:id="thirdProgressBar" layoutX="396.0" layoutY="16.0" prefHeight="18.0" prefWidth="257.0" progress="0.0" />
+        <Label layoutX="23.0" layoutY="16.0" text="Highest knowledge level of deck" />
     </Pane>
 
 

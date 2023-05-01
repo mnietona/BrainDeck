@@ -2,16 +2,18 @@ package ulb.info307.g6.controllers;
 
 import javafx.stage.Stage;
 import ulb.info307.g6.models.Statistics;
+import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.models.database.StatisticsDao;
 import ulb.info307.g6.views.Achievements;
-
-import java.util.ArrayList;
+import ulb.info307.g6.models.Deck;
 import java.util.List;
 
 public class AchievementsController extends Controller implements Achievements.AchievementsListener {
 
     private final Achievements achievementsView;
     public final StatisticsDao StatisticsDatabase = new StatisticsDao();
+
+    public final DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation();
     private final Statistics statistics = StatisticsDatabase.getStatistics();
 
     public AchievementsController(Stage stage) {
@@ -27,9 +29,20 @@ public class AchievementsController extends Controller implements Achievements.A
 
     @Override
     public void setProgressBars() {
-        Statistics statistics = StatisticsDatabase.getStatistics();
         double progress1 = statistics.getLongestDayStreak() / 10.0;
         double progress2 = statistics.getLongestDayStreak() / 5.0;
-        achievementsView.showProgressBars(progress1,progress2);
+        double progress3 = getHighestKnowledgeLevel() / 5.0;
+        achievementsView.showProgressBars(progress1,progress2,progress3);
+    }
+
+    private int getHighestKnowledgeLevel() {
+        int max = 0;
+        List<Deck> decks = database.getAllDecks();
+        for (Deck deck : decks) {
+            if (deck.getKnowledgeLevel() > max) {
+                max = deck.getKnowledgeLevel();
+            }
+        }
+        return max;
     }
 }
