@@ -11,6 +11,7 @@ import ulb.info307.g6.views.EditCard;
 import ulb.info307.g6.models.DeckProbabilities;
 
 import java.util.Base64;
+import java.util.Objects;
 
 public class EditCardController extends ControllerWithCardList implements EditCard.EditCardListener, PreviewCardController.PreviewCardControllerListener {
     static DeckDaoNitriteImplementation databaseDeck = new DeckDaoNitriteImplementation();  // The deck database implementation
@@ -40,7 +41,7 @@ public class EditCardController extends ControllerWithCardList implements EditCa
     }
 
     private String getPageUrl() {
-        String page_url = getClass().getResource("/ulb/info307/g6/views/PreviewCard.html").toExternalForm();
+        String page_url = Objects.requireNonNull(getClass().getResource("/ulb/info307/g6/views/PreviewCard.html")).toExternalForm();
         page_url += "?q=" + Base64.getUrlEncoder().encodeToString(editCardView.getQuestionInput().getBytes()); // Encode the text in base64 to avoid problems with special characters
         page_url += "&a=" + Base64.getUrlEncoder().encodeToString(editCardView.getAnswerInput().getBytes());
         return page_url;

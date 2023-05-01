@@ -6,6 +6,7 @@ import javafx.scene.web.WebView;
 import javafx.util.StringConverter;
 
 import java.util.Base64;
+import java.util.Objects;
 
 /**
  * View controller of the Study menu, implements View interface and is the controller for the Study.fxml file.
@@ -101,7 +102,7 @@ public class Study extends ViewWithDeckList {
      * @param text The text to set
      */
     private String get_page_url(String text) {
-        String page_url = getClass().getResource("showCard.html").toExternalForm();//no need to handle exception since the html file is in the same package
+        String page_url = Objects.requireNonNull(getClass().getResource("showCard.html")).toExternalForm();//no need to handle exception since the html file is in the same package
         page_url += "?text=" + Base64.getUrlEncoder().encodeToString(text.getBytes()); // Encode the text in base64 to avoid problems with special characters
         return page_url;
     }
