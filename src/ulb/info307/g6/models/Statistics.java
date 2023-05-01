@@ -11,11 +11,18 @@ public class Statistics {
     private Calendar previousStartupDate;  // Day stored in database
 
     public Statistics() {
-        // Constructeur par défaut
+        // Default constructor
     }
 
     public void updateLastDay(){
         previousStartupDate = Calendar.getInstance();
+    }
+
+    /**
+     * Setter used for testing purposes.
+     */
+    public void setPreviousStartupDate(Calendar previousStartupDate) {
+        this.previousStartupDate = previousStartupDate;
     }
 
     public int getCurrentDayStreak() {
@@ -39,10 +46,11 @@ public class Statistics {
         updateLastDay();
     }
 
+    /**
+     * @return true if date1 is exactly one day before date2.
+     */
     public boolean isDayBefore(Calendar date1, Calendar date2) {
-        // Subtract one day from date2
         date2.add(Calendar.DATE, -1);
-        // Compare the two dates
         return date1.get(Calendar.YEAR) == date2.get(Calendar.YEAR) &&
                 date1.get(Calendar.MONTH) == date2.get(Calendar.MONTH) &&
                 date1.get(Calendar.DATE) == date2.get(Calendar.DATE);

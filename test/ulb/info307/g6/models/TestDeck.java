@@ -1,16 +1,15 @@
-package ulb.info307.g6.models.database;
+package ulb.info307.g6.models;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ulb.info307.g6.models.Card;
-import ulb.info307.g6.models.Deck;
+
 import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DeckTest {
+class TestDeck {
     private Deck deck;
     private List<Card> cardList;
     private final String deckName = "Test Deck";
