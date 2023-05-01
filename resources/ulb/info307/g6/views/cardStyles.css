@@ -1,0 +1,12 @@
+.answer {
+    background-color: cornflowerblue;
+    font-size: 40px;
+    border-style: solid;
+    border-color: blueviolet;
+}
+.question {
+    background-color: coral;
+    font-size: 40px;
+    border-style: solid;
+    border-color: blueviolet;
+}
