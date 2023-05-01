@@ -22,6 +22,11 @@
         <Label layoutX="23.0" layoutY="16.0" text="Highest knowledge level of deck" />
     </Pane>
 
+    <Pane prefHeight="49.0" prefWidth="791.0">
+        <ProgressBar fx:id="fourthProgressBar" layoutX="396.0" layoutY="16.0" prefHeight="18.0" prefWidth="257.0" progress="0.0" />
+        <Label layoutX="23.0" layoutY="16.0" text="Deck with at least 10 cards" />
+    </Pane>
+
 
     </VBox>
 

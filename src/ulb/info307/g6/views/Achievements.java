@@ -12,6 +12,9 @@ public class Achievements implements View {
     @FXML
     private ProgressBar thirdProgressBar;
 
+    @FXML
+    private ProgressBar fourthProgressBar;
+
     private AchievementsListener listener;
 
     @FXML
@@ -20,10 +23,11 @@ public class Achievements implements View {
     }
 
     @FXML
-    public void showProgressBars(double progress1,double progress2, double progress3) {
+    public void showProgressBars(double progress1,double progress2, double progress3, double progress4) {
         firstProgressBar.setProgress(progress1);
         secondProgressBar.setProgress(progress2);
         thirdProgressBar.setProgress(progress3);
+        fourthProgressBar.setProgress(progress4);
     }
 
     @Override
