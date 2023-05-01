@@ -12,14 +12,19 @@ public class PreviewCardController {
     Stage stage;
     private PreviewCard previewCardView;
     private PreviewCardControllerListener listener;
-    PreviewCardController(String url) {
+    PreviewCardController(String url, Stage mainWindowStage) {
+        int MIN_WIDTH = 416, MIN_HEIGHT = 439;  // Window of size 400x400 with overhead
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ulb/info307/g6/views/CardPreview.fxml"));
             Parent root = loader.load();
             previewCardView = loader.getController();  // To get the controller of the new menu
             previewCardView.setPageView(url);
-            Scene scene = new Scene(root, 600, 600);
+            Scene scene = new Scene(root, 400, 400);
             stage = new Stage();
+            stage.setX(mainWindowStage.getX() + mainWindowStage.getWidth());
+            stage.setY(mainWindowStage.getY());
+            stage.setMinWidth(MIN_WIDTH);
+            stage.setMinHeight(MIN_HEIGHT);
             stage.setOnCloseRequest(ev -> listener.closeRequest());
             stage.setTitle("Card Preview");
             stage.setScene(scene);

@@ -1,12 +1,6 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
 .answer {
     background-color: #FFA07A;
-    font-size: 25px;
+    font-size: 20px;
     border-radius: 10px;
     text-align: center;
     height: 100%;
@@ -17,7 +11,7 @@ html, body {
 
 .question {
     background-color: #ADD8E6;
-    font-size: 25px;
+    font-size: 20px;
     border-radius: 10px;
     text-align: center;
     height: 100%;

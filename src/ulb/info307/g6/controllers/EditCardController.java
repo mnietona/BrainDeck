@@ -51,7 +51,7 @@ public class EditCardController extends ControllerWithCardList implements EditCa
             previewCardController.close();
             previewEnabled = false;
         } else {
-            previewCardController = new PreviewCardController(getPageUrl());
+            previewCardController = new PreviewCardController(getPageUrl(), stage);
             previewCardController.setListener(this);
             previewEnabled = true;
         }

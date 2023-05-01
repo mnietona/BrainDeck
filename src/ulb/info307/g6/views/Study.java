@@ -2,8 +2,6 @@ package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.util.StringConverter;
 
@@ -18,10 +16,6 @@ import java.util.Base64;
  */
 public class Study extends ViewWithDeckList {
     @FXML
-    private Pane cardBackground;
-    @FXML
-    private Text cardText;
-    @FXML
     private Label knowledgeLvlSliderTitle;
     @FXML
     private WebView cardWebView; //probleme a l'initialisation
@@ -29,10 +23,6 @@ public class Study extends ViewWithDeckList {
     private Slider knowledgeLvlSlider;
     @FXML
     private Button buttonFlipCard, buttonNextCard;
-    private static final String
-            ANSWER_BACKGROUND = "-fx-background-color: #FFA07A; -fx-background-radius: 10px",
-            QUESTION_BACKGROUND = "-fx-background-color: #ADD8E6; -fx-background-radius: 10px",
-            CLEAR_BACKGROUND = "-fx-background-color: transparent; ";
     private StudyListener listener;
 
     @Override
@@ -124,10 +114,8 @@ public class Study extends ViewWithDeckList {
         }
     }
 
-    public void showEmptyDeck(String text) {
-
+    public void showEmptyDeck() {
         cardWebView.getEngine().load("showCard.html");
-
     }
 
     @Override

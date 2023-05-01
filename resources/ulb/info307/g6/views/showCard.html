@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <!-- KaTeX requires the use of the HTML5 doctype. Without it, KaTeX may not render properly -->
-<html>
+<html lang="en">
 <head>
+    <title></title>
     <link rel="stylesheet" href="katex/katex.min.css">
     <link rel="stylesheet" href="cardStyles.css">
     <!-- The loading of KaTeX is deferred to speed up page rendering -->
@@ -11,16 +12,16 @@
     <script defer src="katex/contrib/auto-render.min.js"></script>
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
-            let searchparams = new URL(document.location).searchParams;
-            if (searchparams.get('text') == null) {
-                document.getElementById('card_text').innerHTML = "<h1>Please select a deck</h1>"
+            let searchParameters = new URL(document.location).searchParams;
+            if (searchParameters.get('text') == null) {
+                document.getElementById('card_text').innerHTML = "<h3>Please select a deck</h3>"
                 return;
             }
-            let card_text = atob(searchparams.get('text').replace('_', '/').replace('-', '+')); //since atob need url safe base64, we replace the forbidden characters
-            document.getElementById('card_text').innerText = card_text;
-            if (searchparams.get('type') == 'question') {
+             //since atob need url safe base64, we replace the forbidden characters
+            document.getElementById('card_text').innerText = atob(searchParameters.get('text').replace('_', '/').replace('-', '+'));
+            if (searchParameters.get('type') === 'question') {
                 document.getElementById('card_text').classList.add('question')
-            } else if (searchparams.get('type') == 'answer') {
+            } else if (searchParameters.get('type') === 'answer') {
                 document.getElementById('card_text').classList.add('answer')
             }
             renderMathInElement(document.body);

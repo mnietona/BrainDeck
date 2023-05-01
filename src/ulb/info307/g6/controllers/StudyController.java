@@ -119,7 +119,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
             getNextRandomCard();
             updateDisplayArea();
         } else {
-            studyView.showEmptyDeck("The deck " + currentDeck.getName() + " is empty");
+            studyView.showEmptyDeck();
         }
     }
 

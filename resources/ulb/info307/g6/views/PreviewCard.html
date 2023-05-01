@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <!-- KaTeX requires the use of the HTML5 doctype. Without it, KaTeX may not render properly -->
-<html>
+<html lang="en">
     <head>
+        <title></title>
         <link rel="stylesheet" href="katex/katex.min.css">
-        <link rel="stylesheet" href="cardStyles.css">
+        <link rel="stylesheet" href="cardStylesPreview.css">
 
         <!-- The loading of KaTeX is deferred to speed up page rendering -->
         <script defer src="katex/katex.min.js"></script>
@@ -14,8 +15,8 @@
             document.addEventListener('DOMContentLoaded', function() {
                 let searchparams = new URL(document.location).searchParams;
                 if (searchparams.get('q') == null || searchparams.get('a') == null) {
-                  document.getElementById('q').innerHTML = "<h1>Card is empty</h1>"
-                  document.getElementById('a').innerHTML = "<h1>Card is empty</h1>"
+                  document.getElementById('q').innerHTML = "<h3>Card is empty</h3>"
+                  document.getElementById('a').innerHTML = "<h3>Card is empty</h3>"
                   return;
                 }
                 let question_text = atob(searchparams.get('q').replace('_', '/').replace('-', '+'));
@@ -28,9 +29,9 @@
         </script>
     </head>
   <body>
-    <h1>Question :</h1>
+    <h3>Question :</h3>
     <div id="question_text" class="question"></div>
-    <h1>Answer : </h1>
+    <h3>Answer : </h3>
     <div id="answer_text" class="answer"></div>
   </body>
 </html>
