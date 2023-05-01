@@ -40,7 +40,6 @@ public class CardGapFill extends Card {
         return answerParts.length;
     }
 
-    // TODO: contains view, justify or use DTO, check other similar methods
     @Override
     public String getNthFlippedAnswer(int numberOfFlips) {
         try {

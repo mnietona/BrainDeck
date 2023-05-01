@@ -3,12 +3,8 @@ package ulb.info307.g6.views;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import ulb.info307.g6.models.Card;
-import ulb.info307.g6.models.Deck;
-
-import java.util.Iterator;
 
 /**
  * View controller of the EditCard menu, implements View interface and is the controller for the EditCard.fxml file.
@@ -24,7 +20,7 @@ public class EditCard extends ViewWithCardList {
     @FXML
     private TextArea questionInput, answerInput;
     @FXML
-    private Button buttonEditCard, buttonCreateCard, buttonRemoveCard, buttonPreview;
+    private Button buttonEditCard, buttonCreateCard, buttonRemoveCard;
     private EditCardListener listener;
 
     @Override
