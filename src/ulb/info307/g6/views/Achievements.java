@@ -13,6 +13,8 @@ import java.util.List;
 public class Achievements implements View {
     @FXML
     private ProgressBar firstProgressBar;
+    @FXML
+    private ProgressBar secondProgressBar;
     private AchievementsListener listener;
 
     @FXML
@@ -21,8 +23,9 @@ public class Achievements implements View {
     }
 
     @FXML
-    public void showProgressBars(double progress1) {
+    public void showProgressBars(double progress1,double progress2) {
         firstProgressBar.setProgress(progress1);
+        secondProgressBar.setProgress(progress2);
     }
 
     @Override
