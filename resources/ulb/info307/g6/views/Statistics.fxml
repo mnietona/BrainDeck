@@ -48,7 +48,7 @@
         <VBox alignment="CENTER" spacing="5.0" VBox.vgrow="ALWAYS">
             <Text fx:id="deckStat1">
                 <font>
-                    <Font size="20.0" />
+                    <Font size="36.0" />  <!-- Title of deck in larger size -->
                 </font>
             </Text>
             <Text fx:id="deckStat2" text="Select a deck to see detailed information">

@@ -37,8 +37,8 @@ public class Statistics extends ViewWithDeckList {
     public void setDeckStatistics(String deckName, long timeSpent, int nbCards, int knowledgeLevel) {
         deckStat1.setText(deckName);
         deckStat2.setText(getTimeSpentAsString(timeSpent)+" hours studied");
-        deckStat3.setText(nbCards+" cards");
-        deckStat4.setText("Level: "+getKnowledgeLevelString(knowledgeLevel));
+        deckStat3.setText("Number of cards: "+nbCards);
+        deckStat4.setText("Knowledge level: "+getKnowledgeLevelString(knowledgeLevel));
     }
 
     public String getKnowledgeLevelString(int knowledgeLevel) {

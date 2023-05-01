@@ -6,38 +6,34 @@
 <?import javafx.scene.text.*?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" spacing="5.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.CardsStatistics">
-    <!-- Left pane : list of cards + home -->
+    <!-- Left pane : list of cards + back -->
     <VBox alignment="CENTER" spacing="5.0">
         <ListView fx:id="cardListView" prefWidth="169.0" VBox.vgrow="ALWAYS" />
         <Button onAction="#clickBack" prefWidth="169.0" text="Back" />
     </VBox>
 
     <!-- Right pane : card statistics -->
-    <VBox alignment="TOP_CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
-        <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
-            <VBox alignment="CENTER" maxHeight="250.0" maxWidth="400.0" minHeight="250.0" minWidth="400.0" prefHeight="250.0" prefWidth="400.0" spacing="5.0">
-                <Text fx:id="firstText" text="Select a card" textAlignment="CENTER" wrappingWidth="390.0">
-                    <font>
-                        <Font size="20.0" />
-                    </font>
-                </Text>
-                <Text fx:id="secondText" textAlignment="CENTER" wrappingWidth="390.0">
-                    <font>
-                        <Font size="20.0" />
-                    </font>
-                </Text>
-                <Text fx:id="thirdText" textAlignment="CENTER" wrappingWidth="390.0">
-                    <font>
-                        <Font size="20.0" />
-                    </font>
-                </Text>
-                <Text fx:id="fourthText" textAlignment="CENTER" wrappingWidth="390.0">
-                    <font>
-                        <Font size="20.0" />
-                    </font>
-                </Text>
-            </VBox>
-        </VBox>
+    <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+        <Text fx:id="cardStat1" textAlignment="CENTER">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <Text fx:id="cardStat2" textAlignment="CENTER" text="Select a card">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <Text fx:id="cardStat3" textAlignment="CENTER">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <Text fx:id="cardStat4" textAlignment="CENTER">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
     </VBox>
 
     <padding>

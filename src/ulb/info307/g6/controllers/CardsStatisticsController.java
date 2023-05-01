@@ -5,8 +5,7 @@ import javafx.stage.Stage;
 import ulb.info307.g6.models.Deck;
 
 public class CardsStatisticsController extends ControllerWithCardList implements CardsStatistics.CardsStatisticsListener {
-
-    CardsStatistics cardsStatisticsView;
+    private final CardsStatistics cardsStatisticsView;
 
     public CardsStatisticsController(Stage stage, Deck deck) {
         super(stage, "/ulb/info307/g6/views/CardsStatistics.fxml", "Cards statistics of deck " + deck.getName(), deck);

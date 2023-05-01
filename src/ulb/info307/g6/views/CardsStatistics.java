@@ -5,18 +5,17 @@ import javafx.scene.text.Text;
 
 public class CardsStatistics extends ViewWithCardList {
     private CardsStatisticsListener listener;
-
     @FXML
-    Text firstText, secondText, thirdText, fourthText;
-
-    @FXML
-    private void clickBack() {
-        listener.clickBack();
-    }
+    Text cardStat1, cardStat2, cardStat3, cardStat4;
 
     @Override
     public void setListener(Object listener) {
         this.listener = (CardsStatistics.CardsStatisticsListener) listener;
+    }
+
+    @FXML
+    private void clickBack() {
+        listener.clickBack();
     }
 
     @Override
@@ -27,25 +26,25 @@ public class CardsStatistics extends ViewWithCardList {
     public void setCardKnowledgeLevel(int knowledgeLevel) {
         String text = "Knowledge level: ";
         text += knowledgeLevel;
-        firstText.setText(text);
+        cardStat1.setText(text);
     }
 
     public void setCardTimeSpent(long timeSpent) {
         String text = "Time spent: ";
         text += timeSpent;
-        secondText.setText(text);
+        cardStat2.setText(text);
     }
 
     public void setCardProbability(Double probability) {
         String text = "Probability: ";
         text += probability;
-        thirdText.setText(text);
+        cardStat3.setText(text);
     }
 
     public void setCardNumberOfAppearances(int numberOfAppearances) {
         String text = "Number of appearances: ";
         text += numberOfAppearances;
-        fourthText.setText(text);
+        cardStat4.setText(text);
     }
 
     public interface CardsStatisticsListener {
