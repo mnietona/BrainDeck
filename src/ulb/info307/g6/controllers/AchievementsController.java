@@ -29,6 +29,7 @@ public class AchievementsController extends Controller implements Achievements.A
     public void setProgressBars() {
         Statistics statistics = StatisticsDatabase.getStatistics();
         double progress1 = statistics.getLongestDayStreak() / 10.0;
-        achievementsView.showProgressBars(progress1);
+        double progress2 = statistics.getLongestDayStreak() / 5.0;
+        achievementsView.showProgressBars(progress1,progress2);
     }
 }
