@@ -30,7 +30,7 @@ public class DeckProbabilities extends Deck {
         normalizeProbability();
     }
 
-    private double getSumProbability() {
+    public double getSumProbability() {
         if (isEmpty()) { return 0; }
         double sum = 0;
         for (Card card : cardList) {

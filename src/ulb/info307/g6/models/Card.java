@@ -14,6 +14,9 @@ public class Card implements Serializable {
     private String answer;
     private Double probability;  // 5 levels: 0, 1, 2, 3, 4 from bad to good
     private long timeSpent = 0;
+    private int knowledgeLevel;
+
+    private int numberOfAppearances = 0;
 
     public Card() {
         this.id = new Random().nextLong();
@@ -59,6 +62,14 @@ public class Card implements Serializable {
         this.probability = probability;
     }
 
+    public void setKnowledgeLevel(int knowledgeLevel) {
+        this.knowledgeLevel = knowledgeLevel;
+    }
+
+    public int getKnowledgeLevel() {
+        return knowledgeLevel;
+    }
+
     @JsonIgnore
     public boolean isValid() {
         return question != null && answer != null && !question.isEmpty() && !answer.isEmpty();
@@ -85,5 +96,13 @@ public class Card implements Serializable {
     public void addTimeSpent(Instant start, Instant end) {
         timeSpent += Duration.between(start, end).toSeconds();
 
+    }
+
+    public void increaseNumberOfAppearances() {
+        numberOfAppearances++;
+    }
+
+    public int getNumberOfAppearances() {
+        return numberOfAppearances;
     }
 }

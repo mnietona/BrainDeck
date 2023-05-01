@@ -8,7 +8,7 @@ import ulb.info307.g6.views.ViewWithDeckList;
  * Base class for all controllers that have a deck list.
  */
 public class ControllerWithDeckList extends Controller {
-    public final DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation();  // Initialize the DAO for the database
+    public final DeckDaoNitriteImplementation deckDatabase = new DeckDaoNitriteImplementation();  // Initialize the DAO for the database
     protected final ViewWithDeckList viewWithDeckList;
 
     public ControllerWithDeckList(Stage stage, String fxmlPath, String title) {
@@ -21,6 +21,6 @@ public class ControllerWithDeckList extends Controller {
      * Sets the deck list in the view with all the decks from the database.
      */
     protected void setDeckList() {
-        viewWithDeckList.setDeckListView(database.getAllDecks());
+        viewWithDeckList.setDeckListView(deckDatabase.getAllDecks());
     }
 }

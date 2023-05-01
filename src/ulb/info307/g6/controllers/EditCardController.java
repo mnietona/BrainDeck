@@ -10,9 +10,7 @@ import ulb.info307.g6.views.EditCard;
 
 import ulb.info307.g6.models.DeckProbabilities;
 
-import java.util.Base64;
-
-public class EditCardController extends Controller implements EditCard.EditCardListener, PreviewCardController.PreviewCardControllerListener {
+public class EditCardController extends Controller implements EditCard.EditCardListener {
     static DeckDaoNitriteImplementation databaseDeck = new DeckDaoNitriteImplementation();  // The deck database implementation
     private final DeckProbabilities deck;  // The deck being edited
     private final EditCard editCardView; // The view for editing a card
@@ -21,10 +19,9 @@ public class EditCardController extends Controller implements EditCard.EditCardL
 
 
     public EditCardController(Stage stage, Deck deck) {
-        super(stage, "/ulb/info307/g6/views/EditCard.fxml", "Edit cards in the deck");
+        super(stage, "/ulb/info307/g6/views/EditCard.fxml", "Edit cards in the deck " + deck.getName(),deck);
         this.deck = new DeckProbabilities(deck);
         editCardView = (EditCard) view;
-        editCardView.setCardList(deck);
         editCardView.activateButtons(false);
     }
 
@@ -35,7 +32,7 @@ public class EditCardController extends Controller implements EditCard.EditCardL
             selectedItem.setQuestion(editCardView.getQuestionInput());
             selectedItem.setAnswer(editCardView.getAnswerInput());
             databaseDeck.updateDeck(deck);
-            editCardView.setCardList(deck);
+            editCardView.setCardListView(deck);
         }
         editCardView.clearTextFields();
     }
@@ -75,13 +72,12 @@ public class EditCardController extends Controller implements EditCard.EditCardL
                 deck.addCard(card);
                 deck.normalizeProbability();
                 databaseDeck.updateDeck(deck);
-                editCardView.setCardList(deck);
+                editCardView.setCardListView(deck);
                 deck.printProbability();
             }
         }
         editCardView.clearTextFields();
     }
-
 
     @Override
     public void clickRemoveCard() {
@@ -90,7 +86,7 @@ public class EditCardController extends Controller implements EditCard.EditCardL
             deck.removeCard(selectedItem);
             deck.normalizeProbability();
             databaseDeck.updateDeck(deck);
-            editCardView.setCardList(deck);
+            editCardView.setCardListView(deck);
             editCardView.clearTextFields();
             editCardView.activateButtons(false);
             deck.printProbability();
@@ -119,6 +115,4 @@ public class EditCardController extends Controller implements EditCard.EditCardL
         }
         new EditDeckController(stage);
     }
-
 }
-

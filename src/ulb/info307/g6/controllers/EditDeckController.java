@@ -115,10 +115,10 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
     }
 
     private void checkAndUpdateDeckInDatabase(Deck d) {
-        if (database.getDeckById(d.getId()) != null) {
-            database.updateDeck(d);
+        if (deckDatabase.getDeckById(d.getId()) != null) {
+            deckDatabase.updateDeck(d);
         } else {
-            database.addDeck(d);
+            deckDatabase.addDeck(d);
         }
     }
 
@@ -158,8 +158,8 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
     @Override
     public void clickRemove() {
         if (editDeckView.isDeckSelected()) {
-            database.deleteDeck(editDeckView.getSelectedDeck());
-            database.updateDeck(editDeckView.getSelectedDeck());
+            deckDatabase.deleteDeck(editDeckView.getSelectedDeck());
+            deckDatabase.updateDeck(editDeckView.getSelectedDeck());
             setDeckList();
             editDeckView.updateDeckTitle();
             editDeckView.activateActionButtons(false);
@@ -171,7 +171,7 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
         if (editDeckView.isDeckSelected()) {
             DeckProbabilities deckProbabilities = new DeckProbabilities(editDeckView.getSelectedDeck());
             deckProbabilities.resetProbability();
-            database.updateDeck(editDeckView.getSelectedDeck());
+            deckDatabase.updateDeck(editDeckView.getSelectedDeck());
             deckProbabilities.printProbability();
         }
     }

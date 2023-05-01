@@ -7,6 +7,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.Deck;
+
 import java.util.Iterator;
 
 /**
@@ -17,9 +18,7 @@ import java.util.Iterator;
  * - two text areas to enter the question and the answer of the card
  * - a checkbox to select if the card is a gap fill card when creating/editing a card
  */
-public class EditCard implements View {
-    @FXML
-    private ListView<Card> cardListView = new ListView<>();
+public class EditCard extends ViewWithCardList {
     @FXML
     private CheckBox gapFillCheckBox;
     @FXML
@@ -75,30 +74,18 @@ public class EditCard implements View {
         }
     }
 
-    /**
-     * Method to set the card list view with the cards from the given deck.
-     */
-    public void setCardList(Deck deck) {
-        cardListView.getItems().clear();
-        Iterator<Card> cardIterator = deck.getCardIterator();
-        while (cardIterator.hasNext()) {
-            cardListView.getItems().add(cardIterator.next());
+    @Override
+    protected void actionOnCardSelection() {
+        updateQuestionAnswer();
+        if (isCardSelected()) {
+            activateButtons(true);
+            listener.cardChanged();
         }
-        cardListView.setOnMouseClicked(event -> {
-            updateQuestionAnswer();
-            if (isCardSelected()) {
-                activateButtons(true);
-                listener.cardChanged();
-            }
-        });
-    }
-
-    private boolean isCardSelected() {
-        return cardListView.getSelectionModel().getSelectedItem() != null;
     }
 
     public void updateQuestionAnswer() {
-        Card selectedCard = cardListView.getSelectionModel().getSelectedItem();
+        listener.cardChanged();
+        Card selectedCard = getSelectedCard();
         if (selectedCard != null) {
             questionInput.setText(selectedCard.getQuestion());
             answerInput.setText(selectedCard.getAnswer());
@@ -143,14 +130,9 @@ public class EditCard implements View {
         return questionInput.getText().isEmpty() || answerInput.getText().isEmpty();
     }
 
-    public Card getSelectedCard() {
-        return cardListView.getSelectionModel().getSelectedItem();
-    }
-
     public boolean cardIsGapFill() {
         return gapFillCheckBox.isSelected();
     }
-
 
     public interface EditCardListener {
         void clickBack();

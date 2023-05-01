@@ -1,6 +1,7 @@
 package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import ulb.info307.g6.models.Deck;
 import javafx.scene.text.Text;
 import java.time.Duration;
@@ -8,11 +9,11 @@ import java.time.Duration;
 public class Statistics extends ViewWithDeckList {
     private StatisticsListener listener;
     @FXML
-    private Text upperText;
+    private Button cardsStatisticsButton;
     @FXML
-    private Text middleText;
+    private Text globalStat1, globalStat2, globalStat3, globalStat4, globalStat5;
     @FXML
-    private Text lowerText;
+    private Text deckStat1, deckStat2, deckStat3, deckStat4;
 
     @FXML
     public void clickHome() {
@@ -20,34 +21,35 @@ public class Statistics extends ViewWithDeckList {
     }
 
     @FXML
-    public void clickGlobalStatistics() {
-        listener.showGlobalStatistics();
+    public void clickCardsStatistics() {
+        listener.showCardsStatistics();
     }
 
-    public void setNumberOfDecks(int n) {
-        upperText.setText("Number of decks: " + n);
+    public void setGlobalStatistics(int nbDecks, int nbCards, int dayStreak, int longestDayStreak, long totalTimeSpent) {
+        globalStat1.setText(nbDecks+"\nTotal\nDecks");
+        globalStat2.setText(nbCards+"\nTotal\nCards");
+        globalStat3.setText(dayStreak+"\nCurrent\nday streak");
+        globalStat3.setText(getTimeSpentAsString(totalTimeSpent)+"\nHours\nstudied");
+        globalStat4.setText(dayStreak+"\nCurrent\nday streak");
+        globalStat5.setText(longestDayStreak+"\nLongest\nday streak");
     }
 
-    public void setTotalNumberOfCards(int n) {
-        lowerText.setText("Total number of cards: " + n);
+    public void setDeckStatistics(String deckName, long timeSpent, int nbCards, int knowledgeLevel) {
+        deckStat1.setText(deckName);
+        deckStat2.setText(getTimeSpentAsString(timeSpent)+" hours studied");
+        deckStat3.setText("Number of cards: "+nbCards);
+        deckStat4.setText("Knowledge level: "+getKnowledgeLevelString(knowledgeLevel));
     }
 
-    public void setDeckName(String name) {
-        upperText.setText("Deck name: " + name);
-    }
-
-    public void setNumberCardsOfDeck(int n) {
-        lowerText.setText("Number of cards in this deck: " + n);
-    }
-
-    public void setTimeSpentOfDeck(long timeSpent) {
-        String timeSpentString = getTimeSpentAsString(timeSpent);
-        middleText.setText("Time spent: " + timeSpentString);
-    }
-
-    public void setTimeSpentOfAllDeck(long timeSpent) {
-        String timeSpentString = getTimeSpentAsString(timeSpent);
-        middleText.setText("Total Time: " + timeSpentString);
+    public String getKnowledgeLevelString(int knowledgeLevel) {
+        return switch (knowledgeLevel) {
+            case 0 -> "Beginner";
+            case 1 -> "Intermediate";
+            case 2 -> "Advanced";
+            case 3 -> "Expert";
+            case 4 -> "Master";
+            default -> "N/A";
+        };
     }
 
     public String getTimeSpentAsString(long timeSpentSecond) {
@@ -56,6 +58,10 @@ public class Statistics extends ViewWithDeckList {
         long minutes = duration.minusHours(hours).toMinutes();
         long seconds = duration.minusHours(hours).minusMinutes(minutes).getSeconds();
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+    }
+
+    public void activateButton(boolean activate) {
+        cardsStatisticsButton.setDisable(!activate);
     }
 
     @Override
@@ -70,7 +76,8 @@ public class Statistics extends ViewWithDeckList {
 
     public interface StatisticsListener {
         void clickHome();
-        void clickDeck(Deck deck);
         void showGlobalStatistics();
+        void clickDeck(Deck deck);
+        void showCardsStatistics();
     }
 }
