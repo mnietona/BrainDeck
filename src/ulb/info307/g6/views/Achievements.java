@@ -1,18 +1,17 @@
 package ulb.info307.g6.views;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Achievements implements View {
     @FXML
     private ProgressBar firstProgressBar;
+    @FXML
+    private ProgressBar secondProgressBar;
+
+    @FXML
+    private ProgressBar thirdProgressBar;
+
     private AchievementsListener listener;
 
     @FXML
@@ -21,8 +20,10 @@ public class Achievements implements View {
     }
 
     @FXML
-    public void showProgressBars(double progress1) {
+    public void showProgressBars(double progress1,double progress2, double progress3) {
         firstProgressBar.setProgress(progress1);
+        secondProgressBar.setProgress(progress2);
+        thirdProgressBar.setProgress(progress3);
     }
 
     @Override
