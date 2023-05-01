@@ -33,7 +33,8 @@ public class AchievementsController extends Controller implements Achievements.A
         double progress2 = statistics.getLongestDayStreak() / 5.0;
         double progress3 = getHighestKnowledgeLevel() / 5.0;
         double progress4 = getHighestNumberOfCardsPerDeck() / 10.0;
-        achievementsView.showProgressBars(progress1,progress2,progress3,progress4);
+        double progress5 = database.getTotalNumberOfCards() / 100.0;
+        achievementsView.showProgressBars(progress1,progress2,progress3,progress4,progress5);
     }
 
     private int getHighestKnowledgeLevel() {
