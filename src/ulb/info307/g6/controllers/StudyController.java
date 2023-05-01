@@ -28,7 +28,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
             int knowledgeLvl = studyView.getSelectedKnowledgeLvl();
             card.setKnowledgeLevel(knowledgeLvl); // We update the knowledge level of the card
             currentDeck.updateProbability(card, knowledgeLvl);
-            database.updateDeck(currentDeck);
+            deckDatabase.updateDeck(currentDeck);
         }
     }
 
@@ -115,7 +115,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
         if (!currentDeck.isEmpty()) {
             cardSelectionTimeStart = Instant.now(); // start the timer
             currentDeck.initDeckProbabilities();
-            database.updateDeck(currentDeck);
+            deckDatabase.updateDeck(currentDeck);
             getNextRandomCard();
             updateDisplayArea();
         } else {
@@ -128,7 +128,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
             Instant cardSelectionTimeEnd = Instant.now();
             currentDeck.getCardByIndex(cardIndex).addTimeSpent(cardSelectionTimeStart, cardSelectionTimeEnd);
             currentDeck.getCardByIndex(cardIndex).increaseNumberOfAppearances();
-            database.updateDeck(currentDeck);
+            deckDatabase.updateDeck(currentDeck);
         }
     }
 }

@@ -14,13 +14,13 @@ public class Statistics extends ViewWithDeckList {
     private Text firstText, secondText, thirdText, fourthText, fifthText;
 
     @FXML
-    public void clickHome() {
-        listener.clickHome();
-    }
+    private Text globalStat1, globalStat2, globalStat3, globalStat4, globalStat5;
+    @FXML
+    private Text deckStat1, deckStat2, deckStat3, deckStat4;
 
     @FXML
-    public void clickGlobalStatistics() {
-        listener.showGlobalStatistics();
+    public void clickHome() {
+        listener.clickHome();
     }
 
     @FXML
@@ -28,34 +28,24 @@ public class Statistics extends ViewWithDeckList {
         listener.showCardsStatistics();
     }
 
-    public void setNumberOfDecks(int n) {
-        firstText.setText("Number of decks: " + n);
+    public void setGlobalStatistics(int nbDecks, int nbCards, int dayStreak, int longestDayStreak, long totalTimeSpent) {
+        globalStat1.setText(nbDecks+"\nTotal\nDecks");
+        globalStat2.setText(nbCards+"\nTotal\nCards");
+        globalStat3.setText(dayStreak+"\nCurrent\nday streak");
+        globalStat3.setText(getTimeSpentAsString(totalTimeSpent)+"\nHours\nstudied");
+        globalStat4.setText(dayStreak+"\nCurrent\nday streak");
+        globalStat5.setText(longestDayStreak+"\nLongest\nday streak");
     }
 
-    public void setTotalNumberOfCards(int n) {
-        thirdText.setText("Total number of cards: " + n);
+    public void setDeckStatistics(String deckName, long timeSpent, int nbCards, int knowledgeLevel) {
+        deckStat1.setText(deckName);
+        deckStat2.setText(getTimeSpentAsString(timeSpent)+" hours studied");
+        deckStat3.setText(nbCards+" cards");
+        deckStat4.setText("Level: "+getKnowledgeLevelString(knowledgeLevel));
     }
 
-    public void setDeckName(String name) {
-        firstText.setText("Deck name: " + name);
-    }
-
-    public void setNumberCardsOfDeck(int n) {
-        thirdText.setText("Number of cards in this deck: " + n);
-    }
-
-    public void setTimeSpentOfDeck(long timeSpent) {
-        String timeSpentString = getTimeSpentAsString(timeSpent);
-        secondText.setText("Time spent: " + timeSpentString);
-    }
-
-    public void setTimeSpentOfAllDeck(long timeSpent) {
-        String timeSpentString = getTimeSpentAsString(timeSpent);
-        secondText.setText("Total Time: " + timeSpentString);
-    }
-
-    public void setKnowledgeLevelOfDeck(int knowledgeLevel) {
-        String s = switch (knowledgeLevel) {
+    public String getKnowledgeLevelString(int knowledgeLevel) {
+        return switch (knowledgeLevel) {
             case 0 -> "Beginner";
             case 1 -> "Intermediate";
             case 2 -> "Advanced";
@@ -63,11 +53,6 @@ public class Statistics extends ViewWithDeckList {
             case 4 -> "Master";
             default -> "N/A";
         };
-        fourthText.setText("Knowledge level: "+ s);
-    }
-
-    public void setDayStreak(int currentDayStreak, int longestDayStreak) {
-        fifthText.setText("Current day streak: " + currentDayStreak + "\n" + "Longest day streak: " + longestDayStreak);
     }
 
     public String getTimeSpentAsString(long timeSpentSecond) {
@@ -94,8 +79,8 @@ public class Statistics extends ViewWithDeckList {
 
     public interface StatisticsListener {
         void clickHome();
-        void clickDeck(Deck deck);
         void showGlobalStatistics();
+        void clickDeck(Deck deck);
         void showCardsStatistics();
     }
 }

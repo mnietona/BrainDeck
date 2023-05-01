@@ -29,6 +29,24 @@ public class StatisticsDao {
         return null;
     }
 
+    public int getCurrentDayStreak() {
+        try {
+            return con.find().toList().get(0).getCurrentDayStreak();
+        } catch (Exception e) {
+            System.out.println("No statistics found in database.");
+        }
+        return 0;
+    }
+
+    public int getLongestDayStreak() {
+        try {
+            return con.find().toList().get(0).getLongestDayStreak();
+        } catch (Exception e) {
+            System.out.println("No statistics found in database.");
+        }
+        return 0;
+    }
+
     /**
      * Updates the statistics object already database
      */
