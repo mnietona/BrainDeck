@@ -6,16 +6,23 @@ import java.util.Calendar;
 public class Statistics {
     @Id
     private final long id = 1;
-    private int longestDayStreak = 0;
-    private int currentDayStreak = 0;
+    private int longestDayStreak;
+    private int currentDayStreak;
     private Calendar previousStartupDate;  // Day stored in database
 
     public Statistics() {
-        // Constructeur par défaut
+        // Default constructor
     }
 
     public void updateLastDay(){
         previousStartupDate = Calendar.getInstance();
+    }
+
+    /**
+     * Setter used for testing purposes.
+     */
+    public void setPreviousStartupDate(Calendar previousStartupDate) {
+        this.previousStartupDate = previousStartupDate;
     }
 
     public int getCurrentDayStreak() {
@@ -26,23 +33,33 @@ public class Statistics {
         return longestDayStreak;
     }
 
-    public void update() {
+    /**
+     * Increments day streak only if today is exactly the day after the last day
+     * the app was opened (date stored in database). If it is more than one day, it resets the day streak.
+     * Also updates the longest streak when needed.
+     */
+    public void updateDayStreak() {
         Calendar today = Calendar.getInstance();
         if (previousStartupDate != null) {  // If it's not the first time the app is launched
             if (isDayBefore(previousStartupDate, today)) {
                 currentDayStreak++;
-                if (currentDayStreak > longestDayStreak) longestDayStreak = currentDayStreak;
-            } else if ((isNotSameDay(previousStartupDate, today))) {
-                resetCurrentStreak();
+                if (currentDayStreak > longestDayStreak) {
+                    longestDayStreak = currentDayStreak;
+                }
+            } else {
+                if (isNotSameDay(previousStartupDate, today)) {
+                    resetCurrentStreak();
+                }
             }
         }
         updateLastDay();
     }
 
+    /**
+     * @return true if date1 is exactly one day before date2.
+     */
     public boolean isDayBefore(Calendar date1, Calendar date2) {
-        // Subtract one day from date2
         date2.add(Calendar.DATE, -1);
-        // Compare the two dates
         return date1.get(Calendar.YEAR) == date2.get(Calendar.YEAR) &&
                 date1.get(Calendar.MONTH) == date2.get(Calendar.MONTH) &&
                 date1.get(Calendar.DATE) == date2.get(Calendar.DATE);

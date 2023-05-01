@@ -1,11 +1,8 @@
-package ulb.info307.g6.models.database;
+package ulb.info307.g6.models;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import ulb.info307.g6.models.Card;
-import ulb.info307.g6.models.Deck;
-import ulb.info307.g6.models.DeckProbabilities;
 
 public class TestDeckProbabilities {
     private DeckProbabilities deckProbabilities;

@@ -1,10 +1,7 @@
-package ulb.info307.g6.models.database;
+package ulb.info307.g6.models;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ulb.info307.g6.models.Card;
-import ulb.info307.g6.models.CardGapFill;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestCardGapFill {
