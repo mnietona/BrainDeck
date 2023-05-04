@@ -39,7 +39,9 @@ public class CardQCM extends Card{
     public String getGoodAnswer(){
         return goodAnswer;
     }
-
+    public String[] getBadAnswer(){
+        return badAnswer;
+    }
     private void setBadAnswer(){
 
         int i = 0;
@@ -54,7 +56,5 @@ public class CardQCM extends Card{
         }
     }
 
-    public String[] getBadAnswer(){
-        return badAnswer;
-    }
+
 }
