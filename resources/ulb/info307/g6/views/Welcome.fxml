@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox alignment="CENTER" prefHeight="400.0" prefWidth="700.0" spacing="5.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Welcome">
-    <Button onAction="#studyButtonAction" prefHeight="50.0" prefWidth="80.0" text="Study" />
-    <Button onAction="#editButtonAction" prefHeight="50.0" prefWidth="80.0" text="Edit" />
-    <Button onAction="#statisticsButtonAction" prefHeight="50.0" prefWidth="80.0" text="Statistics" />
-    <Button onAction="#achievementsButtonAction" prefHeight="50.0" prefWidth="112.0" text="Achievements" />
+<HBox id="body" alignment="CENTER" prefHeight="400.0" prefWidth="700.0" spacing="5.0" stylesheets="@welcomeStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Welcome">
+    <Button onAction="#studyButtonAction" prefHeight="50.0" prefWidth="80.0" text="Study" contentDisplay="TOP">
+        <graphic>
+            <ImageView fitHeight="100.0" fitWidth="100.0" fx:id="studyImg" preserveRatio="true">
+                <Image url="@images/books.png" />
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button onAction="#editButtonAction" prefHeight="50.0" prefWidth="80.0" text="Edit" contentDisplay="TOP">
+        <graphic>
+            <ImageView fitHeight="100.0" fitWidth="100.0" fx:id="editImg" preserveRatio="true">
+                <Image url="@images/edit.png" />
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button onAction="#statisticsButtonAction" prefHeight="50.0" prefWidth="80.0" text="Statistics" contentDisplay="TOP">
+        <graphic>
+            <ImageView fitHeight="100.0" fitWidth="100.0" fx:id="statImg" preserveRatio="true">
+                <Image url="@images/stats.png" />
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button onAction="#achievementsButtonAction" prefHeight="50.0" prefWidth="112.0" text="Achievements" contentDisplay="TOP">
+        <graphic>
+            <ImageView fitHeight="100.0" fitWidth="100.0" fx:id="achivImg" preserveRatio="true">
+                <Image url="@images/trophy.png" />
+            </ImageView>
+        </graphic>
+    </Button>
 </HBox>
