@@ -2,42 +2,55 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" spacing="5.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Statistics">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" spacing="5.0" stylesheets="@menusStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Statistics">
     <!-- Left pane : list of decks + home -->
     <VBox alignment="CENTER" spacing="5.0">
         <ListView fx:id="deckListView" prefWidth="169.0" VBox.vgrow="ALWAYS" />
-        <Button onAction="#clickHome" prefWidth="169.0" text="Home" />
+        <Button fx:id="homeButton" contentDisplay="LEFT" onAction="#clickHome" prefWidth="169.0" text="Home">
+            <graphic>
+                <ImageView fx:id="homeImg" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-25.0">
+                    <Image url="@images/back.png" />
+                </ImageView>
+            </graphic>
+            <VBox.margin>
+                <Insets />
+            </VBox.margin>
+            <padding>
+                <Insets bottom="-4.0" top="-4.0" />
+            </padding>
+        </Button>
     </VBox>
 
     <!-- Right pane : Global statistics + deck statistics + card statistics button -->
     <VBox alignment="TOP_CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
 
         <!-- Global statistics -->
-        <HBox alignment="CENTER" prefHeight="100.0" spacing="25.0" style="-fx-border-color: #DDDDDD; -fx-border-width: 2px;">
-            <Text fx:id="globalStat1" textAlignment="CENTER">
+        <HBox alignment="CENTER" prefHeight="100.0" spacing="25.0" style="-fx-border-width: 2px;">
+            <Text fx:id="globalStat1" style="-fx-font-family: 'Cakecafe';" textAlignment="CENTER">
                 <font>
                     <Font size="20.0" />
                 </font>
             </Text>
-            <Text fx:id="globalStat2" textAlignment="CENTER">
+            <Text fx:id="globalStat2" style="-fx-font-family: 'Cakecafe';" textAlignment="CENTER">
                 <font>
                     <Font size="20.0" />
                 </font>
             </Text>
-            <Text fx:id="globalStat3" textAlignment="CENTER">
+            <Text fx:id="globalStat3" style="-fx-font-family: 'Cakecafe';" textAlignment="CENTER">
                 <font>
                     <Font size="20.0" />
                 </font>
             </Text>
-            <Text fx:id="globalStat4" textAlignment="CENTER">
+            <Text fx:id="globalStat4" style="-fx-font-family: 'Cakecafe';" textAlignment="CENTER">
                 <font>
                     <Font size="20.0" />
                 </font>
             </Text>
-            <Text fx:id="globalStat5" textAlignment="CENTER">
+            <Text fx:id="globalStat5" style="-fx-font-family: 'Cakecafe';" textAlignment="CENTER">
                 <font>
                     <Font size="20.0" />
                 </font>
@@ -46,22 +59,22 @@
 
         <!-- Deck statistics -->
         <VBox alignment="CENTER" spacing="5.0" VBox.vgrow="ALWAYS">
-            <Text fx:id="deckStat1">
+            <Text fx:id="deckStat1" style="-fx-font-family: 'Cakecafe';">
                 <font>
                     <Font size="36.0" />  <!-- Title of deck in larger size -->
                 </font>
             </Text>
-            <Text fx:id="deckStat2" text="Select a deck to see detailed information">
+            <Text id="testFont" fx:id="deckStat2" style="-fx-font-family: 'Cakecafe';" text="Select a deck to see detailed information">
                 <font>
                     <Font size="20.0" />
                 </font>
             </Text>
-            <Text fx:id="deckStat3">
+            <Text fx:id="deckStat3" style="-fx-font-family: 'Cakecafe';">
                 <font>
                     <Font size="20.0" />
                 </font>
             </Text>
-            <Text fx:id="deckStat4">
+            <Text fx:id="deckStat4" style="-fx-font-family: 'Cakecafe';">
                 <font>
                     <Font size="20.0" />
                 </font>
@@ -69,7 +82,13 @@
         </VBox>
 
         <!-- Cards statistics button -->
-        <Button fx:id="cardsStatisticsButton" disable="true" onAction="#clickCardsStatistics" text="Cards statistics" />
+        <Button fx:id="cardsStatisticsButton" contentDisplay="LEFT" disable="true" onAction="#clickCardsStatistics" text="Cards statistics">
+            <graphic>
+                <ImageView fx:id="statsImg" fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
+                    <Image url="@images/stats.png" />
+                </ImageView>
+            </graphic>
+        </Button>
     </VBox>
 
     <padding>

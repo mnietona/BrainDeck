@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox id="body" alignment="CENTER" prefHeight="400.0" prefWidth="700.0" spacing="5.0" stylesheets="@welcomeStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Welcome">
+<HBox alignment="CENTER" prefHeight="400.0" prefWidth="700.0" spacing="5.0" stylesheets="@welcomeStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Welcome">
     <Button onAction="#studyButtonAction" prefHeight="50.0" prefWidth="80.0" text="Study" contentDisplay="TOP">
         <graphic>
             <ImageView fitHeight="100.0" fitWidth="100.0" fx:id="studyImg" preserveRatio="true">

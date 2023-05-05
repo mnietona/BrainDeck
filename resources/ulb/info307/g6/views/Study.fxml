@@ -2,14 +2,27 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.web.*?>
 
-<HBox prefHeight="400.0" prefWidth="700.0" spacing="5.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Study">
+<HBox prefHeight="400.0" prefWidth="700.0" spacing="5.0" stylesheets="@menusStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Study">
     <!-- Left pane : list of decks + home -->
     <VBox alignment="CENTER" spacing="5.0">
         <ListView fx:id="deckListView" prefWidth="169.0" VBox.vgrow="ALWAYS" />
-        <Button onAction="#clickHome" prefWidth="169.0" text="Home" />
+        <Button fx:id="homeButton" contentDisplay="LEFT" onAction="#clickHome" prefWidth="169.0" text="Home">
+            <graphic>
+                <ImageView fx:id="homeImg" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-25.0">
+                    <Image url="@images/back.png" />
+                </ImageView>
+            </graphic>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="-4.0" top="-4.0" />
+         </padding>
+        </Button>
     </VBox>
 
     <!-- Right pane : card + knowledge lvl + flip/next -->
@@ -24,8 +37,20 @@
         <Slider fx:id="knowledgeLvlSlider" blockIncrement="1.0" majorTickUnit="1.0" max="4.0" maxWidth="350.0" minWidth="350.0" minorTickCount="0" prefWidth="350.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
 
         <HBox alignment="CENTER" spacing="5.0">
-            <Button fx:id="buttonFlipCard" onAction="#clickFlipCard" text="Flip" />
-            <Button fx:id="buttonNextCard" onAction="#clickNextCard" text="Next" />
+            <Button fx:id="buttonFlipCard" contentDisplay="LEFT" onAction="#clickFlipCard" text="Flip">
+                <graphic>
+                    <ImageView fx:id="flipImg" fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
+                        <Image url="@images/flip.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="buttonNextCard" contentDisplay="LEFT" onAction="#clickNextCard" text="Next">
+                <graphic>
+                    <ImageView fx:id="nextImg" fitHeight="30.0" fitWidth="30.0" preserveRatio="true" rotate="90.0">
+                        <Image url="@images/play.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
         </HBox>
     </VBox>
 
