@@ -8,7 +8,7 @@ import ulb.info307.g6.views.PreviewCard;
 
 import java.io.IOException;
 
-public class PreviewCardController {
+public class PreviewCardController {  // TODO use Controller.java
     Stage stage;
     private PreviewCard previewCardView;
     private PreviewCardControllerListener listener;

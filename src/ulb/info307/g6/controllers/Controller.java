@@ -9,7 +9,7 @@ import java.io.IOException;
 
 /**
  * Base class for all controllers.
- * Updates (or creates) window from loaded view + title and sets the listener.
+ * Updates window content from loaded view + title, and sets the listener.
  */
 public class Controller {
     protected final Stage stage;
@@ -17,16 +17,25 @@ public class Controller {
 
     public Controller(Stage stage, String fxmlPath, String title) {
         this.stage = stage;
+        double previousWidth = stage.getWidth(), previousHeight = stage.getHeight();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
             view = loader.getController();  // To get the controller of the new menu
             view.setListener(this);
-
-            // Window will not reset size when changing menu
-            int WIDTH_OVERHEAD = 16, HEIGHT_OVERHEAD = 39;  // Window border size
-            Scene scene = new Scene(root, stage.getWidth()- WIDTH_OVERHEAD, stage.getHeight()- HEIGHT_OVERHEAD);
+            Scene scene = new Scene(root);
             stage.setScene(scene);
+
+            // Size of window will not reset when navigating trough menus
+            stage.setWidth(previousWidth);
+            stage.setHeight(previousHeight);
+
+            // Sets minimum size of the window to 480p (720x480), accounting for the (os-dependent) window overhead
+            double widthOverhead = stage.getWidth() - scene.getWidth();
+            double heightOverhead = stage.getHeight() - scene.getHeight();
+            stage.setMinWidth(720 + widthOverhead);
+            stage.setMinHeight(480 + heightOverhead);
+
             stage.setTitle(title);
             stage.show();
         } catch (IOException e) {

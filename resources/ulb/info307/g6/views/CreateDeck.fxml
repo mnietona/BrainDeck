@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="400.0" prefWidth="700.0" spacing="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.CreateDeck">
+<VBox alignment="CENTER" prefWidth="1280.0" prefHeight="720.0" spacing="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.CreateDeck">
    <Label text="Title of your deck" />
     <TextField fx:id="inputBox" maxWidth="300.0" minWidth="300.0" onKeyTyped="#textChange" prefWidth="300.0" promptText="Title of your deck" />
     <HBox alignment="CENTER" spacing="5.0">
