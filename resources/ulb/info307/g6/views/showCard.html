@@ -24,6 +24,16 @@
             } else if (searchParameters.get('type') === 'answer') {
                 document.getElementById('card_text').classList.add('answer')
             }
+
+            let checkboxValues = searchParameters.get('checkboxValues');
+            if (checkboxValues) {
+                let questionValues = checkboxValues.split(' ');
+                let checkboxesHtml = '';
+                for (let i = 0; i < questionValues.length; i++) {
+                    checkboxesHtml += '<div><input type="radio" name="checkbox" value="' + questionValues[i] + '">' + questionValues[i] + '</div>';
+                }
+            }
+            // Render any LaTeX math in the page
             renderMathInElement(document.body);
         });
     </script>
