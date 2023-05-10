@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.web.*?>
 
-<HBox prefHeight="400.0" prefWidth="700.0" spacing="5.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.StudyQCM">
+<HBox prefHeight="400.0" prefWidth="700.0" spacing="5.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Study">
     <!-- Left pane : list of decks + home -->
     <VBox alignment="CENTER" spacing="5.0">
         <ListView fx:id="deckListView" prefWidth="169.0" VBox.vgrow="ALWAYS" />
@@ -14,23 +14,7 @@
 
     <!-- Right pane : card + knowledge lvl + flip/next -->
     <VBox alignment="TOP_CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
-        <WebView fx:id="cardWebView" prefHeight="240.0" prefWidth="516.0" />
-        <GridPane prefHeight="233.0" prefWidth="516.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-            <children>
-            <WebView fx:id="WebViewUpLeft" onMouseClicked="#clickWebViewUpLeft" prefHeight="200.0" prefWidth="200.0" />
-            <WebView fx:id="#WebViewDownLeft" onMouseClicked="#clickWebViewDownLeft" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-            <WebView fx:id="#WebViewUpRight" onMouseClicked="#clickWebViewUpRight" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-            <WebView fx:id="#WebViewDownRight" onMouseClicked="#clickWebViewDownRight" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            </children>
-      </GridPane>
+        <WebView fx:id="cardWebView" prefHeight="240.0" prefWidth="516.0" VBox.vgrow="ALWAYS" />
 
         <Label fx:id="knowledgeLvlSliderTitle" text="Knowledge level">
             <VBox.margin>

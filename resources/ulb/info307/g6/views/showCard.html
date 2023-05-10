@@ -30,7 +30,7 @@
                 let questionValues = radioBoxValues.split(',');
                 let radioBoxesHtml = '';
                 for (let i = 0; i < questionValues.length; i++) {
-                    radioBoxesHtml += '<div id="questionRadioBox"><input type="radio" name="radio" value="' + questionValues[i] + '">' + questionValues[i] + '</div>';
+                    radioBoxesHtml += '<label id="questionRadioBox"><input type="radio" name="radio" value="' + questionValues[i] + '">' + questionValues[i] + '</label>';
                 }
             document.getElementById('card_text').innerHTML = radioBoxesHtml;
             }
