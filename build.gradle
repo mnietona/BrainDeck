@@ -30,6 +30,7 @@ dependencies {
     implementation 'org.slf4j:slf4j-nop:2.0.5'
     implementation 'org.dizitart:nitrite:3.4.4'
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.14.2'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.14.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     implementation 'org.scilab.forge:jlatexmath:1.0.7'

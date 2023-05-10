@@ -1,28 +1,25 @@
 package ulb.info307.g6.models;
 
+import java.time.LocalDate;
 import org.dizitart.no2.objects.Id;
-import java.util.Calendar;
 
 public class Statistics {
     @Id
     private final long id = 1;
-    private int longestDayStreak;
-    private int currentDayStreak;
-    private Calendar previousStartupDate;  // Day stored in database
+    private int currentDayStreak, longestDayStreak;
+    private LocalDate previousStartupDate;  // Day stored in database
 
     public Statistics() {
-        // Default constructor
-    }
-
-    public void updateLastDay(){
-        previousStartupDate = Calendar.getInstance();
+        currentDayStreak = 1;
+        longestDayStreak = 1;
+        previousStartupDate = LocalDate.now();
     }
 
     /**
      * Setter used for testing purposes.
      */
-    public void setPreviousStartupDate(Calendar previousStartupDate) {
-        this.previousStartupDate = previousStartupDate;
+    public void setPreviousStartupDate(LocalDate date) {
+        previousStartupDate = date;
     }
 
     public int getCurrentDayStreak() {
@@ -39,40 +36,24 @@ public class Statistics {
      * Also updates the longest streak when needed.
      */
     public void updateDayStreak() {
-        Calendar today = Calendar.getInstance();
-        if (previousStartupDate != null) {  // If it's not the first time the app is launched
-            if (isDayBefore(previousStartupDate, today)) {
-                currentDayStreak++;
-                if (currentDayStreak > longestDayStreak) {
-                    longestDayStreak = currentDayStreak;
-                }
-            } else {
-                if (isNotSameDay(previousStartupDate, today)) {
-                    resetCurrentStreak();
-                }
+        if (isYesterday(previousStartupDate)) {
+            currentDayStreak++;
+            if (currentDayStreak > longestDayStreak) longestDayStreak = currentDayStreak;
+        } else {  // Opened on the same day, or more than a day after
+            if (!isToday(previousStartupDate)) {
+                currentDayStreak = 0;
             }
         }
-        updateLastDay();
+        previousStartupDate = LocalDate.now();
     }
 
-    /**
-     * @return true if date1 is exactly one day before date2.
-     */
-    public boolean isDayBefore(Calendar date1, Calendar date2) {
-        date2.add(Calendar.DATE, -1);
-        return date1.get(Calendar.YEAR) == date2.get(Calendar.YEAR) &&
-                date1.get(Calendar.MONTH) == date2.get(Calendar.MONTH) &&
-                date1.get(Calendar.DATE) == date2.get(Calendar.DATE);
+    public static boolean isYesterday(LocalDate date) {
+        LocalDate yesterday = LocalDate.now().minusDays(1);
+        return date.isEqual(yesterday);
     }
 
-    public boolean isNotSameDay(Calendar date1, Calendar date2) {
-        return date1.get(Calendar.YEAR) != date2.get(Calendar.YEAR) ||
-                date1.get(Calendar.MONTH) != date2.get(Calendar.MONTH) ||
-                date1.get(Calendar.DATE) != date2.get(Calendar.DATE);
-    }
-
-    public void resetCurrentStreak() {
-        currentDayStreak = 0;
-        updateLastDay();
+    public static boolean isToday(LocalDate date) {
+        LocalDate today = LocalDate.now();
+        return date.isEqual(today);
     }
 }
