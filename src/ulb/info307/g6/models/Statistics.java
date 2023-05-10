@@ -9,17 +9,14 @@ public class Statistics {
     private int currentDayStreak, longestDayStreak;
     private LocalDate previousStartupDate;  // Day stored in database
 
+    /**
+     * Constructor used when database is empty (app is launched for the first time).
+     * A streak starts at 1.
+     */
     public Statistics() {
         currentDayStreak = 1;
         longestDayStreak = 1;
         previousStartupDate = LocalDate.now();
-    }
-
-    /**
-     * Setter used for testing purposes.
-     */
-    public void setPreviousStartupDate(LocalDate date) {
-        previousStartupDate = date;
     }
 
     public int getCurrentDayStreak() {
@@ -28,6 +25,13 @@ public class Statistics {
 
     public int getLongestDayStreak() {
         return longestDayStreak;
+    }
+
+    /**
+     * Setter used for test class.
+     */
+    public void setPreviousStartupDate(LocalDate date) {
+        previousStartupDate = date;
     }
 
     /**
@@ -41,19 +45,23 @@ public class Statistics {
             if (currentDayStreak > longestDayStreak) longestDayStreak = currentDayStreak;
         } else {  // Opened on the same day, or more than a day after
             if (!isToday(previousStartupDate)) {
-                currentDayStreak = 0;
+                resetDayStreak();
             }
         }
         previousStartupDate = LocalDate.now();
     }
 
-    public static boolean isYesterday(LocalDate date) {
+    private static boolean isYesterday(LocalDate date) {
         LocalDate yesterday = LocalDate.now().minusDays(1);
         return date.isEqual(yesterday);
     }
 
-    public static boolean isToday(LocalDate date) {
+    private static boolean isToday(LocalDate date) {
         LocalDate today = LocalDate.now();
         return date.isEqual(today);
+    }
+
+    private void resetDayStreak() {
+        currentDayStreak = 1;
     }
 }

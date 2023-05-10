@@ -1,100 +1,47 @@
 package ulb.info307.g6.models;
 
+import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
-import java.util.Calendar;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TestStatistics {
     @Test
-    void isDayBefore() {
-        Statistics statistics = new Statistics();
-
-        // Test case 1: date1 is one day before date2
-        Calendar date1 = Calendar.getInstance();
-        Calendar date2 = Calendar.getInstance();
-        date1.set(2023, Calendar.MAY, 1); // May 1, 2023
-        date2.set(2023, Calendar.MAY, 2); // May 2, 2023
-        assertTrue(statistics.isDayBefore(date1, date2));
-
-        // Test case 2: date1 is the same as date2
-        date1.set(2023, Calendar.MAY, 2); // May 2, 2023
-        date2.set(2023, Calendar.MAY, 2); // May 2, 2023
-        assertFalse(statistics.isDayBefore(date1, date2));
-
-        // Test case 3: date1 is one day after date2
-        date1.set(2023, Calendar.MAY, 3); // May 3, 2023
-        date2.set(2023, Calendar.MAY, 2); // May 2, 2023
-        assertFalse(statistics.isDayBefore(date1, date2));
-
-        // Test case 4: date1 is more than one day before date2
-        date1.set(2023, Calendar.APRIL, 30); // April 30, 2023
-        date2.set(2023, Calendar.MAY, 2);  // May 2, 2023
-        assertFalse(statistics.isDayBefore(date1, date2));
-    }
-
-    @Test
-    void isNotSameDay() {
-        Statistics statistics = new Statistics();
-
-        // Test case 1: date1 and date2 are the same day
-        Calendar date1 = Calendar.getInstance();
-        Calendar date2 = Calendar.getInstance();
-        date1.set(2023, Calendar.MAY, 1); // May 1, 2023
-        date2.set(2023, Calendar.MAY, 1); // May 1, 2023
-        assertFalse(statistics.isNotSameDay(date1, date2));
-
-        // Test case 2: date1 is one day before date2
-        date1.set(2023, Calendar.MAY, 1); // May 1, 2023
-        date2.set(2023, Calendar.MAY, 2); // May 2, 2023
-        assertTrue(statistics.isNotSameDay(date1, date2));
-
-        // Test case 3: date1 is one day after date2
-        date1.set(2023, Calendar.MAY, 3); // May 3, 2023
-        date2.set(2023, Calendar.MAY, 2); // May 2, 2023
-        assertTrue(statistics.isNotSameDay(date1, date2));
-
-        // Test case 4: date1 and date2 are in different months
-        date1.set(2023, Calendar.APRIL, 30); // April 30, 2023
-        date2.set(2023, Calendar.MAY, 2);  // May 2, 2023
-        assertTrue(statistics.isNotSameDay(date1, date2));
-
-        // Test case 5: date1 and date2 are in different years
-        date1.set(2022, Calendar.MAY, 1); // May 1, 2022
-        date2.set(2023, Calendar.MAY, 1); // May 1, 2023
-        assertTrue(statistics.isNotSameDay(date1, date2));
-    }
-
-    @Test
     void updateDayStreak() {
         Statistics statistics = new Statistics();
 
-        // Test case 1: first time the app is launched
-        statistics.setPreviousStartupDate(null);
-        statistics.updateDayStreak();
-        assertEquals(0, statistics.getCurrentDayStreak());
-        assertEquals(0, statistics.getLongestDayStreak());
-
-        // Test case 2: update on the same day
-        Calendar today = Calendar.getInstance();
-        statistics.setPreviousStartupDate(today);
-        statistics.updateDayStreak();
-        assertEquals(0, statistics.getCurrentDayStreak());
-        assertEquals(0, statistics.getLongestDayStreak());
-
-        // Test case 3: update on the next day (day after yesterday)
-        Calendar yesterday = Calendar.getInstance();
-        yesterday.add(Calendar.DATE, -1);
-        statistics.setPreviousStartupDate(yesterday);
-        statistics.updateDayStreak();
+        // Test case 1: first time the app is launched (current day streak should start at 1)
         assertEquals(1, statistics.getCurrentDayStreak());
         assertEquals(1, statistics.getLongestDayStreak());
 
-        // Test case 4: open app after a gap several days after the last time it was opened
-        Calendar fiveDaysBeforeToday = Calendar.getInstance();
-        fiveDaysBeforeToday.add(Calendar.DATE, -5);
-        statistics.setPreviousStartupDate(fiveDaysBeforeToday);
+        // Test case 2: open app the day after it was last opened (current day streak should increase)
+        statistics.setPreviousStartupDate(LocalDate.now().minusDays(1));
         statistics.updateDayStreak();
-        assertEquals(0, statistics.getCurrentDayStreak());
-        assertEquals(1, statistics.getLongestDayStreak());
+        assertEquals(2, statistics.getCurrentDayStreak());
+        assertEquals(2, statistics.getLongestDayStreak());
+
+        // Test case 3: open app on the same day (current day streak should stay the same)
+        statistics.setPreviousStartupDate(LocalDate.now());
+        statistics.updateDayStreak();
+        assertEquals(2, statistics.getCurrentDayStreak());
+        assertEquals(2, statistics.getLongestDayStreak());
+
+        // Test case 4: open app more than one day after it was last opened
+        // (current day streak should reset, longest day streak should stay the same)
+        statistics.setPreviousStartupDate(LocalDate.now().minusDays(2));
+        statistics.updateDayStreak();
+        assertEquals(1, statistics.getCurrentDayStreak());
+        assertEquals(2, statistics.getLongestDayStreak());
+
+        // Test case 5: open app before the day before it was last opened (should never happen, but streak should reset)
+        statistics.setPreviousStartupDate(LocalDate.now().plusDays(1));
+        statistics.updateDayStreak();
+        assertEquals(1, statistics.getCurrentDayStreak());
+        assertEquals(2, statistics.getLongestDayStreak());
+
+        // Test case 6: open more than one day before it was last opened (should never happen, but streak should reset)
+        statistics.setPreviousStartupDate(LocalDate.now().plusDays(2));
+        statistics.updateDayStreak();
+        assertEquals(1, statistics.getCurrentDayStreak());
+        assertEquals(2, statistics.getLongestDayStreak());
     }
 }
