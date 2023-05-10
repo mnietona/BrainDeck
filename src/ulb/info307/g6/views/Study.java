@@ -115,6 +115,20 @@ public class Study extends ViewWithDeckList {
         }
     }
 
+
+    public String get_choices(String[] choices)
+    {
+        return String.join(" ", choices);
+    }
+
+    public void flipCardMCQ(boolean isQuestion, String question, String[] choices, String answer) {
+        if (isQuestion) {
+            cardWebView.getEngine().load(get_page_url(question) + "&type=question&radioBoxValues="+get_choices(choices));
+        } else {
+            cardWebView.getEngine().load(get_page_url(answer) + "&type=answer");
+        }
+    }
+
     public void showEmptyDeck() {
         cardWebView.getEngine().load("showCard.html");
     }
