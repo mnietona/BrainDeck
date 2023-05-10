@@ -25,13 +25,14 @@
                 document.getElementById('card_text').classList.add('answer')
             }
 
-            let checkboxValues = searchParameters.get('checkboxValues');
-            if (checkboxValues) {
-                let questionValues = checkboxValues.split(' ');
-                let checkboxesHtml = '';
+            let radioBoxValues = searchParameters.get('radioBoxValues');
+            if (radioBoxValues && searchParameters.get('type') != 'answer') {
+                let questionValues = radioBoxValues.split(',');
+                let radioBoxesHtml = '';
                 for (let i = 0; i < questionValues.length; i++) {
-                    checkboxesHtml += '<div><input type="radio" name="checkbox" value="' + questionValues[i] + '">' + questionValues[i] + '</div>';
+                    radioBoxesHtml += '<div id="questionRadioBox"><input type="radio" name="radio" value="' + questionValues[i] + '">' + questionValues[i] + '</div>';
                 }
+            document.getElementById('card_text').innerHTML = radioBoxesHtml;
             }
             // Render any LaTeX math in the page
             renderMathInElement(document.body);
