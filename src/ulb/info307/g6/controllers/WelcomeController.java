@@ -8,8 +8,11 @@ import ulb.info307.g6.views.Welcome;
 public class WelcomeController extends Controller implements Welcome.WelcomeListener  {
     public final StatisticsDao statisticsDatabase = new StatisticsDao();
 
+    public final Welcome welcomeView;
+
     public WelcomeController(Stage stage) {
         super(stage, "/ulb/info307/g6/views/Welcome.fxml", "Menu");
+        welcomeView = (Welcome) view;
         Statistics statistics = statisticsDatabase.getStatistics();
         if (statistics == null) {  // Insert statistics in database if empty (first launch)
             statistics = new Statistics();
@@ -17,6 +20,7 @@ public class WelcomeController extends Controller implements Welcome.WelcomeList
         }
         statistics.updateDayStreak();  // DayStreak is updated on opening of the app
         statisticsDatabase.update(statistics);
+        welcomeView.setColorWebView();
     }
 
     @Override

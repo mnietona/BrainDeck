@@ -7,13 +7,19 @@
 @font-face {
     src: url("fonts/DaisyChainRegular.ttf"),
 }
+@font-face {
+    src: url("fonts/CaviarDreams.ttf"),
+}
+@font-face {
+    src: url("fonts/Cocogoose_Pro-trial.ttf"),
+}
 
 .root {
     -fx-background-image: url("images/main_bckg.jpg");
     -fx-background-repeat: repeat;
 }
 .text {
-    -fx-font-family: "Daisy Chain";
+    -fx-font-family: "Caviar Dreams";
     -fx-font-size: 20px;
 }
 .button {
@@ -24,10 +30,6 @@
 
     -fx-border-radius: 12px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
-}
-
-.carWebView {
-    -fx-background-color: red;
 }
 
 .HBox {

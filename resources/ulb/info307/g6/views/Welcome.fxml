@@ -1,37 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
 
 <HBox alignment="CENTER" prefHeight="400.0" prefWidth="700.0" spacing="5.0" stylesheets="@welcomeStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Welcome">
-    <Button onAction="#studyButtonAction" prefHeight="50.0" prefWidth="80.0" text="Study" contentDisplay="TOP">
-        <graphic>
-            <ImageView fitHeight="100.0" fitWidth="100.0" fx:id="studyImg" preserveRatio="true">
-                <Image url="@images/books.png" />
-            </ImageView>
-        </graphic>
-    </Button>
-    <Button onAction="#editButtonAction" prefHeight="50.0" prefWidth="80.0" text="Edit" contentDisplay="TOP">
-        <graphic>
-            <ImageView fitHeight="100.0" fitWidth="100.0" fx:id="editImg" preserveRatio="true">
-                <Image url="@images/edit.png" />
-            </ImageView>
-        </graphic>
-    </Button>
-    <Button onAction="#statisticsButtonAction" prefHeight="50.0" prefWidth="80.0" text="Statistics" contentDisplay="TOP">
-        <graphic>
-            <ImageView fitHeight="100.0" fitWidth="100.0" fx:id="statImg" preserveRatio="true">
-                <Image url="@images/stats.png" />
-            </ImageView>
-        </graphic>
-    </Button>
-    <Button onAction="#achievementsButtonAction" prefHeight="50.0" prefWidth="112.0" text="Achievements" contentDisplay="TOP">
-        <graphic>
-            <ImageView fitHeight="100.0" fitWidth="100.0" fx:id="achivImg" preserveRatio="true">
-                <Image url="@images/trophy.png" />
-            </ImageView>
-        </graphic>
-    </Button>
+    <VBox alignment="TOP_CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
+    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="700.0" spacing="5.0">
+        <!--Text id="mainTitle" fx:id="mainTitle" text="BrainDeck" textAlignment="CENTER" /-->
+        <WebView fx:id="welcomeWebView" prefHeight="100.0" prefWidth="700.0" />
+    </HBox>
+    <HBox alignment="CENTER" prefHeight="300.0" prefWidth="700.0" spacing="5.0">
+        <Button contentDisplay="TOP" onAction="#studyButtonAction" prefHeight="50.0" prefWidth="80.0" text="Study">
+            <graphic>
+                <ImageView fx:id="studyImg" fitHeight="100.0" fitWidth="100.0" preserveRatio="true">
+                    <Image url="@images/books.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button contentDisplay="TOP" onAction="#editButtonAction" prefHeight="50.0" prefWidth="80.0" text="Edit">
+            <graphic>
+                <ImageView fx:id="editImg" fitHeight="100.0" fitWidth="100.0" preserveRatio="true">
+                    <Image url="@images/edit.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button contentDisplay="TOP" onAction="#statisticsButtonAction" prefHeight="50.0" prefWidth="80.0" text="Statistics">
+            <graphic>
+                <ImageView fx:id="statImg" fitHeight="100.0" fitWidth="100.0" preserveRatio="true">
+                    <Image url="@images/stats.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button contentDisplay="TOP" onAction="#achievementsButtonAction" prefHeight="50.0" prefWidth="112.0" text="Achievements">
+            <graphic>
+                <ImageView fx:id="achivImg" fitHeight="100.0" fitWidth="100.0" preserveRatio="true">
+                    <Image url="@images/trophy.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+    </HBox>
+    </VBox>
 </HBox>

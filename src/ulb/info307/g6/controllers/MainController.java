@@ -1,6 +1,7 @@
 package ulb.info307.g6.controllers;
 
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class MainController extends Application {
@@ -22,6 +23,7 @@ public class MainController extends Application {
         try {
             primaryStage.setMinWidth(MIN_WIDTH);
             primaryStage.setMinHeight(MIN_HEIGHT);
+            primaryStage.getIcons().add(new Image("/ulb/info307/g6/views/images/mainlogo.png"));
             new WelcomeController(primaryStage);
         } catch (Exception e) {
             e.printStackTrace();
