@@ -21,6 +21,7 @@ public class WelcomeController extends Controller implements Welcome.WelcomeList
         statistics.updateDayStreak();  // DayStreak is updated on opening of the app
         statisticsDatabase.update(statistics);
         welcomeView.setColorWebView();
+        welcomeView.setupWelcomeWebView();
     }
 
     @Override

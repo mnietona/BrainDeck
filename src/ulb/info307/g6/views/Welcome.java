@@ -2,6 +2,7 @@ package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
 import javafx.scene.paint.Color;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 /**
@@ -17,6 +18,12 @@ public class Welcome implements View {
     @Override
     public void setListener(Object listener) {
         this.listener = (WelcomeListener) listener;
+    }
+
+    public void setupWelcomeWebView() {
+        WebEngine webEngine = welcomeWebView.getEngine();
+        String htmlFilePath = getClass().getResource("Welcome.html").toExternalForm();
+        webEngine.load(htmlFilePath);
     }
 
     public void studyButtonAction() {
