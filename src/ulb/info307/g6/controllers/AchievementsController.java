@@ -28,15 +28,21 @@ public class AchievementsController extends Controller implements Achievements.A
 
     @Override
     public void setProgressBars() {
-        double[] progresses = new double[8];
+        double[] progresses = new double[14];
         progresses[0] = statistics.getLongestDayStreak() / 5.0;
         progresses[1] = statistics.getLongestDayStreak() / 10.0;
-        progresses[2] = getHighestKnowledgeLevel() / 5.0;
-        progresses[3] = getHighestNumberOfCardsPerDeck() / 10.0;
-        progresses[4] = database.getTotalNumberOfCards() / 100.0;
-        progresses[5] = database.getTotalNumberOfCards() / 200.0;
-        progresses[6] = database.getTotalNumberOfCards() / 500.0;
-        progresses[7] = database.getTotalNumberOfCards() / 1000.0;
+        progresses[2] = statistics.getLongestDayStreak() / 15.0;
+        progresses[3] = getHighestKnowledgeLevel() / 5.0;
+        progresses[4] = getHighestNumberOfCardsPerDeck() / 10.0;
+        progresses[5] = getHighestNumberOfCardsPerDeck() / 20.0;
+        progresses[6] = getHighestNumberOfCardsPerDeck() / 50.0;
+        progresses[7] = database.getTotalNumberOfCards() / 100.0;
+        progresses[8] = database.getTotalNumberOfCards() / 200.0;
+        progresses[9] = database.getTotalNumberOfCards() / 500.0;
+        progresses[10] = database.getTotalNumberOfCards() / 1000.0;
+        progresses[11] = getAllTimeSpent() / 3600.0;
+        progresses[12] = getAllTimeSpent() / (3600.0 * 5.0);
+        progresses[13] = getAllTimeSpent() / (3600.0 * 10.0);
 
         boolean[] achievements = new boolean[progresses.length];
         // boolean a8 = progress8 >= 1.0;
@@ -70,5 +76,14 @@ public class AchievementsController extends Controller implements Achievements.A
             }
         }
         return max;
+    }
+
+    private double getAllTimeSpent() {
+        double timeSpent = 0;
+        List<Deck> decks = database.getAllDecks();
+        for (Deck deck : decks) {
+            timeSpent += deck.getTimeSpent();
+        }
+        return timeSpent;
     }
 }
