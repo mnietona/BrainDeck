@@ -13,12 +13,18 @@
                 <VBox alignment="CENTER_LEFT" spacing="25.0">
                     <Label text="5 consecutive days of using the app" />
                     <Label text="10 consecutive days of using the app" />
+                    <Label text="15 consecutive days of using the app" />
                     <Label text="Highest knowledge level of deck" />
                     <Label text="Deck with at least 10 cards" />
+                    <Label text="Deck with at least 20 cards" />
+                    <Label text="Deck with at least 100 cards" />
                     <Label text="100 cards created" />
                     <Label text="200 cards created" />
                     <Label text="500 cards created" />
                     <Label text="1000 cards created" />
+                    <Label text="1 hour of study" />
+                    <Label text="5 hours of study" />
+                    <Label text="10 hours of study" />
                 </VBox>
 
                 <VBox alignment="CENTER_LEFT" spacing="40.0">
@@ -30,6 +36,12 @@
                     <ProgressBar fx:id="progressBar6" prefWidth="250.0" progress="0.0" />
                     <ProgressBar fx:id="progressBar7" prefWidth="250.0" progress="0.0" />
                     <ProgressBar fx:id="progressBar8" prefWidth="250.0" progress="0.0" />
+                    <ProgressBar fx:id="progressBar9" prefWidth="250.0" progress="0.0" />
+                    <ProgressBar fx:id="progressBar10" prefWidth="250.0" progress="0.0" />
+                    <ProgressBar fx:id="progressBar11" prefWidth="250.0" progress="0.0" />
+                    <ProgressBar fx:id="progressBar12" prefWidth="250.0" progress="0.0" />
+                    <ProgressBar fx:id="progressBar13" prefWidth="250.0" progress="0.0" />
+                    <ProgressBar fx:id="progressBar14" prefWidth="250.0" progress="0.0" />
                 </VBox>
 
                 <VBox alignment="CENTER_LEFT" spacing="40.0">
@@ -76,6 +88,42 @@
                         <Image url="@images/succes.png" />
                     </ImageView>
                     <ImageView fx:id="achievement8" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
+                        <clip>
+                            <Circle radius="12.5" centerX="12.5" centerY="12.5" />
+                        </clip>
+                        <Image url="@images/succes.png" />
+                    </ImageView>
+                    <ImageView fx:id="achievement9" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
+                        <clip>
+                            <Circle radius="12.5" centerX="12.5" centerY="12.5" />
+                        </clip>
+                        <Image url="@images/succes.png" />
+                    </ImageView>
+                    <ImageView fx:id="achievement10" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
+                        <clip>
+                            <Circle radius="12.5" centerX="12.5" centerY="12.5" />
+                        </clip>
+                        <Image url="@images/succes.png" />
+                    </ImageView>
+                    <ImageView fx:id="achievement11" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
+                        <clip>
+                            <Circle radius="12.5" centerX="12.5" centerY="12.5" />
+                        </clip>
+                        <Image url="@images/succes.png" />
+                    </ImageView>
+                    <ImageView fx:id="achievement12" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
+                        <clip>
+                            <Circle radius="12.5" centerX="12.5" centerY="12.5" />
+                        </clip>
+                        <Image url="@images/succes.png" />
+                    </ImageView>
+                    <ImageView fx:id="achievement13" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
+                        <clip>
+                            <Circle radius="12.5" centerX="12.5" centerY="12.5" />
+                        </clip>
+                        <Image url="@images/succes.png" />
+                    </ImageView>
+                    <ImageView fx:id="achievement14" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
                         <clip>
                             <Circle radius="12.5" centerX="12.5" centerY="12.5" />
                         </clip>
