@@ -3,6 +3,10 @@ package ulb.info307.g6.views;
 import javafx.fxml.FXML;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.*;
 
 public class Achievements implements View {
     @FXML
@@ -10,6 +14,13 @@ public class Achievements implements View {
 
     @FXML
     private ImageView achievement1, achievement2, achievement3, achievement4, achievement5, achievement6, achievement7, achievement8;
+
+    @FXML
+    private VBox vboxAchiev;
+
+    @FXML
+    private Image backgroundImage = new Image("/ulb/info307/g6/views/images/main_bckg.jpg");
+    private BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
 
     private AchievementsListener listener;
@@ -35,7 +46,9 @@ public class Achievements implements View {
         }
     }
 
-
+    public void setBackgroundImage() {
+        vboxAchiev.setBackground(new Background(background));
+    }
 
     @Override
     public void setListener(Object listener) {

@@ -18,6 +18,7 @@ public class AchievementsController extends Controller implements Achievements.A
         super(stage, "/ulb/info307/g6/views/Achievements.fxml", "Achievements");
         achievementsView = (Achievements) view;
         setProgressBars();
+        achievementsView.setBackgroundImage();
     }
 
     @Override

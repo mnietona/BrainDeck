@@ -18,6 +18,11 @@
     -fx-background-image: url("images/main_bckg.jpg");
     -fx-background-repeat: repeat;
 }
+
+.scroll-pane {
+    opacity: 0.1;
+}
+
 .text {
     -fx-font-family: "Caviar Dreams";
     -fx-font-size: 20px;
