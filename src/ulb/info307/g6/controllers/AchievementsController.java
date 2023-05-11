@@ -27,28 +27,26 @@ public class AchievementsController extends Controller implements Achievements.A
 
     @Override
     public void setProgressBars() {
-        double progress1 = statistics.getLongestDayStreak() / 5.0;
-        double progress2 = statistics.getLongestDayStreak() / 10.0;
-        double progress3 = getHighestKnowledgeLevel() / 5.0;
-        double progress4 = getHighestNumberOfCardsPerDeck() / 10.0;
-        double progress5 = database.getTotalNumberOfCards() / 100.0;
-        double progress6 = database.getTotalNumberOfCards() / 200.0;
-        double progress7 = database.getTotalNumberOfCards() / 500.0;
-        double progress8 = database.getTotalNumberOfCards() / 1000.0;
+        double[] progresses = new double[8];
+        progresses[0] = statistics.getLongestDayStreak() / 5.0;
+        progresses[1] = statistics.getLongestDayStreak() / 10.0;
+        progresses[2] = getHighestKnowledgeLevel() / 5.0;
+        progresses[3] = getHighestNumberOfCardsPerDeck() / 10.0;
+        progresses[4] = database.getTotalNumberOfCards() / 100.0;
+        progresses[5] = database.getTotalNumberOfCards() / 200.0;
+        progresses[6] = database.getTotalNumberOfCards() / 500.0;
+        progresses[7] = database.getTotalNumberOfCards() / 1000.0;
 
-        achievementsView.showProgressBars(progress1, progress2, progress3, progress4, progress5, progress6, progress7, progress8);
+        boolean[] achievements = new boolean[progresses.length];
+        // boolean a8 = progress8 >= 1.0;
+        for (int i = 0; i < progresses.length; i++) {
+            achievements[i] = progresses[i] >= 1.0;
+        }
 
-        boolean a1 = progress1 >= 1.0;
-        boolean a2 = progress2 >= 1.0;
-        boolean a3 = progress3 >= 1.0;
-        boolean a4 = progress4 >= 1.0;
-        boolean a5 = progress5 >= 1.0;
-        boolean a6 = progress6 >= 1.0;
-        boolean a7 = progress7 >= 1.0;
-        boolean a8 = progress8 >= 1.0;
-
-        achievementsView.showAchievements(a1, a2, a3, a4, a5, a6, a7, a8);
+        achievementsView.showProgressBars(progresses);
+        achievementsView.showAchievements(achievements);
     }
+
 
 
     private int getHighestKnowledgeLevel() {
