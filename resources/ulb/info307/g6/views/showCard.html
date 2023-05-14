@@ -34,21 +34,6 @@
                 }
             document.getElementById('card_text').innerHTML += radioBoxesHtml;
             }
-
-            let radioButtons = document.querySelectorAll('input[type="radio"]');
-            radioButtons.forEach(function(radioButton) {
-                radioButton.addEventListener('click', function() {
-                    var values = Array.from(radioButtons).filter(function(radioButton) {
-                        return radioButton.checked;
-                    }).map(function(radioButton) {
-                        return radioButton.value;
-                    }).join(';');
-
-                    // Appeler la fonction JavaScript dans la WebView pour transmettre les valeurs des boutons radio
-                    window.javaAppInterface.handleRadioBoxValues(values);
-                });
-            });
-
             // Render any LaTeX math in the page
             renderMathInElement(document.body);
         });
