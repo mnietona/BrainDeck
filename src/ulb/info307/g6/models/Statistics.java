@@ -28,13 +28,6 @@ public class Statistics {
     }
 
     /**
-     * Setter used for test class.
-     */
-    public void setPreviousStartupDate(LocalDate date) {
-        previousStartupDate = date;
-    }
-
-    /**
      * Increments day streak only if today is exactly the day after the last day
      * the app was opened (date stored in database). If it is more than one day, it resets the day streak.
      * Also updates the longest streak when needed.
