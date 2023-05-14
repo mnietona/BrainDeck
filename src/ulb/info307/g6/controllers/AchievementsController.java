@@ -18,6 +18,7 @@ public class AchievementsController extends Controller implements Achievements.A
         super(stage, "/ulb/info307/g6/views/Achievements.fxml", "Achievements");
         achievementsView = (Achievements) view;
         setProgressBars();
+        achievementsView.setBackgroundImage();
     }
 
     @Override
@@ -27,12 +28,29 @@ public class AchievementsController extends Controller implements Achievements.A
 
     @Override
     public void setProgressBars() {
-        double progress1 = statistics.getLongestDayStreak() / 5.0;
-        double progress2 = statistics.getLongestDayStreak() / 10.0;
-        double progress3 = getHighestKnowledgeLevel() / 5.0;
-        double progress4 = getHighestNumberOfCardsPerDeck() / 10.0;
-        double progress5 = database.getTotalNumberOfCards() / 100.0;
-        achievementsView.showProgressBars(progress1, progress2, progress3, progress4, progress5);
+        double[] progresses = new double[14];
+        progresses[0] = statistics.getLongestDayStreak() / 5.0;
+        progresses[1] = statistics.getLongestDayStreak() / 10.0;
+        progresses[2] = statistics.getLongestDayStreak() / 15.0;
+        progresses[3] = getHighestKnowledgeLevel() / 5.0;
+        progresses[4] = getHighestNumberOfCardsPerDeck() / 10.0;
+        progresses[5] = getHighestNumberOfCardsPerDeck() / 20.0;
+        progresses[6] = getHighestNumberOfCardsPerDeck() / 50.0;
+        progresses[7] = database.getTotalNumberOfCards() / 100.0;
+        progresses[8] = database.getTotalNumberOfCards() / 200.0;
+        progresses[9] = database.getTotalNumberOfCards() / 500.0;
+        progresses[10] = database.getTotalNumberOfCards() / 1000.0;
+        progresses[11] = getAllTimeSpent() / 3600.0;
+        progresses[12] = getAllTimeSpent() / (3600.0 * 5.0);
+        progresses[13] = getAllTimeSpent() / (3600.0 * 10.0);
+
+        boolean[] achievements = new boolean[progresses.length];
+        for (int i = 0; i < progresses.length; i++) {
+            achievements[i] = progresses[i] >= 1.0;
+        }
+
+        achievementsView.showProgressBars(progresses);
+        achievementsView.showAchievements(achievements);
     }
 
     private int getHighestKnowledgeLevel() {
@@ -55,5 +73,14 @@ public class AchievementsController extends Controller implements Achievements.A
             }
         }
         return max;
+    }
+
+    private double getAllTimeSpent() {
+        double timeSpent = 0;
+        List<Deck> decks = database.getAllDecks();
+        for (Deck deck : decks) {
+            timeSpent += deck.getTimeSpent();
+        }
+        return timeSpent;
     }
 }

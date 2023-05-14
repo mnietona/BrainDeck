@@ -1,0 +1,46 @@
+@font-face {
+    src: url("fonts/ShackieHandpainted.otf"),
+}
+@font-face {
+    src: url("fonts/Cakecafe.otf"),
+}
+@font-face {
+    src: url("fonts/DaisyChainRegular.ttf"),
+}
+@font-face {
+    src: url("fonts/CaviarDreams.ttf"),
+}
+@font-face {
+    src: url("fonts/Cocogoose_Pro-trial.ttf"),
+}
+
+.root {
+    -fx-background-image: url("images/main_bckg.jpg");
+    -fx-background-repeat: repeat;
+}
+
+.scroll-pane {
+    opacity: 0.1;
+}
+
+.text {
+    -fx-font-family: "Caviar Dreams";
+    -fx-font-size: 20px;
+}
+.button {
+    -fx-font-family: "Shackie Handpainted PERSONAL";
+    -fx-font-size: 1.5em;
+    -fx-background-color: lightcyan;
+    -fx-background-radius: 12px;
+
+    -fx-border-radius: 12px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+}
+
+.HBox {
+    -fx-border-color: red;
+}
+
+.knowledgeLvlSliderTitle {
+    -fx-font-family: "Shackie Handpainted PERSONAL";
+}

@@ -1,5 +1,12 @@
 package ulb.info307.g6.views;
 
+import javafx.fxml.FXML;
+import javafx.scene.paint.Color;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+
+import java.util.Objects;
+
 /**
  * View controller of the Welcome menu, implements View interface and is the controller for the Welcome.fxml file.
  * Contains :
@@ -7,10 +14,18 @@ package ulb.info307.g6.views;
  */
 public class Welcome implements View {
     private WelcomeListener listener;
+    @FXML
+    private WebView welcomeWebView;
 
     @Override
     public void setListener(Object listener) {
         this.listener = (WelcomeListener) listener;
+    }
+
+    public void setupWelcomeWebView() {
+        WebEngine webEngine = welcomeWebView.getEngine();
+        String htmlFilePath = Objects.requireNonNull(getClass().getResource("Welcome.html")).toExternalForm();
+        webEngine.load(htmlFilePath);
     }
 
     public void studyButtonAction() {
@@ -29,6 +44,10 @@ public class Welcome implements View {
     	listener.achievementsButtonAction();
     }
 
+    public void setColorWebView() {
+        welcomeWebView.setPageFill(Color.TRANSPARENT);
+    }
+
     /**
      * Controller (passed in constructor) will implement the listener interface to "listen" to then handle
      * actions that happens in view controller.
@@ -37,7 +56,6 @@ public class Welcome implements View {
         void studyButtonAction();
         void editButtonAction();
         void statisticsButtonAction();
-
         void achievementsButtonAction();
     }
 }

@@ -1,0 +1,74 @@
+@font-face {
+    src: url("fonts/Cocogoose_Pro-trial.ttf"),
+}
+@font-face {
+    src: url("fonts/Cocogoose_Pro-trial.ttf"),
+}
+
+@font-face {
+    src: url("fonts/Cocogoose_Pro-trial.ttf"),
+}
+
+.button:hover {
+    -fx-background-color: lightblue;
+}
+
+body {
+  font-family: "Bouncy";
+  width: 90%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  overflow: hidden;
+}
+h1 {
+    font-size: 40vh;
+    background-image: url("images/titleBackground.png");
+    color: transparent;
+    position: relative;
+    top: 30%;
+    margin-top: 20%;
+    left: 60%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-background-clip: text;
+    filter: drop-shadow(0px -3px 1px rgba(0, 0, 0, 1));
+    animation: stripes 5s infinite alternate;
+
+  }
+
+
+@keyframes stripes {
+  100% {
+    background-position: 100px 0, 100px 0, 100px 0;
+  }
+}
+
+.root {
+    -fx-background-image: url("images/main_bckg.jpg");
+    -fx-background-repeat: repeat;
+}
+.button {
+    -fx-font-family: "Shackie Handpainted PERSONAL";
+    -fx-font-size: 1.5em;
+    -fx-background-color: lightcyan;
+    -fx-background-radius: 12px;
+
+    -fx-border-radius: 12px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+}
+
+@keyframes stripes {
+  100% {
+    background-position: 100px 0, 100px 0, 100px 0;
+  }
+}
+
+
+@keyframes stripes {
+  100% {
+    background-position: 100px 0, 100px 0, 100px 0;
+  }
+}

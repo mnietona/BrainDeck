@@ -2,7 +2,9 @@ package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.scene.web.WebView;
+import com.sun.javafx.webkit.*;
 import javafx.util.StringConverter;
 
 import java.util.Base64;
@@ -117,6 +119,10 @@ public class Study extends ViewWithDeckList {
 
     public void showEmptyDeck() {
         cardWebView.getEngine().load("showCard.html");
+    }
+
+    public void setColorWebView() {
+        cardWebView.setPageFill(Color.TRANSPARENT);
     }
 
     @Override

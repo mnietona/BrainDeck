@@ -20,6 +20,8 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
         studyView.setSliderLabels();
         studyView.activateSlider(false);
         studyView.activateActionButtons(false);
+        studyView.setColorWebView();
+        studyView.showEmptyDeck();
     }
 
     public void updateCardKnowledgeLevel() {

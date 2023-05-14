@@ -1,14 +1,13 @@
 package ulb.info307.g6.controllers;
 
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-/**
- * Entry point of the program (called by launcher).
- * Is the main controller of the app, with no view associated to it.
- * Creates the first menu / controller with a view (WelcomeController).
- */
 public class MainController extends Application {
+    /**
+     * Entry point of the program, called by launcher.
+     */
     public static void main(String[] args) {
         launch(args);
     }
@@ -20,7 +19,11 @@ public class MainController extends Application {
      */
     @Override
     public void start(Stage primaryStage) {
+        int MIN_WIDTH = 716, MIN_HEIGHT = 439;  // Default size of window with contents of 700x400
         try {
+            primaryStage.setMinWidth(MIN_WIDTH);
+            primaryStage.setMinHeight(MIN_HEIGHT);
+            primaryStage.getIcons().add(new Image("/ulb/info307/g6/views/images/mainlogo.png"));
             new WelcomeController(primaryStage);
         } catch (Exception e) {
             e.printStackTrace();
