@@ -4,9 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.*;
+import javafx.scene.control.Label;
 
 public class Achievements implements View {
     @FXML
@@ -14,9 +13,12 @@ public class Achievements implements View {
     @FXML
     private ImageView achievement1, achievement2, achievement3, achievement4, achievement5, achievement6, achievement7, achievement8, achievement9, achievement10, achievement11, achievement12, achievement13, achievement14;
     @FXML
+    private Label label1, label2, label3, label4, label5, label6, label7, label8, label9, label10, label11, label12, label13, label14;
+
+    @FXML
     private VBox vboxAchiev;
     @FXML
-    private Image backgroundImage = new Image("/ulb/info307/g6/views/images/main_bckg.jpg");
+    private final Image backgroundImage = new Image("/ulb/info307/g6/views/images/main_bckg.jpg");
     private final BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
     private AchievementsListener listener;
 
@@ -33,11 +35,40 @@ public class Achievements implements View {
         }
     }
 
-    @FXML
-    public void showAchievements(boolean[] achievements) {
+    public void showAchievements(boolean[] achieved, boolean[] active) {
         ImageView[] achievementImages = new ImageView[]{achievement1, achievement2, achievement3, achievement4, achievement5, achievement6, achievement7, achievement8, achievement9, achievement10, achievement11, achievement12, achievement13, achievement14};
-        for (int i = 0; i < achievements.length; i++) {
-            achievementImages[i].setVisible(achievements[i]);
+        Label[] labels = {label1, label2, label3, label4, label5, label6, label7, label8, label9, label10, label11, label12, label13, label14};
+
+        for (int i = 0; i < active.length; i++) {
+            if (active[i]) {
+                achievementImages[i].setVisible(true);
+                if (achieved[i]) {
+                    Image newImage = new Image("/ulb/info307/g6/views/images/succes.png");
+                    achievementImages[i].setImage(newImage);
+                }
+            }
+            else {
+                labels[i].setStyle("-fx-text-fill: gray;");
+            }
+        }
+    }
+
+    public void adjustLabelLength() {
+        Label[] labels = {label1, label2, label3, label4, label5, label6, label7, label8, label9, label10, label11, label12, label13, label14};
+
+        int maxLength = 0;
+        for (Label label : labels) {
+            if (label.getText().length() > maxLength) {
+                maxLength = label.getText().length();
+            }
+        }
+
+        for (int i = 0; i < labels.length; i++) {
+            int difference = maxLength - labels[i].getText().length() + 3;
+            if (i>=3) difference += 3;
+            if (i>=4) difference += 2;
+            String spaces = " ".repeat(difference);
+            labels[i].setText(labels[i].getText() + spaces);
         }
     }
 

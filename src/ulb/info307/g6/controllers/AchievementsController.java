@@ -7,6 +7,7 @@ import ulb.info307.g6.models.database.StatisticsDao;
 import ulb.info307.g6.views.Achievements;
 import ulb.info307.g6.models.Deck;
 import java.util.List;
+import java.util.Arrays;
 
 public class AchievementsController extends Controller implements Achievements.AchievementsListener {
     private final Achievements achievementsView;
@@ -19,6 +20,7 @@ public class AchievementsController extends Controller implements Achievements.A
         achievementsView = (Achievements) view;
         setProgressBars();
         achievementsView.setBackgroundImage();
+        achievementsView.adjustLabelLength();
     }
 
     @Override
@@ -29,20 +31,67 @@ public class AchievementsController extends Controller implements Achievements.A
     @Override
     public void setProgressBars() {
         double[] progresses = new double[14];
-        progresses[0] = statistics.getLongestDayStreak() / 5.0;
-        progresses[1] = statistics.getLongestDayStreak() / 10.0;
-        progresses[2] = statistics.getLongestDayStreak() / 15.0;
+        boolean[] achievementsActive = new boolean[progresses.length];
+        Arrays.fill(achievementsActive, false);
+
+        double longestDayStreak = statistics.getLongestDayStreak();
+        progresses[0] = longestDayStreak / 5.0;
+        achievementsActive[0] = true;
+        if (longestDayStreak > 5.0) {
+            progresses[1] = longestDayStreak / 10.0;
+            achievementsActive[1] = true;
+        }
+        if (longestDayStreak > 10.0) {
+            progresses[2] = longestDayStreak / 20.0;
+            achievementsActive[2] = true;
+        }
+        if (longestDayStreak > 20.0) {
+            progresses[3] = longestDayStreak / 50.0;
+            achievementsActive[3] = true;
+        }
+
         progresses[3] = getHighestKnowledgeLevel() / 5.0;
-        progresses[4] = getHighestNumberOfCardsPerDeck() / 10.0;
-        progresses[5] = getHighestNumberOfCardsPerDeck() / 20.0;
-        progresses[6] = getHighestNumberOfCardsPerDeck() / 50.0;
-        progresses[7] = database.getTotalNumberOfCards() / 100.0;
-        progresses[8] = database.getTotalNumberOfCards() / 200.0;
-        progresses[9] = database.getTotalNumberOfCards() / 500.0;
-        progresses[10] = database.getTotalNumberOfCards() / 1000.0;
-        progresses[11] = getAllTimeSpent() / 3600.0;
-        progresses[12] = getAllTimeSpent() / (3600.0 * 5.0);
-        progresses[13] = getAllTimeSpent() / (3600.0 * 10.0);
+        achievementsActive[3] = true;
+
+        int highestNumberOfCardsPerDeck = getHighestNumberOfCardsPerDeck();
+        progresses[4] = highestNumberOfCardsPerDeck / 10.0;
+        achievementsActive[4] = true;
+        if (highestNumberOfCardsPerDeck >= 10.0) {
+            progresses[5] = highestNumberOfCardsPerDeck / 20.0;
+            achievementsActive[5] = true;
+        }
+        if (highestNumberOfCardsPerDeck >= 20.0) {
+            progresses[6] = highestNumberOfCardsPerDeck / 50.0;
+            achievementsActive[6] = true;
+        }
+
+        int totalNumberOfCards = database.getTotalNumberOfCards();
+        progresses[7] = totalNumberOfCards / 100.0;
+        achievementsActive[7] = true;
+        if (totalNumberOfCards >= 100.0) {
+            progresses[8] = totalNumberOfCards / 200.0;
+            achievementsActive[8] = true;
+        }
+        if (totalNumberOfCards >= 200.0) {
+            progresses[9] = totalNumberOfCards / 500.0;
+            achievementsActive[9] = true;
+        }
+        if (totalNumberOfCards >= 500.0) {
+            progresses[10] = totalNumberOfCards / 1000.0;
+            achievementsActive[10] = true;
+        }
+
+        double allTimeSpent = getAllTimeSpent();
+        progresses[11] = allTimeSpent / 3600.0;
+        achievementsActive[11] = true;
+        if (allTimeSpent >= 3600.0) {
+            progresses[12] = allTimeSpent / (3600.0 * 5.0);
+            achievementsActive[12] = true;
+        }
+        if (allTimeSpent >= 3600.0 * 5.0) {
+            progresses[13] = allTimeSpent / (3600.0 * 10.0);
+            achievementsActive[13] = true;
+        }
 
         boolean[] achievements = new boolean[progresses.length];
         for (int i = 0; i < progresses.length; i++) {
@@ -50,7 +99,7 @@ public class AchievementsController extends Controller implements Achievements.A
         }
 
         achievementsView.showProgressBars(progresses);
-        achievementsView.showAchievements(achievements);
+        achievementsView.showAchievements(achievements,achievementsActive);
     }
 
     private int getHighestKnowledgeLevel() {
