@@ -5,6 +5,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
+import java.util.Objects;
+
 /**
  * View controller of the Welcome menu, implements View interface and is the controller for the Welcome.fxml file.
  * Contains :
@@ -22,7 +24,7 @@ public class Welcome implements View {
 
     public void setupWelcomeWebView() {
         WebEngine webEngine = welcomeWebView.getEngine();
-        String htmlFilePath = getClass().getResource("Welcome.html").toExternalForm();
+        String htmlFilePath = Objects.requireNonNull(getClass().getResource("Welcome.html")).toExternalForm();
         webEngine.load(htmlFilePath);
     }
 

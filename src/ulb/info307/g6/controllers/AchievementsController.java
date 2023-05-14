@@ -45,7 +45,6 @@ public class AchievementsController extends Controller implements Achievements.A
         progresses[13] = getAllTimeSpent() / (3600.0 * 10.0);
 
         boolean[] achievements = new boolean[progresses.length];
-        // boolean a8 = progress8 >= 1.0;
         for (int i = 0; i < progresses.length; i++) {
             achievements[i] = progresses[i] >= 1.0;
         }
@@ -53,8 +52,6 @@ public class AchievementsController extends Controller implements Achievements.A
         achievementsView.showProgressBars(progresses);
         achievementsView.showAchievements(achievements);
     }
-
-
 
     private int getHighestKnowledgeLevel() {
         int max = 0;

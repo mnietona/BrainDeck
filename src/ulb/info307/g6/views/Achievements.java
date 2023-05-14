@@ -11,18 +11,13 @@ import javafx.scene.image.*;
 public class Achievements implements View {
     @FXML
     private ProgressBar progressBar1, progressBar2, progressBar3, progressBar4, progressBar5, progressBar6, progressBar7, progressBar8, progressBar9, progressBar10, progressBar11, progressBar12, progressBar13, progressBar14;
-
     @FXML
     private ImageView achievement1, achievement2, achievement3, achievement4, achievement5, achievement6, achievement7, achievement8, achievement9, achievement10, achievement11, achievement12, achievement13, achievement14;
-
     @FXML
     private VBox vboxAchiev;
-
     @FXML
     private Image backgroundImage = new Image("/ulb/info307/g6/views/images/main_bckg.jpg");
-    private BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-
-
+    private final BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
     private AchievementsListener listener;
 
     @FXML
