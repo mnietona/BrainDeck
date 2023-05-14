@@ -1,12 +1,12 @@
 @font-face {
-    src: url("fonts/ShackieHandpainted.otf"),
+    src: url("fonts/Cocogoose_Pro-trial.ttf"),
 }
 @font-face {
-    src: url("fonts/Cakecafe.otf"),
+    src: url("fonts/Cocogoose_Pro-trial.ttf"),
 }
 
 @font-face {
-    src: url("fonts/Bouncy.otf"),
+    src: url("fonts/Cocogoose_Pro-trial.ttf"),
 }
 
 .button:hover {
@@ -21,19 +21,18 @@ body {
   justify-content: center;
   align-items: center;
   position: absolute;
+  overflow: hidden;
 }
 h1 {
-    font-size: 50vh;
-    background-image: url("https://assets.codepen.io/2970881/kassandras__vibrant_flower_pattern_colorful_6f2e398e-b0b7-433f-830e-2e297f9c9f93.png");
-    color: #fff;
+    font-size: 40vh;
+    background-image: url("images/titleBackground.png");
     color: transparent;
     position: relative;
     top: 30%;
     margin-top: 20%;
-    left: 50%;
+    left: 60%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    background-size: contain;
     -webkit-background-clip: text;
     filter: drop-shadow(0px -3px 1px rgba(0, 0, 0, 1));
     animation: stripes 5s infinite alternate;
