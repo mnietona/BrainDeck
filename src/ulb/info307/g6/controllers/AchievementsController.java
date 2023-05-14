@@ -20,6 +20,7 @@ public class AchievementsController extends Controller implements Achievements.A
         achievementsView = (Achievements) view;
         setProgressBars();
         achievementsView.setBackgroundImage();
+        achievementsView.adjustLabelLength();
     }
 
     @Override

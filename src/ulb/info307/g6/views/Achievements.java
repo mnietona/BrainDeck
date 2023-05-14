@@ -53,6 +53,25 @@ public class Achievements implements View {
         }
     }
 
+    public void adjustLabelLength() {
+        Label[] labels = {label1, label2, label3, label4, label5, label6, label7, label8, label9, label10, label11, label12, label13, label14};
+
+        int maxLength = 0;
+        for (Label label : labels) {
+            if (label.getText().length() > maxLength) {
+                maxLength = label.getText().length();
+            }
+        }
+
+        for (int i = 0; i < labels.length; i++) {
+            int difference = maxLength - labels[i].getText().length() + 3;
+            if (i>=3) difference += 3;
+            if (i>=4) difference += 2;
+            String spaces = " ".repeat(difference);
+            labels[i].setText(labels[i].getText() + spaces);
+        }
+    }
+
     public void setBackgroundImage() {
         vboxAchiev.setBackground(new Background(background));
     }
