@@ -6,164 +6,163 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<ScrollPane fx:id="scrollPane" fitToWidth="true" fitToHeight="true" stylesheets="@menusStyles.css" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Achievements">
+<ScrollPane fitToWidth="true" fitToHeight="true" stylesheets="@menusStyles.css" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Achievements">
     <content>
         <VBox alignment="TOP_CENTER" fx:id="vboxAchiev">
             <HBox alignment="CENTER" spacing="25.0" VBox.vgrow="ALWAYS">
                 <VBox alignment="CENTER_LEFT" spacing="25.0">
                         <HBox alignment="CENTER" spacing="25.0">
-                            <Label text="5  consecutive days of using the app" />
+                            <Label fx:id="label1" text="5  consecutive days of using the app" />
                             <ProgressBar fx:id="progressBar1" prefWidth="250.0" progress="0.0" HBox.hgrow="ALWAYS" />
                             <ImageView fx:id="achievement1" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
                                 <clip>
                                     <Circle radius="12.5" centerX="12.5" centerY="12.5" />
                                 </clip>
-                                <Image url="@images/succes.png" />
+                                <Image url="@images/lock.png" />
                             </ImageView>
                         </HBox>
 
                         <HBox alignment="CENTER" spacing="25.0">
-                            <Label text="10 consecutive days of using the app" />
+                            <Label fx:id="label2" text="10 consecutive days of using the app" />
                             <ProgressBar fx:id="progressBar2" prefWidth="250.0" progress="0.0" HBox.hgrow="ALWAYS" />
                             <ImageView fx:id="achievement2" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
                                 <clip>
                                     <Circle radius="12.5" centerX="12.5" centerY="12.5" />
                                 </clip>
-                                <Image url="@images/succes.png" />
+                                <Image url="@images/lock.png" />
                             </ImageView>
                         </HBox>
 
                         <HBox alignment="CENTER" spacing="25.0">
-                            <Label text="15 consecutive days of using the app" />
+                            <Label fx:id="label3" text="20 consecutive days of using the app" />
                             <ProgressBar fx:id="progressBar3" prefWidth="250.0" progress="0.0" HBox.hgrow="ALWAYS" />
                             <ImageView fx:id="achievement3" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
                                 <clip>
                                     <Circle radius="12.5" centerX="12.5" centerY="12.5" />
                                 </clip>
-                                <Image url="@images/succes.png" />
+                                <Image url="@images/lock.png" />
                             </ImageView>
                         </HBox>
 
                         <HBox alignment="CENTER" spacing="25.0">
-                            <Label text="Highest knowledge level of deck      " />
+                            <Label fx:id="label4" text="Highest knowledge level of deck      " />
                             <ProgressBar fx:id="progressBar4" prefWidth="250.0" progress="0.0" HBox.hgrow="ALWAYS" />
                             <ImageView fx:id="achievement4" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
                                 <clip>
                                     <Circle radius="12.5" centerX="12.5" centerY="12.5" />
                                 </clip>
-                                <Image url="@images/succes.png" />
+                                <Image url="@images/lock.png" />
                             </ImageView>
                         </HBox>
 
                         <HBox alignment="CENTER" spacing="25.0">
-                            <Label text="Deck with at least 10 cards             " />
+                            <Label fx:id="label5" text="Deck with at least 10 cards             " />
                             <ProgressBar fx:id="progressBar5" prefWidth="250.0" progress="0.0" HBox.hgrow="ALWAYS" />
                             <ImageView fx:id="achievement5" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
                                 <clip>
                                     <Circle radius="12.5" centerX="12.5" centerY="12.5" />
                                 </clip>
-                                <Image url="@images/succes.png" />
+                                <Image url="@images/lock.png" />
                             </ImageView>
                         </HBox>
 
                         <HBox alignment="CENTER" spacing="25.0">
-                            <Label text="Deck with at least 20 cards            " />
+                            <Label fx:id="label6" text="Deck with at least 20 cards            " />
                             <ProgressBar fx:id="progressBar6" prefWidth="250.0" progress="0.0" HBox.hgrow="ALWAYS" />
                             <ImageView fx:id="achievement6" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
                                 <clip>
                                     <Circle radius="12.5" centerX="12.5" centerY="12.5" />
                                 </clip>
-                                <Image url="@images/succes.png" />
+                                <Image url="@images/lock.png" />
                             </ImageView>
                         </HBox>
 
                         <HBox alignment="CENTER" spacing="25.0">
-                            <Label text="Deck with at least 100 cards          " />
+                            <Label fx:id="label7" text="Deck with at least 100 cards          " />
                             <ProgressBar fx:id="progressBar7" prefWidth="250.0" progress="0.0" HBox.hgrow="ALWAYS" />
                             <ImageView fx:id="achievement7" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
                                 <clip>
                                     <Circle radius="12.5" centerX="12.5" centerY="12.5" />
                                 </clip>
-                                <Image url="@images/succes.png" />
+                                <Image url="@images/lock.png" />
                             </ImageView>
                         </HBox>
 
                         <HBox alignment="CENTER" spacing="25.0">
-                            <Label text="100 cards created                         " />
+                            <Label fx:id="label8" text="100 cards created                         " />
                             <ProgressBar fx:id="progressBar8" prefWidth="250.0" progress="0.0" HBox.hgrow="ALWAYS" />
                             <ImageView fx:id="achievement8" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
                                 <clip>
                                     <Circle radius="12.5" centerX="12.5" centerY="12.5" />
                                 </clip>
-                                <Image url="@images/succes.png" />
+                                <Image url="@images/lock.png" />
                             </ImageView>
                         </HBox>
 
                         <HBox alignment="CENTER" spacing="25.0">
-                            <Label text="200 cards created                        " />
+                            <Label fx:id="label9" text="200 cards created                        " />
                             <ProgressBar fx:id="progressBar9" prefWidth="250.0" progress="0.0" HBox.hgrow="ALWAYS" />
                             <ImageView fx:id="achievement9" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
                                 <clip>
                                     <Circle radius="12.5" centerX="12.5" centerY="12.5" />
                                 </clip>
-                                <Image url="@images/succes.png" />
+                                <Image url="@images/lock.png" />
                             </ImageView>
-
                         </HBox>
 
                         <HBox alignment="CENTER" spacing="25.0">
-                            <Label text="500 cards created                        " />
+                            <Label fx:id="label10" text="500 cards created                        " />
                             <ProgressBar fx:id="progressBar10" prefWidth="250.0" progress="0.0" HBox.hgrow="ALWAYS" />
                             <ImageView fx:id="achievement10" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
                                 <clip>
                                     <Circle radius="12.5" centerX="12.5" centerY="12.5" />
                                 </clip>
-                                <Image url="@images/succes.png" />
+                                <Image url="@images/lock.png" />
                             </ImageView>
                         </HBox>
 
 
                         <HBox alignment="CENTER" spacing="25.0">
-                            <Label text="1000 cards created                      " />
+                            <Label fx:id="label11" text="1000 cards created                      " />
                             <ProgressBar fx:id="progressBar11" prefWidth="250.0" progress="0.0" HBox.hgrow="ALWAYS" />
                             <ImageView fx:id="achievement11" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
                                 <clip>
                                     <Circle radius="12.5" centerX="12.5" centerY="12.5" />
                                 </clip>
-                                <Image url="@images/succes.png" />
+                                <Image url="@images/lock.png" />
                             </ImageView>
                         </HBox>
 
                         <HBox alignment="CENTER" spacing="25.0">
-                            <Label text="1 hour studying                         "/>
+                            <Label fx:id="label12" text="1 hour studying                         "/>
                             <ProgressBar fx:id="progressBar12" prefWidth="250.0" progress="0.0" HBox.hgrow="ALWAYS" />
                             <ImageView fx:id="achievement12" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
                                 <clip>
                                     <Circle radius="12.5" centerX="12.5" centerY="12.5"/>
                                 </clip>
-                                <Image url="@images/succes.png"/>
+                                <Image url="@images/lock.png"/>
                             </ImageView>
                         </HBox>
 
                         <HBox alignment="CENTER" spacing="25.0">
-                            <Label text="5 hours studying                        "/>
+                            <Label fx:id="label13" text="5 hours studying                        "/>
                             <ProgressBar fx:id="progressBar13" prefWidth="250.0" progress="0.0" HBox.hgrow="ALWAYS" />
                             <ImageView fx:id="achievement13" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
                                 <clip>
                                     <Circle radius="12.5" centerX="12.5" centerY="12.5"/>
                                 </clip>
-                                <Image url="@images/succes.png"/>
+                                <Image url="@images/lock.png"/>
                             </ImageView>
                         </HBox>
 
                         <HBox alignment="CENTER" spacing="25.0">
-                            <Label text="10 hours studying                      "/>
+                            <Label fx:id="label14" text="10 hours studying                      "/>
                             <ProgressBar fx:id="progressBar14" prefWidth="250.0" progress="0.0" HBox.hgrow="ALWAYS" />
                             <ImageView fx:id="achievement14" fitHeight="25.0" fitWidth="25.0" preserveRatio="true" visible="false">
                                 <clip>
                                     <Circle radius="12.5" centerX="12.5" centerY="12.5"/>
                                 </clip>
-                                <Image url="@images/succes.png"/>
+                                <Image url="@images/lock.png"/>
                             </ImageView>
                         </HBox>
 
@@ -171,7 +170,7 @@
             </HBox>
             <Button onAction="#clickBack" prefWidth="146.0" text="Back">
                 <graphic>
-                    <ImageView fx:id="homeImg" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-15.0">
+                    <ImageView fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-15.0">
                         <Image url="@images/back.png" />
                     </ImageView>
                 </graphic>
