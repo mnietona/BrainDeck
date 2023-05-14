@@ -67,7 +67,10 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
                 card = new CardGapFill(card.getQuestion(),card.getAnswer());
             }
             numberOfFlipsAuthorizedForCurrentCard = card.getMaxNumberOfFlips();
-            studyView.flipCard(questionIsDisplayed(), card.getQuestion(), card.getNthFlippedAnswer(flipIndex));
+
+            String[] possibleAnswers = {"John Doe,Jackie Chan,Bruce Willis"};
+            //String[] possibleAnswers = {};
+            studyView.flipCard(questionIsDisplayed(), card.getQuestion(), possibleAnswers, card.getNthFlippedAnswer(flipIndex));
         }
     }
 

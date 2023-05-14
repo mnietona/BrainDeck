@@ -32,8 +32,9 @@
                 for (let i = 0; i < questionValues.length; i++) {
                     radioBoxesHtml += '<label id="questionRadioBox"><input type="radio" name="radio" value="' + questionValues[i] + '">' + questionValues[i] + '</label>';
                 }
-            document.getElementById('card_text').innerHTML = radioBoxesHtml;
+            document.getElementById('card_text').innerHTML += radioBoxesHtml;
             }
+
             // Render any LaTeX math in the page
             renderMathInElement(document.body);
         });
