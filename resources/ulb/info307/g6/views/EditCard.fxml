@@ -35,7 +35,6 @@
                     </font>
                 </Label>
                 <CheckBox fx:id="gapFillCheckBox" text="Gap-fill" />
-            <CheckBox fx:id="QCMCheckBox" layoutX="100.0" layoutY="16.0" text="QCM" />
 
             </HBox>
             <TextArea fx:id="questionInput" onKeyTyped="#inputChange" VBox.vgrow="ALWAYS" />
@@ -45,7 +44,7 @@
                     <Font size="20.0" />
                 </font>
             </Label>
-            <TextArea fx:id="answerInput" onKeyTyped="#inputChange" text="&#10;" VBox.vgrow="ALWAYS" />
+            <TextArea fx:id="answerInput" onKeyTyped="#inputChange" VBox.vgrow="ALWAYS" />
         </VBox>
 
         <HBox alignment="TOP_CENTER" spacing="5.0">
