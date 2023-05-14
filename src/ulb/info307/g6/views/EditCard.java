@@ -18,6 +18,8 @@ public class EditCard extends ViewWithCardList {
     @FXML
     private CheckBox gapFillCheckBox;
     @FXML
+    private CheckBox QCMCheckBox;
+    @FXML
     private TextArea questionInput, answerInput;
     @FXML
     private Button buttonEditCard, buttonCreateCard, buttonRemoveCard;
@@ -128,6 +130,9 @@ public class EditCard extends ViewWithCardList {
 
     public boolean cardIsGapFill() {
         return gapFillCheckBox.isSelected();
+    }
+    public boolean cardIsQCM() {
+        return QCMCheckBox.isSelected();
     }
 
     public interface EditCardListener {

@@ -45,6 +45,11 @@ public class Study extends ViewWithDeckList {
 
     @FXML
     protected void clickFlipCard() {
+        Boolean hasSelectedRadio = (Boolean) cardWebView.getEngine().executeScript("document.querySelector('input[type=radio]:checked') !== null");
+        if (hasSelectedRadio) {
+            String radioValue = (String) cardWebView.getEngine().executeScript("document.querySelector('input[type=radio]:checked').value");
+            System.out.println("Selected value: " + radioValue);
+        }
         listener.clickFlipCard();
     }
 
@@ -109,12 +114,17 @@ public class Study extends ViewWithDeckList {
         return page_url;
     }
 
-    public void flipCard(boolean isQuestion, String question, String answer) {
+    public void flipCard(boolean isQuestion, String question, String[] choices, String answer) {
         if (isQuestion) {
-            cardWebView.getEngine().load(get_page_url(question) + "&type=question");
+            cardWebView.getEngine().load(get_page_url(question) + "&type=question&radioBoxValues="+get_choices(choices));
         } else {
             cardWebView.getEngine().load(get_page_url(answer) + "&type=answer");
         }
+    }
+
+    public String get_choices(String[] choices)
+    {
+        return String.join(",", choices);
     }
 
     public void showEmptyDeck() {
