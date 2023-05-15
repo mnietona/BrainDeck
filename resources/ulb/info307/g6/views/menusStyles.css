@@ -1,18 +1,3 @@
-@font-face {
-    src: url("fonts/ShackieHandpainted.otf"),
-}
-@font-face {
-    src: url("fonts/Cakecafe.otf"),
-}
-@font-face {
-    src: url("fonts/DaisyChainRegular.ttf"),
-}
-@font-face {
-    src: url("fonts/CaviarDreams.ttf"),
-}
-@font-face {
-    src: url("fonts/Cocogoose_Pro-trial.ttf"),
-}
 
 .root {
     -fx-background-image: url("images/main_bckg.jpg");
