@@ -5,6 +5,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
+import java.time.Duration;
 import java.util.Objects;
 
 /**
@@ -26,6 +27,12 @@ public class Welcome implements View {
         WebEngine webEngine = welcomeWebView.getEngine();
         String htmlFilePath = Objects.requireNonNull(getClass().getResource("Welcome.html")).toExternalForm();
         webEngine.load(htmlFilePath);
+    }
+
+    public void setGlobalStatistics(int dayStreak, int longestDayStreak) {
+        mainMenuStat1.setText(dayStreak+"\nCurrent\nday streak");
+        mainMenuStat2.setText(longestDayStreak+"\nLongest\nday streak");
+        // TODO: move totaltimespent to statistics db
     }
 
     public void studyButtonAction() {

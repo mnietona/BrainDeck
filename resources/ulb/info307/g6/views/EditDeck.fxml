@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 
-<HBox prefWidth="1280.0" prefHeight="720.0" spacing="5.0" stylesheets="@menusStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.EditDeck">
+<HBox spacing="5.0" stylesheets="@menusStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.EditDeck">
     <!-- Left pane : list of decks + home -->
     <VBox alignment="CENTER" spacing="5.0">
         <ListView fx:id="deckListView" prefWidth="169.0" VBox.vgrow="ALWAYS" />

@@ -16,6 +16,7 @@ public class WelcomeController extends Controller implements Welcome.WelcomeList
         welcomeView.setColorWebView();
         welcomeView.setupWelcomeWebView();
         onLaunchStatisticsUpdate();
+        showMainMenuStatistics();
     }
 
     /**
