@@ -5,8 +5,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.web.*?>
 
-<!-- 720p window default size -->
-<HBox alignment="CENTER" prefWidth="1280.0" prefHeight="720.0" spacing="5.0" stylesheets="@welcomeStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Welcome">
+<!-- dynamic window default size -->
+<HBox alignment="CENTER" spacing="5.0" stylesheets="@welcomeStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Welcome">
     <VBox alignment="TOP_CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="700.0" spacing="5.0">
         <WebView fx:id="welcomeWebView" prefHeight="100.0" prefWidth="700.0" />

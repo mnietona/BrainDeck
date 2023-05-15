@@ -23,18 +23,19 @@ public class Controller {
             Parent root = loader.load();
             view = loader.getController();  // To get the controller of the new menu
             view.setListener(this);
+
+            System.out.println("Previous dimensions: " + previousWidth + "," + previousHeight);
             Scene scene = new Scene(root);
+            System.out.println("before setScene scene dimensions: " + scene.getWidth() + ","+scene.getHeight());
             stage.setScene(scene);
+            // set height and width of the scene to the stage
+
+            System.out.println("stage dimensions: " + stage.getWidth() + " " + stage.getHeight());
+            System.out.println("after setScene scene dimensions: " + scene.getWidth() + ","+scene.getHeight());
 
             // Size of window will not reset when navigating trough menus
             stage.setWidth(previousWidth);
             stage.setHeight(previousHeight);
-
-            // Sets minimum size of the window to 480p (720x480), accounting for the (os-dependent) window overhead
-            double widthOverhead = stage.getWidth() - scene.getWidth();
-            double heightOverhead = stage.getHeight() - scene.getHeight();
-            stage.setMinWidth(720 + widthOverhead);
-            stage.setMinHeight(480 + heightOverhead);
 
             stage.setTitle(title);
             stage.show();
