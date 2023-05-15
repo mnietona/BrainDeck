@@ -1,13 +1,7 @@
 package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
-
-import java.time.Duration;
-import java.util.Objects;
 
 /**
  * View controller of the Welcome menu, implements View interface and is the controller for the Welcome.fxml file.
@@ -17,8 +11,6 @@ import java.util.Objects;
 public class Welcome implements View {
     private WelcomeListener listener;
     @FXML
-    private WebView welcomeWebView;
-    @FXML
     private Text mainMenuStat1, mainMenuStat2;
 
     @Override
@@ -26,16 +18,9 @@ public class Welcome implements View {
         this.listener = (WelcomeListener) listener;
     }
 
-    public void setupWelcomeWebView() {
-        WebEngine webEngine = welcomeWebView.getEngine();
-        String htmlFilePath = Objects.requireNonNull(getClass().getResource("Welcome.html")).toExternalForm();
-        webEngine.load(htmlFilePath);
-    }
-
     public void setGlobalStatistics(int dayStreak, int longestDayStreak) {
         mainMenuStat1.setText(dayStreak+"\nCurrent\nday streak");
         mainMenuStat2.setText(longestDayStreak+"\nLongest\nday streak");
-        // TODO: move totaltimespent to statistics db
     }
 
     public void studyButtonAction() {
@@ -51,11 +36,7 @@ public class Welcome implements View {
     }
 
     public void achievementsButtonAction() {
-    	listener.achievementsButtonAction();
-    }
-
-    public void setColorWebView() {
-        welcomeWebView.setPageFill(Color.TRANSPARENT);
+        listener.achievementsButtonAction();
     }
 
     /**
