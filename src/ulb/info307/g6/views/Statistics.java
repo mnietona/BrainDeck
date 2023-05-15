@@ -28,7 +28,6 @@ public class Statistics extends ViewWithDeckList {
     public void setGlobalStatistics(int nbDecks, int nbCards, int dayStreak, int longestDayStreak, long totalTimeSpent) {
         globalStat1.setText(nbDecks+"\nTotal\nDecks");
         globalStat2.setText(nbCards+"\nTotal\nCards");
-        globalStat3.setText(dayStreak+"\nCurrent\nday streak");
         globalStat3.setText(getTimeSpentAsString(totalTimeSpent)+"\nHours\nstudied");
         globalStat4.setText(dayStreak+"\nCurrent\nday streak");
         globalStat5.setText(longestDayStreak+"\nLongest\nday streak");

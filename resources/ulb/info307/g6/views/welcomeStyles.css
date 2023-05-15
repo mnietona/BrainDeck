@@ -23,8 +23,9 @@ body {
   position: absolute;
   overflow: hidden;
 }
+
 h1 {
-    font-size: 40vh;
+    font-size: 100px;
     background-image: url("images/titleBackground.png");
     color: transparent;
     position: relative;
@@ -36,9 +37,7 @@ h1 {
     -webkit-background-clip: text;
     filter: drop-shadow(0px -3px 1px rgba(0, 0, 0, 1));
     animation: stripes 5s infinite alternate;
-
-  }
-
+}
 
 @keyframes stripes {
   100% {

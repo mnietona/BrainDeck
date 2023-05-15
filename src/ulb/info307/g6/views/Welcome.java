@@ -2,6 +2,7 @@ package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
@@ -17,6 +18,8 @@ public class Welcome implements View {
     private WelcomeListener listener;
     @FXML
     private WebView welcomeWebView;
+    @FXML
+    private Text mainMenuStat1, mainMenuStat2;
 
     @Override
     public void setListener(Object listener) {
@@ -64,5 +67,6 @@ public class Welcome implements View {
         void editButtonAction();
         void statisticsButtonAction();
         void achievementsButtonAction();
+        void showMainMenuStatistics();
     }
 }

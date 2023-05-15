@@ -35,6 +35,15 @@ public class WelcomeController extends Controller implements Welcome.WelcomeList
     }
 
     @Override
+    public void showMainMenuStatistics() { //2 stats now, more to come
+        int dayStreak = statisticsDatabase.getCurrentDayStreak();
+        int longestDayStreak = statisticsDatabase.getLongestDayStreak();
+        // TODO: move total time spent to Statistics database
+
+        welcomeView.setGlobalStatistics(dayStreak, longestDayStreak);
+    }
+
+    @Override
     public void studyButtonAction() {
         new StudyController(stage);
     }
