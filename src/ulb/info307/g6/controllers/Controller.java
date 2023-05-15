@@ -17,26 +17,14 @@ public class Controller {
 
     public Controller(Stage stage, String fxmlPath, String title) {
         this.stage = stage;
-        double previousWidth = stage.getWidth(), previousHeight = stage.getHeight();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
-            view = loader.getController();  // To get the controller of the new menu
+            view = loader.getController();
             view.setListener(this);
 
-            System.out.println("Previous dimensions: " + previousWidth + "," + previousHeight);
             Scene scene = new Scene(root);
-            System.out.println("before setScene scene dimensions: " + scene.getWidth() + ","+scene.getHeight());
             stage.setScene(scene);
-            // set height and width of the scene to the stage
-
-            System.out.println("stage dimensions: " + stage.getWidth() + " " + stage.getHeight());
-            System.out.println("after setScene scene dimensions: " + scene.getWidth() + ","+scene.getHeight());
-
-            // Size of window will not reset when navigating trough menus
-            stage.setWidth(previousWidth);
-            stage.setHeight(previousHeight);
-
             stage.setTitle(title);
             stage.show();
         } catch (IOException e) {

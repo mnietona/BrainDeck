@@ -2,11 +2,11 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
 
-<HBox spacing="5.0" stylesheets="@menusStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.EditCard">
+<HBox minHeight="720.0" minWidth="1280.0" spacing="5.0" stylesheets="@menusStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.EditCard">
     <!-- Left pane : list of decks + home -->
     <VBox alignment="CENTER" spacing="5.0">
         <ListView fx:id="cardListView" prefWidth="169.0" VBox.vgrow="ALWAYS" />
@@ -48,37 +48,37 @@
         </VBox>
 
         <HBox alignment="TOP_CENTER" spacing="5.0">
-            <Button fx:id="buttonEditCard" onAction="#clickEditCard" text="Edit card" contentDisplay="GRAPHIC_ONLY">
+            <Button fx:id="buttonEditCard" contentDisplay="GRAPHIC_ONLY" onAction="#clickEditCard" text="Edit card">
                 <graphic>
                     <ImageView fx:id="editImg" fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/edit.png" />
                     </ImageView>
                 </graphic>
-                <tooltip><Tooltip text="Edit Card" style="-fx-font-size: 25px;"/></tooltip>
+                <tooltip><Tooltip style="-fx-font-size: 25px;" text="Edit Card" /></tooltip>
             </Button>
-            <Button fx:id="buttonCreateCard" onAction="#clickCreateCard" text="Create card" contentDisplay="GRAPHIC_ONLY">
+            <Button fx:id="buttonCreateCard" contentDisplay="GRAPHIC_ONLY" onAction="#clickCreateCard" text="Create card">
                 <graphic>
                     <ImageView fx:id="createImg" fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/new.png" />
                     </ImageView>
                 </graphic>
-                <tooltip><Tooltip text="Create Card" style="-fx-font-size: 25px;"/></tooltip>
+                <tooltip><Tooltip style="-fx-font-size: 25px;" text="Create Card" /></tooltip>
             </Button>
-            <Button fx:id="buttonRemoveCard" onAction="#clickRemoveCard" text="Remove card" contentDisplay="GRAPHIC_ONLY">
+            <Button fx:id="buttonRemoveCard" contentDisplay="GRAPHIC_ONLY" onAction="#clickRemoveCard" text="Remove card">
                 <graphic>
                     <ImageView fx:id="removeImg" fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/remove.png" />
                     </ImageView>
                 </graphic>
-                <tooltip><Tooltip text="Remove Card" style="-fx-font-size: 25px;"/></tooltip>
+                <tooltip><Tooltip style="-fx-font-size: 25px;" text="Remove Card" /></tooltip>
             </Button>
-            <Button mnemonicParsing="false" onAction="#clickPreview" text="Preview" contentDisplay="GRAPHIC_ONLY">
+            <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#clickPreview" text="Preview">
                 <graphic>
                     <ImageView fx:id="previewImg" fitHeight="30.0" fitWidth="30.0" preserveRatio="true" rotate="90.0">
                         <Image url="@images/play.png" />
                     </ImageView>
                 </graphic>
-                <tooltip><Tooltip text="Preview Card" style="-fx-font-size: 25px;"/></tooltip>
+                <tooltip><Tooltip style="-fx-font-size: 25px;" text="Preview Card" /></tooltip>
             </Button>
         </HBox>
     </VBox>

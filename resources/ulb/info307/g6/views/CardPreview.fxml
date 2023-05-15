@@ -4,6 +4,7 @@
 <?import javafx.scene.web.*?>
 
 <!-- Square window default size -->
+
 <HBox prefHeight="640.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.PreviewCard">
       <WebView fx:id="previewWebView" HBox.hgrow="ALWAYS" />
 </HBox>
