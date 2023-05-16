@@ -45,7 +45,6 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
             if (d == null) {
                 throw new Exception("Cannot import deck from file content.");
             }
-            checkEmptyDeck(d);
             int amountOfEmptyProbaCards = countEmptyProbabilityCards(d);
             setCardProbabilities(d, amountOfEmptyProbaCards);
             checkAndUpdateDeckInDatabase(d);
@@ -136,19 +135,27 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
 
     @Override
     public void clickExport() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialFileName(editDeckView.getSelectedDeck().getName()+"_export.json");
-        ObjectMapper mapper = new ObjectMapper();
         try {
-            String deckContent = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(editDeckView.getSelectedDeck());
+            Deck selectedDeck = editDeckView.getSelectedDeck();
+            if (selectedDeck == null) {
+                throw new Exception("No deck selected.");
+            }
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setInitialFileName(selectedDeck.getName()+"_export.json");
+            ObjectMapper mapper = new ObjectMapper();
+            String deckContent = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(selectedDeck);
             File selectedFile = fileChooser.showSaveDialog(stage);
+            if (selectedFile == null) {
+                throw new Exception("No file selected for saving.");
+            }
             FileWriter fileWriter = new FileWriter(selectedFile);
             fileWriter.write(deckContent);
             fileWriter.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            new Popup(e.getMessage()).showAndWait();
         }
     }
+
 
     @Override
     public void clickHome() {
