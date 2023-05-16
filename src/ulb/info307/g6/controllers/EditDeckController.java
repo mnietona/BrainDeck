@@ -7,6 +7,7 @@ import ulb.info307.g6.models.Card;
 import ulb.info307.g6.models.DeckProbabilities;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.views.EditDeck;
+import ulb.info307.g6.views.Popup;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -31,14 +32,26 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
 
     @Override
     public void clickImport() {
-        File selectedFile = selectFile();
-        String fileContent = readFileContent(selectedFile);
-        Deck d = importDeck(fileContent);
-        checkEmptyDeck(d);
-        int amountOfEmptyProbaCards = countEmptyProbabilityCards(d);
-        setCardProbabilities(d, amountOfEmptyProbaCards);
-        checkAndUpdateDeckInDatabase(d);
-        setDeckList();
+        try {
+            File selectedFile = selectFile();
+            if (selectedFile == null) {
+                throw new Exception("No file selected.");
+            }
+            String fileContent = readFileContent(selectedFile);
+            if (fileContent == null) {
+                throw new Exception("Cannot read file content.");
+            }
+            Deck d = importDeck(fileContent);
+            if (d == null) {
+                throw new Exception("Cannot import deck from file content.");
+            }
+            int amountOfEmptyProbaCards = countEmptyProbabilityCards(d);
+            setCardProbabilities(d, amountOfEmptyProbaCards);
+            checkAndUpdateDeckInDatabase(d);
+            setDeckList();
+        } catch (Exception e) {
+            new Popup(e.getMessage()).showAndWait();
+        }
     }
 
     private File selectFile() {
@@ -53,26 +66,21 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
             while (s.hasNextLine()) {
                 fileContent.append(s.nextLine());
             }
+            s.close();
+            return fileContent.toString();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            return null;
         }
-        return fileContent.toString();
     }
 
     private Deck importDeck(String fileContent) {
         ObjectMapper mapper = new ObjectMapper();
-        Deck d = null;
+        Deck d;
         try {
             d = mapper.readValue(fileContent, Deck.class);
+            return d;
         } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return d;
-    }
-
-    private void checkEmptyDeck(Deck d) {
-        if (d.isEmpty()) {
-            throw new IllegalArgumentException("Cannot import empty deck");
+            return null;
         }
     }
 
@@ -120,19 +128,27 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
 
     @Override
     public void clickExport() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialFileName(editDeckView.getSelectedDeck().getName()+"_export.json");
-        ObjectMapper mapper = new ObjectMapper();
         try {
-            String deckContent = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(editDeckView.getSelectedDeck());
+            Deck selectedDeck = editDeckView.getSelectedDeck();
+            if (selectedDeck == null) {
+                throw new Exception("No deck selected.");
+            }
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setInitialFileName(selectedDeck.getName()+"_export.json");
+            ObjectMapper mapper = new ObjectMapper();
+            String deckContent = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(selectedDeck);
             File selectedFile = fileChooser.showSaveDialog(stage);
+            if (selectedFile == null) {
+                throw new Exception("No file selected for saving.");
+            }
             FileWriter fileWriter = new FileWriter(selectedFile);
             fileWriter.write(deckContent);
             fileWriter.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            new Popup(e.getMessage()).showAndWait();
         }
     }
+
 
     @Override
     public void clickHome() {
