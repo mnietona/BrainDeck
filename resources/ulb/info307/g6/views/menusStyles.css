@@ -29,3 +29,13 @@
 .knowledgeLvlSliderTitle {
     -fx-font-family: "Shackie Handpainted PERSONAL";
 }
+
+#deckListView .list-cell {
+    -fx-background-color: transparent;
+}
+
+#deckListView {
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+}
+
