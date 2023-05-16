@@ -10,9 +10,9 @@
     <!-- Left pane : list of decks + home -->
     <VBox alignment="CENTER" spacing="5.0">
         <ListView fx:id="deckListView" prefWidth="207.0" VBox.vgrow="ALWAYS" />
-        <Button fx:id="homeButton" contentDisplay="LEFT" onAction="#clickHome" prefWidth="169.0" text="Home">
+        <Button onAction="#clickHome" prefWidth="169.0" text="Home">
             <graphic>
-                <ImageView fx:id="homeImg" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-25.0">
+                <ImageView fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-25.0">
                     <Image url="@images/back.png" />
                 </ImageView>
             </graphic>
@@ -38,7 +38,7 @@
         <HBox alignment="TOP_CENTER" spacing="10">
             <Button fx:id="buttonEdit" contentDisplay="GRAPHIC_ONLY" onAction="#clickEdit" text="Edit deck">
                 <graphic>
-                    <ImageView fx:id="editImg" fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
+                    <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/edit.png" />
                     </ImageView>
                 </graphic>
@@ -46,7 +46,7 @@
             </Button>
             <Button contentDisplay="GRAPHIC_ONLY" onAction="#clickCreate" text="Create deck">
                 <graphic>
-                    <ImageView fx:id="createImg" fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
+                    <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/new.png" />
                     </ImageView>
                 </graphic>
@@ -54,7 +54,7 @@
             </Button>
             <Button fx:id="buttonRemove" contentDisplay="GRAPHIC_ONLY" onAction="#clickRemove" text="Remove deck">
                 <graphic>
-                    <ImageView fx:id="removeImg" fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
+                    <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/remove.png" />
                     </ImageView>
                 </graphic>
@@ -62,7 +62,7 @@
             </Button>
             <Button fx:id="buttonResetProba" contentDisplay="GRAPHIC_ONLY" onAction="#clickResetProba" text="Reset probabilities">
                 <graphic>
-                    <ImageView fx:id="statImg" fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
+                    <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/stats.png" />
                     </ImageView>
                 </graphic>
@@ -70,7 +70,7 @@
             </Button>
             <Button contentDisplay="GRAPHIC_ONLY" onAction="#clickImport" text="Import">
                 <graphic>
-                    <ImageView fx:id="importImg" fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
+                    <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/import.png" />
                     </ImageView>
                 </graphic>
@@ -78,7 +78,7 @@
             </Button>
             <Button fx:id="buttonExport" contentDisplay="GRAPHIC_ONLY" onAction="#clickExport" text="Export">
                 <graphic>
-                    <ImageView fx:id="exportImg" fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
+                    <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/export.png" />
                     </ImageView>
                 </graphic>

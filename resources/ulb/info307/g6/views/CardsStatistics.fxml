@@ -10,9 +10,9 @@
     <!-- Left pane : list of cards + back -->
     <VBox alignment="CENTER" spacing="5.0">
         <ListView fx:id="cardListView" prefWidth="169.0" VBox.vgrow="ALWAYS" />
-        <Button contentDisplay="LEFT" onAction="#clickBack" prefWidth="169.0" text="Back">
+        <Button onAction="#clickBack" prefWidth="169.0" text="Back">
             <graphic>
-                <ImageView fx:id="homeImg" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-25.0">
+                <ImageView fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-25.0">
                     <Image url="@images/back.png" />
                 </ImageView>
             </graphic>
