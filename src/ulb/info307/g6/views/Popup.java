@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 public class Popup {
 
-    private Alert alert;
+    private final Alert alert;
 
     public Popup(String message) {
         alert = new Alert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
