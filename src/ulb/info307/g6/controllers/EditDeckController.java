@@ -84,13 +84,6 @@ public class EditDeckController extends ControllerWithDeckList implements EditDe
         }
     }
 
-
-    private void checkEmptyDeck(Deck d) {
-        if (d.isEmpty()) {
-            throw new IllegalArgumentException("Cannot import empty deck");
-        }
-    }
-
     private int countEmptyProbabilityCards(Deck deck) {
         int amountOfEmptyProbaCards = 0;
         Iterator<Card> cardIterator = deck.getCardIterator();
