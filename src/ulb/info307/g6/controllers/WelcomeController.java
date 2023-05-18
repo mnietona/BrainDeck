@@ -4,6 +4,7 @@ import javafx.stage.Stage;
 import ulb.info307.g6.models.Statistics;
 import ulb.info307.g6.models.database.StatisticsDao;
 import ulb.info307.g6.views.Welcome;
+import ulb.info307.g6.views.Popup;
 
 public class WelcomeController extends Controller implements Welcome.WelcomeListener  {
     public final StatisticsDao statisticsDatabase = new StatisticsDao();
@@ -22,22 +23,31 @@ public class WelcomeController extends Controller implements Welcome.WelcomeList
      * which is done here (when the first menu is shown).
      */
     private void onLaunchStatisticsUpdate() {
-        Statistics statistics = statisticsDatabase.getStatistics();
+        try {
+            Statistics statistics = statisticsDatabase.getStatistics();
         if (statistics == null) {  // Insert statistics in database if empty (first launch)
             statistics = new Statistics();
             statisticsDatabase.insert(statistics);
+
         } else {
             statistics.updateDayStreak();  // DayStreak is updated on opening of the app
             statisticsDatabase.update(statistics);
+        }
+        } catch (Exception e) {
+            new Popup(e.getMessage()).showAndWait();
         }
     }
 
     @Override
     public void showMainMenuStatistics() { //2 stats now, more to come
-        int dayStreak = statisticsDatabase.getCurrentDayStreak();
-        int longestDayStreak = statisticsDatabase.getLongestDayStreak();
+        try {
+            int dayStreak = statisticsDatabase.getCurrentDayStreak();
+            int longestDayStreak = statisticsDatabase.getLongestDayStreak();
 
-        welcomeView.setGlobalStatistics(dayStreak, longestDayStreak);
+            welcomeView.setGlobalStatistics(dayStreak, longestDayStreak);
+        } catch (Exception e) {
+            new Popup(e.getMessage()).showAndWait();
+        }
     }
 
     @Override
@@ -57,6 +67,10 @@ public class WelcomeController extends Controller implements Welcome.WelcomeList
 
     @Override
     public void achievementsButtonAction() {
-        new AchievementsController(stage);
+        try {
+            new AchievementsController(stage);
+        } catch (Exception e) {
+            new Popup(e.getMessage()).showAndWait();
+        }
     }
 }

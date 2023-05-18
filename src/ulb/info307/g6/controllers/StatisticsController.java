@@ -22,13 +22,17 @@ public class StatisticsController extends ControllerWithDeckList implements Stat
 
     @Override
     public void showGlobalStatistics() {
-        int nbDecks = deckDatabase.getNumberOfDecks();
-        int nbCards = deckDatabase.getTotalNumberOfCards();
-        int dayStreak = statisticsDatabase.getCurrentDayStreak();
-        int longestDayStreak = statisticsDatabase.getLongestDayStreak();
-        long totalTimeSpent = deckDatabase.getTotalTimeSpent();
+        try {
+            int nbDecks = deckDatabase.getNumberOfDecks();
+            int nbCards = deckDatabase.getTotalNumberOfCards();
+            int dayStreak = statisticsDatabase.getCurrentDayStreak();
+            int longestDayStreak = statisticsDatabase.getLongestDayStreak();
+            long totalTimeSpent = deckDatabase.getTotalTimeSpent();
 
-        statisticsView.setGlobalStatistics(nbDecks, nbCards, dayStreak, longestDayStreak, totalTimeSpent);
+            statisticsView.setGlobalStatistics(nbDecks, nbCards, dayStreak, longestDayStreak, totalTimeSpent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
