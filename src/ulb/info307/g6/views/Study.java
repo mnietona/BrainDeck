@@ -5,7 +5,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebView;
-import com.sun.javafx.webkit.*;
 import javafx.util.StringConverter;
 
 import java.util.Base64;
