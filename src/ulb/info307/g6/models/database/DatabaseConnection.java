@@ -1,6 +1,7 @@
 package ulb.info307.g6.models.database;
 
 import org.dizitart.no2.Nitrite;
+import ulb.info307.g6.views.Popup;
 
 public class DatabaseConnection {
     private static Nitrite con = null;
@@ -14,7 +15,8 @@ public class DatabaseConnection {
                     .filePath(db_path)
                     .openOrCreate();
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            new Popup("Database driver not found").showAndWait();
+            System.exit(1);
         }
     }
     public static Nitrite getConnection() {

@@ -30,7 +30,8 @@ public class PreviewCardController {  // TODO use Controller.java
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            // It happens here that if we make an error in the code
+            System.err.println("Error: the FXML file could not be loaded. Please check the path and permissions.");
         }
     }
 

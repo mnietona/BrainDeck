@@ -3,6 +3,7 @@ package ulb.info307.g6.controllers;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import ulb.info307.g6.views.Popup;
 
 /**
  * Entry point of the program (called by launcher).
@@ -25,7 +26,8 @@ public class MainController extends Application {
             primaryStage.getIcons().add(new Image("/ulb/info307/g6/views/images/mainlogo.png"));
             new WelcomeController(primaryStage);
         } catch (Exception e) {
-            e.printStackTrace();
+            new Popup("An error occurred while loading the application.\n" +
+                    "If the problem persists, please contact the developers").showAndWait();
         }
     }
 }
