@@ -6,7 +6,7 @@ import java.util.Random;
 import org.dizitart.no2.objects.Id;
 
 public class Statistics {
-    @Id
+    @Id @SuppressWarnings({"unused", "FieldCanBeLocal"}) // Necessary id to use Nitrite database
     private final long id;
     private int currentDayStreak, longestDayStreak;
     private LocalDate previousStartupDate;  // Day stored in database
