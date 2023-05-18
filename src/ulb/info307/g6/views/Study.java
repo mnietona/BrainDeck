@@ -2,9 +2,9 @@ package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebView;
-import com.sun.javafx.webkit.*;
 import javafx.util.StringConverter;
 
 import java.util.Base64;
@@ -26,6 +26,8 @@ public class Study extends ViewWithDeckList {
     private Slider knowledgeLvlSlider;
     @FXML
     private Button buttonFlipCard, buttonNextCard;
+    @FXML
+    private ImageView flipButtonIcon;
     private StudyListener listener;
 
     @Override
@@ -123,6 +125,10 @@ public class Study extends ViewWithDeckList {
 
     public void setColorWebView() {
         cardWebView.setPageFill(Color.TRANSPARENT);
+    }
+
+    public void turnFlipIcon() {
+        flipButtonIcon.setRotate(flipButtonIcon.getRotate() + 180);
     }
 
     @Override

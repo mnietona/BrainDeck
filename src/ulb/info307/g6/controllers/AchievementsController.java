@@ -26,7 +26,7 @@ public class AchievementsController extends Controller implements Achievements.A
     }
 
     @Override
-    public void clickBack() {
+    public void clickHome() {
         new WelcomeController(stage);
     }
 

@@ -39,6 +39,10 @@ public class Welcome implements View {
         listener.achievementsButtonAction();
     }
 
+    public void helpButtonAction() {
+        listener.helpButtonAction();
+    }
+
     /**
      * Controller (passed in constructor) will implement the listener interface to "listen" to then handle
      * actions that happens in view controller.
@@ -49,5 +53,6 @@ public class Welcome implements View {
         void statisticsButtonAction();
         void achievementsButtonAction();
         void showMainMenuStatistics();
+        void helpButtonAction();
     }
 }
