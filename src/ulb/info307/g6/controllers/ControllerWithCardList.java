@@ -9,6 +9,7 @@ import ulb.info307.g6.views.ViewWithCardList;
  * Base class for all controllers that have a card list.
  */
 public class ControllerWithCardList extends Controller {
+
     public final CardDaoNitriteImplementation database = new CardDaoNitriteImplementation();  // Initialize the DAO for the database
     protected final ViewWithCardList viewWithCardList;
 
