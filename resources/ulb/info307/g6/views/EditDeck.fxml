@@ -42,7 +42,7 @@
                         <Image url="@images/edit.png" />
                     </ImageView>
                 </graphic>
-                <tooltip><Tooltip style="-fx-font-size: 25px;" text="Edit Deck" /></tooltip>
+                <tooltip><Tooltip style="-fx-font-size: 18px;" text="Edit Deck" /></tooltip>
             </Button>
             <Button contentDisplay="GRAPHIC_ONLY" onAction="#clickCreate" text="Create deck">
                 <graphic>
@@ -50,7 +50,7 @@
                         <Image url="@images/new.png" />
                     </ImageView>
                 </graphic>
-                <tooltip><Tooltip style="-fx-font-size: 25px;" text="Create Deck" /></tooltip>
+                <tooltip><Tooltip style="-fx-font-size: 18px;" text="Create Deck" /></tooltip>
             </Button>
             <Button fx:id="buttonRemove" contentDisplay="GRAPHIC_ONLY" onAction="#clickRemove" text="Remove deck">
                 <graphic>
@@ -58,7 +58,7 @@
                         <Image url="@images/remove.png" />
                     </ImageView>
                 </graphic>
-                <tooltip><Tooltip style="-fx-font-size: 25px;" text="Remove Deck" /></tooltip>
+                <tooltip><Tooltip style="-fx-font-size: 18px;" text="Remove Deck" /></tooltip>
             </Button>
             <Button fx:id="buttonResetProba" contentDisplay="GRAPHIC_ONLY" onAction="#clickResetProba" text="Reset probabilities">
                 <graphic>
@@ -66,7 +66,7 @@
                         <Image url="@images/stats.png" />
                     </ImageView>
                 </graphic>
-                <tooltip><Tooltip style="-fx-font-size: 25px;" text="Reset Probabilities" /></tooltip>
+                <tooltip><Tooltip style="-fx-font-size: 18px;" text="Reset Probabilities" /></tooltip>
             </Button>
             <Button contentDisplay="GRAPHIC_ONLY" onAction="#clickImport" text="Import">
                 <graphic>
@@ -74,7 +74,7 @@
                         <Image url="@images/import.png" />
                     </ImageView>
                 </graphic>
-                <tooltip><Tooltip style="-fx-font-size: 25px;" text="Import" /></tooltip>
+                <tooltip><Tooltip style="-fx-font-size: 18px;" text="Import a deck" /></tooltip>
             </Button>
             <Button fx:id="buttonExport" contentDisplay="GRAPHIC_ONLY" onAction="#clickExport" text="Export">
                 <graphic>
@@ -82,7 +82,7 @@
                         <Image url="@images/export.png" />
                     </ImageView>
                 </graphic>
-                <tooltip><Tooltip style="-fx-font-size: 25px;" text="Export" /></tooltip>
+                <tooltip><Tooltip style="-fx-font-size: 18px;" text="Export deck" /></tooltip>
             </Button>
         </HBox>
     </VBox>

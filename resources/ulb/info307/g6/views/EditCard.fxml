@@ -34,8 +34,12 @@
                         <Font size="20.0" />
                     </font>
                 </Label>
-                <CheckBox fx:id="gapFillCheckBox" text="Gap-fill" />
-
+                <CheckBox fx:id="gapFillCheckBox" text="Gap-fill">
+                    <!-- Shows text when you place mouse cursor on an element, for exemple a checkbox -->
+                    <tooltip>
+                        <Tooltip style="-fx-font-size: 18px;" text="Check this box if you want to create a card with a gap to fill, place an '_' where the gaps are in the question and separate answers with a ','" />
+                    </tooltip>
+                </CheckBox>
             </HBox>
             <TextArea fx:id="questionInput" onKeyTyped="#inputChange" VBox.vgrow="ALWAYS" />
 
@@ -54,7 +58,7 @@
                         <Image url="@images/edit.png" />
                     </ImageView>
                 </graphic>
-                <tooltip><Tooltip style="-fx-font-size: 25px;" text="Edit Card" /></tooltip>
+                <tooltip><Tooltip style="-fx-font-size: 18px;" text="Edit Card" /></tooltip>
             </Button>
             <Button fx:id="buttonCreateCard" contentDisplay="GRAPHIC_ONLY" onAction="#clickCreateCard" text="Create card">
                 <graphic>
@@ -62,7 +66,7 @@
                         <Image url="@images/new.png" />
                     </ImageView>
                 </graphic>
-                <tooltip><Tooltip style="-fx-font-size: 25px;" text="Create Card" /></tooltip>
+                <tooltip><Tooltip style="-fx-font-size: 18px;" text="Create Card" /></tooltip>
             </Button>
             <Button fx:id="buttonRemoveCard" contentDisplay="GRAPHIC_ONLY" onAction="#clickRemoveCard" text="Remove card">
                 <graphic>
@@ -70,7 +74,7 @@
                         <Image url="@images/remove.png" />
                     </ImageView>
                 </graphic>
-                <tooltip><Tooltip style="-fx-font-size: 25px;" text="Remove Card" /></tooltip>
+                <tooltip><Tooltip style="-fx-font-size: 18px;" text="Remove Card" /></tooltip>
             </Button>
             <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#clickPreview" text="Preview">
                 <graphic>
@@ -78,7 +82,7 @@
                         <Image url="@images/visuel.jpg" />
                     </ImageView>
                 </graphic>
-                <tooltip><Tooltip style="-fx-font-size: 25px;" text="Preview Card" /></tooltip>
+                <tooltip><Tooltip style="-fx-font-size: 18px;" text="Preview Card" /></tooltip>
             </Button>
         </HBox>
     </VBox>
