@@ -10,9 +10,9 @@
     <!-- Left pane : list of decks + home -->
     <VBox alignment="CENTER" spacing="5.0">
         <ListView fx:id="deckListView" prefWidth="207.0" VBox.vgrow="ALWAYS" />
-        <Button fx:id="homeButton" contentDisplay="LEFT" onAction="#clickHome" prefWidth="169.0" text="Home">
+        <Button onAction="#clickHome" prefWidth="169.0" text="Home">
             <graphic>
-                <ImageView fx:id="homeImg" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-25.0">
+                <ImageView fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-25.0">
                     <Image url="@images/back.png" />
                 </ImageView>
             </graphic>
@@ -82,9 +82,9 @@
         </VBox>
 
         <!-- Cards statistics button -->
-        <Button fx:id="cardsStatisticsButton" contentDisplay="LEFT" disable="true" onAction="#clickCardsStatistics" text="Cards statistics">
+        <Button fx:id="cardsStatisticsButton" disable="true" onAction="#clickCardsStatistics" text="Cards statistics">
             <graphic>
-                <ImageView fx:id="statsImg" fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
+                <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                     <Image url="@images/stats.png" />
                 </ImageView>
             </graphic>

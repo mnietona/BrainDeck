@@ -6,6 +6,8 @@ import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.models.database.StatisticsDao;
 import ulb.info307.g6.views.Achievements;
 import ulb.info307.g6.models.Deck;
+import ulb.info307.g6.views.Popup;
+
 import java.util.List;
 import java.util.Arrays;
 
@@ -33,8 +35,12 @@ public class AchievementsController extends Controller implements Achievements.A
         double[] progresses = new double[14];
         boolean[] achievementsActive = new boolean[progresses.length];
         Arrays.fill(achievementsActive, false);
-
-        double longestDayStreak = statistics.getLongestDayStreak();
+        double longestDayStreak = 0;
+        if (statistics != null) {
+            longestDayStreak = statistics.getLongestDayStreak();
+        } else {
+            new Popup("Erreur lors de la récupération des statistiques. Veuillez réessayer plus tard.").showAndWait();
+        }
         progresses[0] = longestDayStreak / 5.0;
         achievementsActive[0] = true;
         if (longestDayStreak > 5.0) {

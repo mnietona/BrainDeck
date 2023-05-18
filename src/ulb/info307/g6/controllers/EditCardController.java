@@ -9,6 +9,7 @@ import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.views.EditCard;
 
 import ulb.info307.g6.models.DeckProbabilities;
+import ulb.info307.g6.views.Popup;
 
 import java.util.Base64;
 import java.util.Objects;
@@ -77,6 +78,20 @@ public class EditCardController extends ControllerWithCardList implements EditCa
                 databaseDeck.updateDeck(deck);
                 editCardView.setCardListView(deck);
                 deck.printProbability();
+            }
+            else{
+                new Popup("""
+                        Error, The card is not valid.
+                        
+                        Example of correct usage:
+                        Question = The captain of the Titanic was _
+                        Answer = Edward Smith
+
+                        For multiple blanks:
+                        Question = The primary colors are _, _, and _.
+                        Answer = red, blue, yellow
+                        """).showAndWait();
+
             }
         }
         editCardView.clearTextFields();

@@ -28,7 +28,7 @@ public class Controller {
             stage.setTitle(title);
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error, could not load fxml file"); // It happens here that if we make an error in the code (Wrong path fxml)
         }
     }
 }

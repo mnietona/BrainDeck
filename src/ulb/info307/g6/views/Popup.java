@@ -9,9 +9,11 @@ public class Popup {
     private final Alert alert;
 
     public Popup(String message) {
-        alert = new Alert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
+        alert = new Alert(Alert.AlertType.ERROR, message, ButtonType.OK);
         alert.initModality(Modality.APPLICATION_MODAL);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.setTitle("Error");
+        alert.setHeaderText("An error has occurred");
         stage.setAlwaysOnTop(true);
     }
 
@@ -19,3 +21,4 @@ public class Popup {
         alert.showAndWait();
     }
 }
+

@@ -45,7 +45,6 @@ public class CardGapFill extends Card {
         try {
             assert (numberOfFlips <= getMaxNumberOfFlips());
         } catch (AssertionError e) {
-            System.out.println("INCORRECT NUMBER OF FLIPS");
             return "INCORRECT NUMBER OF FLIPS";
         }
         StringBuilder res = new StringBuilder();

@@ -39,3 +39,12 @@
     -fx-border-color: black;
 }
 
+#cardListView .list-cell {
+    -fx-background-color: transparent;
+}
+
+#cardListView {
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+}
+
