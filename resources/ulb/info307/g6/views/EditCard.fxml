@@ -74,13 +74,8 @@
             </Button>
             <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#clickPreview" text="Preview">
                 <graphic>
-<<<<<<< resources/ulb/info307/g6/views/EditCard.fxml
                     <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/visuel.jpg" />
-=======
-                    <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true" rotate="90.0">
-                        <Image url="@images/play.png" />
->>>>>>> resources/ulb/info307/g6/views/EditCard.fxml
                     </ImageView>
                 </graphic>
                 <tooltip><Tooltip style="-fx-font-size: 25px;" text="Preview Card" /></tooltip>
