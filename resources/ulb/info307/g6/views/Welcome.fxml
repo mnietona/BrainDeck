@@ -8,16 +8,13 @@
 
 <VBox alignment="CENTER" minHeight="720.0" minWidth="1280.0" stylesheets="@welcomeStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Welcome">
    <HBox alignment="TOP_RIGHT" prefHeight="19.0" prefWidth="1180.0">
-      <children>
-         <Button fx:id="helpButton" onAction="#helpButtonAction">
+         <Button onAction="#helpButtonAction">
               <graphic>
                   <ImageView fitHeight="25.0" preserveRatio="true">
                       <Image url="@images/questionMark.png" />
                   </ImageView>
               </graphic>
           </Button>
-
-      </children>
    </HBox>
     <!-- Title -->
     <Text text="Braindeck">
