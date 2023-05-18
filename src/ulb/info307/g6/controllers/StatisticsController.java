@@ -3,7 +3,6 @@ package ulb.info307.g6.controllers;
 import javafx.stage.Stage;
 import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.models.database.StatisticsDao;
-import ulb.info307.g6.views.Popup;
 import ulb.info307.g6.views.Statistics;
 
 public class StatisticsController extends ControllerWithDeckList implements Statistics.StatisticsListener  {
@@ -23,17 +22,13 @@ public class StatisticsController extends ControllerWithDeckList implements Stat
 
     @Override
     public void showGlobalStatistics() {
-        try {
-            int nbDecks = deckDatabase.getNumberOfDecks();
-            int nbCards = deckDatabase.getTotalNumberOfCards();
-            int dayStreak = statisticsDatabase.getCurrentDayStreak();
-            int longestDayStreak = statisticsDatabase.getLongestDayStreak();
-            long totalTimeSpent = deckDatabase.getTotalTimeSpent();
+        int nbDecks = deckDatabase.getNumberOfDecks();
+        int nbCards = deckDatabase.getTotalNumberOfCards();
+        int dayStreak = statisticsDatabase.getCurrentDayStreak();
+        int longestDayStreak = statisticsDatabase.getLongestDayStreak();
+        long totalTimeSpent = deckDatabase.getTotalTimeSpent();
 
-            statisticsView.setGlobalStatistics(nbDecks, nbCards, dayStreak, longestDayStreak, totalTimeSpent);
-        } catch (Exception e) {
-            new Popup(e.getMessage()).showAndWait();
-        }
+        statisticsView.setGlobalStatistics(nbDecks, nbCards, dayStreak, longestDayStreak, totalTimeSpent);
     }
 
     @Override
