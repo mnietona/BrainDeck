@@ -8,9 +8,9 @@
 
 <HBox minHeight="720.0" minWidth="1280.0" spacing="5.0" stylesheets="@menusStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Study">
     <!-- Left pane : list of decks + home -->
-    <VBox alignment="CENTER" spacing="5.0">
-        <ListView id="deckListView" fx:id="deckListView" prefWidth="207.0" VBox.vgrow="ALWAYS" />
-        <Button onAction="#clickHome" prefWidth="169.0" text="Home">
+    <VBox alignment="CENTER" spacing="5.0" prefWidth="225">
+        <ListView id="deckListView" fx:id="deckListView" VBox.vgrow="ALWAYS" />
+        <Button onAction="#clickHome">
             <graphic>
                 <ImageView fitHeight="35.0" preserveRatio="true">
                     <Image url="@images/home.png" />

@@ -26,6 +26,8 @@ public class Study extends ViewWithDeckList {
     private Slider knowledgeLvlSlider;
     @FXML
     private Button buttonFlipCard, buttonNextCard;
+    @FXML
+    private ImageView flipButtonIcon;
     private StudyListener listener;
 
     @Override
@@ -123,6 +125,10 @@ public class Study extends ViewWithDeckList {
 
     public void setColorWebView() {
         cardWebView.setPageFill(Color.TRANSPARENT);
+    }
+
+    public void turnFlipIcon() {
+        flipButtonIcon.setRotate(flipButtonIcon.getRotate() + 180);
     }
 
     @Override
