@@ -1,11 +1,13 @@
 package ulb.info307.g6.models;
 
 import java.time.LocalDate;
+import java.util.Random;
+
 import org.dizitart.no2.objects.Id;
 
 public class Statistics {
     @Id
-    private final long id = 1;
+    private final long id;
     private int currentDayStreak, longestDayStreak;
     private LocalDate previousStartupDate;  // Day stored in database
 
@@ -14,6 +16,7 @@ public class Statistics {
      * A streak starts at 1.
      */
     public Statistics() {
+        this.id = new Random().nextLong();
         currentDayStreak = 1;
         longestDayStreak = 1;
         previousStartupDate = LocalDate.now();
