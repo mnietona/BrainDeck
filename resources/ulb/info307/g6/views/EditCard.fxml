@@ -10,9 +10,9 @@
     <!-- Left pane : list of decks + home -->
     <VBox alignment="CENTER" spacing="5.0">
         <ListView fx:id="cardListView" prefWidth="169.0" VBox.vgrow="ALWAYS" />
-        <Button fx:id="homeButton" contentDisplay="LEFT" onAction="#clickBack" prefWidth="169.0" text="Back">
+        <Button onAction="#clickBack" prefWidth="169.0" text="Back">
             <graphic>
-                <ImageView fx:id="homeImg" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-25.0">
+                <ImageView fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-25.0">
                     <Image url="@images/back.png" />
                 </ImageView>
             </graphic>
@@ -50,7 +50,7 @@
         <HBox alignment="TOP_CENTER" spacing="5.0">
             <Button fx:id="buttonEditCard" contentDisplay="GRAPHIC_ONLY" onAction="#clickEditCard" text="Edit card">
                 <graphic>
-                    <ImageView fx:id="editImg" fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
+                    <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/edit.png" />
                     </ImageView>
                 </graphic>
@@ -58,7 +58,7 @@
             </Button>
             <Button fx:id="buttonCreateCard" contentDisplay="GRAPHIC_ONLY" onAction="#clickCreateCard" text="Create card">
                 <graphic>
-                    <ImageView fx:id="createImg" fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
+                    <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/new.png" />
                     </ImageView>
                 </graphic>
@@ -66,7 +66,7 @@
             </Button>
             <Button fx:id="buttonRemoveCard" contentDisplay="GRAPHIC_ONLY" onAction="#clickRemoveCard" text="Remove card">
                 <graphic>
-                    <ImageView fx:id="removeImg" fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
+                    <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/remove.png" />
                     </ImageView>
                 </graphic>
@@ -74,8 +74,8 @@
             </Button>
             <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#clickPreview" text="Preview">
                 <graphic>
-                    <ImageView fx:id="previewImg" fitHeight="30.0" fitWidth="30.0" preserveRatio="true" rotate="90.0">
-                        <Image url="@images/play.png" />
+                    <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
+                        <Image url="@images/visuel.jpg" />
                     </ImageView>
                 </graphic>
                 <tooltip><Tooltip style="-fx-font-size: 25px;" text="Preview Card" /></tooltip>

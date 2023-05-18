@@ -2,7 +2,6 @@ package ulb.info307.g6.models.database;
 
 import org.dizitart.no2.objects.ObjectRepository;
 import ulb.info307.g6.models.Statistics;
-import ulb.info307.g6.views.Popup;
 
 public class StatisticsDao {
     final ObjectRepository<Statistics> con = DatabaseConnection.getConnection().getRepository(Statistics.class);
@@ -34,18 +33,16 @@ public class StatisticsDao {
         try {
             return con.find().toList().get(0).getCurrentDayStreak();
         } catch (Exception e) {
-            new Popup("No statistics found in database.").showAndWait();
+            return 0;
         }
-        return 0;
     }
 
     public int getLongestDayStreak() {
         try {
             return con.find().toList().get(0).getLongestDayStreak();
         } catch (Exception e) {
-            new Popup("No statistics found in database.").showAndWait();
+            return 0;
         }
-        return 0;
     }
 
     /**
