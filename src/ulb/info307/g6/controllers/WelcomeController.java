@@ -7,7 +7,6 @@ import ulb.info307.g6.views.Welcome;
 
 public class WelcomeController extends Controller implements Welcome.WelcomeListener  {
     public final StatisticsDao statisticsDatabase = new StatisticsDao();
-
     public final Welcome welcomeView;
 
     public WelcomeController(Stage stage) {
@@ -58,5 +57,10 @@ public class WelcomeController extends Controller implements Welcome.WelcomeList
     @Override
     public void achievementsButtonAction() {
         new AchievementsController(stage);
+    }
+
+    @Override
+    public void helpButtonAction() {
+        new HelpController(stage);
     }
 }
