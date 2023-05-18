@@ -36,7 +36,7 @@
         </VBox>
 
         <HBox alignment="TOP_CENTER" spacing="10">
-            <Button fx:id="buttonEdit" contentDisplay="GRAPHIC_ONLY" onAction="#clickEdit" text="Edit deck">
+            <Button fx:id="buttonEdit" contentDisplay="GRAPHIC_ONLY" onAction="#clickEdit">
                 <graphic>
                     <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/edit.png" />
@@ -44,7 +44,7 @@
                 </graphic>
                 <tooltip><Tooltip style="-fx-font-size: 18px;" text="Edit Deck" /></tooltip>
             </Button>
-            <Button contentDisplay="GRAPHIC_ONLY" onAction="#clickCreate" text="Create deck">
+            <Button contentDisplay="GRAPHIC_ONLY" onAction="#clickCreate">
                 <graphic>
                     <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/new.png" />
@@ -52,7 +52,7 @@
                 </graphic>
                 <tooltip><Tooltip style="-fx-font-size: 18px;" text="Create Deck" /></tooltip>
             </Button>
-            <Button fx:id="buttonRemove" contentDisplay="GRAPHIC_ONLY" onAction="#clickRemove" text="Remove deck">
+            <Button fx:id="buttonRemove" contentDisplay="GRAPHIC_ONLY" onAction="#clickRemove">
                 <graphic>
                     <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/remove.png" />
@@ -60,7 +60,7 @@
                 </graphic>
                 <tooltip><Tooltip style="-fx-font-size: 18px;" text="Remove Deck" /></tooltip>
             </Button>
-            <Button fx:id="buttonResetProba" contentDisplay="GRAPHIC_ONLY" onAction="#clickResetProba" text="Reset probabilities">
+            <Button fx:id="buttonResetProba" contentDisplay="GRAPHIC_ONLY" onAction="#clickResetProba">
                 <graphic>
                     <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/stats.png" />
@@ -68,7 +68,7 @@
                 </graphic>
                 <tooltip><Tooltip style="-fx-font-size: 18px;" text="Reset Probabilities" /></tooltip>
             </Button>
-            <Button contentDisplay="GRAPHIC_ONLY" onAction="#clickImport" text="Import">
+            <Button contentDisplay="GRAPHIC_ONLY" onAction="#clickImport">
                 <graphic>
                     <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/import.png" />
@@ -76,7 +76,7 @@
                 </graphic>
                 <tooltip><Tooltip style="-fx-font-size: 18px;" text="Import a deck" /></tooltip>
             </Button>
-            <Button fx:id="buttonExport" contentDisplay="GRAPHIC_ONLY" onAction="#clickExport" text="Export">
+            <Button fx:id="buttonExport" contentDisplay="GRAPHIC_ONLY" onAction="#clickExport">
                 <graphic>
                     <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/export.png" />

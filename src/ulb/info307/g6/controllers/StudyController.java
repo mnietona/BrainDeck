@@ -104,6 +104,7 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
             flipIndex = (flipIndex + 1) % (numberOfFlipsAuthorizedForCurrentCard + 1);
             updateDisplayArea();
             studyView.activateSlider(flipIndex == numberOfFlipsAuthorizedForCurrentCard);
+            studyView.turnFlipIcon();
         }
     }
     @Override

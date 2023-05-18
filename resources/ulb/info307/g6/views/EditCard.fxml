@@ -13,15 +13,9 @@
         <Button onAction="#clickBack" prefWidth="169.0" text="Back">
             <graphic>
                 <ImageView fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-25.0">
-                    <Image url="@images/back.png" />
+                    <Image url="@images/home.png" />
                 </ImageView>
             </graphic>
-            <VBox.margin>
-                <Insets />
-            </VBox.margin>
-            <padding>
-                <Insets bottom="-4.0" top="-4.0" />
-            </padding>
         </Button>
     </VBox>
 
@@ -52,7 +46,7 @@
         </VBox>
 
         <HBox alignment="TOP_CENTER" spacing="5.0">
-            <Button fx:id="buttonEditCard" contentDisplay="GRAPHIC_ONLY" onAction="#clickEditCard" text="Edit card">
+            <Button fx:id="buttonEditCard" contentDisplay="GRAPHIC_ONLY" onAction="#clickEditCard">
                 <graphic>
                     <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/edit.png" />
@@ -60,7 +54,7 @@
                 </graphic>
                 <tooltip><Tooltip style="-fx-font-size: 18px;" text="Edit Card" /></tooltip>
             </Button>
-            <Button fx:id="buttonCreateCard" contentDisplay="GRAPHIC_ONLY" onAction="#clickCreateCard" text="Create card">
+            <Button fx:id="buttonCreateCard" contentDisplay="GRAPHIC_ONLY" onAction="#clickCreateCard">
                 <graphic>
                     <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/new.png" />
@@ -68,7 +62,7 @@
                 </graphic>
                 <tooltip><Tooltip style="-fx-font-size: 18px;" text="Create Card" /></tooltip>
             </Button>
-            <Button fx:id="buttonRemoveCard" contentDisplay="GRAPHIC_ONLY" onAction="#clickRemoveCard" text="Remove card">
+            <Button fx:id="buttonRemoveCard" contentDisplay="GRAPHIC_ONLY" onAction="#clickRemoveCard">
                 <graphic>
                     <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/remove.png" />
@@ -76,7 +70,7 @@
                 </graphic>
                 <tooltip><Tooltip style="-fx-font-size: 18px;" text="Remove Card" /></tooltip>
             </Button>
-            <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#clickPreview" text="Preview">
+            <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#clickPreview">
                 <graphic>
                     <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                         <Image url="@images/visuel.jpg" />
