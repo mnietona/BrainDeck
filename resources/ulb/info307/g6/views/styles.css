@@ -64,17 +64,7 @@
     -fx-underline: true;
 }
 
-.normal-text {  /* .text will overwrite the listview cell texts */
+.normal-text {  /* plain ".text" will overwrite the listview cell texts */
     -fx-fill: #c7d5e0;
-    -fx-font-size: 20px;
-}
-
-.label {
-    -fx-text-fill: #c7d5e0;
-    -fx-font-size: 20px;
-}
-
-.slider {
-    -fx-text-fill: #c7d5e0;
     -fx-font-size: 20px;
 }

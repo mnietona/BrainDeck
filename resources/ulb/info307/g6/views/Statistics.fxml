@@ -63,7 +63,7 @@
                     </ImageView>
                 </graphic>
                 <tooltip>
-                    <Tooltip text="Select your knowledge level of this card" />
+                    <Tooltip text="Show cards statistics" />
                 </tooltip>
             <VBox.margin>
                <Insets top="10.0" />

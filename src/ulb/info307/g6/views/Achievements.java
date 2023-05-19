@@ -17,9 +17,6 @@ public class Achievements implements View {
 
     @FXML
     private VBox vboxAchiev;
-    @FXML
-    private final Image backgroundImage = new Image("/ulb/info307/g6/views/images/main_bckg.jpg");
-    private final BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
     private AchievementsListener listener;
 
     @FXML
@@ -72,10 +69,6 @@ public class Achievements implements View {
         }
     }
 
-    public void setBackgroundImage() {
-        vboxAchiev.setBackground(new Background(background));
-    }
-
     @Override
     public void setListener(Object listener) {
         this.listener = (Achievements.AchievementsListener) listener;
@@ -86,4 +79,3 @@ public class Achievements implements View {
         void setProgressBars();
     }
 }
-

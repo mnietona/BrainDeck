@@ -25,7 +25,7 @@
 
         <Slider fx:id="knowledgeLvlSlider" blockIncrement="1.0" majorTickUnit="1.0" max="4.0" maxWidth="350.0" minWidth="350.0" minorTickCount="0" prefWidth="350.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="2.0">
             <tooltip>
-                <Tooltip text="Show cards statistics" />
+                <Tooltip text="Select your knowledge level of this card" />
             </tooltip>
         </Slider>
 
