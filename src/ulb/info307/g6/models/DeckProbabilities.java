@@ -1,5 +1,9 @@
 package ulb.info307.g6.models;
 
+/**
+ * The DeckProbabilities class extends Deck and adds probability-related functionality for managing card probabilities,
+ * including initialization, normalization, updating based on knowledge levels, and random card selection based on probabilities.
+ */
 public class DeckProbabilities extends Deck {
     public DeckProbabilities(Deck deck) {
         super(deck);

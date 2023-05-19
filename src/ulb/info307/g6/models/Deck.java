@@ -9,6 +9,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+/**
+ *The Deck class represents a collection of cards. It contains fields for the deck's ID, name, and a list of cards.
+ * It provides methods for adding and removing cards,
+ * retrieving cards by index, and calculating the knowledge level and time spent on the deck.
+ */
+
 public class Deck implements Serializable {
     @Id
     private final long id;

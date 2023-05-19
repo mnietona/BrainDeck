@@ -5,6 +5,11 @@ import java.util.Random;
 
 import org.dizitart.no2.objects.Id;
 
+/**
+ * The Statistics class represents the statistics of the user.
+ * It includes fields for the current day streak, the longest day streak, and the previous startup date.
+ * Methods are provided for updating the day streak based on the last startup date and for resetting the streak when necessary.
+ */
 public class Statistics {
     @Id @SuppressWarnings({"unused", "FieldCanBeLocal"}) // Necessary id to use Nitrite database
     private final long id;

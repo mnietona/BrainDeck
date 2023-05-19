@@ -7,6 +7,13 @@ import java.util.Random;
 import java.time.Duration;
 import java.time.Instant;
 
+/**
+ * Model class for a card.
+ * A card is a question with its answer.
+ * It also contains the probability of the user to answer correctly to the question.
+ * The probability is updated after each answer.
+ */
+
 public class Card implements Serializable {
     @Id
     private final long id;
