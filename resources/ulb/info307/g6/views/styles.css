@@ -75,7 +75,14 @@
 }
 
 .progress-bar {
-    -fx-accent: #66c0f4;
+    -fx-accent: #c7d5e0;
+    -fx-pref-height: 20px;
+    -fx-border-color: #c7d5e0;
+    -fx-border-radius: 2px;
+}
+
+.progress-bar .track {
+    -fx-background-color: transparent;
 }
 
 .scroll-pane {
@@ -85,6 +92,13 @@
 }
 
 .scroll-bar {
+    -fx-background-color: linear-gradient(to top, #1b2838, #2a475e);
+    -fx-background-radius: 8px;
+}
+
+.scroll-bar .thumb {
     -fx-background-color: #c7d5e0;
     -fx-background-radius: 8px;
 }
+
+
