@@ -5,6 +5,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 
 public class Achievements implements View {
     @FXML
@@ -56,18 +57,30 @@ public class Achievements implements View {
 
         int maxLength = 0;
         for (Label label : labels) {
-            if (label.getText().length() > maxLength) {
-                maxLength = label.getText().length();
+            if (getTextLength(label.getText()) > maxLength) {
+                maxLength = getTextLength(label.getText());
             }
         }
 
-        for (int i = 0; i < labels.length; i++) {
-            int difference = maxLength - labels[i].getText().length() + 3;
-            if (i>=3) difference += 3;
-            if (i>=4) difference += 2;
+        for (Label label : labels) {
+            int difference = maxLength - getTextLength(label.getText()) + 3;
+            int emptySpaceLength = getTextLength(" ");
+            difference = difference / emptySpaceLength;
             String spaces = " ".repeat(difference);
-            labels[i].setText(labels[i].getText() + spaces);
+            label.setText(label.getText() + spaces);
         }
+    }
+
+    int getTextLength(String text) {
+        double totalTextLength = 0;
+        for (int i = 0; i < text.length(); i++) {
+            String character = text.substring(i, i + 1);
+            Text textNode = new Text(character);
+
+            double characterLength = textNode.getLayoutBounds().getWidth();
+            totalTextLength += characterLength;
+        }
+        return (int) totalTextLength;
     }
 
     @Override
