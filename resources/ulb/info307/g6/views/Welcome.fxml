@@ -26,14 +26,14 @@
         <Button contentDisplay="TOP" onAction="#editButtonAction" prefHeight="150.0" prefWidth="150.0" text="Edit">
             <graphic>
                 <ImageView fitHeight="100.0" fitWidth="100.0" preserveRatio="true">
-                    <Image url="@images/edit-welcome.png" />
+                    <Image url="@images/editWelcome.png" />
                 </ImageView>
             </graphic>
         </Button>
         <Button contentDisplay="TOP" onAction="#statisticsButtonAction" prefHeight="150.0" prefWidth="150.0" text="Statistics">
             <graphic>
                 <ImageView fitHeight="100.0" fitWidth="100.0" preserveRatio="true">
-                    <Image url="@images/stats.png" />
+                    <Image url="@images/statisticsWelcome.png" />
                 </ImageView>
             </graphic>
         </Button>

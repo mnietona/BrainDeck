@@ -12,7 +12,7 @@
         <ListView fx:id="deckListView" prefWidth="225.0" VBox.vgrow="ALWAYS" />
         <Button onAction="#clickHome">
             <graphic>
-                <ImageView fitHeight="30.0" preserveRatio="true">
+                <ImageView fitHeight="25.0" preserveRatio="true">
                     <Image url="@images/home.png" />
                 </ImageView>
             </graphic>
@@ -32,7 +32,7 @@
         <HBox alignment="TOP_CENTER" spacing="10">
             <Button fx:id="buttonEdit" contentDisplay="GRAPHIC_ONLY" onAction="#clickEdit">
                 <graphic>
-                    <ImageView fitHeight="30.0" preserveRatio="true">
+                    <ImageView fitHeight="25.0" preserveRatio="true">
                         <Image url="@images/edit.png" />
                     </ImageView>
                 </graphic>
@@ -40,7 +40,7 @@
             </Button>
             <Button contentDisplay="GRAPHIC_ONLY" onAction="#clickCreate">
                 <graphic>
-                    <ImageView fitHeight="30.0" preserveRatio="true">
+                    <ImageView fitHeight="25.0" preserveRatio="true">
                         <Image url="@images/plus.png" />
                     </ImageView>
                 </graphic>
@@ -48,7 +48,7 @@
             </Button>
             <Button fx:id="buttonRemove" contentDisplay="GRAPHIC_ONLY" onAction="#clickRemove">
                 <graphic>
-                    <ImageView fitHeight="30.0" preserveRatio="true" rotate="45">
+                    <ImageView fitHeight="25.0" preserveRatio="true" rotate="45">
                         <Image url="@images/plus.png" />  <!-- delete icon is a rotated plus icon -->
                     </ImageView>
                 </graphic>
@@ -56,7 +56,7 @@
             </Button>
             <Button fx:id="buttonResetProba" contentDisplay="GRAPHIC_ONLY" onAction="#clickResetProba">
                 <graphic>
-                    <ImageView fitHeight="30.0" preserveRatio="true">
+                    <ImageView fitHeight="25.0" preserveRatio="true">
                         <Image url="@images/reset.png" />
                     </ImageView>
                 </graphic>
@@ -64,7 +64,7 @@
             </Button>
             <Button contentDisplay="GRAPHIC_ONLY" onAction="#clickImport">
                 <graphic>
-                    <ImageView fitHeight="30.0" preserveRatio="true">
+                    <ImageView fitHeight="25.0" preserveRatio="true">
                         <Image url="@images/import.png" />
                     </ImageView>
                 </graphic>
@@ -72,7 +72,7 @@
             </Button>
             <Button fx:id="buttonExport" contentDisplay="GRAPHIC_ONLY" onAction="#clickExport">
                 <graphic>
-                    <ImageView fitHeight="30.0" preserveRatio="true">
+                    <ImageView fitHeight="25.0" preserveRatio="true">
                         <Image url="@images/export.png" />
                     </ImageView>
                 </graphic>

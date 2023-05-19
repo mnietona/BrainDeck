@@ -73,7 +73,7 @@
             <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#clickPreview">
                 <graphic>
                     <ImageView fitHeight="25.0" preserveRatio="true">
-                        <Image url="@images/preview.png" />
+                        <Image url="@images/view.png" />
                     </ImageView>
                 </graphic>
                 <tooltip><Tooltip style="-fx-font-size: 18px;" text="Preview Card" /></tooltip>
