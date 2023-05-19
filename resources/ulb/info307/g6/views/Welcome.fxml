@@ -7,20 +7,20 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" minHeight="720.0" minWidth="1280.0" stylesheets="@welcomeStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Welcome">
+<VBox alignment="CENTER" minHeight="720.0" minWidth="1280.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Welcome">
     <!-- Help button -->
     <HBox alignment="CENTER_RIGHT">
          <Button onAction="#helpButtonAction">
               <graphic>
                   <ImageView fitHeight="25.0" preserveRatio="true">
-                      <Image url="@images/question-mark-light.png" />
+                      <Image url="@icons/question-mark-light.png" />
                   </ImageView>
               </graphic>
           </Button>
    </HBox>
 
     <!-- Title -->
-    <Text style="-fx-fill: #c7d5e0; -fx-font-size: 75;" text="BRAINDECK" textAlignment="CENTER" />
+    <Text text="BRAINDECK" textAlignment="CENTER" styleClass="title" />
 
     <!-- Menu buttons -->
     <HBox alignment="CENTER" spacing="5.0" VBox.vgrow="ALWAYS">
@@ -55,14 +55,14 @@
     </HBox>
 
     <!-- Stats on main menu -->
-    <HBox alignment="CENTER">
-      <StackPane prefHeight="150.0" prefWidth="200.0">
-          <Text fx:id="mainMenuStat1" style="-fx-fill: #c7d5e0; -fx-font-size: 20" textAlignment="CENTER" translateY="-10.0" />
-          <Circle fill="#1f93ff00" radius="65.0" stroke="#c7d5e0" strokeType="INSIDE" strokeWidth="2.0" />
+    <HBox alignment="CENTER" spacing="50">
+      <StackPane>
+          <Text fx:id="mainMenuStat1" styleClass="statText" />
+          <Circle radius="65.0" styleClass="statCircle" />
       </StackPane>
-      <StackPane prefHeight="150.0" prefWidth="200.0">
-          <Text fx:id="mainMenuStat2" style="-fx-fill: #c7d5e0; -fx-font-size: 20" textAlignment="CENTER" translateY="-10.0" />
-          <Circle fill="#1f93ff00" radius="65.0" stroke="#c7d5e0" strokeType="INSIDE" strokeWidth="2.0" />
+      <StackPane>
+          <Text fx:id="mainMenuStat2" styleClass="statText" />
+          <Circle radius="65.0" styleClass="statCircle" />
       </StackPane>
     </HBox>
 
