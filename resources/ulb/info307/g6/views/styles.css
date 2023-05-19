@@ -69,10 +69,36 @@
     -fx-font-size: 20px;
 }
 
-.text-area {
+.label {
+    -fx-text-fill: #c7d5e0;
     -fx-font-size: 20px;
 }
 
-.text-field {
-    -fx-font-size: 20px;
+.progress-bar {
+    -fx-accent: #c7d5e0;
+    -fx-pref-height: 20px;
+    -fx-border-color: #c7d5e0;
+    -fx-border-radius: 2px;
 }
+
+.progress-bar .track {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+}
+
+.scroll-bar {
+    -fx-background-color: linear-gradient(to top, #1b2838, #2a475e);
+    -fx-background-radius: 8px;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #c7d5e0;
+    -fx-background-radius: 8px;
+}
+
+

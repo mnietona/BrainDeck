@@ -2,10 +2,10 @@ package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-import javafx.scene.image.*;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 
 public class Achievements implements View {
     @FXML
@@ -14,11 +14,7 @@ public class Achievements implements View {
     private ImageView achievement1, achievement2, achievement3, achievement4, achievement5, achievement6, achievement7, achievement8, achievement9, achievement10, achievement11, achievement12, achievement13, achievement14;
     @FXML
     private Label label1, label2, label3, label4, label5, label6, label7, label8, label9, label10, label11, label12, label13, label14;
-
-    @FXML
-    private VBox vboxAchiev;
     private AchievementsListener listener;
-
     @FXML
     private void clickHome() {
         listener.clickHome();
@@ -39,14 +35,20 @@ public class Achievements implements View {
         for (int i = 0; i < active.length; i++) {
             if (active[i]) {
                 achievementImages[i].setVisible(true);
-                if (achieved[i]) {
-                    Image newImage = new Image("/ulb/info307/g6/views/images/succes.png");
-                    achievementImages[i].setImage(newImage);
+                if (!achieved[i]) {
+
+                    ColorAdjust colorAdjust = new ColorAdjust();
+                    colorAdjust.setSaturation(-1); // Set saturation to -1 for full grayness
+                    achievementImages[i].setEffect(colorAdjust);
                 }
             }
             else {
                 labels[i].setStyle("-fx-text-fill: gray;");
             }
+        }
+        for (ImageView imageView : achievementImages) {
+            imageView.setFitHeight(75);
+            imageView.setFitWidth(75);
         }
     }
 
@@ -55,18 +57,30 @@ public class Achievements implements View {
 
         int maxLength = 0;
         for (Label label : labels) {
-            if (label.getText().length() > maxLength) {
-                maxLength = label.getText().length();
+            if (getTextLength(label.getText()) > maxLength) {
+                maxLength = getTextLength(label.getText());
             }
         }
 
-        for (int i = 0; i < labels.length; i++) {
-            int difference = maxLength - labels[i].getText().length() + 3;
-            if (i>=3) difference += 3;
-            if (i>=4) difference += 2;
+        for (Label label : labels) {
+            int difference = maxLength - getTextLength(label.getText()) + 3;
+            int emptySpaceLength = getTextLength(" ");
+            difference = difference / emptySpaceLength;
             String spaces = " ".repeat(difference);
-            labels[i].setText(labels[i].getText() + spaces);
+            label.setText(label.getText() + spaces);
         }
+    }
+
+    int getTextLength(String text) {
+        double totalTextLength = 0;
+        for (int i = 0; i < text.length(); i++) {
+            String character = text.substring(i, i + 1);
+            Text textNode = new Text(character);
+
+            double characterLength = textNode.getLayoutBounds().getWidth();
+            totalTextLength += characterLength;
+        }
+        return (int) totalTextLength;
     }
 
     @Override
