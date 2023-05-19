@@ -13,7 +13,6 @@
     -fx-text-fill: #c7d5e0;
     -fx-font-size: 20px;
 }
-
 .button:hover {
     -fx-background-color: #66c0f4;
     -fx-text-fill: #1b2838;
@@ -44,11 +43,9 @@
     -fx-font-size: 20px;
     -fx-text-fill: #c7d5e0;
 }
-
 .list-cell:hover {
     -fx-text-fill: #66c0f4;
 }
-
 .list-cell:selected {
     -fx-background-color: #66c0f4;
     -fx-background-radius: 8px;
@@ -67,7 +64,17 @@
     -fx-underline: true;
 }
 
-.text {
+.normal-text {  /* .text will overwrite the listview cell texts */
     -fx-fill: #c7d5e0;
+    -fx-font-size: 20px;
+}
+
+.label {
+    -fx-text-fill: #c7d5e0;
+    -fx-font-size: 20px;
+}
+
+.slider {
+    -fx-text-fill: #c7d5e0;
     -fx-font-size: 20px;
 }

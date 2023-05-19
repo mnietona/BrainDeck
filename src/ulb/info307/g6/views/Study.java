@@ -19,8 +19,6 @@ import java.util.Objects;
  */
 public class Study extends ViewWithDeckList {
     @FXML
-    private Label knowledgeLvlSliderTitle;
-    @FXML
     private WebView cardWebView; //probleme a l'initialisation
     @FXML
     private Slider knowledgeLvlSlider;
@@ -52,7 +50,6 @@ public class Study extends ViewWithDeckList {
 
     public void activateSlider(boolean activate) {
         knowledgeLvlSlider.setDisable(!activate);
-        knowledgeLvlSliderTitle.setDisable(!activate);
     }
 
     public void activateActionButtons(boolean activate) {
