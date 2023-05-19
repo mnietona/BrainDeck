@@ -7,6 +7,14 @@
     -fx-font-size: 75;
 }
 
+.text-area {
+    -fx-font-size: 20px;
+}
+
+.text-field {
+    -fx-font-size: 20px;
+}
+
 .button {
     -fx-background-color: transparent;
     -fx-background-radius: 8px;
@@ -100,5 +108,4 @@
     -fx-background-color: #c7d5e0;
     -fx-background-radius: 8px;
 }
-
 
