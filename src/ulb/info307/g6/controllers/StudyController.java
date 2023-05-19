@@ -82,7 +82,6 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
     @Override
     public void clickHome() {
         if (currentDeck != null) {
-            updateCardKnowledgeLevel();
             updateTimeSpent();
         }
         new WelcomeController(stage);
@@ -104,8 +103,8 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
     @Override
     public void clickFlipCard() {
         if (currentDeck != null && !currentDeck.isEmpty()) {
-            updateSliderPosition();
             updateCardKnowledgeLevel();
+            updateSliderPosition();
             // Increment flip index and limit it to the authorized number of flips
             flipIndex = (flipIndex + 1) % (numberOfFlipsAuthorizedForCurrentCard + 1);
             updateDisplayArea();
