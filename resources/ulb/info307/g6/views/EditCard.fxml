@@ -6,82 +6,71 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox minHeight="720.0" minWidth="1280.0" spacing="5.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.EditCard">
-    <!-- Left pane : list of decks + home -->
+<HBox minHeight="720.0" minWidth="1280.0" spacing="10.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.EditCard">
+    <!-- Left pane : list of cards + back -->
     <VBox alignment="CENTER" spacing="5.0">
         <ListView fx:id="cardListView" prefWidth="225.0" VBox.vgrow="ALWAYS" />
         <Button onAction="#clickBack" >
             <graphic>
-                <ImageView fitHeight="25.0" preserveRatio="true">
-                    <Image url="@images/back.png" />
-                </ImageView>
+                <ImageView fitHeight="25.0" preserveRatio="true"><Image url="@icons/back-light.png" /></ImageView>
             </graphic>
         </Button>
     </VBox>
 
-    <!-- Right pane : textboxes + edit/create/remove card -->
-    <VBox alignment="TOP_CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
-        <VBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
-            <HBox alignment="CENTER_LEFT" spacing="10.0">
-                <Label text="Question">
-                    <font>
-                        <Font size="20.0" />
-                    </font>
-                </Label>
-                <CheckBox fx:id="gapFillCheckBox" text="Gap-fill">
-                    <!-- Shows text when you place mouse cursor on an element, for exemple a checkbox -->
-                    <tooltip>
-                        <Tooltip style="-fx-font-size: 18px;" text="Check this box if you want to create a card with a gap to fill, place an '_' where the gaps are in the question and separate answers with a ','" />
-                    </tooltip>
-                </CheckBox>
-            </HBox>
-            <TextArea fx:id="questionInput" onKeyTyped="#inputChange" VBox.vgrow="ALWAYS" />
+    <!-- Right pane -->
+    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+        <!-- Question title + checkboxes -->
+        <HBox spacing="5.0" alignment="CENTER">
+            <Text text="Question" styleClass="normal-text" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Text text="Gap-Fill card" styleClass="normal-text" />
+            <CheckBox fx:id="gapFillCheckBox">
+                <tooltip><Tooltip text="Check this box if you want to create a card with a gap to fill, place an '_' where the gaps are in the question and separate answers with a ','" /></tooltip>
+            </CheckBox>
+        </HBox>
+        <TextArea fx:id="questionInput" onKeyTyped="#inputChange" VBox.vgrow="ALWAYS" />
 
-            <Label text="Answer">
-                <font>
-                    <Font size="20.0" />
-                </font>
-            </Label>
-            <TextArea fx:id="answerInput" onKeyTyped="#inputChange" VBox.vgrow="ALWAYS" />
-        </VBox>
+        <!-- Answer title + checkboxes -->
+        <HBox spacing="5.0" alignment="CENTER">
+            <Text text="Answer" styleClass="normal-text" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Text text="Multiple-choice question" styleClass="normal-text" />
+            <CheckBox >
+                <tooltip><Tooltip text="Create a multiple choice card by ..." /></tooltip>
+            </CheckBox>
+        </HBox>
+        <TextArea fx:id="answerInput" onKeyTyped="#inputChange" VBox.vgrow="ALWAYS" />
 
+        <!-- Buttons -->
         <HBox alignment="TOP_CENTER" spacing="5.0">
-            <Button fx:id="buttonEditCard" contentDisplay="GRAPHIC_ONLY" onAction="#clickEditCard">
-                <graphic>
-                    <ImageView fitHeight="25.0" preserveRatio="true">
-                        <Image url="@images/edit.png" />
-                    </ImageView>
-                </graphic>
-                <tooltip><Tooltip style="-fx-font-size: 18px;" text="Edit Card" /></tooltip>
-            </Button>
             <Button fx:id="buttonCreateCard" contentDisplay="GRAPHIC_ONLY" onAction="#clickCreateCard">
                 <graphic>
-                    <ImageView fitHeight="25.0" preserveRatio="true">
-                        <Image url="@images/plus.png" />
-                    </ImageView>
+                    <ImageView fitHeight="25.0" preserveRatio="true"><Image url="@icons/plus-light.png" /></ImageView>
                 </graphic>
-                <tooltip><Tooltip style="-fx-font-size: 18px;" text="Create Card" /></tooltip>
+                <tooltip><Tooltip text="Create Card" /></tooltip>
+            </Button>
+            <Button fx:id="buttonEditCard" contentDisplay="GRAPHIC_ONLY" onAction="#clickEditCard">
+                <graphic>
+                    <ImageView fitHeight="25.0" preserveRatio="true"><Image url="@icons/edit-light.png" /></ImageView>
+                </graphic>
+                <tooltip><Tooltip text="Edit Card" /></tooltip>
             </Button>
             <Button fx:id="buttonRemoveCard" contentDisplay="GRAPHIC_ONLY" onAction="#clickRemoveCard">
                 <graphic>
-                    <ImageView fitHeight="25.0" preserveRatio="true" rotate="45">
-                        <Image url="@images/plus.png" />
-                    </ImageView>
+                    <ImageView fitHeight="25.0" preserveRatio="true" rotate="45"><Image url="@icons/plus-light.png" /></ImageView>
                 </graphic>
-                <tooltip><Tooltip style="-fx-font-size: 18px;" text="Remove Card" /></tooltip>
+                <tooltip><Tooltip text="Remove Card" /></tooltip>
             </Button>
-            <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#clickPreview">
+            <Button contentDisplay="GRAPHIC_ONLY" onAction="#clickPreview">
                 <graphic>
-                    <ImageView fitHeight="25.0" preserveRatio="true">
-                        <Image url="@images/view.png" />
-                    </ImageView>
+                    <ImageView fitHeight="25.0" preserveRatio="true"><Image url="@icons/preview-light.png" /></ImageView>
                 </graphic>
-                <tooltip><Tooltip style="-fx-font-size: 18px;" text="Preview Card" /></tooltip>
+                <tooltip><Tooltip text="Preview Card" /></tooltip>
             </Button>
         </HBox>
     </VBox>
 
     <padding>
-        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
     </padding>
 </HBox>

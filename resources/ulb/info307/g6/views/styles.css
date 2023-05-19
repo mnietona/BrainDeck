@@ -58,7 +58,7 @@
     -fx-border-radius: 8px;
 }
 
-.big-text {
+.large-text {
     -fx-fill: #c7d5e0;
     -fx-font-size: 35px;
     -fx-underline: true;

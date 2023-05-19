@@ -49,7 +49,7 @@
 
         <!-- Deck statistics -->
         <VBox alignment="CENTER" spacing="5.0" VBox.vgrow="ALWAYS">
-            <Text fx:id="deckStat1" styleClass="big-text" />
+            <Text fx:id="deckStat1" styleClass="large-text" />
             <Text fx:id="deckStat2" styleClass="normal-text" text="Select a deck to see detailed information" />
             <Text fx:id="deckStat3" styleClass="normal-text" />
             <Text fx:id="deckStat4" styleClass="normal-text" />

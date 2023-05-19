@@ -27,28 +27,28 @@
         <Button contentDisplay="TOP" maxWidth="150.0" minWidth="100.0" prefWidth="150.0" onAction="#studyButtonAction" text="Study">
             <graphic>
                 <ImageView fitHeight="100.0" fitWidth="100.0">
-                    <Image url="@images/books.png" />
+                    <Image url="@icons/study-welcome.png" />
                 </ImageView>
             </graphic>
         </Button>
         <Button contentDisplay="TOP" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" onAction="#editButtonAction" text="Edit">
             <graphic>
                 <ImageView fitHeight="100.0" preserveRatio="true">
-                    <Image url="@images/editWelcome.png" />
+                    <Image url="@icons/edit-welcome.png" />
                 </ImageView>
             </graphic>
         </Button>
         <Button contentDisplay="TOP" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" onAction="#statisticsButtonAction" text="Statistics">
             <graphic>
                 <ImageView fitHeight="100.0" preserveRatio="true">
-                    <Image url="@images/statisticsWelcome.png" />
+                    <Image url="@icons/statistics-welcome.png" />
                 </ImageView>
             </graphic>
         </Button>
         <Button contentDisplay="TOP" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" onAction="#achievementsButtonAction" text="Achievements">
             <graphic>
                 <ImageView fitHeight="100.0" preserveRatio="true">
-                    <Image url="@images/trophy.png" />
+                    <Image url="@icons/trophy-welcome.png" />
                 </ImageView>
             </graphic>
         </Button>
