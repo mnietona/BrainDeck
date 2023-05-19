@@ -77,3 +77,14 @@
 .progress-bar {
     -fx-accent: #66c0f4;
 }
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+}
+
+.scroll-bar {
+    -fx-background-color: #c7d5e0;
+    -fx-background-radius: 8px;
+}
