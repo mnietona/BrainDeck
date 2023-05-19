@@ -133,6 +133,7 @@ public class Study extends ViewWithDeckList {
 
     @Override
     protected void actionOnDeckSelection() {
+        cardWebView.setVisible(true);
         listener.deckSelected();
     }
 

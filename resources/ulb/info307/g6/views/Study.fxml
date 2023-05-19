@@ -21,7 +21,7 @@
 
     <!-- Right pane : card + knowledge lvl + flip/next -->
     <VBox alignment="TOP_CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
-        <WebView fx:id="cardWebView" prefHeight="240.0" prefWidth="516.0" VBox.vgrow="ALWAYS" />
+        <WebView fx:id="cardWebView" prefHeight="240.0" prefWidth="516.0" VBox.vgrow="ALWAYS" visible="false" />
 
         <Label fx:id="knowledgeLvlSliderTitle" text="Knowledge level">
             <VBox.margin>
