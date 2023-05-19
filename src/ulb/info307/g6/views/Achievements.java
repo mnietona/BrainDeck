@@ -4,8 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-import javafx.scene.image.*;
 import javafx.scene.control.Label;
 
 public class Achievements implements View {
@@ -15,11 +13,7 @@ public class Achievements implements View {
     private ImageView achievement1, achievement2, achievement3, achievement4, achievement5, achievement6, achievement7, achievement8, achievement9, achievement10, achievement11, achievement12, achievement13, achievement14;
     @FXML
     private Label label1, label2, label3, label4, label5, label6, label7, label8, label9, label10, label11, label12, label13, label14;
-
-    @FXML
-    private VBox vboxAchiev;
     private AchievementsListener listener;
-
     @FXML
     private void clickHome() {
         listener.clickHome();
