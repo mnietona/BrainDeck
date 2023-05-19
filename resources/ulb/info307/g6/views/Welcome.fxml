@@ -26,7 +26,7 @@
         <Button contentDisplay="TOP" onAction="#editButtonAction" prefHeight="150.0" prefWidth="150.0" text="Edit">
             <graphic>
                 <ImageView fitHeight="100.0" fitWidth="100.0" preserveRatio="true">
-                    <Image url="@images/edit.png" />
+                    <Image url="@images/edit-welcome.png" />
                 </ImageView>
             </graphic>
         </Button>

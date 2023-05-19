@@ -9,19 +9,13 @@
 <HBox minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" spacing="5.0" stylesheets="@menusStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.CardsStatistics">
     <!-- Left pane : list of cards + back -->
     <VBox alignment="CENTER" spacing="5.0">
-        <ListView fx:id="cardListView" prefWidth="207.0" VBox.vgrow="ALWAYS" />
-        <Button  onAction="#clickBack" prefWidth="169.0" text="Back">
+        <ListView fx:id="cardListView" prefWidth="225.0" VBox.vgrow="ALWAYS" />
+        <Button  onAction="#clickBack">
             <graphic>
-                <ImageView  fitHeight="50.0" fitWidth="50.0" preserveRatio="true" translateX="-25.0">
+                <ImageView  fitHeight="35.0" preserveRatio="true">
                     <Image url="@images/back.png" />
                 </ImageView>
             </graphic>
-            <VBox.margin>
-                <Insets />
-            </VBox.margin>
-            <padding>
-                <Insets bottom="-4.0" top="-4.0" />
-            </padding>
         </Button>
     </VBox>
 

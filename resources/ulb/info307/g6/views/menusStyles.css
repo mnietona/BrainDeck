@@ -36,7 +36,9 @@
 
 #deckListView {
     -fx-background-color: transparent;
-    -fx-border-color: black;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
 }
 
 #cardListView .list-cell {
@@ -45,6 +47,7 @@
 
 #cardListView {
     -fx-background-color: transparent;
-    -fx-border-color: black;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
 }
-

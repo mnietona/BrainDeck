@@ -23,8 +23,8 @@ public class Achievements implements View {
     private AchievementsListener listener;
 
     @FXML
-    private void clickBack() {
-        listener.clickBack();
+    private void clickHome() {
+        listener.clickHome();
     }
 
     @FXML
@@ -82,7 +82,7 @@ public class Achievements implements View {
     }
 
     public interface AchievementsListener {
-        void clickBack();
+        void clickHome();
         void setProgressBars();
     }
 }
