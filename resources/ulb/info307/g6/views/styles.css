@@ -1,0 +1,70 @@
+.root {
+    -fx-background-color: linear-gradient(to top, #1b2838, #2a475e);
+}
+
+.title {
+    -fx-fill: #c7d5e0;
+    -fx-font-size: 75;
+}
+
+.button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8px;
+    -fx-text-fill: #c7d5e0;
+    -fx-font-size: 20px;
+}
+.button:hover {
+    -fx-background-color: #66c0f4;
+    -fx-text-fill: #1b2838;
+}
+
+.statCircle {
+    -fx-stroke: #c7d5e0;
+    -fx-fill: transparent;
+    -fx-stroke-width: 2px;
+}
+
+.statText {
+    -fx-fill: #c7d5e0;
+    -fx-font-size: 20px;
+    -fx-translate-y: -5px;
+    -fx-text-alignment: center;
+}
+
+.list-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #c7d5e0;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-font-size: 20px;
+    -fx-text-fill: #c7d5e0;
+}
+.list-cell:hover {
+    -fx-text-fill: #66c0f4;
+}
+.list-cell:selected {
+    -fx-background-color: #66c0f4;
+    -fx-background-radius: 8px;
+    -fx-background-insets: 2px;
+    -fx-text-fill: #1b2838;
+}
+
+.tooltip {
+    -fx-font-size: 18px;
+    -fx-border-radius: 8px;
+}
+
+.big-text {
+    -fx-fill: #c7d5e0;
+    -fx-font-size: 35px;
+    -fx-underline: true;
+}
+
+.normal-text {  /* plain ".text" will overwrite the listview cell texts */
+    -fx-fill: #c7d5e0;
+    -fx-font-size: 20px;
+}

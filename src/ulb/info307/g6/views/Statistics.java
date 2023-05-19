@@ -59,8 +59,8 @@ public class Statistics extends ViewWithDeckList {
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 
-    public void activateButton(boolean activate) {
-        cardsStatisticsButton.setDisable(!activate);
+    public void showCardStatisticsButton(boolean visible) {
+        cardsStatisticsButton.setVisible(visible);
     }
 
     @Override

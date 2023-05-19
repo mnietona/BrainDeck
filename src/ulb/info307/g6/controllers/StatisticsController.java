@@ -38,7 +38,7 @@ public class StatisticsController extends ControllerWithDeckList implements Stat
 
     @Override
     public void clickDeck(Deck deck) {
-        statisticsView.activateButton(true);
+        statisticsView.showCardStatisticsButton(true);
         String deckName = deck.getName();
         int nbCards = deck.getSize();
         long timeSpent = deck.getTimeSpent();
