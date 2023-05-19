@@ -3,26 +3,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Text?>
 <VBox alignment="CENTER" minHeight="720.0" minWidth="1280.0" spacing="10.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.CreateDeck">
-    <Text text="Title of your deck" styleClass="normal-text" />
-    <TextField fx:id="inputBox" maxWidth="300.0" minWidth="300.0" onKeyTyped="#textChange" promptText="Title of your deck" />
-    <!-- Cancel and Confirm Buttons -->
+    <Text styleClass="normal-text" text="Title of your deck" />
     <HBox alignment="CENTER" spacing="5.0">
         <Button onAction="#clickBack">
             <graphic>
-                <ImageView fitHeight="25.0" preserveRatio="true">
-                    <Image url="@images/back.png" />
-                </ImageView>
+                <ImageView fitHeight="25.0" preserveRatio="true"><Image url="@icons/back-light.png" /></ImageView>
             </graphic>
+            <tooltip><Tooltip text="Cancel and go back to previous menu" /></tooltip>
         </Button>
+        <TextField fx:id="inputBox" maxWidth="300.0" minWidth="300.0" onKeyTyped="#textChange" />
         <Button fx:id="buttonConfirm" onAction="#clickConfirm">
             <graphic>
-                <ImageView fitHeight="25.0" preserveRatio="true">
-                    <Image url="@images/confirm.png" />
-                </ImageView>
+                <ImageView fitHeight="25.0" preserveRatio="true"><Image url="@icons/confirm-light.png" /></ImageView>
             </graphic>
+            <tooltip><Tooltip text="Create the deck" /></tooltip>
         </Button>
     </HBox>
 </VBox>

@@ -19,62 +19,53 @@
         </Button>
     </VBox>
 
-    <!-- Right pane : selected deck + edit/create/remove deck -->
+    <!-- Right pane -->
     <VBox alignment="TOP_CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
+        <!-- Deck title -->
         <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
-            <Text fx:id="deckTitle" strokeType="OUTSIDE" text="No deck selected" textAlignment="CENTER" styleClass="normal-text">
-                <font>
-                    <Font size="20.0" />
-                </font>
-            </Text>
+            <Text fx:id="deckTitle" text="Select a deck" textAlignment="CENTER" styleClass="normal-text" />
         </VBox>
 
-        <HBox alignment="TOP_CENTER" spacing="10">
-            <Button fx:id="buttonEdit" contentDisplay="GRAPHIC_ONLY" onAction="#clickEdit">
-                <graphic>
-                    <ImageView fitHeight="25.0" preserveRatio="true">
-                        <Image url="@images/edit.png" />
-                    </ImageView>
-                </graphic>
-                <tooltip><Tooltip text="Edit Deck" /></tooltip>
-            </Button>
+        <!-- Deck action buttons -->
+        <HBox alignment="TOP_CENTER" spacing="5">
             <Button contentDisplay="GRAPHIC_ONLY" onAction="#clickCreate">
                 <graphic>
-                    <ImageView fitHeight="25.0" preserveRatio="true">
-                        <Image url="@images/plus.png" />
-                    </ImageView>
+                    <ImageView fitHeight="25.0" preserveRatio="true"><Image url="@icons/plus-light.png" /></ImageView>
                 </graphic>
                 <tooltip><Tooltip text="Create Deck" /></tooltip>
             </Button>
-            <Button fx:id="buttonRemove" contentDisplay="GRAPHIC_ONLY" onAction="#clickRemove">
+            <Region minWidth="20.0" />
+            <Button fx:id="buttonEdit" contentDisplay="GRAPHIC_ONLY" onAction="#clickEdit">
                 <graphic>
-                    <ImageView fitHeight="25.0" preserveRatio="true" rotate="45">
-                        <Image url="@images/plus.png" />  <!-- delete icon is a rotated plus icon -->
-                    </ImageView>
+                    <ImageView fitHeight="25.0" preserveRatio="true"><Image url="@icons/edit-light.png" /></ImageView>
                 </graphic>
-                <tooltip><Tooltip text="Remove Deck" /></tooltip>
+                <tooltip><Tooltip text="Edit Deck" /></tooltip>
             </Button>
             <Button fx:id="buttonResetProba" contentDisplay="GRAPHIC_ONLY" onAction="#clickResetProba">
                 <graphic>
-                    <ImageView fitHeight="25.0" preserveRatio="true">
-                        <Image url="@images/reset.png" />
-                    </ImageView>
+                    <ImageView fitHeight="25.0" preserveRatio="true"><Image url="@icons/reset-light.png" /></ImageView>
                 </graphic>
                 <tooltip><Tooltip text="Reset Probabilities" /></tooltip>
             </Button>
+            <Button fx:id="buttonRemove" contentDisplay="GRAPHIC_ONLY" onAction="#clickRemove">
+                <graphic>
+                    <!-- delete icon is just a rotated plus icon -->
+                    <ImageView fitHeight="25.0" preserveRatio="true" rotate="45"><Image url="@icons/plus-light.png" /></ImageView>
+                </graphic>
+                <tooltip><Tooltip text="Remove Deck" /></tooltip>
+            </Button>
+            <Region minWidth="20.0" />
             <Button contentDisplay="GRAPHIC_ONLY" onAction="#clickImport">
                 <graphic>
                     <ImageView fitHeight="25.0" preserveRatio="true">
-                        <Image url="@images/import.png" />
+                        <Image url="@icons/import-light.png" />
                     </ImageView>
                 </graphic>
                 <tooltip><Tooltip text="Import a deck" /></tooltip>
             </Button>
             <Button fx:id="buttonExport" contentDisplay="GRAPHIC_ONLY" onAction="#clickExport">
                 <graphic>
-                    <ImageView fitHeight="25.0" preserveRatio="true">
-                        <Image url="@images/export.png" />
-                    </ImageView>
+                    <ImageView fitHeight="25.0" preserveRatio="true"><Image url="@icons/export-light.png" /></ImageView>
                 </graphic>
                 <tooltip><Tooltip text="Export deck" /></tooltip>
             </Button>
