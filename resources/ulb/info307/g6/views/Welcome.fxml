@@ -4,51 +4,50 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <VBox alignment="CENTER" minHeight="720.0" minWidth="1280.0" stylesheets="@welcomeStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Welcome">
-   <HBox alignment="TOP_RIGHT" prefHeight="19.0" prefWidth="1180.0">
+    <!-- Help button -->
+    <HBox alignment="CENTER_RIGHT">
          <Button onAction="#helpButtonAction">
               <graphic>
                   <ImageView fitHeight="25.0" preserveRatio="true">
-                      <Image url="@images/questionMark.png" />
+                      <Image url="@images/question-mark-light.png" />
                   </ImageView>
               </graphic>
           </Button>
    </HBox>
+
     <!-- Title -->
-    <Text text="Braindeck">
-        <font>
-            <Font name="Broadway" size="75.0" />
-        </font>
-    </Text>
+    <Text style="-fx-fill: #c7d5e0; -fx-font-size: 75;" text="BRAINDECK" textAlignment="CENTER" />
 
     <!-- Menu buttons -->
     <HBox alignment="CENTER" spacing="5.0" VBox.vgrow="ALWAYS">
-        <Button contentDisplay="TOP" onAction="#studyButtonAction" prefHeight="150.0" prefWidth="150.0" text="Study">
+        <Button contentDisplay="TOP" maxWidth="150.0" minWidth="100.0" prefWidth="150.0" onAction="#studyButtonAction" text="Study">
             <graphic>
                 <ImageView fitHeight="100.0" fitWidth="100.0">
                     <Image url="@images/books.png" />
                 </ImageView>
             </graphic>
         </Button>
-        <Button contentDisplay="TOP" onAction="#editButtonAction" prefHeight="150.0" prefWidth="150.0" text="Edit">
+        <Button contentDisplay="TOP" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" onAction="#editButtonAction" text="Edit">
             <graphic>
-                <ImageView fitHeight="100.0" fitWidth="100.0" preserveRatio="true">
+                <ImageView fitHeight="100.0" preserveRatio="true">
                     <Image url="@images/editWelcome.png" />
                 </ImageView>
             </graphic>
         </Button>
-        <Button contentDisplay="TOP" onAction="#statisticsButtonAction" prefHeight="150.0" prefWidth="150.0" text="Statistics">
+        <Button contentDisplay="TOP" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" onAction="#statisticsButtonAction" text="Statistics">
             <graphic>
-                <ImageView fitHeight="100.0" fitWidth="100.0" preserveRatio="true">
+                <ImageView fitHeight="100.0" preserveRatio="true">
                     <Image url="@images/statisticsWelcome.png" />
                 </ImageView>
             </graphic>
         </Button>
-        <Button contentDisplay="TOP" onAction="#achievementsButtonAction" prefHeight="150.0" prefWidth="150.0" text="Achievements">
+        <Button contentDisplay="TOP" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" onAction="#achievementsButtonAction" text="Achievements">
             <graphic>
-                <ImageView fitHeight="100.0" fitWidth="100.0" preserveRatio="true">
+                <ImageView fitHeight="100.0" preserveRatio="true">
                     <Image url="@images/trophy.png" />
                 </ImageView>
             </graphic>
@@ -56,20 +55,18 @@
     </HBox>
 
     <!-- Stats on main menu -->
-    <HBox alignment="CENTER" prefHeight="100.0" spacing="25.0">
-        <Text fx:id="mainMenuStat1" text=" " textAlignment="CENTER">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </Text>
-        <Text fx:id="mainMenuStat2" textAlignment="CENTER">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </Text>
+    <HBox alignment="CENTER">
+      <StackPane prefHeight="150.0" prefWidth="200.0">
+          <Text fx:id="mainMenuStat1" style="-fx-fill: #c7d5e0; -fx-font-size: 20" textAlignment="CENTER" translateY="-10.0" />
+          <Circle fill="#1f93ff00" radius="65.0" stroke="#c7d5e0" strokeType="INSIDE" strokeWidth="2.0" />
+      </StackPane>
+      <StackPane prefHeight="150.0" prefWidth="200.0">
+          <Text fx:id="mainMenuStat2" style="-fx-fill: #c7d5e0; -fx-font-size: 20" textAlignment="CENTER" translateY="-10.0" />
+          <Circle fill="#1f93ff00" radius="65.0" stroke="#c7d5e0" strokeType="INSIDE" strokeWidth="2.0" />
+      </StackPane>
     </HBox>
 
     <padding>
-        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+        <Insets bottom="50.0" left="25.0" right="25.0" top="25.0" />
     </padding>
 </VBox>
