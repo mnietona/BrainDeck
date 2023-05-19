@@ -5,6 +5,12 @@ import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.models.database.StatisticsDao;
 import ulb.info307.g6.views.Statistics;
 
+/**
+ * Controller for the statistics view.
+ * This controller is used to display the statistics of the user.
+ * It is also used to display the statistics of a specific deck.
+ */
+
 public class StatisticsController extends ControllerWithDeckList implements Statistics.StatisticsListener  {
     public final StatisticsDao statisticsDatabase = new StatisticsDao();  //
     private final Statistics statisticsView;

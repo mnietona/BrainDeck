@@ -5,8 +5,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ulb.info307.g6.views.PreviewCard;
-
 import java.io.IOException;
+
+/**
+ * Controller for the preview card window
+ * This controller is used to display a preview of a card in a new window
+ * It is used by the CardController to display the preview of a card when the user clicks on it
+ */
 
 public class PreviewCardController {  // TODO use Controller.java
     Stage stage;

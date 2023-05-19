@@ -5,6 +5,12 @@ import ulb.info307.g6.models.Deck;
 import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.views.CreateDeck;
 
+/**
+ * This class represents a controller for the CreateDeck view.
+ * It extends the Controller class and implements the CreateDeckListener interface.
+ * The controller is responsible for handling user interactions and updating the view accordingly.
+ * It also interacts with the database to create a new deck.
+ */
 public class CreateDeckController extends Controller implements CreateDeck.CreateDeckListener {
     static DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation();  // Initialize the DAO for the database
 

@@ -5,6 +5,12 @@ import ulb.info307.g6.models.*;
 import ulb.info307.g6.views.Study;
 import java.time.Instant;
 
+/**
+ * Controller for the study view.
+ * It allows the user to study a deck of cards.
+ * The user can flip the card, select a knowledge level and go to the next card.
+ */
+
 public class StudyController extends ControllerWithDeckList implements Study.StudyListener {
     private final Study studyView;
     private final int[] lastIndex = new int[3];

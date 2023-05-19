@@ -4,6 +4,11 @@ import ulb.info307.g6.views.CardsStatistics;
 import javafx.stage.Stage;
 import ulb.info307.g6.models.Deck;
 
+/**
+ * This class represents a controller for the CardsStatistics view.
+ * It extends the ControllerWithCardList class and implements the CardsStatisticsListener interface.
+ */
+
 public class CardsStatisticsController extends ControllerWithCardList implements CardsStatistics.CardsStatisticsListener {
     private final CardsStatistics cardsStatisticsView;
 

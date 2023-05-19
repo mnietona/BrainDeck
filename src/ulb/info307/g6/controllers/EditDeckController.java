@@ -15,6 +15,12 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Scanner;
 
+/**
+ * Controller for the EditDeck view.
+ * This controller is used to edit a deck.
+ * It allows the user to import a deck from a file, export a deck to a file, edit a deck, create a deck and remove a deck.
+ */
+
 public class EditDeckController extends ControllerWithDeckList implements EditDeck.EditDeckListener {
     private final EditDeck editDeckView;
 

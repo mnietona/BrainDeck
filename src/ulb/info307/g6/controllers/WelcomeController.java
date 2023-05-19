@@ -5,6 +5,13 @@ import ulb.info307.g6.models.Statistics;
 import ulb.info307.g6.models.database.StatisticsDao;
 import ulb.info307.g6.views.Welcome;
 
+/**
+ * Controller for the welcome menu.
+ * This menu is the first menu shown when the app is launched.
+ * It allows the user to access the other menus.
+ * It also shows some statistics about the user's progress.
+ */
+
 public class WelcomeController extends Controller implements Welcome.WelcomeListener  {
     public final StatisticsDao statisticsDatabase = new StatisticsDao();
     public final Welcome welcomeView;
