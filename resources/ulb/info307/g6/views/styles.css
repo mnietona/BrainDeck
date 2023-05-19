@@ -68,3 +68,12 @@
     -fx-fill: #c7d5e0;
     -fx-font-size: 20px;
 }
+
+.label {
+    -fx-text-fill: #c7d5e0;
+    -fx-font-size: 20px;
+}
+
+.progress-bar {
+    -fx-accent: #66c0f4;
+}

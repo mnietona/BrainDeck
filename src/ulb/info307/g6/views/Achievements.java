@@ -2,6 +2,7 @@ package ulb.info307.g6.views;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.image.*;
@@ -39,14 +40,20 @@ public class Achievements implements View {
         for (int i = 0; i < active.length; i++) {
             if (active[i]) {
                 achievementImages[i].setVisible(true);
-                if (achieved[i]) {
-                    Image newImage = new Image("/ulb/info307/g6/views/images/succes.png");
-                    achievementImages[i].setImage(newImage);
+                if (!achieved[i]) {
+
+                    ColorAdjust colorAdjust = new ColorAdjust();
+                    colorAdjust.setSaturation(-1); // Set saturation to -1 for full grayness
+                    achievementImages[i].setEffect(colorAdjust);
                 }
             }
             else {
                 labels[i].setStyle("-fx-text-fill: gray;");
             }
+        }
+        for (ImageView imageView : achievementImages) {
+            imageView.setFitHeight(75);
+            imageView.setFitWidth(75);
         }
     }
 
