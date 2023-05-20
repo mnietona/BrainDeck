@@ -12,6 +12,12 @@ public class CardQCM extends Card {
         String ANSWER_SEPARATOR = ",";  // Arbitrary choice of separator, could be anything
         answerParts = answerInput.split(ANSWER_SEPARATOR);
         goodAnswerIndex = -1;  // Initialize to invalid value
+        for(int i = 0; i < answerParts.length; i++) {
+            answerParts[i] = convertLatex(answerParts[i]);
+        }
+    }
+    private String convertLatex(String input) {
+        return input.replaceAll("\\$\\$(.*?)\\$\\$", "\\\\($1\\\\)");
     }
 
     private String setGoodAnswer() {
@@ -64,5 +70,10 @@ public class CardQCM extends Card {
         }
 
         return choiceAnswer;
+    }
+
+    @Override
+    public boolean isValid() {
+        return super.isValid() && answerParts.length >= 4 && isCardQCMType(this);
     }
 }

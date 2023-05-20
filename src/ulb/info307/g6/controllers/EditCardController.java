@@ -76,19 +76,32 @@ public class EditCardController extends ControllerWithCardList implements EditCa
                 editCardView.setCardListView(deck);
                 deck.printProbability();
             }
-            else{
-                new Popup("""
-                        Error, The card is not valid.
-                        
-                        Example of correct usage:
-                        Question = The captain of the Titanic was _
-                        Answer = Edward Smith
-
-                        For multiple blanks:
-                        Question = The primary colors are _, _, and _.
-                        Answer = red, blue, yellow
-                        """).showAndWait();
-
+            else {
+                String text = "";
+                if (card instanceof CardGapFill) {
+                    text = """
+                            Error, The card is not valid.
+                                                        
+                            Example of correct usage:
+                            Question = The captain of the Titanic was _
+                            Answer = Edward Smith
+                                
+                            For multiple blanks:
+                            Question = The primary colors are _, _, and _.
+                            Answer = red, blue, yellow
+                            """;
+                } else if (card instanceof CardQCM) {
+                    text = """
+                            Error, The card is not valid.
+                                                        
+                            Example of correct usage:
+                            Question = What is the capital of France?
+                            Answer = {Paris}, London, Berlin, Rome
+                                                        
+                            The correct answer is between { }
+                            """;
+                }
+                new Popup(text).showAndWait();
             }
         }
         editCardView.clearTextFields();
