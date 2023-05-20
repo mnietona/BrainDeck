@@ -127,7 +127,7 @@ public class Study extends ViewWithDeckList {
             if (isQCM) {
                 System.out.println(answer);
                 buttonFlipCard.setVisible(false);
-                knowledgeLvlSlider.setDisable(true);
+                knowledgeLvlSlider.setDisable(false);
                 int index = getIndex(answer, choices);
                 cardWebView.getEngine().load(get_page_url_qcm(question, choices, index));
 
@@ -141,7 +141,6 @@ public class Study extends ViewWithDeckList {
     }
 
 
-
     private static int getIndex(String answer, String[] choices) {
         int index = -1;
         for (int i = 0; i < choices.length; i++) {
@@ -152,7 +151,6 @@ public class Study extends ViewWithDeckList {
         }
         return index;
     }
-
 
     public void showEmptyDeck() {
         cardWebView.getEngine().load("showCard.html");
