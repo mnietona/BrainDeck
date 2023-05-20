@@ -5,6 +5,7 @@ import ulb.info307.g6.models.*;
 import ulb.info307.g6.views.Study;
 import java.time.Instant;
 
+
 /**
  * Controller for the study view.
  * It allows the user to study a deck of cards.

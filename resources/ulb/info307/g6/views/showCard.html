@@ -17,15 +17,22 @@
                 document.getElementById('card_text').innerHTML = "<h3>Please select a deck</h3>"
                 return;
             }
-             //since atob need url safe base64, we replace the forbidden characters
+            //since atob need url safe base64, we replace the forbidden characters
             document.getElementById('card_text').innerText = atob(searchParameters.get('text').replace('_', '/').replace('-', '+'));
             if (searchParameters.get('type') === 'question') {
-                document.getElementById('card_text').classList.add('question')
+                document.getElementById('card_text').classList.add('question');
             } else if (searchParameters.get('type') === 'answer') {
-                document.getElementById('card_text').classList.add('answer')
+                document.getElementById('card_text').classList.add('answer');
             }
+
             renderMathInElement(document.body);
         });
+
+        function escapeHTML(text) {
+            let div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
     </script>
 </head>
 <body>

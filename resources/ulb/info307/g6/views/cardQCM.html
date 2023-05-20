@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- KaTeX requires the use of the HTML5 doctype. Without it, KaTeX may not render properly -->
+<html lang="en">
+<head>
+  <title></title>
+  <link rel="stylesheet" href="katex/katex.min.css">
+  <link rel="stylesheet" href="cardStyles.css">
+  <!-- The loading of KaTeX is deferred to speed up page rendering -->
+  <script defer src="katex/katex.min.js"></script>
+
+  <!-- To automatically render math in text elements, include the auto-render extension: -->
+  <script defer src="katex/contrib/auto-render.min.js"></script>
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+      let searchParameters = new URL(document.location).searchParams;
+      if (searchParameters.get('text') == null) {
+        document.getElementById('card_text').innerHTML = "<h3>Please select a deck</h3>"
+        return;
+      }
+      //since atob need url safe base64, we replace the forbidden characters
+      let text = atob(searchParameters.get('text').replace('_', '/').replace('-', '+'));
+      let answerIndex = -1;
+      let choices = atob(searchParameters.get('choices').replace('_', '/').replace('-', '+')).split(",");
+      answerIndex = parseInt(searchParameters.get('answer'));
+      let htmlContent = "<h1 class='question qcmText'>" + escapeHTML(text) + "</h1>";
+      for (let i = 0; i < choices.length; i++) {
+        htmlContent += "<div class='choice question qcmText' data-raw-answer='" + escapeHTML(choices[i]) + "'>" + escapeHTML(choices[i]) + "</div>";
+      }
+      document.getElementById('card_text').innerHTML = htmlContent;
+
+      renderMathInElement(document.body);
+
+      // Listen to clicks on the entire document
+      document.addEventListener('click', function(event) {
+        // Check if the clicked element or any of its parents is a choice
+        let element = event.target;
+        while (element != null) {
+          if (element.classList.contains('choice')) {
+            // We found a choice, now we can handle it
+            checkAnswer(element, answerIndex);
+            return;
+          }
+          element = element.parentElement;
+        }
+      });
+    });
+
+    function checkAnswer(element, answerIndex) {
+      let selectedAnswerIndex = Array.from(document.getElementsByClassName('choice')).indexOf(element);
+      let choices = document.getElementsByClassName('choice');
+      if (selectedAnswerIndex === answerIndex) {
+        // Correct answer
+        element.classList.add('correct');
+      } else {
+        // Wrong answer
+        element.classList.add('wrong');
+        // Also highlight the correct answer
+        choices[answerIndex].classList.add('correct');
+      }
+      // Disable further clicks after an answer is selected
+      for (let i = 0; i < choices.length; i++) {
+        choices[i].style.pointerEvents = 'none';
+      }
+
+    }
+
+    function escapeHTML(text) {
+      let div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+  </script>
+</head>
+<body>
+<div id="card_text" class="card_container"></div>
+</body>
+</html>

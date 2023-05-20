@@ -107,25 +107,52 @@ public class Study extends ViewWithDeckList {
         page_url += "?text=" + Base64.getUrlEncoder().encodeToString(text.getBytes()); // Encode the text in base64 to avoid problems with special characters
         return page_url;
     }
+    private String get_page_url_qcm(String text, String[] choices, int answerIndex) {
+        String page_url = Objects.requireNonNull(getClass().getResource("cardQCM.html")).toExternalForm();
+        page_url += "?text=" + Base64.getUrlEncoder().encodeToString(text.getBytes());
 
-    public void flipCard(boolean isQuestion, String question, String answer, boolean isQCM, String[] choices){
+        // Convert choices array to a comma-separated string
+        String choicesString = String.join(",", choices);
+        page_url += "&type=" + "qcm";
+        page_url += "&choices=" + Base64.getUrlEncoder().encodeToString(choicesString.getBytes());
+        page_url += "&answer=" + answerIndex;
+
+        return page_url;
+    }
+
+
+
+    public void flipCard(boolean isQuestion, String question, String answer, boolean isQCM, String[] choices) {
         if (isQuestion) {
-            if (isQCM){
-                System.out.println(question);
+            if (isQCM) {
                 System.out.println(answer);
-                for (String choice : choices) {
-                    System.out.println(choice);
-                }
-                //cardWebView.getEngine().load(get_page_url(question) + "&type=question&radioBoxValues="+get_choices(choices));
-            }else {
+                buttonFlipCard.setVisible(false);
+                knowledgeLvlSlider.setDisable(true);
+                int index = getIndex(answer, choices);
+                cardWebView.getEngine().load(get_page_url_qcm(question, choices, index));
+
+            } else {
                 buttonFlipCard.setVisible(true);
-                cardWebView.setVisible(true);
                 cardWebView.getEngine().load(get_page_url(question) + "&type=question");
             }
         } else {
             cardWebView.getEngine().load(get_page_url(answer) + "&type=answer");
         }
     }
+
+
+
+    private static int getIndex(String answer, String[] choices) {
+        int index = -1;
+        for (int i = 0; i < choices.length; i++) {
+            if (choices[i].equals(answer)) {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+
 
     public void showEmptyDeck() {
         cardWebView.getEngine().load("showCard.html");
