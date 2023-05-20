@@ -6,12 +6,40 @@
 <?import javafx.scene.text.*?>
 
 <VBox alignment="CENTER" minHeight="720.0" minWidth="1280.0" spacing="25.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ulb.info307.g6.views.Help">
-   <Text text="WIP help guide" styleClass="normal-text"/>
-    <Button onAction="#clickHome">
-        <graphic>
-            <ImageView fitHeight="25.0" preserveRatio="true">
-                <Image url="@icons/home-light.png" />
-            </ImageView>
-        </graphic>
-    </Button>
+   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+      <children>
+         <Text fill="#4b3223" strokeType="OUTSIDE" strokeWidth="0.0" text="How to ?" textAlignment="CENTER">
+            <font>
+               <Font size="78.0" />
+            </font></Text>
+      </children>
+   </VBox>
+   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+      <children>
+         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      </children></VBox>
+   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+      <children>
+         <Text fill="#4b2823" styleClass="normal-text" text="Bienvenue dans BrainDeck!" textAlignment="CENTER" />
+      </children>
+   </VBox>
+   <HBox alignment="CENTER" prefHeight="133.0" prefWidth="1280.0">
+      <children>
+          <Button onAction="#clickHome">
+              <graphic>
+                  <ImageView fitHeight="25.0" preserveRatio="true">
+                      <Image url="@icons/home-light.png" />
+                  </ImageView>
+              </graphic>
+          </Button>
+         <Button layoutX="624.0" layoutY="57.0" onAction="#clickNext">
+            <graphic>
+               <ImageView fitHeight="25.0" preserveRatio="true">
+                  <image>
+                     <Image url="@icons/next-light.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
+      </children></HBox>
 </VBox>

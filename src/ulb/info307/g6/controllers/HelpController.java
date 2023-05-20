@@ -20,4 +20,9 @@ public class HelpController extends Controller implements Help.HelpListener {
     public void clickHome() {
         new WelcomeController(stage);
     }
+
+    @Override
+    public void clickNext() {
+        //change le texte et l'image
+    }
 }
