@@ -126,7 +126,6 @@ public class EditCardController extends ControllerWithCardList implements EditCa
         if (editCardView.cardIsGapFill()) {
             return new CardGapFill(editCardView.getQuestionInput(), editCardView.getAnswerInput());
         } else if (editCardView.cardIsQCM()) {
-            System.out.println("QCM");
             return new CardQCM(editCardView.getQuestionInput(), editCardView.getAnswerInput());
         }
         else {
