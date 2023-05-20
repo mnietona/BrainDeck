@@ -23,7 +23,7 @@ public class MainController extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            primaryStage.getIcons().add(new Image("/ulb/info307/g6/views/images/mainlogo.png"));
+            primaryStage.getIcons().add(new Image("/ulb/info307/g6/views/icons/logo.png"));
             new WelcomeController(primaryStage);
         } catch (Exception e) {
             new Popup("An error occurred while loading the application.\n" +

@@ -24,9 +24,3 @@ Application multiplateforme d’aide à l’étude basée sur un système de fla
 3. Lancer le .jar depuis IntelliJ;
     - [Étape 2 section précédente](#lancer-lapplication-depuis-intellij), mais avec le bouton <Run 'g6-iteration-X.jar'> et le fichier "dist/g6-iteration-2.jar".
     - [Étape 3 section précédente](#lancer-lapplication-depuis-intellij), mais avec "g6-iteration-X.jar" dans la liste des configurations.
-
-&nbsp;  
-&nbsp;  
-## Schémas
-### Structure des menus de l'application
-![](/team/diagrams/menuStructure.png)

@@ -66,10 +66,9 @@
     -fx-border-radius: 8px;
 }
 
-.large-text {
-    -fx-fill: #c7d5e0;
-    -fx-font-size: 35px;
-    -fx-underline: true;
+.label {
+    -fx-font-size: 20px;
+    -fx-text-fill: #c7d5e0;
 }
 
 .normal-text {  /* plain ".text" will overwrite the listview cell texts */
@@ -77,15 +76,16 @@
     -fx-font-size: 20px;
 }
 
-.label {
-    -fx-text-fill: #c7d5e0;
-    -fx-font-size: 20px;
+.title-text {
+    -fx-fill: #c7d5e0;
+    -fx-font-size: 35px;
+    -fx-underline: true;
 }
 
 .progress-bar {
     -fx-accent: #c7d5e0;
-    -fx-pref-height: 20px;
     -fx-border-color: #c7d5e0;
+    -fx-pref-height: 20px;
     -fx-border-radius: 2px;
 }
 
@@ -93,19 +93,26 @@
     -fx-background-color: transparent;
 }
 
+.achievement-container {
+    -fx-background-color: #2a475e;
+}
+
+.achievement-box {
+    -fx-background-color: #1b2838;
+}
+
 .scroll-pane {
     -fx-background-color: transparent;
-    -fx-border-width: 2px;
-    -fx-border-radius: 8px;
 }
 
 .scroll-bar {
-    -fx-background-color: linear-gradient(to top, #1b2838, #2a475e);
-    -fx-background-radius: 8px;
+    -fx-background-color: #2a475e;
 }
 
 .scroll-bar .thumb {
     -fx-background-color: #c7d5e0;
-    -fx-background-radius: 8px;
 }
 
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+}
