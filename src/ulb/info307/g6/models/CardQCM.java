@@ -74,6 +74,13 @@ public class CardQCM extends Card {
 
     @Override
     public boolean isValid() {
-        return super.isValid() && answerParts.length >= 4 && isCardQCMType(this);
+        boolean isValid = false;
+        for (String answerPart : answerParts) {
+            if (answerPart.contains("{") && answerPart.contains("}")) {
+                isValid = true;
+                break;
+            }
+        }
+        return super.isValid() && answerParts.length >= 4 && isValid;
     }
 }
