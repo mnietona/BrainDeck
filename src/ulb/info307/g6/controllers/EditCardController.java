@@ -2,13 +2,10 @@ package ulb.info307.g6.controllers;
 
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
-import ulb.info307.g6.models.CardGapFill;
-import ulb.info307.g6.models.Deck;
-import ulb.info307.g6.models.Card;
+import ulb.info307.g6.models.*;
 import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.views.EditCard;
 
-import ulb.info307.g6.models.DeckProbabilities;
 import ulb.info307.g6.views.Popup;
 
 import java.util.Base64;
@@ -115,7 +112,11 @@ public class EditCardController extends ControllerWithCardList implements EditCa
     private Card getCardEntered() {
         if (editCardView.cardIsGapFill()) {
             return new CardGapFill(editCardView.getQuestionInput(), editCardView.getAnswerInput());
-        } else {
+        } else if (editCardView.cardIsQCM()) {
+            System.out.println("QCM");
+            return new CardQCM(editCardView.getQuestionInput(), editCardView.getAnswerInput());
+        }
+        else {
             return new Card(editCardView.getQuestionInput(), editCardView.getAnswerInput());
         }
     }

@@ -35,7 +35,7 @@
             <Text text="Answer" styleClass="normal-text" />
             <Region HBox.hgrow="ALWAYS" />
             <Text text="Multiple-choice question" styleClass="normal-text" />
-            <CheckBox >
+            <CheckBox fx:id="QCMCheckBox">
                 <tooltip><Tooltip text="Create a multiple choice card by ..." /></tooltip>
             </CheckBox>
         </HBox>

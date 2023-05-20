@@ -16,7 +16,7 @@ import ulb.info307.g6.models.Card;
  */
 public class EditCard extends ViewWithCardList {
     @FXML
-    private CheckBox gapFillCheckBox;
+    private CheckBox gapFillCheckBox, QCMCheckBox;
     @FXML
     private TextArea questionInput, answerInput;
     @FXML
@@ -128,6 +128,10 @@ public class EditCard extends ViewWithCardList {
 
     public boolean cardIsGapFill() {
         return gapFillCheckBox.isSelected();
+    }
+
+    public boolean cardIsQCM() {
+        return QCMCheckBox.isSelected();
     }
 
     public interface EditCardListener {
