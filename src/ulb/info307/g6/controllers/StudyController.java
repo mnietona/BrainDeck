@@ -5,6 +5,7 @@ import ulb.info307.g6.models.*;
 import ulb.info307.g6.views.Study;
 import java.time.Instant;
 
+
 /**
  * Controller for the study view.
  * It allows the user to study a deck of cards.
@@ -67,18 +68,40 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
 
     public void updateDisplayArea() {
         if (currentDeck != null) {
+            boolean isQCM = false;
+            int index = -1;
+            String[] choiceAnswers = new String[0];
             Card card = currentDeck.getCardByIndex(cardIndex);
             updateSliderPosition();
             if (CardGapFill.isCardGapFilType(card)) {
                 // We transform the card into its extended type cardGapFill if necessary
                 // (to know if the card is of the type cardGapFill, we check whether its question contains the "gap" marker "_")
-                card = new CardGapFill(card.getQuestion(),card.getAnswer());
+                card = new CardGapFill(card.getQuestion(), card.getAnswer());
+            } else if (CardQCM.isCardQCMType(card)) {
+                isQCM = true;
+                card = new CardQCM(card.getQuestion(), card.getAnswer());
+                card.setChoiceAnswerQCM(((CardQCM) card).choiceAnswer());
+                choiceAnswers = card.getChoiceAnswerQCM();
+                index = getIndex(card.getAnswer(), choiceAnswers);
+                studyView.activateSlider(true);
             }
             numberOfFlipsAuthorizedForCurrentCard = card.getMaxNumberOfFlips();
-            studyView.flipCard(questionIsDisplayed(), card.getQuestion(), card.getNthFlippedAnswer(flipIndex));
-        }
-    }
 
+            studyView.flipCard(questionIsDisplayed(), card.getQuestion(), card.getNthFlippedAnswer(flipIndex), isQCM, choiceAnswers,index);
+
+        }
+
+    }
+    private int getIndex(String answer, String[] choices) {
+        int index = -1;
+        for (int i = 0; i < choices.length; i++) {
+            if (choices[i].equals(answer)) {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
     @Override
     public void clickHome() {
         if (currentDeck != null) {
@@ -87,15 +110,16 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
         new WelcomeController(stage);
     }
 
+
     @Override
     public void clickNextCard() {
         if (!currentDeck.isEmpty()) {
             updateCardKnowledgeLevel();
             getNextRandomCard();
             flipIndex = 0;
-            updateDisplayArea();
             studyView.activateSlider(false);
             updateSliderPosition();
+            updateDisplayArea();
         }
         currentDeck.printProbability();
     }

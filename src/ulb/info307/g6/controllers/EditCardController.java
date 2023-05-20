@@ -2,13 +2,10 @@ package ulb.info307.g6.controllers;
 
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
-import ulb.info307.g6.models.CardGapFill;
-import ulb.info307.g6.models.Deck;
-import ulb.info307.g6.models.Card;
+import ulb.info307.g6.models.*;
 import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.views.EditCard;
 
-import ulb.info307.g6.models.DeckProbabilities;
 import ulb.info307.g6.views.Popup;
 
 import java.util.Base64;
@@ -79,19 +76,32 @@ public class EditCardController extends ControllerWithCardList implements EditCa
                 editCardView.setCardListView(deck);
                 deck.printProbability();
             }
-            else{
-                new Popup("""
-                        Error, The card is not valid.
-                        
-                        Example of correct usage:
-                        Question = The captain of the Titanic was _
-                        Answer = Edward Smith
-
-                        For multiple blanks:
-                        Question = The primary colors are _, _, and _.
-                        Answer = red, blue, yellow
-                        """).showAndWait();
-
+            else {
+                String text = "";
+                if (card instanceof CardGapFill) {
+                    text = """
+                            Error, The card is not valid.
+                                                        
+                            Example of correct usage:
+                            Question = The captain of the Titanic was _
+                            Answer = Edward Smith
+                                
+                            For multiple blanks:
+                            Question = The primary colors are _, _, and _.
+                            Answer = red, blue, yellow
+                            """;
+                } else if (card instanceof CardQCM) {
+                    text = """
+                            Error, The card is not valid.
+                                                        
+                            Example of correct usage:
+                            Question = What is the capital of France?
+                            Answer = {Paris}, London, Berlin, Rome
+                                                        
+                            The correct answer is between { }
+                            """;
+                }
+                new Popup(text).showAndWait();
             }
         }
         editCardView.clearTextFields();
@@ -115,7 +125,10 @@ public class EditCardController extends ControllerWithCardList implements EditCa
     private Card getCardEntered() {
         if (editCardView.cardIsGapFill()) {
             return new CardGapFill(editCardView.getQuestionInput(), editCardView.getAnswerInput());
-        } else {
+        } else if (editCardView.cardIsQCM()) {
+            return new CardQCM(editCardView.getQuestionInput(), editCardView.getAnswerInput());
+        }
+        else {
             return new Card(editCardView.getQuestionInput(), editCardView.getAnswerInput());
         }
     }

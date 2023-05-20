@@ -23,6 +23,8 @@ public class Card implements Serializable {
     private long timeSpent = 0;
     private int knowledgeLevel;
 
+    private String [] choiceAnswerQCM;
+
     private int numberOfAppearances = 0;
 
     public Card() {
@@ -111,5 +113,12 @@ public class Card implements Serializable {
 
     public int getNumberOfAppearances() {
         return numberOfAppearances;
+    }
+
+    public void setChoiceAnswerQCM(String[] choiceAnswerQCM) {
+        this.choiceAnswerQCM = choiceAnswerQCM;
+    }
+    public String[] getChoiceAnswerQCM() {
+        return choiceAnswerQCM;
     }
 }

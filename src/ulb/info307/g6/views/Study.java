@@ -107,10 +107,32 @@ public class Study extends ViewWithDeckList {
         page_url += "?text=" + Base64.getUrlEncoder().encodeToString(text.getBytes()); // Encode the text in base64 to avoid problems with special characters
         return page_url;
     }
+    private String get_page_url_qcm(String text, String[] choices, int answerIndex) {
+        String page_url = Objects.requireNonNull(getClass().getResource("cardQCM.html")).toExternalForm();
+        page_url += "?text=" + Base64.getUrlEncoder().encodeToString(text.getBytes());
 
-    public void flipCard(boolean isQuestion, String question, String answer) {
+        // Convert choices array to a comma-separated string
+        String choicesString = String.join(",", choices);
+        page_url += "&type=" + "qcm";
+        page_url += "&choices=" + Base64.getUrlEncoder().encodeToString(choicesString.getBytes());
+        page_url += "&answer=" + answerIndex;
+
+        return page_url;
+    }
+
+
+
+    public void flipCard(boolean isQuestion, String question, String answer, boolean isQCM, String[] choices, int index) {
         if (isQuestion) {
-            cardWebView.getEngine().load(get_page_url(question) + "&type=question");
+            if (isQCM) {
+                System.out.println(answer);
+                buttonFlipCard.setVisible(false);
+                cardWebView.getEngine().load(get_page_url_qcm(question, choices, index));
+
+            } else {
+                buttonFlipCard.setVisible(true);
+                cardWebView.getEngine().load(get_page_url(question) + "&type=question");
+            }
         } else {
             cardWebView.getEngine().load(get_page_url(answer) + "&type=answer");
         }
