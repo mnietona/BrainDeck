@@ -10,6 +10,7 @@ import ulb.info307.g6.views.Help;
 
 public class HelpController extends Controller implements Help.HelpListener {
     public final Help helpView;
+    private int step = 0;
 
     public HelpController(Stage stage) {
         super(stage, "/ulb/info307/g6/views/Help.fxml", "Help");
@@ -21,8 +22,13 @@ public class HelpController extends Controller implements Help.HelpListener {
         new WelcomeController(stage);
     }
 
+    private void displayHelp(int step){
+        helpView.updateText("Next");
+        System.out.println(step);
+    }
+
     @Override
     public void clickNext() {
-        //change le texte et l'image
+        displayHelp(step++);
     }
 }
