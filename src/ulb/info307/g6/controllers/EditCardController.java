@@ -2,15 +2,13 @@ package ulb.info307.g6.controllers;
 
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
-import ulb.info307.g6.models.CardGapFill;
-import ulb.info307.g6.models.Deck;
-import ulb.info307.g6.models.Card;
+import ulb.info307.g6.models.*;
 import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.views.EditCard;
 
-import ulb.info307.g6.models.DeckProbabilities;
 import ulb.info307.g6.views.Popup;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Objects;
 
@@ -43,10 +41,11 @@ public class EditCardController extends ControllerWithCardList implements EditCa
 
     private String getPageUrl() {
         String page_url = Objects.requireNonNull(getClass().getResource("/ulb/info307/g6/views/PreviewCard.html")).toExternalForm();
-        page_url += "?q=" + Base64.getUrlEncoder().encodeToString(editCardView.getQuestionInput().getBytes()); // Encode the text in base64 to avoid problems with special characters
-        page_url += "&a=" + Base64.getUrlEncoder().encodeToString(editCardView.getAnswerInput().getBytes());
+        page_url += "?q=" + Base64.getUrlEncoder().encodeToString(editCardView.getQuestionInput().getBytes(StandardCharsets.UTF_8)); // Encode the text in base64 to avoid problems with special characters
+        page_url += "&a=" + Base64.getUrlEncoder().encodeToString(editCardView.getAnswerInput().getBytes(StandardCharsets.UTF_8));
         return page_url;
     }
+
 
     public void clickPreview() {
         if (previewEnabled) {
@@ -79,19 +78,32 @@ public class EditCardController extends ControllerWithCardList implements EditCa
                 editCardView.setCardListView(deck);
                 deck.printProbability();
             }
-            else{
-                new Popup("""
-                        Error, The card is not valid.
-                        
-                        Example of correct usage:
-                        Question = The captain of the Titanic was _
-                        Answer = Edward Smith
-
-                        For multiple blanks:
-                        Question = The primary colors are _, _, and _.
-                        Answer = red, blue, yellow
-                        """).showAndWait();
-
+            else {
+                String text = "";
+                if (card instanceof CardGapFill) {
+                    text = """
+                            Error, The card is not valid.
+                                                        
+                            Example of correct usage:
+                            Question = The captain of the Titanic was _
+                            Answer = Edward Smith
+                                
+                            For multiple blanks:
+                            Question = The primary colors are _, _, and _.
+                            Answer = red, blue, yellow
+                            """;
+                } else if (card instanceof CardQCM) {
+                    text = """
+                            Error, The card is not valid.
+                                                        
+                            Example of correct usage:
+                            Question = What is the capital of France?
+                            Answer = {Paris}, London, Berlin, Rome
+                                                        
+                            The correct answer is between { }
+                            """;
+                }
+                new Popup(text).showAndWait();
             }
         }
         editCardView.clearTextFields();
@@ -115,7 +127,10 @@ public class EditCardController extends ControllerWithCardList implements EditCa
     private Card getCardEntered() {
         if (editCardView.cardIsGapFill()) {
             return new CardGapFill(editCardView.getQuestionInput(), editCardView.getAnswerInput());
-        } else {
+        } else if (editCardView.cardIsQCM()) {
+            return new CardQCM(editCardView.getQuestionInput(), editCardView.getAnswerInput());
+        }
+        else {
             return new Card(editCardView.getQuestionInput(), editCardView.getAnswerInput());
         }
     }

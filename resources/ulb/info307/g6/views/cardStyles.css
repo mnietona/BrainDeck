@@ -9,6 +9,27 @@
     border-radius: 10px;
     text-align: center;
 }
+.qcmText {
+    font-size: 5vh;
+}
+
+.choice {
+    background-color: #D3D3D3; /* Light Gray */
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer; /* Change cursor to pointer when hovering over a choice */
+    margin: 10px; /* Add some margin around choices */
+    padding: 5px; /* Add some padding inside choices */
+}
+
+.correct {
+    background-color: #008000; /* Green */
+}
+
+.wrong {
+    background-color: #FF0000; /* Red */
+}
+
 
 body {
     height: 100%;
@@ -36,6 +57,7 @@ html {
 }
 
 #card_text {
+    width: fit-content;
     margin: 0;
     position: absolute;
     top: 50%;

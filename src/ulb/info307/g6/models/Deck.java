@@ -43,7 +43,7 @@ public class Deck implements Serializable {
         this.name = name;
         this.cardList = cardList;
     }
-
+    @JsonIgnore
     public int getKnowledgeLevel() {
         int knowledgeLevel = 0;
         if (cardList.size() == 0) {
