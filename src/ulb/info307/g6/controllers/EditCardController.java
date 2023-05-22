@@ -5,12 +5,10 @@ import org.jetbrains.annotations.NotNull;
 import ulb.info307.g6.models.*;
 import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.views.EditCard;
-
 import ulb.info307.g6.views.Popup;
-
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-import java.util.Objects;
+
 
 public class EditCardController extends ControllerWithCardList implements EditCard.EditCardListener, PreviewCardController.PreviewCardControllerListener {
     static DeckDaoNitriteImplementation databaseDeck = new DeckDaoNitriteImplementation();  // The deck database implementation
