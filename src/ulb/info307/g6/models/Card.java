@@ -13,7 +13,6 @@ import java.time.Instant;
  * It also contains the probability of the user to answer correctly to the question.
  * The probability is updated after each answer.
  */
-
 public class Card implements Serializable {
     @Id
     private final long id;
@@ -111,7 +110,6 @@ public class Card implements Serializable {
 
     public void addTimeSpent(Instant start, Instant end) {
         timeSpent += Duration.between(start, end).toSeconds();
-
     }
 
     public void increaseNumberOfAppearances() {
