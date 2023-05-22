@@ -3,7 +3,6 @@ package ulb.info307.g6.models;
 import java.util.Arrays;
 
 public class CardQCM extends Card {
-
     private final String[] answerParts;
     private int goodAnswerIndex;  // New variable to store index of good answer
 
@@ -65,7 +64,6 @@ public class CardQCM extends Card {
             choiceAnswer[randomIndexToSwap] = choiceAnswer[i];
             choiceAnswer[i] = temp;
         }
-
         return choiceAnswer;
     }
 
