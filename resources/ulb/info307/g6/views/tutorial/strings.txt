@@ -1,8 +1,8 @@
-ligne0
-ligne1
-ligne2
-ligne3
-ligne4
-ligne5
-ligne6
-ligne7
+Welcome to your BrainDeck program! Start by clicking one of the 4 buttons on the main screen! If you don't know what a button does, hover over it to get an explanation. Let's start with the Study tab!
+You can choose the deck you want to study on the left panel, once a deck is selected, the cards are automatically displayed in the center. Press the turning arrow to show the answer and press the double arrow to go to the next card.
+Once you flipped your card, select, using the slider, the word that best describes your knowledge level of the card!
+To Edit a deck, select a deck and press the pen icon! You can also import and export deck by clicking on the up and down arrows buttons.
+Give a name to your deck and press the "V" button to add your new deck!
+To Edit a card, select a card on the left and modify its content as you wish. You can also create specific type of card like gap fill or multiple choice, hover over the checkboxes to get detailed explanation. Press the eye to get a preview of your card. When you're done, press the pen icon.
+In the statistic window, you can have a look at your global statistics. You can also see your statistics for a specific deck by selecting it on the left panel.
+You can unlock achievement by playing the game. Press the home button to start playing, have fun!
