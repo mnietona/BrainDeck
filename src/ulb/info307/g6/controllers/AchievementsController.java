@@ -18,7 +18,7 @@ import java.util.List;
 public class AchievementsController extends Controller implements Achievements.AchievementsListener {
     private final Achievements achievementsView;
 
-    private List<Achievement> achievements;
+    private final List<Achievement> achievements;
 
     public final StatisticsDao StatisticsDatabase = new StatisticsDao();
     public final DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation();
