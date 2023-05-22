@@ -32,7 +32,6 @@ public class Tutorial implements View {
     }
 
     public void updateText(String text) {
-        System.out.println("updateText");
         tutorialText.setText(text);
     }
 
