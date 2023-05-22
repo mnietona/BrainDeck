@@ -32,11 +32,11 @@ public class EditCardController extends ControllerWithCardList implements EditCa
             selectedItem.setQuestion(editCardView.getQuestionInput());
             selectedItem.setAnswer(editCardView.getAnswerInput());
             if (editCardView.cardIsGapFill()) {
-                selectedItem.setCardType(1);
+                selectedItem.setCardType(CardTypes.GAP_FILL);
             } else if (editCardView.cardIsQCM()) {
-                selectedItem.setCardType(2);
+                selectedItem.setCardType(CardTypes.QCM);
             } else {
-                selectedItem.setCardType(0);
+                selectedItem.setCardType(CardTypes.NORMAL);
             }
             databaseDeck.updateDeck(deck);
             editCardView.setCardListView(deck);
@@ -78,11 +78,11 @@ public class EditCardController extends ControllerWithCardList implements EditCa
                 // that way the normalization will be coherent
                 card.setProbability(deck.isEmpty() ? 1.0 : (1.0 / deck.getSize()));
                 if (card instanceof CardGapFill) {
-                    card.setCardType(1);
+                    card.setCardType(CardTypes.GAP_FILL);
                 } else if (card instanceof CardQCM) {
-                    card.setCardType(2);
+                    card.setCardType(CardTypes.QCM);
                 } else {
-                    card.setCardType(0);
+                    card.setCardType(CardTypes.NORMAL);
                 }
                 deck.addCard(card);
                 deck.normalizeProbability();

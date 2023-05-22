@@ -6,7 +6,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebView;
 import javafx.util.StringConverter;
-
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
