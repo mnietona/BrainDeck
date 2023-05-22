@@ -73,11 +73,11 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
             String[] choiceAnswers = new String[0];
             Card card = currentDeck.getCardByIndex(cardIndex);
             updateSliderPosition();
-            if (CardGapFill.isCardGapFilType(card)) {
+            if (card.getCardType() == 1) {
                 // We transform the card into its extended type cardGapFill if necessary
                 // (to know if the card is of the type cardGapFill, we check whether its question contains the "gap" marker "_")
                 card = new CardGapFill(card.getQuestion(), card.getAnswer());
-            } else if (CardQCM.isCardQCMType(card)) {
+            } else if (card.getCardType() == 2) {
                 isQCM = true;
                 card = new CardQCM(card.getQuestion(), card.getAnswer());
                 card.setChoiceAnswerQCM(((CardQCM) card).choiceAnswer());
