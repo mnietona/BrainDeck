@@ -86,7 +86,6 @@ public class StudyController extends ControllerWithDeckList implements Study.Stu
                 studyView.activateSlider(true);
             }
             numberOfFlipsAuthorizedForCurrentCard = card.getMaxNumberOfFlips();
-
             studyView.flipCard(questionIsDisplayed(), card.getQuestion(), card.getNthFlippedAnswer(flipIndex), isQCM, choiceAnswers,index);
 
         }

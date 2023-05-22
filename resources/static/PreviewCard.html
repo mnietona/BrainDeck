@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- KaTeX requires the use of the HTML5 doctype. Without it, KaTeX may not render properly -->
+<html lang="en">
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="katex/katex.min.css">
+        <link rel="stylesheet" href="previewStyles.css">
+
+        <!-- The loading of KaTeX is deferred to speed up page rendering -->
+        <script defer src="katex/katex.min.js"></script>
+
+        <!-- To automatically render math in text elements, include the auto-render extension: -->
+        <script defer src="katex/contrib/auto-render.min.js"></script>
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function() {
+                let searchparams = new URL(document.location).searchParams;
+                if (searchparams.get('q') == null || searchparams.get('a') == null) {
+                  document.getElementById('q').innerHTML = "<h3>Card is empty</h3>"
+                  document.getElementById('a').innerHTML = "<h3>Card is empty</h3>"
+                  return;
+                }
+                let question_text = decodeURIComponent(escape(window.atob(searchparams.get('q').replace('_', '/').replace('-', '+'))));
+                let answer_text = decodeURIComponent(escape(window.atob(searchparams.get('a').replace('_', '/').replace('-', '+'))));
+
+                document.getElementById('question_text').innerText = question_text;
+                document.getElementById('answer_text').innerText = answer_text;
+                renderMathInElement(document.body);
+            });
+        </script>
+    </head>
+  <body>
+    <h3>Question :</h3>
+    <div id="question_text" class="question"></div>
+    <h3>Answer : </h3>
+    <div id="answer_text" class="answer"></div>
+  </body>
+</html>

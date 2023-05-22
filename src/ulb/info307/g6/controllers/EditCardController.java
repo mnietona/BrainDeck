@@ -40,7 +40,7 @@ public class EditCardController extends ControllerWithCardList implements EditCa
     }
 
     private String getPageUrl() {
-        String page_url = Objects.requireNonNull(getClass().getResource("/ulb/info307/g6/views/PreviewCard.html")).toExternalForm();
+        String page_url = "http://localhost:14757/PreviewCard.html";
         page_url += "?q=" + Base64.getUrlEncoder().encodeToString(editCardView.getQuestionInput().getBytes(StandardCharsets.UTF_8)); // Encode the text in base64 to avoid problems with special characters
         page_url += "&a=" + Base64.getUrlEncoder().encodeToString(editCardView.getAnswerInput().getBytes(StandardCharsets.UTF_8));
         return page_url;
@@ -106,7 +106,6 @@ public class EditCardController extends ControllerWithCardList implements EditCa
                 new Popup(text).showAndWait();
             }
         }
-        editCardView.clearTextFields();
     }
 
     @Override

@@ -104,12 +104,12 @@ public class Study extends ViewWithDeckList {
      * @param text The text to set
      */
     private String get_page_url(String text) {
-        String page_url = Objects.requireNonNull(getClass().getResource("showCard.html")).toExternalForm();//no need to handle exception since the html file is in the same package
-        page_url += "?text=" + Base64.getUrlEncoder().encodeToString(text.getBytes()); // Encode the text in base64 to avoid problems with special characters
+        String page_url = "http://localhost:14757/showCard.html";//no need to handle exception since the html file is in the same package
+        page_url += "?text=" + Base64.getUrlEncoder().encodeToString(text.getBytes(StandardCharsets.UTF_8)); // Encode the text in base64 to avoid problems with special characters
         return page_url;
     }
     private String get_page_url_qcm(String text, String[] choices, int answerIndex) {
-        String page_url = Objects.requireNonNull(getClass().getResource("cardQCM.html")).toExternalForm();
+        String page_url = "http://localhost:14757/cardQCM.html";
         page_url += "?text=" + Base64.getUrlEncoder().encodeToString(text.getBytes(StandardCharsets.UTF_8));
 
         // Convert choices array to a comma-separated string
@@ -117,7 +117,6 @@ public class Study extends ViewWithDeckList {
         page_url += "&type=" + "qcm";
         page_url += "&choices=" + Base64.getUrlEncoder().encodeToString(choicesString.getBytes(StandardCharsets.UTF_8));
         page_url += "&answer=" + answerIndex;
-
         return page_url;
     }
 
@@ -140,7 +139,7 @@ public class Study extends ViewWithDeckList {
     }
 
     public void showEmptyDeck() {
-        cardWebView.getEngine().load("showCard.html");
+        cardWebView.getEngine().load("http://localhost:14757/showCard.html");
     }
 
     public void setColorWebView() {
