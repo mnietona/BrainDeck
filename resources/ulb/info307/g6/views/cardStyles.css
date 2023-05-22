@@ -57,6 +57,7 @@ html {
 }
 
 #card_text {
+    width: fit-content;
     margin: 0;
     position: absolute;
     top: 50%;
