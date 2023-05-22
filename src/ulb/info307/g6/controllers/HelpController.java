@@ -74,6 +74,6 @@ public class HelpController extends Controller implements Help.HelpListener {
 
     @Override
     public void clickNext() {
-        displayHelp(step++);
+        displayHelp(step++%6);//modulo 6 pour revenir au debut
     }
 }
