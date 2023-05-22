@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.io.File;
-import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import ulb.info307.g6.views.Help;
 
@@ -28,7 +27,7 @@ public class HelpController extends Controller implements Help.HelpListener {
         new WelcomeController(stage);
     }
     private String getText(int step){
-        String filePath = "resources/ulb/info307/g6/howToText.txt"; // Replace with the actual file path
+        String filePath = "resources/ulb/info307/g6/howToText.txt"; // TODO: chemin et jar?
 
         try {
             Path file = Paths.get(filePath);
@@ -44,7 +43,7 @@ public class HelpController extends Controller implements Help.HelpListener {
     }
 
     private String getImage(int step){
-        String folderPath= "resources/ulb/info307/g6/howToImages";
+        String folderPath= "resources/ulb/info307/g6/howToImages";// TODO: chemin et jar?
         File folder = new File(folderPath);
         try {
 
@@ -67,7 +66,7 @@ public class HelpController extends Controller implements Help.HelpListener {
         String path=getImage(step);
         String text=getText(step);
 
-        helpView.updateText(text); //on file le texte lié a la setp
+        helpView.updateText(text); //on file le texte lié a la step
         helpView.updateImage(path); //on file le path de l'image lié a la step
         System.out.println(step);
     }

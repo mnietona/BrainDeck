@@ -1,4 +1,4 @@
-Apres avoir cliqué sur Study, Edit, ou Statistics, vous pouvez observer sur la gauche vos decks!\n Appuyez sur l'un d'entre eux afin de le selectionner. 
+Apres avoir cliqué sur Study, Edit, ou Statistics, vous pouvez observer sur la gauche vos decks! Appuyez sur l'un d'entre eux afin de le selectionner. 
 Screen2
 Screen3
 Screen4
