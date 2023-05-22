@@ -10,9 +10,8 @@
     <!-- Tutorial screenshot + tutorial text -->
     <VBox alignment="CENTER" spacing="25.0" VBox.vgrow="ALWAYS">
         <ImageView fx:id="tutorialScreenshot" fitHeight="500" preserveRatio="true" />
-        <Text fx:id="tutorialText" styleClass="normal-text" textAlignment="CENTER" />
+        <Text fx:id="tutorialText" styleClass="normal-text" textAlignment="CENTER" wrappingWidth = "640"/>
     </VBox>
-
     <!-- Buttons -->
    <HBox alignment="CENTER">
           <Button onAction="#clickHome">

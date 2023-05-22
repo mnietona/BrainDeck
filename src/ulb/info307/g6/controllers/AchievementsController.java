@@ -14,11 +14,10 @@ import java.util.List;
  * Controller for the achievements view. It is used to display the achievements of the user.
  * It also displays the progress of the user towards the achievements.
  */
-
 public class AchievementsController extends Controller implements Achievements.AchievementsListener {
     private final Achievements achievementsView;
 
-    private List<Achievement> achievements;
+    private final List<Achievement> achievements;
 
     public final StatisticsDao StatisticsDatabase = new StatisticsDao();
     public final DeckDaoNitriteImplementation database = new DeckDaoNitriteImplementation();

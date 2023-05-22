@@ -3,7 +3,6 @@ package ulb.info307.g6.models.database;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.dizitart.no2.objects.filters.ObjectFilters;
 import ulb.info307.g6.models.Card;
-import ulb.info307.g6.views.Popup;
 
 import java.util.List;
 
@@ -15,8 +14,7 @@ public class CardDaoNitriteImplementation {
             con.insert(card);
             return true;
         } catch (Exception e) {
-            new Popup("Error with Database, Retry Later or Contact Support").showAndWait();
-            System.exit(1);
+            e.printStackTrace();
         }
         return false;
     }
@@ -26,8 +24,7 @@ public class CardDaoNitriteImplementation {
             con.remove(card);
             return true;
         } catch (Exception e) {
-            new Popup("Error with Database, Retry Later or Contact Support").showAndWait();
-            System.exit(1);
+            e.printStackTrace();
         }
         return false;
     }
@@ -37,8 +34,7 @@ public class CardDaoNitriteImplementation {
             con.update(card);
             return true;
         } catch (Exception e) {
-            new Popup("Error with Database, Retry Later or Contact Support").showAndWait();
-            System.exit(1);
+            e.printStackTrace();
         }
         return false;
     }
@@ -47,8 +43,7 @@ public class CardDaoNitriteImplementation {
         try {
             return con.find().toList();
         } catch (Exception e) {
-            new Popup("Error with Database, Retry Later or Contact Support").showAndWait();
-            System.exit(1);
+            e.printStackTrace();
         }
         return null;
     }
@@ -57,8 +52,7 @@ public class CardDaoNitriteImplementation {
         try {
             return con.find(ObjectFilters.eq("id", id)).firstOrDefault();
         } catch (Exception e) {
-            new Popup("Error with Database, Retry Later or Contact Support").showAndWait();
-            System.exit(1);
+            e.printStackTrace();
         }
         return null;
     }

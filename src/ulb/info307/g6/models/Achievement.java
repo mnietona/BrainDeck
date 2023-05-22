@@ -4,13 +4,13 @@ public class Achievement {
     public interface NumberProvider {
         double getNumber();
     }
-    private String name;
-    private NumberProvider numberProvider;
-    private double targetNumber;
+    private final String name;
+    private final NumberProvider numberProvider;
+    private final double targetNumber;
     private Achievement nextTierAchievement;
     private Achievement previousTierAchievement;
     public Achievement(String name, double targetNumber, NumberProvider numberProvider) {
-        this.name = name;
+        this.name = "     " + name;
         this.targetNumber = targetNumber;
         this.numberProvider = numberProvider;
         this.nextTierAchievement = null;
