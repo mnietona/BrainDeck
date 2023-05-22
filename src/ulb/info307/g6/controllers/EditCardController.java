@@ -8,6 +8,7 @@ import ulb.info307.g6.views.EditCard;
 
 import ulb.info307.g6.views.Popup;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Objects;
 
@@ -40,10 +41,11 @@ public class EditCardController extends ControllerWithCardList implements EditCa
 
     private String getPageUrl() {
         String page_url = Objects.requireNonNull(getClass().getResource("/ulb/info307/g6/views/PreviewCard.html")).toExternalForm();
-        page_url += "?q=" + Base64.getUrlEncoder().encodeToString(editCardView.getQuestionInput().getBytes()); // Encode the text in base64 to avoid problems with special characters
-        page_url += "&a=" + Base64.getUrlEncoder().encodeToString(editCardView.getAnswerInput().getBytes());
+        page_url += "?q=" + Base64.getUrlEncoder().encodeToString(editCardView.getQuestionInput().getBytes(StandardCharsets.UTF_8)); // Encode the text in base64 to avoid problems with special characters
+        page_url += "&a=" + Base64.getUrlEncoder().encodeToString(editCardView.getAnswerInput().getBytes(StandardCharsets.UTF_8));
         return page_url;
     }
+
 
     public void clickPreview() {
         if (previewEnabled) {

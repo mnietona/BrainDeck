@@ -19,8 +19,8 @@
                   document.getElementById('a').innerHTML = "<h3>Card is empty</h3>"
                   return;
                 }
-                let question_text = atob(searchparams.get('q').replace('_', '/').replace('-', '+'));
-                let answer_text = atob(searchparams.get('a').replace('_', '/').replace('-', '+'));
+                let question_text = decodeURIComponent(escape(window.atob(searchparams.get('q').replace('_', '/').replace('-', '+'))));
+                let answer_text = decodeURIComponent(escape(window.atob(searchparams.get('a').replace('_', '/').replace('-', '+'))));
 
                 document.getElementById('question_text').innerText = question_text;
                 document.getElementById('answer_text').innerText = answer_text;

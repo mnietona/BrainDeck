@@ -18,7 +18,7 @@
                 return;
             }
             //since atob need url safe base64, we replace the forbidden characters
-            document.getElementById('card_text').innerText = atob(searchParameters.get('text').replace('_', '/').replace('-', '+'));
+            document.getElementById('card_text').innerText = decodeURIComponent(escape(window.atob(searchParameters.get('text').replace('_', '/').replace('-', '+'))));
             if (searchParameters.get('type') === 'question') {
                 document.getElementById('card_text').classList.add('question');
             } else if (searchParameters.get('type') === 'answer') {

@@ -18,9 +18,9 @@
         return;
       }
       //since atob need url safe base64, we replace the forbidden characters
-      let text = atob(searchParameters.get('text').replace('_', '/').replace('-', '+'));
+      let text = decodeURIComponent(escape(window.atob(searchParameters.get('text').replace('_', '/').replace('-', '+'))));
+      let choices = decodeURIComponent(escape(window.atob(searchParameters.get('choices').replace('_', '/').replace('-', '+')))).split(",");
       let answerIndex = -1;
-      let choices = atob(searchParameters.get('choices').replace('_', '/').replace('-', '+')).split(",");
       answerIndex = parseInt(searchParameters.get('answer'));
       let htmlContent = "<h1 class='question qcmText'>" + escapeHTML(text) + "</h1>";
       for (let i = 0; i < choices.length; i++) {

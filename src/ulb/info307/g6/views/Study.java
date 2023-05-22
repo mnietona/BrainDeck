@@ -7,6 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.web.WebView;
 import javafx.util.StringConverter;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Objects;
 
@@ -109,12 +110,12 @@ public class Study extends ViewWithDeckList {
     }
     private String get_page_url_qcm(String text, String[] choices, int answerIndex) {
         String page_url = Objects.requireNonNull(getClass().getResource("cardQCM.html")).toExternalForm();
-        page_url += "?text=" + Base64.getUrlEncoder().encodeToString(text.getBytes());
+        page_url += "?text=" + Base64.getUrlEncoder().encodeToString(text.getBytes(StandardCharsets.UTF_8));
 
         // Convert choices array to a comma-separated string
         String choicesString = String.join(",", choices);
         page_url += "&type=" + "qcm";
-        page_url += "&choices=" + Base64.getUrlEncoder().encodeToString(choicesString.getBytes());
+        page_url += "&choices=" + Base64.getUrlEncoder().encodeToString(choicesString.getBytes(StandardCharsets.UTF_8));
         page_url += "&answer=" + answerIndex;
 
         return page_url;
