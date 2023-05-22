@@ -3,7 +3,7 @@ package ulb.info307.g6.models;
 /**
  * Model class for a card.
  * The CardGapFill class is a model representing a card used in an application.
- * It extends the Card class and introduces specific features for gapped questions.
+ * It extends the Card class and introduces specific features for gaped questions.
  * It divides the question and answer into parts using separators and provides methods for validating the card,
  * reconstructing the question with hidden answers, and retrieving flipped versions of the question with a specified number of revealed answer parts.
  */
