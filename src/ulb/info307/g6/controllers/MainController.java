@@ -10,7 +10,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
-import ulb.info307.g6.SpringWebApplication;
+import ulb.info307.g6.Launcher;
 import ulb.info307.g6.views.Popup;
 
 /**
@@ -29,7 +29,7 @@ public class MainController extends Application {
                 ac.registerBean(HostServices.class, this::getHostServices);
         };
         this.applicationContext = new SpringApplicationBuilder()
-                .sources(SpringWebApplication.class)
+                .sources(Launcher.class)
                 .initializers(initializer)
                 .run(getParameters().getRaw().toArray(new String[0]));
     }
