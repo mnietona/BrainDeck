@@ -36,6 +36,9 @@ public class TutorialController extends Controller implements Tutorial.TutorialL
         tutorialView.updateText(tutorialTexts.get(index));
         String TUTORIAL_PATH = "/ulb/info307/g6/views/tutorial/";
         tutorialView.updateImage(TUTORIAL_PATH + index + ".png");
+        if (index == tutorialTexts.size() - 1) {
+            tutorialView.disableNextPageButton();
+        }
     }
 
     private List<String> getTutorialTexts() {

@@ -1,4 +1,6 @@
 package ulb.info307.g6.views;
+
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.fxml.FXML;
@@ -11,6 +13,8 @@ public class Tutorial implements View {
     private Text tutorialText;
     @FXML
     private ImageView tutorialScreenshot;
+    @FXML
+    private Button nextPageButton;
 
     @FXML
     private void clickHome() {
@@ -33,8 +37,11 @@ public class Tutorial implements View {
     }
 
     public void updateImage(String path) {
-        Image newImage = new Image(path);
-        tutorialScreenshot.setImage(newImage);
+        tutorialScreenshot.setImage(new Image(path));
+    }
+
+    public void disableNextPageButton() {
+        nextPageButton.setDisable(true);
     }
 
     public interface TutorialListener {
