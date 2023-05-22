@@ -19,7 +19,7 @@ import java.util.Base64;
  */
 public class Study extends ViewWithDeckList {
     @FXML
-    private WebView cardWebView; //probleme a l'initialisation
+    private WebView cardWebView;
     @FXML
     private Slider knowledgeLvlSlider;
     @FXML

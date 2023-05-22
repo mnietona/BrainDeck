@@ -13,7 +13,7 @@ import java.io.IOException;
  * It is used by the CardController to display the preview of a card when the user clicks on it
  */
 
-public class PreviewCardController {  // TODO use Controller.java
+public class PreviewCardController {
     Stage stage;
     private PreviewCard previewCardView;
     private PreviewCardControllerListener listener;

@@ -36,10 +36,10 @@ public class CardQCM extends Card {
         String[] badAnswer = new String[3];
         int i = 0;
         while (i < 3) {
-            int nbrAleatoire = (int) (Math.random() * (answerParts.length));
-            // Add answerParts[nbrAleatoire] if it is not the good answer and not already in badAnswer
-            if (nbrAleatoire != goodAnswerIndex && !Arrays.asList(badAnswer).contains(answerParts[nbrAleatoire])) {
-                badAnswer[i] = answerParts[nbrAleatoire];
+            int randomNumber = (int) (Math.random() * (answerParts.length));
+            // Add answerParts[randomNumber] if it is not the good answer and not already in badAnswer
+            if (randomNumber != goodAnswerIndex && !Arrays.asList(badAnswer).contains(answerParts[randomNumber])) {
+                badAnswer[i] = answerParts[randomNumber];
                 i++;
             }
         }
@@ -61,7 +61,7 @@ public class CardQCM extends Card {
         choiceAnswer[0] = getAnswer();
         String[] badAnswer = setBadAnswer();
         System.arraycopy(badAnswer, 0, choiceAnswer, 1, 3);
-        // Melange la liste
+        // Shuffle array
         for (int i = 0; i < choiceAnswer.length; i++) {
             int randomIndexToSwap = (int) (Math.random() * choiceAnswer.length);
             String temp = choiceAnswer[randomIndexToSwap];
