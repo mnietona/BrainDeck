@@ -120,7 +120,7 @@ public class EditCardController extends ControllerWithCardList implements EditCa
                 new Popup(text).showAndWait();
             }
         }
-        editCardView.clearTextFields();
+
     }
 
     @Override
