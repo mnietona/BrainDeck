@@ -4,35 +4,40 @@ import javafx.scene.image.ImageView;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
-public class Help implements View {
+public class Tutorial implements View {
     
-    public HelpListener listener;
+    public TutorialListener listener;
     @FXML
-    private Text howText;
+    private Text tutorialText;
     @FXML
-    private ImageView howImage;
+    private ImageView tutorialScreenshot;
+
     @FXML
     private void clickHome() {
         listener.clickHome();
     }
+
     @FXML
     private void clickNext() {
         listener.clickNext();
     }
+
     @Override
     public void setListener(Object listener) {
-        this.listener = (Help.HelpListener) listener;
+        this.listener = (TutorialListener) listener;
     }
 
-    public void updateText(String text) { //TODO: static?
-        howText.setText(text);
+    public void updateText(String text) {
+        System.out.println("updateText");
+        tutorialText.setText(text);
     }
 
     public void updateImage(String path) {
-        howImage.setImage(new Image(path));
+        Image newImage = new Image(path);
+        tutorialScreenshot.setImage(newImage);
     }
 
-    public interface HelpListener {
+    public interface TutorialListener {
         void clickHome();
         void clickNext();
     }
