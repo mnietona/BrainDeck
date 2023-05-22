@@ -1,13 +1,16 @@
 package ulb.info307.g6.views;
-
-import javafx.event.ActionEvent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
 public class Help implements View {
+    
     public HelpListener listener;
     @FXML
     private Text howText;
+    @FXML
+    private ImageView howImage;
     @FXML
     private void clickHome() {
         listener.clickHome();
@@ -22,11 +25,11 @@ public class Help implements View {
     }
 
     public void updateText(String text) { //TODO: static?
-        howText.setText("Next");
+        howText.setText(text);
     }
 
     public void updateImage(String path) {
-        System.out.println(path);
+        howImage.setImage(new Image(path));
     }
 
     public interface HelpListener {
