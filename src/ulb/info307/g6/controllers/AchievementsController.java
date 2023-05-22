@@ -34,23 +34,55 @@ public class AchievementsController extends Controller implements Achievements.A
     private void generateAchievementList() {
         achievements.add(new Achievement("5 consecutive days of using the app", 5, StatisticsDatabase::getLongestDayStreak));
         achievements.add(new Achievement("10 consecutive days of using the app", 10, StatisticsDatabase::getLongestDayStreak));
+        setAchievementTier();
         achievements.add(new Achievement("20 consecutive days of using the app", 20, StatisticsDatabase::getLongestDayStreak));
+        setAchievementTier();
         achievements.add(new Achievement("Highest knowledge level of deck", 5, this::getHighestKnowledgeLevel));
         achievements.add(new Achievement("Deck with at least 10 cards", 10, this::getHighestNumberOfCardsPerDeck));
         achievements.add(new Achievement("Deck with at least 20 cards", 20, this::getHighestNumberOfCardsPerDeck));
+        setAchievementTier();
         achievements.add(new Achievement("Deck with at least 100 cards", 100, this::getHighestNumberOfCardsPerDeck));
+        setAchievementTier();
+        achievements.add(new Achievement("1 cards created", 1, database::getTotalNumberOfCards));
+        achievements.add(new Achievement("2 cards created", 2, database::getTotalNumberOfCards));
+        setAchievementTier();
+        achievements.add(new Achievement("3 cards created", 3, database::getTotalNumberOfCards));
+        setAchievementTier();
         achievements.add(new Achievement("100 cards created", 100, database::getTotalNumberOfCards));
-        achievements.add(new Achievement("200 cards created", 200, database::getTotalNumberOfCards));
-        achievements.add(new Achievement("500 cards created", 500, database::getTotalNumberOfCards));
-        achievements.add(new Achievement("1000 cards created", 1000, database::getTotalNumberOfCards));
+        setAchievementTier();
         achievements.add(new Achievement("1 hour studying", 3600, this::getAllTimeSpent));
         achievements.add(new Achievement("5 hour studying", 3600*5, this::getAllTimeSpent));
+        setAchievementTier();
         achievements.add(new Achievement("10 hour studying", 3600*10, this::getAllTimeSpent));
+        setAchievementTier();
+    }
+
+    private void setAchievementTier() {
+        achievements.get(achievements.size() - 1).setPreviousTierAchievement(achievements.get(achievements.size() - 2));
     }
 
     private void addGeneratedAchievementsToView() {
         for (Achievement a : achievements) {
-            achievementsView.addNewAchievement(a);
+            System.out.println(a.getName() + ": achieved - " + a.isAchieved());
+            if (a.hasPreviousAchievement()) {
+                if (a.getPreviousTierAchievement().isAchieved()) {
+                    if (!a.hasNextAchievement()) {
+                        achievementsView.addNewAchievement(a, a.getAchievementTier());
+                    } else {
+                        if (!a.getNextTierAchievement().isAchieved() && !a.isAchieved()) {
+                            achievementsView.addNewAchievement(a, a.getAchievementTier());
+                        }
+                    }
+                }
+            } else {
+                if (a.hasNextAchievement()) {
+                    if (!a.getNextTierAchievement().isAchieved() && !a.isAchieved()) {
+                        achievementsView.addNewAchievement(a, a.getAchievementTier());
+                    }
+                } else {
+                    achievementsView.addNewAchievement(a, a.getAchievementTier());
+                }
+            }
         }
     }
 

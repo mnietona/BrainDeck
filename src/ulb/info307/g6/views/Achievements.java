@@ -13,7 +13,7 @@ import ulb.info307.g6.models.Achievement;
 
 public class Achievements implements View {
     private class AchievementHbox extends HBox {
-        AchievementHbox(Achievement a) {
+        AchievementHbox(Achievement a, int tier) {
             super();
             setAlignment(Pos.CENTER);
             setSpacing(25.0);
@@ -22,21 +22,23 @@ public class Achievements implements View {
             ProgressBar achievementProgressBar = new ProgressBar();
             achievementProgressBar.setProgress(a.getProgress());
             achievementProgressBar.setPrefWidth(250.0);
-            ImageView achievementImageView = new ImageView(new Image("/ulb/info307/g6/views/icons/checkmark.png"));
-            achievementImageView.setFitHeight(75);
-            achievementImageView.setFitWidth(75);
-            if (!a.isAchieved()) {
-                System.out.println(a.getProgress());
-                achievementImageView.setVisible(false);
+            getChildren().add(achievementProgressBar);
+            if (tier == 0) {
+                ImageView achievementImageView = new ImageView(new Image("/ulb/info307/g6/views/icons/checkmark.png"));
+                achievementImageView.setFitHeight(75);
+                achievementImageView.setFitWidth(75);
                 ColorAdjust colorAdjust = new ColorAdjust();
                 colorAdjust.setSaturation(-1); // Set saturation to -1 for full grayness
                 achievementImageView.setEffect(colorAdjust);
+                getChildren().add(achievementImageView);
             } else {
-                achievementImageView.setVisible(true);
+                for(int i=0;i<tier;i++){
+                    ImageView achievementImageView = new ImageView(new Image("/ulb/info307/g6/views/icons/checkmark.png"));
+                    achievementImageView.setFitHeight(75);
+                    achievementImageView.setFitWidth(75);
+                    getChildren().add(achievementImageView);
+                }
             }
-
-            getChildren().add(achievementProgressBar);
-            getChildren().add(achievementImageView);
         }
     }
     @FXML
@@ -48,8 +50,8 @@ public class Achievements implements View {
     }
 
 
-    public void addNewAchievement(Achievement a) {
-        achievementsVbox.getChildren().add(new AchievementHbox(a));
+    public void addNewAchievement(Achievement a, int tier) {
+        achievementsVbox.getChildren().add(new AchievementHbox(a, tier));
     }
 
     @Override
