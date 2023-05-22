@@ -68,6 +68,6 @@ public class WelcomeController extends Controller implements Welcome.WelcomeList
 
     @Override
     public void helpButtonAction() {
-        new HelpController(stage);
+        new TutorialController(stage);
     }
 }
