@@ -10,7 +10,7 @@ public class Achievement {
     private Achievement nextTierAchievement;
     private Achievement previousTierAchievement;
     public Achievement(String name, double targetNumber, NumberProvider numberProvider) {
-        this.name = name;
+        this.name = "     " + name;
         this.targetNumber = targetNumber;
         this.numberProvider = numberProvider;
         this.nextTierAchievement = null;
