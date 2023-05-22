@@ -6,10 +6,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebView;
 import javafx.util.StringConverter;
-
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-import java.util.Objects;
 
 /**
  * View controller of the Study menu, implements View interface and is the controller for the Study.fxml file.
