@@ -22,10 +22,9 @@ public class Card implements Serializable {
     private Double probability;  // 5 levels: 0, 1, 2, 3, 4 from bad to good
     private long timeSpent = 0;
     private int knowledgeLevel;
-
     private String [] choiceAnswerQCM;
-
     private int numberOfAppearances = 0;
+    private CardTypes cardType = CardTypes.NORMAL; // 0 for normal card, 1 for gap fill card, 2 for QCM card
 
     public Card() {
         this.id = new Random().nextLong();
@@ -77,6 +76,14 @@ public class Card implements Serializable {
 
     public int getKnowledgeLevel() {
         return knowledgeLevel;
+    }
+
+    public void setCardType(CardTypes cardType) {
+        this.cardType = cardType;
+    }
+
+    public CardTypes getCardType() {
+        return cardType;
     }
 
     @JsonIgnore

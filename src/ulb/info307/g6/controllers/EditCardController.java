@@ -5,12 +5,10 @@ import org.jetbrains.annotations.NotNull;
 import ulb.info307.g6.models.*;
 import ulb.info307.g6.models.database.DeckDaoNitriteImplementation;
 import ulb.info307.g6.views.EditCard;
-
 import ulb.info307.g6.views.Popup;
-
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-import java.util.Objects;
+
 
 public class EditCardController extends ControllerWithCardList implements EditCard.EditCardListener, PreviewCardController.PreviewCardControllerListener {
     static DeckDaoNitriteImplementation databaseDeck = new DeckDaoNitriteImplementation();  // The deck database implementation
@@ -33,6 +31,13 @@ public class EditCardController extends ControllerWithCardList implements EditCa
         if (selectedItem != null && !editCardView.atLeastOneInputIsEmpty()) {
             selectedItem.setQuestion(editCardView.getQuestionInput());
             selectedItem.setAnswer(editCardView.getAnswerInput());
+            if (editCardView.cardIsGapFill()) {
+                selectedItem.setCardType(CardTypes.GAP_FILL);
+            } else if (editCardView.cardIsQCM()) {
+                selectedItem.setCardType(CardTypes.QCM);
+            } else {
+                selectedItem.setCardType(CardTypes.NORMAL);
+            }
             databaseDeck.updateDeck(deck);
             editCardView.setCardListView(deck);
         }
@@ -40,7 +45,7 @@ public class EditCardController extends ControllerWithCardList implements EditCa
     }
 
     private String getPageUrl() {
-        String page_url = Objects.requireNonNull(getClass().getResource("/ulb/info307/g6/views/PreviewCard.html")).toExternalForm();
+        String page_url = "http://localhost:14757/PreviewCard.html";
         page_url += "?q=" + Base64.getUrlEncoder().encodeToString(editCardView.getQuestionInput().getBytes(StandardCharsets.UTF_8)); // Encode the text in base64 to avoid problems with special characters
         page_url += "&a=" + Base64.getUrlEncoder().encodeToString(editCardView.getAnswerInput().getBytes(StandardCharsets.UTF_8));
         return page_url;
@@ -72,6 +77,13 @@ public class EditCardController extends ControllerWithCardList implements EditCa
             if (card.isValid()) {
                 // that way the normalization will be coherent
                 card.setProbability(deck.isEmpty() ? 1.0 : (1.0 / deck.getSize()));
+                if (card instanceof CardGapFill) {
+                    card.setCardType(CardTypes.GAP_FILL);
+                } else if (card instanceof CardQCM) {
+                    card.setCardType(CardTypes.QCM);
+                } else {
+                    card.setCardType(CardTypes.NORMAL);
+                }
                 deck.addCard(card);
                 deck.normalizeProbability();
                 databaseDeck.updateDeck(deck);
@@ -106,7 +118,7 @@ public class EditCardController extends ControllerWithCardList implements EditCa
                 new Popup(text).showAndWait();
             }
         }
-        editCardView.clearTextFields();
+
     }
 
     @Override
