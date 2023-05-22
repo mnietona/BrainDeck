@@ -3,7 +3,6 @@ package ulb.info307.g6.models.database;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.dizitart.no2.objects.filters.ObjectFilters;
 import ulb.info307.g6.models.Deck;
-import ulb.info307.g6.views.Popup;
 
 import java.util.List;
 
@@ -14,8 +13,7 @@ public class DeckDaoNitriteImplementation {
             con.insert(deck);
             return true;
         } catch (Exception e) {
-            new Popup("Error with Database, Retry Later or Contact Support").showAndWait();
-            System.exit(1);
+            e.printStackTrace();
         }
         return false; // this will not be reached, but is necessary for compilation
     }
@@ -25,8 +23,7 @@ public class DeckDaoNitriteImplementation {
             con.remove(deck);
             return true;
         } catch (Exception e) {
-            new Popup("Error with Database, Retry Later or Contact Support").showAndWait();
-            System.exit(1);
+            e.printStackTrace();
         }
         return false; // this will not be reached, but is necessary for compilation
     }
@@ -36,8 +33,7 @@ public class DeckDaoNitriteImplementation {
             con.update(deck);
             return true;
         } catch (Exception e) {
-            new Popup("Error with Database, Retry Later or Contact Support").showAndWait();
-            System.exit(1);
+            e.printStackTrace();
         }
         return false; // this will not be reached, but is necessary for compilation
     }
@@ -46,8 +42,7 @@ public class DeckDaoNitriteImplementation {
         try {
             return con.find().toList();
         } catch (Exception e) {
-            new Popup("Error with Database, Retry Later or Contact Support").showAndWait();
-            System.exit(1);
+            e.printStackTrace();
         }
         return null; // this will not be reached, but is necessary for compilation
     }
@@ -56,8 +51,7 @@ public class DeckDaoNitriteImplementation {
         try {
             return con.find().toList().size();
         } catch (Exception e) {
-            new Popup("Error with Database, Retry Later or Contact Support").showAndWait();
-            System.exit(1);
+            e.printStackTrace();
         }
         return 0; // this will not be reached, but is necessary for compilation
     }
@@ -70,8 +64,7 @@ public class DeckDaoNitriteImplementation {
             }
             return n;
         } catch (Exception e) {
-            new Popup("Error with Database, Retry Later or Contact Support").showAndWait();
-            System.exit(1);
+            e.printStackTrace();
         }
         return 0; // this will not be reached, but is necessary for compilation
     }
@@ -80,8 +73,7 @@ public class DeckDaoNitriteImplementation {
         try {
             return con.find(ObjectFilters.eq("id", id)).firstOrDefault();
         } catch (Exception e) {
-            new Popup("Error with Database, Retry Later or Contact Support").showAndWait();
-            System.exit(1);
+            e.printStackTrace();
         }
         return null; // this will not be reached, but is necessary for compilation
     }
@@ -94,8 +86,7 @@ public class DeckDaoNitriteImplementation {
             }
             return totalTimeSpend;
         } catch (Exception e) {
-            new Popup("Error with Database, Retry Later or Contact Support").showAndWait();
-            System.exit(1);
+            e.printStackTrace();
         }
         return 0; // this will not be reached, but is necessary for compilation
     }
