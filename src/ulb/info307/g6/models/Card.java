@@ -24,7 +24,7 @@ public class Card implements Serializable {
     private int knowledgeLevel;
     private String [] choiceAnswerQCM;
     private int numberOfAppearances = 0;
-    private int cardType = 0; // 0 for normal card, 1 for gap fill card, 2 for QCM card
+    private CardTypes cardType = CardTypes.NORMAL; // 0 for normal card, 1 for gap fill card, 2 for QCM card
 
     public Card() {
         this.id = new Random().nextLong();
@@ -78,11 +78,11 @@ public class Card implements Serializable {
         return knowledgeLevel;
     }
 
-    public void setCardType(int cardType) {
+    public void setCardType(CardTypes cardType) {
         this.cardType = cardType;
     }
 
-    public int getCardType() {
+    public CardTypes getCardType() {
         return cardType;
     }
 
