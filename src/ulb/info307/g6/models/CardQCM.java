@@ -51,10 +51,7 @@ public class CardQCM extends Card {
         return setGoodAnswer();
     }
 
-    public static boolean isCardQCMType(Card card){
-        String answer = card.getAnswer();
-        return answer.contains("{") && answer.contains("}");
-    }
+
 
     public String[] choiceAnswer(){
         String[] choiceAnswer = new String[4];
