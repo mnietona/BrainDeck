@@ -25,6 +25,3 @@ Pour exécuter le projet, vous devez installer les outils suivants :
     - Répétez l'Étape 2 de la première section, mais en sélectionnant le bouton ```Run 'g6-iteration-X.jar'``` pour le fichier ```dist/g6-iteration-2.jar```.
     - Pour les lancements ultérieurs, répétez l'Étape 3 de la première section, mais sélectionnez ```g6-iteration-X.jar``` dans la liste des configurations.
 
-Cela transforme les instructions pour refléter un processus similaire dans IntelliJ, mais en ajustant les détails spécifiques à vos besoins, comme les chemins de fichiers et les actions spécifiques à Gradle.
-
-
