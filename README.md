@@ -8,8 +8,34 @@ Pour exécuter le projet, vous devez installer les outils suivants :
 - IntelliJ IDEA Community ou Ultimate
 
 ## Téléchargement et installation
+
 1. Téléchargez et installez le JDK depuis le site Web d'Oracle (https://www.oracle.com/java/technologies/downloads/).
 2. Téléchargez et installez la dernière version d'IntelliJ IDEA Community ou Ultimate depuis le site Web de JetBrains (https://www.jetbrains.com/idea/download/).
+3. Téléchargez et installez Gradle depuis le site Web de Gradle (https://gradle.org/install/).
+   - Pour macOS, vous pouvez utiliser Homebrew pour installer Gradle en exécutant la commande suivante dans le terminal :
+     ```bash
+     brew install gradle
+     ```
+   - Vérifiez l'installation en exécutant :
+     ```bash
+     gradle -v
+     ```
+## Lancement du programme depuis un Terminal
+
+Pour lancer le programme, suivez ces étapes dans votre terminal :
+
+1. **Exécutez les commandes suivantes** :
+   ```bash
+   gradle wrapper
+   ./gradlew build
+   ./gradlew run
+   ./gradlew clean
+
+### Explications des étapes :
+- **`gradle wrapper`** : Génère les fichiers du wrapper Gradle nécessaires.
+- **`./gradlew build`** : Compile le projet et crée les fichiers nécessaires.
+- **`./gradlew run`** : Exécute le programme.
+- **`./gradlew clean`** : Nettoie les fichiers générés.
 
 ## Lancement du programme depuis IntelliJ
 1. Ouvrez le projet dans IntelliJ. Si une fenêtre contextuelle ```"Gradle build scripts found"``` apparaît, cliquez sur le bouton ```Load Gradle Project``` pour charger les scripts de construction Gradle.
