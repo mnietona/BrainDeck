@@ -51,3 +51,6 @@ Pour lancer le programme, suivez ces étapes dans votre terminal :
     - Répétez l'Étape 2 de la première section, mais en sélectionnant le bouton ```Run 'g6-iteration-X.jar'``` pour le fichier ```dist/g6-iteration-2.jar```.
     - Pour les lancements ultérieurs, répétez l'Étape 3 de la première section, mais sélectionnez ```g6-iteration-X.jar``` dans la liste des configurations.
 
+## Démonstration
+
+Vous pouvez regarder la vidéo de démonstration en suivant ce lien : [Vidéo de démonstration](https://drive.google.com/file/d/1AGy0uTqzqWNkNYC6KYpwlQo-1JpCte2r/view?usp=share_link)
